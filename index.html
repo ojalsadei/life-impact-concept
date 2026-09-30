@@ -3,970 +3,348 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>أثر | الخدمات تبدأ من حالتك</title>
-
-  <meta
-    name="description"
-    content="أثر — نموذج مفاهيمي لتجربة تربط حالة المستفيد بالتغييرات في حياته والخدمات ذات العلاقة."
-  >
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
+  <meta name="theme-color" content="#06130f">
+  <meta name="description" content="أثر، نموذج تصوري لتجربة تربط التغيّرات في حياة المستفيد بالخدمات والإجراءات ذات العلاقة">
+  <title>أثر | الخدمة تبدأ من حالتك</title>
 
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <!-- Background -->
-  <div class="ambient" aria-hidden="true">
-    <div class="grid"></div>
-    <div class="glow glow-one"></div>
-    <div class="glow glow-two"></div>
+  <div class="page-bg" aria-hidden="true">
+    <div class="page-grid"></div>
+    <div class="page-glow glow-a"></div>
+    <div class="page-glow glow-b"></div>
   </div>
 
-  <!-- NAV -->
-  <header class="nav">
-    <div class="container nav-inner">
-
-      <a href="#intro" class="brand">
+  <header class="site-header">
+    <div class="container header-inner">
+      <button class="brand" data-scroll-to="hero" aria-label="العودة إلى البداية">
         <span class="brand-mark">أ</span>
-        <span>أثر</span>
-      </a>
+        <span class="brand-name">أثر</span>
+      </button>
 
-      <nav class="nav-links">
-        <button data-scroll="why">لماذا أثر؟</button>
-        <button data-scroll="how">كيف تعمل؟</button>
-
-        <span class="prototype-badge">
-          Concept Prototype
-        </span>
+      <nav class="header-nav" aria-label="التنقل الرئيسي">
+        <button data-scroll-to="idea">الفكرة</button>
+        <button data-scroll-to="how">كيف تعمل؟</button>
+        <button class="nav-demo" data-scroll-to="experience">جرّب أثر</button>
+        <span class="concept-badge">نموذج تصوري غير رسمي</span>
       </nav>
-
     </div>
   </header>
 
-
   <main>
 
-    <!-- ===================================
-         HERO
-    ==================================== -->
-
-    <section class="hero" id="intro">
-      <div class="container hero-layout">
-
-        <div class="hero-copy">
-
-          <div class="eyebrow">
-            <span class="pulse"></span>
-            تصور لتجربة حكومية تتمحور حول المستفيد
-          </div>
-
-          <h1>
-            من البحث عن الخدمة...
-            <span>إلى فهم حالة المستفيد.</span>
-          </h1>
-
-          <p class="hero-description">
-            المستفيد لا يفكر عادةً باسم الخدمة.
-            هو يعرف فقط أن شيئًا تغير في حياته:
-            دخله تغير، عقده انتهى، أو بدأ وظيفة جديدة.
-          </p>
-
-          <p class="hero-description secondary-copy">
-            <strong>أثر</strong> يبدأ من هذا التغيير،
-            ويربطه بحالة المستفيد والقواعد ذات العلاقة
-            ليشرح ما الذي قد يتأثر، ولماذا، وما الخطوة التالية.
-          </p>
-
-          <div class="hero-actions">
-            <button class="button primary" id="startExperience">
-              ابدأ تجربة أثر
-              <span>←</span>
-            </button>
-
-            <button class="button ghost" data-scroll="how">
-              كيف تعمل الفكرة؟
-            </button>
-          </div>
-
+    <!-- البداية -->
+    <section class="hero" id="hero">
+      <div class="container hero-inner">
+        <div class="hero-eyebrow reveal">
+          <span class="status-pulse"></span>
+          تجربة تبدأ من المستفيد، مو من قائمة الخدمات
         </div>
 
+        <h1 class="reveal reveal-delay-1">
+          قل لنا وش تغيّر،
+          <span>وأثر يوضح وش يهمك الآن</span>
+        </h1>
 
-        <!-- Horizontal concept visual -->
-        <div class="hero-visual">
+        <p class="hero-lead reveal reveal-delay-2">
+          المستفيد غالبًا ما يعرف اسم الخدمة اللي يحتاجها، لكنه يعرف وش صار في حياته،
+          أثر يبدأ من هذا التغيير، يفهم وضعه الحالي، ويعرض له فقط الأشياء المرتبطة بحالته
+        </p>
 
-          <div class="visual-label">
-            كيف تفكر أثر؟
-          </div>
-
-          <div class="journey-preview">
-
-            <div class="journey-item">
-              <span class="journey-number">01</span>
-              <div>
-                <strong>حالتك الآن</strong>
-                <small>ما نعرفه عن المستفيد</small>
-              </div>
-            </div>
-
-            <span class="journey-arrow">←</span>
-
-            <div class="journey-item">
-              <span class="journey-number">02</span>
-              <div>
-                <strong>ماذا تغيّر؟</strong>
-                <small>حدث في حياة المستفيد</small>
-              </div>
-            </div>
-
-            <span class="journey-arrow">←</span>
-
-            <div class="journey-item">
-              <span class="journey-number">03</span>
-              <div>
-                <strong>ما أثره؟</strong>
-                <small>قواعد وخدمات مرتبطة</small>
-              </div>
-            </div>
-
-            <span class="journey-arrow">←</span>
-
-            <div class="journey-item active">
-              <span class="journey-number">04</span>
-              <div>
-                <strong>ماذا أفعل؟</strong>
-                <small>الخطوة التالية</small>
-              </div>
-            </div>
-
-          </div>
-
-
-          <div class="hero-insight">
-
-            <div class="insight-number">855</div>
-
-            <div>
-              <strong>خدمة مقدمة</strong>
-              <p>
-                بينما المستفيد يبدأ غالبًا من مشكلة أو تغيير،
-                وليس من اسم خدمة.
-              </p>
-
-              <a
-                href="https://www.hrsd.gov.sa/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                المصدر: موقع الوزارة ↗
-              </a>
-            </div>
-
-          </div>
-
+        <div class="hero-actions reveal reveal-delay-3">
+          <button class="btn btn-primary" id="heroStartBtn">
+            جرّب أثر
+            <span aria-hidden="true">←</span>
+          </button>
+          <button class="btn btn-quiet" data-scroll-to="idea">اعرف الفكرة</button>
         </div>
 
+        <button class="scroll-cue reveal reveal-delay-3" data-scroll-to="idea">
+          <span>اكتشف الفكرة</span>
+          <i aria-hidden="true">↓</i>
+        </button>
       </div>
     </section>
 
-
-    <!-- ===================================
-         WHY
-    ==================================== -->
-
-    <section class="story-section" id="why">
+    <!-- شرح الفكرة -->
+    <section class="idea-section" id="idea">
       <div class="container">
-
-        <div class="section-heading centered">
-
-          <span class="section-kicker">
-            المشكلة التي نحاول حلها
-          </span>
-
-          <h2>
-            المستفيد يعرف وش صار له.<br>
-            مو بالضرورة يعرف وش الخدمة.
-          </h2>
-
+        <div class="section-heading reveal">
+          <span class="kicker">ليش أثر؟</span>
+          <h2>المستفيد يعرف وش صار له، مو بالضرورة يعرف وين يروح</h2>
           <p>
-            بدل أن تكون نقطة البداية هي كتالوج الخدمات،
-            يمكن أن تبدأ التجربة من حياة الشخص نفسها.
+            اليوم قد يبدأ المستفيد من سؤال بسيط مثل «تغيّر دخلي» أو «انتهى عقدي»،
+            وبعدها يحتاج يحدد الخدمة والمنصة والإجراء المناسب، أثر يقلب نقطة البداية، ويبدأ من حياته هو
           </p>
-
         </div>
 
+        <div class="story-stack">
+          <article class="story-panel reveal">
+            <span class="story-number">01</span>
+            <div>
+              <small>الوضع المعتاد</small>
+              <h3>أنا أعرف المشكلة، لكن وش الخدمة؟</h3>
+              <p>المستفيد يبحث، يقارن، ويحاول يفهم أي خدمة أو إجراء له علاقة بالتغيير اللي صار</p>
+            </div>
+          </article>
 
-        <div class="problem-flow">
+          <article class="story-panel story-panel-focus reveal">
+            <span class="story-number">02</span>
+            <div>
+              <small>مع أثر</small>
+              <h3>قل وش تغيّر، والباقي يبدأ من حالتك</h3>
+              <p>أثر يقرأ وضع المستفيد، يستبعد اللي ما يخصه، ويربط التغيير بالخدمات والقواعد ذات العلاقة</p>
+            </div>
+          </article>
 
-          <div class="problem-card muted-card">
-            <span>اليوم</span>
-
-            <h3>
-              "تغير دخلي"
-            </h3>
-
-            <p>
-              أي خدمة أفتح؟ هل لازم أحدث شيء؟
-              وهل فيه خدمة ثانية ممكن تتأثر؟
-            </p>
-          </div>
-
-          <div class="flow-transform">
-            <span>أثر</span>
-            <div class="transform-line"></div>
-          </div>
-
-          <div class="problem-card highlighted-card">
-            <span>التجربة المقترحة</span>
-
-            <h3>
-              "فهمنا التغيير."
-            </h3>
-
-            <p>
-              هذه الآثار مرتبطة بحالتك،
-              وهذا سبب ظهورها، وهذه الخطوة التالية.
-            </p>
-          </div>
-
+          <article class="story-panel reveal">
+            <span class="story-number">03</span>
+            <div>
+              <small>النتيجة</small>
+              <h3>وش تأثر، ليش ظهر، وش الخطوة التالية؟</h3>
+              <p>بدل قائمة عامة، يحصل المستفيد على نتيجة شخصية، واضحة، ومفسّرة بالمصدر الرسمي</p>
+            </div>
+          </article>
         </div>
 
+        <div class="stat-strip reveal">
+          <div class="stat-number" data-count="855">0</div>
+          <div class="stat-copy">
+            <strong>خدمة رقمية تظهر في إحصاءات موقع الوزارة</strong>
+            <p>الفكرة مو إننا نضيف خدمة رقم 856، الفكرة إننا نساعد المستفيد يعرف أي الخدمات تهمه في اللحظة المناسبة</p>
+          </div>
+          <button class="source-mini" data-source-open="home">المصدر الرسمي ↗</button>
+        </div>
       </div>
     </section>
 
-
-    <!-- ===================================
-         HOW
-    ==================================== -->
-
+    <!-- كيف تعمل -->
     <section class="how-section" id="how">
       <div class="container">
-
-        <div class="section-heading">
-
-          <span class="section-kicker">
-            كيف تعمل الفكرة؟
-          </span>
-
-          <h2>
-            نفس الحدث.<br>
-            نتيجة مختلفة لكل شخص.
-          </h2>
-
-          <p>
-            الأشخاص لا يمثلون سيناريوهات مختلفة.
-            هم حالات مختلفة ندخل عليها نفس الأحداث،
-            ثم نلاحظ كيف تختلف النتيجة.
-          </p>
-
+        <div class="section-heading reveal">
+          <span class="kicker">كيف تعمل؟</span>
+          <h2>أربع خطوات بسيطة للمستفيد، ومنطق أذكى خلفها</h2>
+          <p>كل شيء ظاهر للمستخدم بلغة بسيطة، أما المطابقة والتحقق فتعمل في الخلفية</p>
         </div>
 
-
-        <div class="engine-flow">
-
-          <div class="engine-node">
+        <div class="how-flow">
+          <article class="how-card reveal">
             <span>01</span>
-            <strong>حالة المستفيد</strong>
-            <small>العمر، العمل، العقد، الدخل، الأسرة...</small>
-          </div>
+            <h3>نعرف وضعك الآن</h3>
+            <p>عملك، عقدك، دخلك، أسرتك، والخدمات اللي تستخدمها حاليًا</p>
+          </article>
 
-          <div class="engine-connector">
-            <i></i>
-            <b>+</b>
-          </div>
+          <div class="how-arrow reveal" aria-hidden="true">←</div>
 
-          <div class="engine-node">
+          <article class="how-card reveal">
             <span>02</span>
-            <strong>الحدث</strong>
-            <small>تغير دخل، انتهاء عقد، وظيفة جديدة</small>
-          </div>
+            <h3>تقول لنا وش تغيّر</h3>
+            <p>تغيّر دخل، انتهاء علاقة وظيفية، أو بداية وظيفة جديدة</p>
+          </article>
 
-          <div class="engine-connector">
-            <i></i>
-            <b>+</b>
-          </div>
+          <div class="how-arrow reveal" aria-hidden="true">←</div>
 
-          <div class="engine-node">
+          <article class="how-card reveal">
             <span>03</span>
-            <strong>الإجابات</strong>
-            <small>تفاصيل التغيير الذي اختاره المستخدم</small>
-          </div>
+            <h3>نستبعد اللي ما يخصك</h3>
+            <p>الخدمة ما تظهر لمجرد أنها موجودة، تظهر فقط إذا كانت مرتبطة بحالتك</p>
+          </article>
 
-          <div class="engine-connector">
-            <i></i>
-            <b>→</b>
-          </div>
+          <div class="how-arrow reveal" aria-hidden="true">←</div>
 
-          <div class="engine-node result-node">
+          <article class="how-card how-card-active reveal">
             <span>04</span>
-            <strong>الأثر</strong>
-            <small>نتائج مخصصة + تفسير + مصدر</small>
-          </div>
-
+            <h3>نعطيك الأثر والخطوة التالية</h3>
+            <p>وش تغيّر، وش يحتاج انتباهك، وش الخدمة اللي قد تفيدك الآن، وليش</p>
+          </article>
         </div>
 
+        <div class="principle-card reveal">
+          <div class="principle-icon">✓</div>
+          <div>
+            <small>قاعدة التجربة</small>
+            <strong>إذا الشيء ما يخص المستفيد، ما يظهر له أصلًا</strong>
+            <p>ريم مثلًا غير مستفيدة من الضمان، لذلك أي تجربة لها ما تعرض بطاقة عن الضمان لمجرد أن الحدث هو تغيّر الدخل</p>
+          </div>
+        </div>
       </div>
     </section>
 
-
-    <!-- ===================================
-         EXPERIENCE
-    ==================================== -->
-
+    <!-- التجربة -->
     <section class="experience-section" id="experience">
       <div class="container">
-
-        <div class="experience-header">
-
-          <div>
-            <span class="section-kicker">
-              جرّب المحرك
-            </span>
-
-            <h2>
-              نفس الأسئلة.<br>
-              حالات مختلفة.
-            </h2>
+        <div class="experience-top" id="experienceTop">
+          <div class="section-heading compact reveal">
+            <span class="kicker">جرّب النموذج</span>
+            <h2>نفس التغيير، مو نفس الأثر</h2>
+            <p>اختر شخصًا، جرّب حدثًا، وشوف كيف تتغير النتائج حسب حالته وخدماته الحالية</p>
           </div>
 
-          <div class="progress" id="progress">
-
-            <div class="progress-item active" data-progress="persona">
-              <span>1</span>
-              <small>الشخص</small>
-            </div>
-
+          <div class="stepper reveal" id="stepper" aria-label="تقدم التجربة">
+            <div class="step active" data-step="1"><span>1</span><small>الشخص</small></div>
             <i></i>
-
-            <div class="progress-item" data-progress="event">
-              <span>2</span>
-              <small>التغيير</small>
-            </div>
-
+            <div class="step" data-step="2"><span>2</span><small>التغيير</small></div>
             <i></i>
-
-            <div class="progress-item" data-progress="questions">
-              <span>3</span>
-              <small>التفاصيل</small>
-            </div>
-
+            <div class="step" data-step="3"><span>3</span><small>التفاصيل</small></div>
             <i></i>
-
-            <div class="progress-item" data-progress="result">
-              <span>4</span>
-              <small>الأثر</small>
-            </div>
-
+            <div class="step" data-step="4"><span>4</span><small>الأثر</small></div>
           </div>
-
         </div>
 
+        <div class="experience-shell reveal" id="experienceShell">
 
-        <!-- APP -->
-        <div class="app-shell">
-
-          <!-- PERSONA VIEW -->
-          <section class="app-view active" id="personaView">
-
-            <div class="view-intro">
-              <span class="mini-label">الخطوة 1 من 4</span>
-
-              <h3>اختر مستفيدًا افتراضيًا</h3>
-
-              <p>
-                كل شخص لديه حالة مختلفة.
-                بعد الاختيار سنعرض عليه نفس قائمة التغيّرات.
-              </p>
+          <!-- اختيار الشخص -->
+          <section class="experience-view active" id="personaView">
+            <div class="view-head">
+              <span class="view-step">الخطوة 1 من 4</span>
+              <h3 id="personaViewTitle">اختر مستفيدًا افتراضيًا</h3>
+              <p id="personaViewText">كل شخص عنده وضع مختلف وخدمات مختلفة، وبعدها بنعرض للجميع نفس قائمة التغيّرات</p>
             </div>
-
-
-            <div class="personas" id="personaCards">
-
-              <!-- KHALID -->
-              <button
-                class="persona-card"
-                data-persona="khalid"
-              >
-
-                <div class="persona-card-top">
-
-                  <div class="avatar">
-                    خ
-                  </div>
-
-                  <span class="fake-data">
-                    بيانات افتراضية
-                  </span>
-
-                </div>
-
-                <div class="persona-info">
-                  <h4>خالد</h4>
-
-                  <p>
-                    41 سنة • متزوج
-                  </p>
-                </div>
-
-                <div class="persona-status">
-                  <span class="status-dot"></span>
-                  مستفيد من الضمان الاجتماعي
-                </div>
-
-                <div class="persona-facts">
-
-                  <div>
-                    <span>الأسرة</span>
-                    <strong>4 أفراد</strong>
-                  </div>
-
-                  <div>
-                    <span>الدخل</span>
-                    <strong>4,500 ريال</strong>
-                  </div>
-
-                  <div>
-                    <span>العمل</span>
-                    <strong>موظف</strong>
-                  </div>
-
-                </div>
-
-                <span class="choose-persona">
-                  اختر خالد ←
-                </span>
-
-              </button>
-
-
-              <!-- REEM -->
-              <button
-                class="persona-card"
-                data-persona="reem"
-              >
-
-                <div class="persona-card-top">
-
-                  <div class="avatar avatar-two">
-                    ر
-                  </div>
-
-                  <span class="fake-data">
-                    بيانات افتراضية
-                  </span>
-
-                </div>
-
-                <div class="persona-info">
-                  <h4>ريم</h4>
-
-                  <p>
-                    27 سنة • موظفة
-                  </p>
-                </div>
-
-                <div class="persona-status">
-                  <span class="status-dot blue"></span>
-                  عقد وظيفي فعال
-                </div>
-
-                <div class="persona-facts">
-
-                  <div>
-                    <span>العقد</span>
-                    <strong>محدد المدة</strong>
-                  </div>
-
-                  <div>
-                    <span>الدخل</span>
-                    <strong>8,500 ريال</strong>
-                  </div>
-
-                  <div>
-                    <span>الضمان</span>
-                    <strong>غير مستفيدة</strong>
-                  </div>
-
-                </div>
-
-                <span class="choose-persona">
-                  اختر ريم ←
-                </span>
-
-              </button>
-
-
-              <!-- SALMAN -->
-              <button
-                class="persona-card"
-                data-persona="salman"
-              >
-
-                <div class="persona-card-top">
-
-                  <div class="avatar avatar-three">
-                    س
-                  </div>
-
-                  <span class="fake-data">
-                    بيانات افتراضية
-                  </span>
-
-                </div>
-
-                <div class="persona-info">
-                  <h4>سلمان</h4>
-
-                  <p>
-                    24 سنة • باحث عن عمل
-                  </p>
-                </div>
-
-                <div class="persona-status">
-                  <span class="status-dot amber"></span>
-                  لا يوجد عقد وظيفي فعال
-                </div>
-
-                <div class="persona-facts">
-
-                  <div>
-                    <span>العمل</span>
-                    <strong>باحث عن عمل</strong>
-                  </div>
-
-                  <div>
-                    <span>العقد</span>
-                    <strong>لا يوجد</strong>
-                  </div>
-
-                  <div>
-                    <span>الدخل</span>
-                    <strong>0 ريال</strong>
-                  </div>
-
-                </div>
-
-                <span class="choose-persona">
-                  اختر سلمان ←
-                </span>
-
-              </button>
-
-            </div>
-
+            <div class="persona-grid" id="personaGrid"></div>
           </section>
 
-
-          <!-- EVENT VIEW -->
-          <section class="app-view" id="eventView">
-
-            <div class="workspace-layout">
-
-              <aside class="beneficiary-panel">
-
-                <button
-                  class="back-link"
-                  data-back="persona"
-                >
-                  → تغيير الشخص
-                </button>
-
-                <div id="selectedPersona"></div>
-
-              </aside>
-
-
-              <div class="workspace-content">
-
-                <div class="view-intro">
-                  <span class="mini-label">
-                    الخطوة 2 من 4
-                  </span>
-
-                  <h3>
-                    وش التغيير اللي ودك تستكشف أثره؟
-                  </h3>
-
-                  <p>
-                    نفس الخيارات متاحة لكل شخص.
-                    حالة المستفيد هي اللي بتغيّر النتيجة.
-                  </p>
-                </div>
-
-
-                <div class="event-grid">
-
-                  <button
-                    class="event-card"
-                    data-event="income"
-                  >
-
-                    <span class="event-icon">
-                      ↕
-                    </span>
-
-                    <div>
-                      <h4>تغيّر دخلي</h4>
-
-                      <p>
-                        ارتفع أو انخفض دخلي وأبي أعرف
-                        وش ممكن يتأثر.
-                      </p>
-                    </div>
-
-                    <span class="event-arrow">←</span>
-
-                  </button>
-
-
-                  <button
-                    class="event-card"
-                    data-event="contractEnd"
-                  >
-
-                    <span class="event-icon">
-                      ◷
-                    </span>
-
-                    <div>
-                      <h4>انتهت علاقتي الوظيفية</h4>
-
-                      <p>
-                        انتهى عقدي أو أفكر في إنهاء
-                        العلاقة الوظيفية.
-                      </p>
-                    </div>
-
-                    <span class="event-arrow">←</span>
-
-                  </button>
-
-
-                  <button
-                    class="event-card"
-                    data-event="newJob"
-                  >
-
-                    <span class="event-icon">
-                      +
-                    </span>
-
-                    <div>
-                      <h4>بدأت وظيفة جديدة</h4>
-
-                      <p>
-                        وصلني عقد جديد وأبي أعرف
-                        وش الخطوات والآثار المرتبطة.
-                      </p>
-                    </div>
-
-                    <span class="event-arrow">←</span>
-
-                  </button>
-
-                </div>
-
-              </div>
-
+          <!-- اختيار الحدث -->
+          <section class="experience-view" id="eventView">
+            <div id="eventPersonaStrip"></div>
+            <div class="view-head with-top-gap">
+              <span class="view-step">الخطوة 2 من 4</span>
+              <h3>وش التغيير اللي ودك تعرف أثره؟</h3>
+              <p>نفس الخيارات موجودة للجميع، لكن اللي بيظهر بعدين يعتمد على وضع الشخص</p>
             </div>
-
+            <div class="event-grid" id="eventGrid"></div>
+            <div class="view-foot">
+              <button class="text-btn" data-go-back="persona">→ تغيير الشخص</button>
+            </div>
           </section>
 
-
-          <!-- QUESTIONS -->
-          <section
-            class="app-view"
-            id="questionView"
-          >
-
-            <div class="workspace-layout">
-
-              <aside class="beneficiary-panel">
-
-                <button
-                  class="back-link"
-                  data-back="event"
-                >
-                  → تغيير الحدث
-                </button>
-
-                <div id="questionPersona"></div>
-
-              </aside>
-
-
-              <div
-                class="workspace-content"
-                id="dynamicQuestions"
-              >
-              </div>
-
+          <!-- الأسئلة -->
+          <section class="experience-view" id="questionView">
+            <div id="questionPersonaStrip"></div>
+            <div class="question-stage" id="questionStage"></div>
+            <div class="view-foot">
+              <button class="text-btn" data-go-back="event">→ تغيير التغيير</button>
             </div>
-
           </section>
 
-
-          <!-- ANALYSIS -->
-          <section
-            class="app-view"
-            id="analysisView"
-          >
-
-            <div class="analysis-state">
-
-              <div class="analysis-orbit">
+          <!-- التحليل -->
+          <section class="experience-view" id="analysisView">
+            <div class="analysis-wrap">
+              <div class="analysis-symbol" aria-hidden="true">
                 <span></span>
                 <i></i>
+                <b></b>
               </div>
-
-              <span class="mini-label">
-                أثر يحلل الحالة
-              </span>
-
-              <h3>
-                نربط التغيير بحالة المستفيد...
-              </h3>
-
-              <p>
-                نطابق بيانات الشخص وإجاباته
-                مع القواعد المرتبطة بالحدث.
-              </p>
-
-
-              <div class="analysis-steps">
-
-                <div class="analysis-step" data-analysis="1">
-                  <span></span>
-                  قراءة حالة المستفيد
-                </div>
-
-                <div class="analysis-step" data-analysis="2">
-                  <span></span>
-                  فهم التغيير وإجاباته
-                </div>
-
-                <div class="analysis-step" data-analysis="3">
-                  <span></span>
-                  مطابقة القواعد ذات العلاقة
-                </div>
-
-                <div class="analysis-step" data-analysis="4">
-                  <span></span>
-                  تكوين أثر مخصص للمستفيد
-                </div>
-
+              <span class="view-step">لحظة، نربط الحالة بالتغيير</span>
+              <h3>نستبعد اللي ما يخصك، ونرتّب اللي يهمك</h3>
+              <p>النتيجة مو صفحة ثابتة، تتكوّن حسب بيانات الشخص وإجاباته</p>
+              <div class="analysis-list">
+                <div class="analysis-item" data-analysis-step="1"><span></span>نقرأ وضع المستفيد وخدماته الحالية</div>
+                <div class="analysis-item" data-analysis-step="2"><span></span>نفهم التغيير والتفاصيل اللي اختارها</div>
+                <div class="analysis-item" data-analysis-step="3"><span></span>نراجع القواعد ونستبعد غير المرتبط</div>
+                <div class="analysis-item" data-analysis-step="4"><span></span>نرتّب الأثر والخدمات والخطوة التالية</div>
               </div>
-
             </div>
-
           </section>
 
-
-          <!-- RESULTS -->
-          <section
-            class="app-view"
-            id="resultView"
-          >
-
+          <!-- النتيجة -->
+          <section class="experience-view" id="resultView">
             <div id="resultContent"></div>
+          </section>
 
+          <!-- المقارنة -->
+          <section class="experience-view" id="compareView">
+            <div id="compareContent"></div>
           </section>
 
         </div>
-
       </div>
     </section>
 
-
-    <!-- ===================================
-         BIG IDEA
-    ==================================== -->
-
+    <!-- الفكرة الأكبر -->
     <section class="vision-section">
-
       <div class="container">
-
-        <div class="vision-card">
-
-          <span class="section-kicker">
-            الفكرة الأكبر
-          </span>
-
-          <h2>
-            ماذا لو أصبحت هذه القدرة
-            مشتركة بين الخدمات؟
-          </h2>
-
+        <article class="vision-card reveal">
+          <span class="kicker">الفكرة الأكبر</span>
+          <h2>مو خدمة جديدة، طريقة جديدة لفهم المستفيد</h2>
           <p>
-            بدل بناء منطق منفصل داخل كل رحلة،
-            يمكن تصور طبقة تفهم حالة المستفيد والأحداث
-            وتربطها بالقواعد والخدمات ذات العلاقة.
+            إذا عرفنا وضع المستفيد، وفهمنا التغيير اللي صار له، وربطنا الاثنين بالقواعد الرسمية،
+            نقدر نوجّه كل شخص لما يخصه بدل ما نخليه يبدأ من الصفر كل مرة
           </p>
 
-
-          <div class="vision-equation">
-
-            <span>Beneficiary State</span>
+          <div class="vision-row">
+            <span>وضع المستفيد</span>
             <b>+</b>
-            <span>Life Event</span>
+            <span>التغيير</span>
             <b>+</b>
-            <span>Official Rules</span>
+            <span>القواعد الرسمية</span>
             <b>=</b>
-            <span class="equation-result">
-              Next Best Action
-            </span>
-
+            <span class="vision-result">وش يهمك الآن</span>
           </div>
-
-        </div>
-
+        </article>
       </div>
-
     </section>
 
-
-    <!-- ===================================
-         SOURCES
-    ==================================== -->
-
+    <!-- المصادر -->
     <section class="sources-section">
-
       <div class="container">
-
-        <div class="section-heading">
-
-          <span class="section-kicker">
-            المصادر
-          </span>
-
-          <h2>
-            كل أثر يجب أن يقدر يشرح نفسه.
-          </h2>
-
-          <p>
-            البيانات الشخصية في التجربة افتراضية.
-            أما القواعد المستخدمة في النموذج فتشير
-            إلى مصادر رسمية.
-          </p>
-
+        <div class="section-heading reveal">
+          <span class="kicker">المصادر الرسمية</span>
+          <h2>أي نتيجة مهمة لازم نقدر نشرح سببها</h2>
+          <p>بيانات الأشخاص في النموذج افتراضية، أما القواعد المستخدمة في التجربة فمرتبطة بمصادر رسمية من الوزارة</p>
         </div>
 
-
-        <div class="sources-grid">
-
-          <a
-            class="source-card"
-            href="https://www.hrsd.gov.sa/knowledge-centre/decisions-and-regulations/regulation-and-procedures/841045"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-
+        <div class="sources-grid reveal">
+          <button class="source-card" data-source-open="socialSecurity">
             <span>01</span>
-
-            <div>
-              <strong>
-                نظام الضمان الاجتماعي
-              </strong>
-
-              <p>
-                التغييرات المؤثرة على الاستحقاق
-                أو مقدار المعاش.
-              </p>
-            </div>
-
+            <div><strong>نظام الضمان الاجتماعي</strong><p>التغيّر المؤثر على الاستحقاق أو مقدار المعاش، ومدة الإبلاغ</p></div>
             <b>↗</b>
+          </button>
 
-          </a>
-
-
-          <a
-            class="source-card"
-            href="https://www.hrsd.gov.sa/ministry-services/services/%D8%A7%D9%86%D9%87%D8%A7%D8%A1-%D8%A7%D9%84%D8%B9%D9%84%D8%A7%D9%82%D8%A9-%D8%A7%D9%84%D8%AA%D8%B9%D8%A7%D9%82%D8%AF%D9%8A%D8%A9"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-
+          <button class="source-card" data-source-open="contracts">
             <span>02</span>
-
-            <div>
-              <strong>
-                إنهاء العلاقة التعاقدية
-              </strong>
-
-              <p>
-                خدمة وزارة الموارد البشرية
-                والتنمية الاجتماعية.
-              </p>
-            </div>
-
+            <div><strong>إدارة العقود</strong><p>مراجعة العقد، الموافقة، الرفض، وطلب التعديل</p></div>
             <b>↗</b>
+          </button>
 
-          </a>
-
-
-          <a
-            class="source-card"
-            href="https://www.hrsd.gov.sa/ministry-services/services/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%B9%D9%82%D9%88%D8%AF"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-
+          <button class="source-card" data-source-open="contractEnd">
             <span>03</span>
-
-            <div>
-              <strong>
-                إدارة العقود
-              </strong>
-
-              <p>
-                إنشاء وتوثيق وإدارة
-                العقود عبر منصة قوى.
-              </p>
-            </div>
-
+            <div><strong>إنهاء العلاقة التعاقدية</strong><p>العقد الساري، سبب الإنهاء، وتاريخ الإنهاء</p></div>
             <b>↗</b>
+          </button>
 
-          </a>
+          <button class="source-card" data-source-open="endServiceCalculator">
+            <span>04</span>
+            <div><strong>حاسبة نهاية الخدمة</strong><p>أداة رسمية لتقدير مكافأة نهاية الخدمة حسب البيانات المدخلة</p></div>
+            <b>↗</b>
+          </button>
 
+          <button class="source-card" data-source-open="empowerment">
+            <span>05</span>
+            <div><strong>الضمان والتمكين</strong><p>التدريب والتأهيل وفرص الاندماج في سوق العمل للمستفيدين القادرين على العمل</p></div>
+            <b>↗</b>
+          </button>
         </div>
 
+        <p class="checked-note reveal">تم التحقق من المصادر المستخدمة في هذا النموذج بتاريخ 30 سبتمبر 2026</p>
       </div>
-
     </section>
 
   </main>
 
-
-  <footer>
+  <footer class="site-footer">
     <div class="container footer-inner">
-
       <div class="footer-brand">
         <span class="brand-mark small">أ</span>
-
-        <div>
-          <strong>أثر</strong>
-          <small>Concept Prototype</small>
-        </div>
+        <div><strong>أثر</strong><small>نموذج تصوري</small></div>
       </div>
-
-      <p>
-        نموذج مفاهيمي • البيانات افتراضية •
-        لا يمثل خدمة أو قرارًا رسميًا
-      </p>
-
+      <p>بيانات افتراضية، لا يمثل خدمة رسمية، ولا يصدر قرار أهلية أو تفسيرًا قانونيًا</p>
     </div>
   </footer>
 
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="app.js"></script>
-
 </body>
 </html>
