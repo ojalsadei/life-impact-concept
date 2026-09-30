@@ -8,12 +8,12 @@
 
   <meta
     name="description"
-    content="أثر، نموذج تفاعلي لتجربة تربط تغيّرات حياة المستفيد بالخدمات والإجراءات المرتبطة بحالته"
+    content="أثر نموذج تفاعلي لتجربة تربط تغيرات حياة المستفيد بالخدمات والإجراءات المرتبطة بحالته"
   >
 
-  <!-- Alexandria -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link
     href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
@@ -21,50 +21,44 @@
 
   <style>
 
-    /* =====================================================
-       الأساس
-    ===================================================== */
-
     :root {
       --bg: #06130f;
-      --bg-soft: #091b16;
+      --surface: rgba(255, 255, 255, .04);
+      --surface-hover: rgba(255, 255, 255, .065);
 
-      --surface: rgba(255,255,255,.04);
-      --surface-hover: rgba(255,255,255,.065);
+      --border: rgba(255, 255, 255, .09);
+      --border-strong: rgba(255, 255, 255, .16);
 
-      --border: rgba(255,255,255,.09);
-      --border-strong: rgba(255,255,255,.16);
-
-      --text: #f5faf7;
+      --text: #f6faf8;
       --muted: #a6b4ae;
-      --muted-2: #71817a;
+      --muted-2: #72817b;
 
       --green: #54d79f;
       --green-light: #a9f1d0;
-      --green-soft: rgba(84,215,159,.09);
+      --green-soft: rgba(84, 215, 159, .09);
 
       --amber: #e5b970;
-      --amber-soft: rgba(229,185,112,.09);
+      --amber-soft: rgba(229, 185, 112, .09);
 
       --blue: #8ebde7;
-      --blue-soft: rgba(142,189,231,.09);
-
-      --danger: #e79b94;
-      --danger-soft: rgba(231,155,148,.08);
+      --blue-soft: rgba(142, 189, 231, .09);
 
       --radius: 22px;
       --radius-lg: 32px;
 
-      --ease: cubic-bezier(.2,.8,.2,1);
+      --ease: cubic-bezier(.2, .8, .2, 1);
     }
+
 
     * {
       box-sizing: border-box;
     }
 
+
     html {
       scroll-behavior: smooth;
     }
+
 
     body {
       margin: 0;
@@ -73,8 +67,16 @@
       font-family: "Alexandria", sans-serif;
 
       background:
-        radial-gradient(circle at 90% 0%, rgba(84,215,159,.07), transparent 28%),
-        radial-gradient(circle at 5% 60%, rgba(39,115,84,.07), transparent 28%),
+        radial-gradient(
+          circle at 90% 0%,
+          rgba(84, 215, 159, .07),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 5% 60%,
+          rgba(39, 115, 84, .07),
+          transparent 28%
+        ),
         var(--bg);
 
       color: var(--text);
@@ -82,20 +84,23 @@
       overflow-x: hidden;
     }
 
+
     button,
-    input,
-    select {
+    input {
       font: inherit;
     }
+
 
     button {
       color: inherit;
     }
 
+
     a {
       color: inherit;
       text-decoration: none;
     }
+
 
     .container {
       width: min(1240px, calc(100% - 64px));
@@ -103,9 +108,9 @@
     }
 
 
-    /* =====================================================
+    /* ==============================
        الخلفية
-    ===================================================== */
+    ============================== */
 
     .background-grid {
       position: fixed;
@@ -115,28 +120,36 @@
       z-index: -1;
 
       background-image:
-        linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px);
+        linear-gradient(
+          rgba(255, 255, 255, .015) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255, 255, 255, .015) 1px,
+          transparent 1px
+        );
 
       background-size: 80px 80px;
 
       mask-image:
         linear-gradient(
           to bottom,
-          rgba(0,0,0,.8),
+          rgba(0, 0, 0, .8),
           transparent 90%
         );
     }
 
 
-    /* =====================================================
+    /* ==============================
        الهيدر
-    ===================================================== */
+    ============================== */
 
     header {
       position: relative;
       z-index: 20;
     }
+
 
     .header-inner {
       height: 88px;
@@ -145,6 +158,7 @@
       align-items: center;
       justify-content: space-between;
     }
+
 
     .brand {
       display: flex;
@@ -156,6 +170,7 @@
 
       cursor: pointer;
     }
+
 
     .brand-mark {
       width: 42px;
@@ -173,16 +188,19 @@
       font-weight: 700;
     }
 
+
     .brand-name {
       font-size: 18px;
       font-weight: 600;
     }
+
 
     .header-actions {
       display: flex;
       align-items: center;
       gap: 18px;
     }
+
 
     .header-actions button {
       border: 0;
@@ -195,9 +213,11 @@
       font-size: 13px;
     }
 
+
     .header-actions button:hover {
       color: var(--text);
     }
+
 
     .prototype-badge {
       padding: 8px 13px;
@@ -211,9 +231,9 @@
     }
 
 
-    /* =====================================================
+    /* ==============================
        الأزرار
-    ===================================================== */
+    ============================== */
 
     .btn {
       min-height: 54px;
@@ -235,6 +255,7 @@
         border-color .3s var(--ease);
     }
 
+
     .btn-primary {
       border: 1px solid var(--green);
 
@@ -244,25 +265,28 @@
       font-weight: 600;
     }
 
+
     .btn-primary:hover {
       transform: translateY(-3px);
     }
 
+
     .btn-secondary {
       border: 1px solid var(--border);
 
-      background: rgba(255,255,255,.025);
+      background: rgba(255, 255, 255, .025);
     }
 
+
     .btn-secondary:hover {
-      background: rgba(255,255,255,.055);
+      background: rgba(255, 255, 255, .055);
       border-color: var(--border-strong);
     }
 
 
-    /* =====================================================
+    /* ==============================
        البداية
-    ===================================================== */
+    ============================== */
 
     .hero {
       min-height: calc(100vh - 88px);
@@ -273,12 +297,15 @@
       padding: 70px 0 120px;
     }
 
+
     .hero-content {
       max-width: 980px;
+
       margin-inline: auto;
 
       text-align: center;
     }
+
 
     .eyebrow {
       width: max-content;
@@ -293,7 +320,7 @@
 
       border-radius: 999px;
 
-      border: 1px solid rgba(84,215,159,.17);
+      border: 1px solid rgba(84, 215, 159, .17);
 
       background: var(--green-soft);
 
@@ -301,6 +328,7 @@
 
       font-size: 13px;
     }
+
 
     .eyebrow-dot {
       width: 7px;
@@ -311,8 +339,9 @@
       background: var(--green);
 
       box-shadow:
-        0 0 0 5px rgba(84,215,159,.06);
+        0 0 0 5px rgba(84, 215, 159, .06);
     }
+
 
     .hero h1 {
       margin: 0;
@@ -325,11 +354,13 @@
       font-weight: 600;
     }
 
+
     .hero h1 span {
       display: block;
 
       color: var(--green);
     }
+
 
     .hero-description {
       max-width: 820px;
@@ -344,6 +375,7 @@
       font-weight: 300;
     }
 
+
     .hero-actions {
       margin-top: 38px;
 
@@ -353,6 +385,7 @@
       gap: 10px;
     }
 
+
     .scroll-hint {
       margin-top: 60px;
 
@@ -360,6 +393,7 @@
 
       font-size: 12px;
     }
+
 
     .scroll-hint span {
       display: block;
@@ -371,6 +405,7 @@
       animation: hint 1.8s infinite;
     }
 
+
     @keyframes hint {
       50% {
         transform: translateY(5px);
@@ -378,23 +413,26 @@
     }
 
 
-    /* =====================================================
+    /* ==============================
        الأقسام العامة
-    ===================================================== */
+    ============================== */
 
     .section {
       padding: 130px 0;
     }
 
+
     .section-heading {
       max-width: 820px;
     }
+
 
     .section-heading.centered {
       margin-inline: auto;
 
       text-align: center;
     }
+
 
     .kicker {
       display: block;
@@ -405,6 +443,7 @@
 
       font-size: 13px;
     }
+
 
     .section-heading h2 {
       margin: 0;
@@ -417,6 +456,7 @@
       font-weight: 600;
     }
 
+
     .section-heading p {
       margin: 22px 0 0;
 
@@ -427,9 +467,9 @@
     }
 
 
-    /* =====================================================
-       شرح الفكرة
-    ===================================================== */
+    /* ==============================
+       القصة
+    ============================== */
 
     .story {
       max-width: 1080px;
@@ -441,6 +481,7 @@
 
       align-items: center;
     }
+
 
     .story-card {
       min-height: 310px;
@@ -454,26 +495,29 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
 
-      background: rgba(255,255,255,.025);
+      background: rgba(255, 255, 255, .025);
     }
 
+
     .story-card.highlight {
-      border-color: rgba(84,215,159,.22);
+      border-color: rgba(84, 215, 159, .22);
 
       background:
         radial-gradient(
           circle at 100% 0%,
-          rgba(84,215,159,.08),
+          rgba(84, 215, 159, .08),
           transparent 55%
         ),
-        rgba(255,255,255,.025);
+        rgba(255, 255, 255, .025);
     }
+
 
     .story-card small {
       color: var(--muted-2);
 
       font-size: 13px;
     }
+
 
     .story-card h3 {
       margin: 24px 0 12px;
@@ -483,9 +527,11 @@
       font-weight: 500;
     }
 
+
     .story-card.highlight h3 {
       color: var(--green);
     }
+
 
     .story-card p {
       margin: 0;
@@ -496,11 +542,13 @@
       line-height: 1.9;
     }
 
+
     .story-middle {
       text-align: center;
 
       color: var(--green);
     }
+
 
     .story-middle strong {
       display: block;
@@ -509,6 +557,7 @@
 
       font-size: 13px;
     }
+
 
     .story-line {
       height: 1px;
@@ -523,9 +572,9 @@
     }
 
 
-    /* =====================================================
+    /* ==============================
        كيف تعمل
-    ===================================================== */
+    ============================== */
 
     .simple-flow {
       margin-top: 55px;
@@ -541,6 +590,7 @@
       align-items: stretch;
     }
 
+
     .flow-card {
       min-height: 180px;
 
@@ -553,14 +603,16 @@
       border: 1px solid var(--border);
       border-radius: 20px;
 
-      background: rgba(255,255,255,.025);
+      background: rgba(255, 255, 255, .025);
     }
 
+
     .flow-card.active {
-      border-color: rgba(84,215,159,.22);
+      border-color: rgba(84, 215, 159, .22);
 
       background: var(--green-soft);
     }
+
 
     .flow-card span {
       color: var(--green);
@@ -568,11 +620,13 @@
       font-size: 12px;
     }
 
+
     .flow-card strong {
       font-size: 21px;
 
       font-weight: 500;
     }
+
 
     .flow-card small {
       color: var(--muted);
@@ -580,6 +634,7 @@
       font-size: 13px;
       line-height: 1.8;
     }
+
 
     .flow-arrow {
       display: grid;
@@ -589,15 +644,16 @@
     }
 
 
-    /* =====================================================
+    /* ==============================
        التجربة
-    ===================================================== */
+    ============================== */
 
     .experience-section {
       padding: 130px 0;
 
       min-height: 100vh;
     }
+
 
     .experience-heading {
       margin-bottom: 42px;
@@ -608,6 +664,7 @@
 
       gap: 30px;
     }
+
 
     .experience-heading h2 {
       margin: 0;
@@ -620,10 +677,12 @@
       letter-spacing: -2px;
     }
 
+
     .steps {
       display: flex;
       align-items: center;
     }
+
 
     .step {
       width: 40px;
@@ -642,6 +701,7 @@
       transition: .3s;
     }
 
+
     .step.active {
       border-color: var(--green);
 
@@ -650,6 +710,7 @@
       color: #052117;
     }
 
+
     .step-line {
       width: 45px;
       height: 1px;
@@ -657,8 +718,6 @@
       background: var(--border);
     }
 
-
-    /* التطبيق */
 
     .app {
       min-height: 640px;
@@ -669,13 +728,14 @@
       background:
         radial-gradient(
           circle at 100% 0%,
-          rgba(84,215,159,.045),
+          rgba(84, 215, 159, .045),
           transparent 32%
         ),
-        rgba(255,255,255,.02);
+        rgba(255, 255, 255, .02);
 
       overflow: hidden;
     }
+
 
     .view {
       display: none;
@@ -683,11 +743,13 @@
       padding: 44px;
     }
 
+
     .view.active {
       display: block;
 
       animation: viewIn .5s var(--ease);
     }
+
 
     @keyframes viewIn {
       from {
@@ -701,11 +763,13 @@
       }
     }
 
+
     .view-heading {
       max-width: 760px;
 
       margin-bottom: 36px;
     }
+
 
     .view-heading small {
       display: block;
@@ -717,6 +781,7 @@
       font-size: 13px;
     }
 
+
     .view-heading h3 {
       margin: 0 0 10px;
 
@@ -725,6 +790,7 @@
 
       font-weight: 500;
     }
+
 
     .view-heading p {
       margin: 0;
@@ -736,9 +802,9 @@
     }
 
 
-    /* =====================================================
+    /* ==============================
        Personas
-    ===================================================== */
+    ============================== */
 
     .personas {
       display: grid;
@@ -746,6 +812,7 @@
 
       gap: 14px;
     }
+
 
     .persona {
       min-height: 400px;
@@ -760,7 +827,7 @@
       border: 1px solid var(--border);
       border-radius: 23px;
 
-      background: rgba(255,255,255,.025);
+      background: rgba(255, 255, 255, .025);
 
       cursor: pointer;
 
@@ -770,19 +837,22 @@
         border-color .35s;
     }
 
+
     .persona:hover {
       transform: translateY(-6px);
 
-      background: rgba(255,255,255,.045);
+      background: rgba(255, 255, 255, .045);
 
-      border-color: rgba(84,215,159,.27);
+      border-color: rgba(84, 215, 159, .27);
     }
+
 
     .persona-top {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
     }
+
 
     .avatar {
       width: 60px;
@@ -793,7 +863,7 @@
 
       border-radius: 19px;
 
-      border: 1px solid rgba(84,215,159,.15);
+      border: 1px solid rgba(84, 215, 159, .15);
 
       background: var(--green-soft);
 
@@ -803,27 +873,31 @@
       font-weight: 600;
     }
 
+
     .avatar.blue {
-      border-color: rgba(142,189,231,.15);
+      border-color: rgba(142, 189, 231, .15);
 
       background: var(--blue-soft);
 
       color: var(--blue);
     }
 
+
     .avatar.amber {
-      border-color: rgba(229,185,112,.15);
+      border-color: rgba(229, 185, 112, .15);
 
       background: var(--amber-soft);
 
       color: var(--amber);
     }
 
+
     .synthetic {
       color: var(--muted-2);
 
       font-size: 11px;
     }
+
 
     .persona h4 {
       margin: 27px 0 5px;
@@ -833,13 +907,16 @@
       font-weight: 500;
     }
 
+
     .persona > p {
       margin: 0;
 
       color: var(--muted);
 
       font-size: 14px;
+      line-height: 1.8;
     }
+
 
     .current-services {
       margin-top: 24px;
@@ -848,6 +925,7 @@
 
       border-top: 1px solid var(--border);
     }
+
 
     .current-services > span {
       display: block;
@@ -859,6 +937,7 @@
       font-size: 11px;
     }
 
+
     .service-chips {
       display: flex;
       flex-wrap: wrap;
@@ -866,17 +945,19 @@
       gap: 7px;
     }
 
+
     .service-chip {
       padding: 7px 10px;
 
       border-radius: 999px;
 
-      background: rgba(255,255,255,.045);
+      background: rgba(255, 255, 255, .045);
 
       color: var(--muted);
 
       font-size: 11px;
     }
+
 
     .persona-action {
       margin-top: auto;
@@ -889,9 +970,9 @@
     }
 
 
-    /* =====================================================
-       مساحة السؤال
-    ===================================================== */
+    /* ==============================
+       Workspace
+    ============================== */
 
     .workspace {
       display: grid;
@@ -902,11 +983,13 @@
       min-height: 550px;
     }
 
+
     .profile-panel {
       padding-left: 30px;
 
       border-left: 1px solid var(--border);
     }
+
 
     .back-button {
       margin-bottom: 30px;
@@ -923,9 +1006,11 @@
       font-size: 12px;
     }
 
+
     .back-button:hover {
       color: var(--text);
     }
+
 
     .profile-header {
       display: flex;
@@ -938,6 +1023,7 @@
       border-bottom: 1px solid var(--border);
     }
 
+
     .profile-header .avatar {
       width: 48px;
       height: 48px;
@@ -947,11 +1033,13 @@
       font-size: 17px;
     }
 
+
     .profile-header h4 {
       margin: 0 0 4px;
 
       font-size: 18px;
     }
+
 
     .profile-header p {
       margin: 0;
@@ -959,11 +1047,14 @@
       color: var(--muted);
 
       font-size: 12px;
+      line-height: 1.7;
     }
+
 
     .profile-services {
       margin-top: 24px;
     }
+
 
     .profile-services > span {
       display: block;
@@ -976,15 +1067,16 @@
     }
 
 
-    /* =====================================================
+    /* ==============================
        الأحداث
-    ===================================================== */
+    ============================== */
 
     .events {
       display: grid;
 
       gap: 10px;
     }
+
 
     .event-card {
       min-height: 110px;
@@ -1003,7 +1095,7 @@
       border: 1px solid var(--border);
       border-radius: 18px;
 
-      background: rgba(255,255,255,.025);
+      background: rgba(255, 255, 255, .025);
 
       cursor: pointer;
 
@@ -1013,13 +1105,15 @@
         background .3s;
     }
 
+
     .event-card:hover {
       transform: translateX(-5px);
 
-      border-color: rgba(84,215,159,.27);
+      border-color: rgba(84, 215, 159, .27);
 
       background: var(--green-soft);
     }
+
 
     .event-icon {
       width: 50px;
@@ -1037,6 +1131,7 @@
       font-size: 18px;
     }
 
+
     .event-card h4 {
       margin: 0 0 5px;
 
@@ -1044,6 +1139,7 @@
 
       font-weight: 500;
     }
+
 
     .event-card p {
       margin: 0;
@@ -1054,18 +1150,20 @@
       line-height: 1.7;
     }
 
+
     .event-arrow {
       color: var(--muted-2);
     }
 
 
-    /* =====================================================
+    /* ==============================
        الأسئلة
-    ===================================================== */
+    ============================== */
 
     .question-title {
       margin-bottom: 28px;
     }
+
 
     .question-title small {
       display: block;
@@ -1077,6 +1175,7 @@
       font-size: 12px;
     }
 
+
     .question-title h3 {
       margin: 0 0 8px;
 
@@ -1084,6 +1183,7 @@
 
       font-weight: 500;
     }
+
 
     .question-title p {
       margin: 0;
@@ -1094,11 +1194,13 @@
       line-height: 1.9;
     }
 
+
     .options {
       display: grid;
 
       gap: 9px;
     }
+
 
     .option {
       min-height: 76px;
@@ -1114,19 +1216,21 @@
       border: 1px solid var(--border);
       border-radius: 16px;
 
-      background: rgba(255,255,255,.025);
+      background: rgba(255, 255, 255, .025);
 
       cursor: pointer;
 
       transition: .25s;
     }
 
+
     .option:hover,
     .option.selected {
-      border-color: rgba(84,215,159,.30);
+      border-color: rgba(84, 215, 159, .30);
 
       background: var(--green-soft);
     }
+
 
     .option strong {
       display: block;
@@ -1138,11 +1242,13 @@
       font-weight: 500;
     }
 
+
     .option small {
       color: var(--muted);
 
       font-size: 12px;
     }
+
 
     .check {
       width: 21px;
@@ -1158,6 +1264,7 @@
       color: transparent;
     }
 
+
     .option.selected .check {
       border-color: var(--green);
 
@@ -1165,6 +1272,7 @@
 
       color: #052117;
     }
+
 
     .form-grid {
       margin-top: 22px;
@@ -1175,14 +1283,16 @@
       gap: 10px;
     }
 
+
     .field {
       padding: 17px;
 
       border: 1px solid var(--border);
       border-radius: 16px;
 
-      background: rgba(255,255,255,.02);
+      background: rgba(255, 255, 255, .02);
     }
+
 
     .field label {
       display: block;
@@ -1193,6 +1303,7 @@
 
       font-size: 12px;
     }
+
 
     .field input {
       width: 100%;
@@ -1209,6 +1320,7 @@
       font-weight: 500;
     }
 
+
     .question-actions {
       margin-top: 28px;
 
@@ -1217,9 +1329,9 @@
     }
 
 
-    /* =====================================================
+    /* ==============================
        التحليل
-    ===================================================== */
+    ============================== */
 
     .analysis {
       min-height: 540px;
@@ -1232,6 +1344,7 @@
       text-align: center;
     }
 
+
     .analysis-circle {
       position: relative;
 
@@ -1242,8 +1355,9 @@
 
       border-radius: 50%;
 
-      border: 1px solid rgba(84,215,159,.16);
+      border: 1px solid rgba(84, 215, 159, .16);
     }
+
 
     .analysis-circle::before {
       content: "";
@@ -1257,8 +1371,9 @@
       background: var(--green);
 
       box-shadow:
-        0 0 45px rgba(84,215,159,.28);
+        0 0 45px rgba(84, 215, 159, .28);
     }
+
 
     .analysis-circle::after {
       content: "";
@@ -1275,11 +1390,13 @@
       animation: spin 1.2s linear infinite;
     }
 
+
     @keyframes spin {
       to {
         transform: rotate(360deg);
       }
     }
+
 
     .analysis h3 {
       margin: 0 0 7px;
@@ -1289,6 +1406,7 @@
       font-weight: 500;
     }
 
+
     .analysis > p {
       margin: 0;
 
@@ -1297,11 +1415,13 @@
       font-size: 14px;
     }
 
+
     .analysis-list {
       width: min(500px, 100%);
 
       margin-top: 26px;
     }
+
 
     .analysis-step {
       min-height: 45px;
@@ -1322,6 +1442,7 @@
       transition: .35s;
     }
 
+
     .analysis-step span {
       width: 7px;
       height: 7px;
@@ -1331,24 +1452,27 @@
       background: var(--muted-2);
     }
 
+
     .analysis-step.done {
       opacity: 1;
 
       color: var(--text);
     }
 
+
     .analysis-step.done span {
       background: var(--green);
     }
 
 
-    /* =====================================================
+    /* ==============================
        النتيجة
-    ===================================================== */
+    ============================== */
 
     .result-header {
       margin-bottom: 30px;
     }
+
 
     .result-header small {
       display: block;
@@ -1360,6 +1484,7 @@
       font-size: 13px;
     }
 
+
     .result-header h3 {
       margin: 0 0 10px;
 
@@ -1367,6 +1492,7 @@
 
       font-weight: 500;
     }
+
 
     .result-header p {
       max-width: 740px;
@@ -1379,6 +1505,7 @@
       line-height: 1.9;
     }
 
+
     .rule-summary {
       margin-bottom: 24px;
 
@@ -1390,11 +1517,12 @@
 
       gap: 20px;
 
-      border: 1px solid rgba(84,215,159,.15);
+      border: 1px solid rgba(84, 215, 159, .15);
       border-radius: 16px;
 
-      background: rgba(84,215,159,.04);
+      background: rgba(84, 215, 159, .04);
     }
+
 
     .rule-summary strong {
       font-size: 15px;
@@ -1402,11 +1530,13 @@
       font-weight: 500;
     }
 
+
     .rule-summary span {
       color: var(--muted);
 
       font-size: 12px;
     }
+
 
     .before-after {
       margin-bottom: 30px;
@@ -1417,20 +1547,23 @@
       align-items: stretch;
     }
 
+
     .state-box {
       padding: 22px;
 
       border: 1px solid var(--border);
       border-radius: 18px;
 
-      background: rgba(255,255,255,.025);
+      background: rgba(255, 255, 255, .025);
     }
 
+
     .state-box.after {
-      border-color: rgba(84,215,159,.22);
+      border-color: rgba(84, 215, 159, .22);
 
       background: var(--green-soft);
     }
+
 
     .state-box small {
       display: block;
@@ -1442,11 +1575,13 @@
       font-size: 11px;
     }
 
+
     .state-box strong {
       font-size: 18px;
 
       font-weight: 500;
     }
+
 
     .change-arrow {
       display: grid;
@@ -1457,17 +1592,21 @@
       text-align: center;
     }
 
+
     .change-arrow span {
-      font-size: 12px;
+      font-size: 11px;
     }
+
 
     .result-section {
       margin-top: 34px;
     }
 
+
     .result-section-title {
       margin-bottom: 14px;
     }
+
 
     .result-section-title small {
       display: block;
@@ -1479,6 +1618,7 @@
       font-size: 11px;
     }
 
+
     .result-section-title h4 {
       margin: 0;
 
@@ -1487,6 +1627,7 @@
       font-weight: 500;
     }
 
+
     .services-row {
       display: flex;
       flex-wrap: wrap;
@@ -1494,18 +1635,20 @@
       gap: 8px;
     }
 
+
     .result-service {
       padding: 10px 13px;
 
       border: 1px solid var(--border);
       border-radius: 13px;
 
-      background: rgba(255,255,255,.025);
+      background: rgba(255, 255, 255, .025);
 
       color: var(--muted);
 
       font-size: 13px;
     }
+
 
     .impact-list {
       display: grid;
@@ -1513,14 +1656,16 @@
       gap: 9px;
     }
 
+
     .impact {
       border: 1px solid var(--border);
       border-radius: 18px;
 
-      background: rgba(255,255,255,.023);
+      background: rgba(255, 255, 255, .023);
 
       overflow: hidden;
     }
+
 
     .impact-main {
       min-height: 92px;
@@ -1536,6 +1681,7 @@
 
       cursor: pointer;
     }
+
 
     .impact-icon {
       width: 44px;
@@ -1553,6 +1699,7 @@
       font-size: 17px;
     }
 
+
     .impact-copy strong {
       display: block;
 
@@ -1563,6 +1710,7 @@
       font-weight: 500;
     }
 
+
     .impact-copy p {
       margin: 0;
 
@@ -1571,6 +1719,7 @@
       font-size: 13px;
       line-height: 1.7;
     }
+
 
     .impact-tag {
       padding: 6px 9px;
@@ -1584,17 +1733,20 @@
       font-size: 10px;
     }
 
+
     .impact-tag.warning {
       background: var(--amber-soft);
 
       color: var(--amber);
     }
 
+
     .impact-tag.neutral {
-      background: rgba(255,255,255,.045);
+      background: rgba(255, 255, 255, .045);
 
       color: var(--muted);
     }
+
 
     .impact-details {
       max-height: 0;
@@ -1604,9 +1756,11 @@
       transition: max-height .4s var(--ease);
     }
 
+
     .impact.open .impact-details {
-      max-height: 420px;
+      max-height: 450px;
     }
+
 
     .impact-details-inner {
       margin: 0 75px 18px 17px;
@@ -1621,6 +1775,7 @@
       line-height: 1.9;
     }
 
+
     .why-box {
       margin-top: 12px;
 
@@ -1629,12 +1784,13 @@
       border: 1px solid var(--border);
       border-radius: 12px;
 
-      background: rgba(255,255,255,.018);
+      background: rgba(255, 255, 255, .018);
 
       color: var(--muted-2);
 
       font-size: 12px;
     }
+
 
     .source-link {
       display: inline-flex;
@@ -1646,6 +1802,7 @@
       font-size: 12px;
     }
 
+
     .result-actions {
       margin-top: 28px;
 
@@ -1655,45 +1812,78 @@
       gap: 9px;
     }
 
-    .disclaimer {
-      margin-top: 18px;
 
-      padding: 14px;
+    /* ==============================
+       الملاحظة
+    ============================== */
+
+    .disclaimer {
+      margin-top: 24px;
+
+      padding: 19px 21px;
 
       border: 1px solid var(--border);
-      border-radius: 13px;
+      border-radius: 15px;
 
-      color: var(--muted-2);
+      background: rgba(255, 255, 255, .02);
 
-      font-size: 11px;
-      line-height: 1.8;
+      color: var(--muted);
+
+      font-size: 13px;
+      line-height: 1.9;
     }
 
 
-    /* =====================================================
+    .disclaimer strong {
+      display: block;
+
+      margin-bottom: 8px;
+
+      color: var(--text);
+
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+
+    .disclaimer p {
+      margin: 0 0 7px;
+    }
+
+
+    .disclaimer p:last-child {
+      margin-bottom: 0;
+
+      color: var(--muted-2);
+    }
+
+
+    /* ==============================
        النهاية
-    ===================================================== */
+    ============================== */
 
     .closing {
       padding: 130px 0;
     }
 
+
     .closing-card {
       padding: 70px 55px;
 
-      border: 1px solid rgba(84,215,159,.15);
+      border: 1px solid rgba(84, 215, 159, .15);
       border-radius: var(--radius-lg);
 
       background:
         radial-gradient(
           circle at 90% 0%,
-          rgba(84,215,159,.09),
+          rgba(84, 215, 159, .09),
           transparent 40%
         ),
-        rgba(255,255,255,.02);
+        rgba(255, 255, 255, .02);
 
       text-align: center;
     }
+
 
     .closing-card h2 {
       max-width: 900px;
@@ -1708,9 +1898,11 @@
       letter-spacing: -2px;
     }
 
+
     .closing-card h2 span {
       color: var(--green);
     }
+
 
     .closing-card p {
       max-width: 780px;
@@ -1724,13 +1916,14 @@
     }
 
 
-    /* =====================================================
-       footer
-    ===================================================== */
+    /* ==============================
+       Footer
+    ============================== */
 
     footer {
       border-top: 1px solid var(--border);
     }
+
 
     .footer-inner {
       min-height: 110px;
@@ -1742,6 +1935,7 @@
       gap: 25px;
     }
 
+
     .footer-inner span {
       color: var(--muted-2);
 
@@ -1749,9 +1943,9 @@
     }
 
 
-    /* =====================================================
+    /* ==============================
        Responsive
-    ===================================================== */
+    ============================== */
 
     @media (max-width: 1000px) {
 
@@ -1771,6 +1965,7 @@
 
       .flow-arrow {
         transform: rotate(90deg);
+
         min-height: 30px;
       }
 
@@ -1791,6 +1986,7 @@
       }
 
     }
+
 
     @media (max-width: 700px) {
 
@@ -1896,6 +2092,7 @@
 
     }
 
+
     @media (prefers-reduced-motion: reduce) {
 
       *,
@@ -1917,15 +2114,14 @@
 <div class="background-grid"></div>
 
 
-<!-- =====================================================
-     الهيدر
-===================================================== -->
-
 <header>
 
   <div class="container header-inner">
 
-    <button class="brand" onclick="goTo('hero')">
+    <button
+      class="brand"
+      onclick="goTo('hero')"
+    >
 
       <span class="brand-mark">
         أ
@@ -1966,11 +2162,14 @@
 <main>
 
 
-<!-- =====================================================
-     Hero
-===================================================== -->
+<!-- ==============================
+     البداية
+============================== -->
 
-<section class="hero" id="hero">
+<section
+  class="hero"
+  id="hero"
+>
 
   <div class="container">
 
@@ -1987,10 +2186,10 @@
 
       <h1>
 
-        حياتك تتغير،
+        حياتك تتغير
 
         <span>
-          وخدماتك تعرف وش تحتاج،
+          وخدماتك تعرف وش تحتاج
         </span>
 
       </h1>
@@ -1998,12 +2197,9 @@
 
       <p class="hero-description">
 
-        أثر هو نموذج تفاعلي لتجربة تبدأ من حالة المستفيد
-        والتغيير اللي صار في حياته،
+        أثر هو نموذج تفاعلي لتجربة تبدأ من حالة المستفيد والتغيير اللي صار في حياته.
 
-        ثم توضّح له الأشياء اللي قد تتأثر،
-        والخدمات اللي أصبحت مرتبطة بحالته،
-        والخطوة التالية،
+        بعدها توضّح له الأشياء اللي قد تتأثر والخدمات اللي أصبحت مرتبطة بحالته والخطوة التالية.
 
       </p>
 
@@ -2044,11 +2240,14 @@
 </section>
 
 
-<!-- =====================================================
+<!-- ==============================
      المشكلة
-===================================================== -->
+============================== -->
 
-<section class="section" id="idea">
+<section
+  class="section"
+  id="idea"
+>
 
   <div class="container">
 
@@ -2060,24 +2259,20 @@
 
       <h2>
 
-        المستفيد يعرف وش صار له،
+        المستفيد يعرف وش صار له
 
         <br>
 
-        مو بالضرورة يعرف وش الخدمة،
+        مو بالضرورة يعرف وش الخدمة
 
       </h2>
 
 
       <p>
 
-        إذا تغير دخل شخص،
-        أو انتهى عقده،
-        أو بدأ وظيفة جديدة،
+        إذا تغير دخل شخص أو انتهى عقده أو بدأ وظيفة جديدة، غالبًا يفكر في التغيير نفسه.
 
-        غالبًا يفكر في التغيير نفسه،
-
-        وليس في اسم الخدمة أو المنصة اللي يحتاجها،
+        مو في اسم الخدمة أو المنصة اللي يحتاجها.
 
       </p>
 
@@ -2093,15 +2288,12 @@
         </small>
 
         <h3>
-          "تغير دخلي، وش أسوي؟"
+          "تغير دخلي... وش أسوي؟"
         </h3>
 
         <p>
 
-          يبدأ المستفيد بالبحث،
-          ويحاول يعرف أي خدمة تخصه،
-          وهل يحتاج يحدث بياناته،
-          وهل فيه شيء ثاني ممكن يتأثر،
+          يبدأ المستفيد بالبحث ويحاول يعرف أي خدمة تخصه وهل يحتاج يحدث بياناته وهل فيه شيء ثاني ممكن يتأثر.
 
         </p>
 
@@ -2131,9 +2323,11 @@
 
         <p>
 
-          هذه الأشياء مرتبطة بحالتك،
-          وهذا سبب ظهورها لك،
-          وهذه الخطوة اللي قد تحتاج تسويها،
+          هذه الأشياء مرتبطة بحالتك.
+
+          وهذا سبب ظهورها لك.
+
+          وهذه الخطوة اللي قد تحتاج تسويها.
 
         </p>
 
@@ -2146,11 +2340,14 @@
 </section>
 
 
-<!-- =====================================================
+<!-- ==============================
      كيف تعمل
-===================================================== -->
+============================== -->
 
-<section class="section" id="how">
+<section
+  class="section"
+  id="how"
+>
 
   <div class="container">
 
@@ -2162,23 +2359,20 @@
 
       <h2>
 
-        ما نبدأ من الخدمة،
+        ما نبدأ من الخدمة
 
         <br>
 
-        نبدأ من الشخص،
+        نبدأ من الشخص
 
       </h2>
 
 
       <p>
 
-        نفس التغيير ممكن يصير لشخصين،
+        نفس التغيير ممكن يصير لشخصين، لكن أثره عليهم مو بالضرورة يكون واحد.
 
-        لكن أثره عليهم مو بالضرورة يكون واحد،
-
-        لأن كل شخص عنده حالة مختلفة،
-        وخدمات مختلفة يستخدمها الآن،
+        لأن كل شخص عنده حالة مختلفة وخدمات مختلفة يستخدمها الآن.
 
       </p>
 
@@ -2196,11 +2390,7 @@
         </strong>
 
         <small>
-          العمل،
-          العقد،
-          الدخل،
-          الأسرة،
-          والخدمات الحالية،
+          العمل والعقد والدخل والأسرة والخدمات الحالية
         </small>
 
       </div>
@@ -2220,9 +2410,7 @@
         </strong>
 
         <small>
-          تغير دخل،
-          انتهاء علاقة وظيفية،
-          أو وظيفة جديدة،
+          تغير دخل أو انتهاء علاقة وظيفية أو وظيفة جديدة
         </small>
 
       </div>
@@ -2242,8 +2430,7 @@
         </strong>
 
         <small>
-          يتم تجاهل الأشياء
-          اللي ما لها علاقة بحالتك،
+          يتم تجاهل الأشياء اللي ما لها علاقة بحالتك
         </small>
 
       </div>
@@ -2263,9 +2450,7 @@
         </strong>
 
         <small>
-          أثر التغيير،
-          الخدمات المرتبطة،
-          والخطوة التالية،
+          أثر التغيير والخدمات المرتبطة والخطوة التالية
         </small>
 
       </div>
@@ -2277,9 +2462,9 @@
 </section>
 
 
-<!-- =====================================================
+<!-- ==============================
      التجربة
-===================================================== -->
+============================== -->
 
 <section
   class="experience-section"
@@ -2298,8 +2483,9 @@
         </span>
 
         <h2>
-          اختر شخصًا،
-          ثم غيّر شيء في حياته،
+          اختر شخصًا
+          <br>
+          ثم غيّر شيء في حياته
         </h2>
 
       </div>
@@ -2307,25 +2493,37 @@
 
       <div class="steps">
 
-        <span class="step active" data-step="1">
+        <span
+          class="step active"
+          data-step="1"
+        >
           1
         </span>
 
         <span class="step-line"></span>
 
-        <span class="step" data-step="2">
+        <span
+          class="step"
+          data-step="2"
+        >
           2
         </span>
 
         <span class="step-line"></span>
 
-        <span class="step" data-step="3">
+        <span
+          class="step"
+          data-step="3"
+        >
           3
         </span>
 
         <span class="step-line"></span>
 
-        <span class="step" data-step="4">
+        <span
+          class="step"
+          data-step="4"
+        >
           4
         </span>
 
@@ -2337,16 +2535,17 @@
     <div class="app">
 
 
-      <!-- ==========================================
-           اختيار Persona
-      =========================================== -->
+      <!-- اختيار الشخص -->
 
       <section
         class="view active"
         id="personaView"
       >
 
-        <div class="view-heading">
+        <div
+          class="view-heading"
+          id="personaHeading"
+        >
 
           <small>
             الخطوة 1 من 4
@@ -2358,11 +2557,9 @@
 
           <p>
 
-            كل شخص عنده وضع مختلف،
-            وخدمات يستخدمها الآن،
+            كل شخص عنده وضع مختلف وخدمات يستخدمها الآن.
 
-            وبعد الاختيار بنعرض للجميع
-            نفس التغيّرات،
+            بعد الاختيار بنعرض للجميع نفس التغيّرات.
 
           </p>
 
@@ -2371,8 +2568,6 @@
 
         <div class="personas">
 
-
-          <!-- خالد -->
 
           <button
             class="persona"
@@ -2397,8 +2592,10 @@
             </h4>
 
             <p>
-              موظف،
-              متزوج،
+              موظف
+              <br>
+              متزوج
+              <br>
               أسرة من 4 أفراد
             </p>
 
@@ -2431,7 +2628,6 @@
           </button>
 
 
-          <!-- ريم -->
 
           <button
             class="persona"
@@ -2484,7 +2680,6 @@
           </button>
 
 
-          <!-- سلمان -->
 
           <button
             class="persona"
@@ -2509,7 +2704,8 @@
             </h4>
 
             <p>
-              باحث عن عمل،
+              باحث عن عمل
+              <br>
               لا يوجد عقد فعال
             </p>
 
@@ -2543,10 +2739,7 @@
       </section>
 
 
-
-      <!-- ==========================================
-           اختيار الحدث
-      =========================================== -->
+      <!-- اختيار الحدث -->
 
       <section
         class="view"
@@ -2584,11 +2777,9 @@
 
               <p>
 
-                هذه الخيارات نفسها
-                تظهر لأي شخص،
+                نفس الخيارات تظهر لأي شخص.
 
-                لكن النتيجة تختلف حسب
-                وضع المستفيد الحالي،
+                لكن النتيجة تختلف حسب وضع المستفيد الحالي.
 
               </p>
 
@@ -2614,8 +2805,7 @@
                   </h4>
 
                   <p>
-                    ارتفع أو انخفض دخلي،
-                    وأبي أعرف وش ممكن يتأثر،
+                    ارتفع أو انخفض دخلي وأبي أعرف وش ممكن يتأثر
                   </p>
 
                 </div>
@@ -2625,6 +2815,7 @@
                 </span>
 
               </button>
+
 
 
               <button
@@ -2643,8 +2834,7 @@
                   </h4>
 
                   <p>
-                    انتهى عقدي،
-                    أو أفكر في إنهاء العلاقة،
+                    انتهى عقدي أو أفكر في إنهاء العلاقة
                   </p>
 
                 </div>
@@ -2654,6 +2844,7 @@
                 </span>
 
               </button>
+
 
 
               <button
@@ -2672,8 +2863,7 @@
                   </h4>
 
                   <p>
-                    وصلني عقد جديد،
-                    وأبي أعرف وش يصير بعده،
+                    وصلني عقد جديد وأبي أعرف وش يصير بعده
                   </p>
 
                 </div>
@@ -2694,10 +2884,7 @@
       </section>
 
 
-
-      <!-- ==========================================
-           الأسئلة
-      =========================================== -->
+      <!-- الأسئلة -->
 
       <section
         class="view"
@@ -2713,7 +2900,7 @@
               class="back-button"
               onclick="showEventView()"
             >
-              → تغيير التغيير
+              → تغيير الحدث
             </button>
 
             <div id="questionProfile"></div>
@@ -2728,10 +2915,7 @@
       </section>
 
 
-
-      <!-- ==========================================
-           التحليل
-      =========================================== -->
+      <!-- التحليل -->
 
       <section
         class="view"
@@ -2743,13 +2927,11 @@
           <div class="analysis-circle"></div>
 
           <h3>
-            نفهم وش يخص حالتك،
+            نفهم وش يخص حالتك
           </h3>
 
           <p>
-            نراجع حالة المستفيد،
-            والتغيير،
-            والقواعد المرتبطة،
+            نراجع وضع المستفيد والتغيير والقواعد المرتبطة
           </p>
 
 
@@ -2760,7 +2942,7 @@
               data-analysis-step="1"
             >
               <span></span>
-              نقرأ وضع المستفيد الحالي،
+              نقرأ وضع المستفيد الحالي
             </div>
 
             <div
@@ -2768,7 +2950,7 @@
               data-analysis-step="2"
             >
               <span></span>
-              نفهم وش تغير،
+              نفهم وش تغير
             </div>
 
             <div
@@ -2776,7 +2958,7 @@
               data-analysis-step="3"
             >
               <span></span>
-              نستبعد الأشياء اللي ما تخصه،
+              نستبعد الأشياء اللي ما تخصه
             </div>
 
             <div
@@ -2784,7 +2966,7 @@
               data-analysis-step="4"
             >
               <span></span>
-              نرتب الأشياء اللي قد يحتاجها الآن،
+              نرتب الأشياء اللي قد يحتاجها الآن
             </div>
 
           </div>
@@ -2794,10 +2976,7 @@
       </section>
 
 
-
-      <!-- ==========================================
-           النتيجة
-      =========================================== -->
+      <!-- النتيجة -->
 
       <section
         class="view"
@@ -2816,9 +2995,9 @@
 </section>
 
 
-<!-- =====================================================
-     الخاتمة
-===================================================== -->
+<!-- ==============================
+     النهاية
+============================== -->
 
 <section class="closing">
 
@@ -2828,10 +3007,10 @@
 
       <h2>
 
-        بدل ما المستفيد يبحث عن الخدمة،
+        بدل ما المستفيد يبحث عن الخدمة
 
         <span>
-          الخدمة تعرف متى تصبح مرتبطة بحالته،
+          الخدمة تعرف متى تصبح مرتبطة بحالته
         </span>
 
       </h2>
@@ -2839,13 +3018,9 @@
 
       <p>
 
-        أثر لا يحاول استبدال الخدمات الموجودة،
+        أثر لا يحاول استبدال الخدمات الموجودة.
 
-        الفكرة هي إضافة طبقة تفهم
-        وضع المستفيد،
-        والتغيّر اللي صار له،
-
-        ثم توصله للأشياء المناسبة في الوقت المناسب،
+        الفكرة هي إضافة تجربة تفهم وضع المستفيد والتغيير اللي صار له ثم توصله للأشياء المناسبة في الوقت المناسب.
 
       </p>
 
@@ -2864,13 +3039,12 @@
   <div class="container footer-inner">
 
     <span>
-      أثر،
+      أثر
       نموذج تفاعلي تصوري
     </span>
 
     <span>
-      بيانات افتراضية،
-      لا يمثل خدمة أو قرارًا رسميًا
+      بيانات الأشخاص افتراضية والقواعد مبنية على مصادر رسمية منشورة
     </span>
 
   </div>
@@ -2878,12 +3052,11 @@
 </footer>
 
 
-
 <script>
 
-/* =====================================================
+/* ==============================
    المصادر الرسمية
-===================================================== */
+============================== */
 
 const SOURCES = {
 
@@ -2920,10 +3093,9 @@ const SOURCES = {
 };
 
 
-
-/* =====================================================
-   بيانات الأشخاص
-===================================================== */
+/* ==============================
+   الأشخاص
+============================== */
 
 const PERSONAS = {
 
@@ -2940,7 +3112,7 @@ const PERSONAS = {
     avatarClass: "",
 
     description:
-      "موظف، متزوج، أسرة من 4 أفراد",
+      "موظف ومتزوج ولديه أسرة من 4 أفراد",
 
     employmentStatus:
       "employed",
@@ -2953,9 +3125,6 @@ const PERSONAS = {
 
     income:
       4500,
-
-    familySize:
-      4,
 
     socialSecurity:
       true,
@@ -2999,9 +3168,6 @@ const PERSONAS = {
     income:
       8500,
 
-    familySize:
-      1,
-
     socialSecurity:
       false,
 
@@ -3029,7 +3195,7 @@ const PERSONAS = {
       "amber",
 
     description:
-      "باحث عن عمل، لا يوجد عقد فعال",
+      "باحث عن عمل ولا يوجد لديه عقد فعال",
 
     employmentStatus:
       "jobSeeker",
@@ -3042,9 +3208,6 @@ const PERSONAS = {
 
     income:
       0,
-
-    familySize:
-      1,
 
     socialSecurity:
       false,
@@ -3059,10 +3222,9 @@ const PERSONAS = {
 };
 
 
-
-/* =====================================================
+/* ==============================
    حالة التطبيق
-===================================================== */
+============================== */
 
 const state = {
 
@@ -3082,15 +3244,17 @@ const state = {
     0,
 
   excludedRules:
-    0
+    0,
+
+  comparison:
+    null
 
 };
 
 
-
-/* =====================================================
+/* ==============================
    أدوات عامة
-===================================================== */
+============================== */
 
 function persona() {
 
@@ -3125,13 +3289,6 @@ function goTo(id) {
 }
 
 
-/*
-  هذه الدالة تحقق طلبك،
-  بعد كل انتقال داخل التجربة
-  ترجع الشاشة إلى بداية مساحة العرض،
-  بدل ما تضطر تنزل أكثر،
-*/
-
 function focusExperience() {
 
   const experience =
@@ -3156,8 +3313,9 @@ function focusExperience() {
 }
 
 
-
 function startDemo() {
+
+  resetPersonaHeading();
 
   showView(
     "personaView",
@@ -3172,10 +3330,9 @@ function startDemo() {
 }
 
 
-
-/* =====================================================
-   نظام الشاشات
-===================================================== */
+/* ==============================
+   الشاشات
+============================== */
 
 function showView(
   viewId,
@@ -3224,36 +3381,73 @@ function updateSteps(step) {
 }
 
 
-
-/* =====================================================
-   Persona
-===================================================== */
+/* ==============================
+   الأشخاص
+============================== */
 
 function choosePersona(id) {
 
   state.personaId =
     id;
 
+
+  /*
+    لو المستخدم يقارن نفس الحدث
+    نطبق نفس التغيير مباشرة على الشخص الجديد
+  */
+
+  if (
+    state.comparison
+  ) {
+
+    state.eventId =
+      state.comparison.eventId;
+
+
+    state.answers =
+      adaptAnswersForPersona(
+        state.comparison.answers
+      );
+
+
+    state.comparison =
+      null;
+
+
+    resetPersonaHeading();
+
+    renderProfile();
+
+    runAnalysis();
+
+    return;
+
+  }
+
+
   state.eventId =
     null;
+
 
   state.answers =
     {};
 
+
   renderProfile();
+
 
   showView(
     "eventView",
     2
   );
 
+
   setTimeout(
     focusExperience,
-    80
+    70
   );
 
 }
-
 
 
 function renderProfile() {
@@ -3343,8 +3537,12 @@ function renderProfile() {
 }
 
 
-
 function showPersonaView() {
+
+  state.comparison =
+    null;
+
+  resetPersonaHeading();
 
   showView(
     "personaView",
@@ -3353,39 +3551,70 @@ function showPersonaView() {
 
   setTimeout(
     focusExperience,
-    80
+    70
   );
 
 }
 
 
+function resetPersonaHeading() {
 
-/* =====================================================
+  document
+    .getElementById(
+      "personaHeading"
+    )
+    .innerHTML = `
+
+      <small>
+        الخطوة 1 من 4
+      </small>
+
+      <h3>
+        اختر مستفيدًا افتراضيًا
+      </h3>
+
+      <p>
+
+        كل شخص عنده وضع مختلف وخدمات يستخدمها الآن.
+
+        بعد الاختيار بنعرض للجميع نفس التغيّرات.
+
+      </p>
+
+    `;
+
+}
+
+
+/* ==============================
    الأحداث
-===================================================== */
+============================== */
 
 function chooseEvent(eventId) {
 
   state.eventId =
     eventId;
 
+
   state.answers =
     {};
 
+
   renderQuestions();
+
 
   showView(
     "questionView",
     3
   );
 
+
   setTimeout(
     focusExperience,
-    80
+    70
   );
 
 }
-
 
 
 function showEventView() {
@@ -3397,16 +3626,15 @@ function showEventView() {
 
   setTimeout(
     focusExperience,
-    80
+    70
   );
 
 }
 
 
-
-/* =====================================================
+/* ==============================
    الأسئلة
-===================================================== */
+============================== */
 
 function renderQuestions() {
 
@@ -3442,10 +3670,9 @@ function renderQuestions() {
 }
 
 
-
-/* --------------------------
+/* ==============================
    تغير الدخل
--------------------------- */
+============================== */
 
 function renderIncomeQuestions() {
 
@@ -3470,10 +3697,11 @@ function renderIncomeQuestions() {
         </h3>
 
         <p>
+
           بنستخدم الإجابة مع وضع
           ${p.name}
-          الحالي،
-          ونطلع فقط الأشياء اللي تخصه،
+          الحالي ونطلع فقط الأشياء اللي تخصه.
+
         </p>
 
       </div>
@@ -3496,7 +3724,7 @@ function renderIncomeQuestions() {
             </strong>
 
             <small>
-              صار الدخل أعلى من السابق،
+              صار الدخل أعلى من السابق
             </small>
 
           </div>
@@ -3520,7 +3748,7 @@ function renderIncomeQuestions() {
             </strong>
 
             <small>
-              صار الدخل أقل من السابق،
+              صار الدخل أقل من السابق
             </small>
 
           </div>
@@ -3601,7 +3829,6 @@ function renderIncomeQuestions() {
 }
 
 
-
 function submitIncome() {
 
   const p =
@@ -3660,10 +3887,9 @@ function submitIncome() {
 }
 
 
-
-/* --------------------------
+/* ==============================
    انتهاء العلاقة
--------------------------- */
+============================== */
 
 function renderContractQuestions() {
 
@@ -3684,9 +3910,9 @@ function renderContractQuestions() {
         </h3>
 
         <p>
-          السبب جزء من الحالة،
-          لذلك ما نفترض أن كل حالات
-          انتهاء العلاقة متشابهة،
+
+          السبب جزء من الحالة لذلك ما نفترض أن كل حالات انتهاء العلاقة متشابهة.
+
         </p>
 
       </div>
@@ -3709,7 +3935,7 @@ function renderContractQuestions() {
             </strong>
 
             <small>
-              وصل العقد إلى تاريخ نهايته،
+              وصل العقد إلى تاريخ نهايته
             </small>
 
           </div>
@@ -3733,7 +3959,7 @@ function renderContractQuestions() {
             </strong>
 
             <small>
-              أنهيت العلاقة من جانبي،
+              أنهيت العلاقة من جانبي
             </small>
 
           </div>
@@ -3757,7 +3983,7 @@ function renderContractQuestions() {
             </strong>
 
             <small>
-              انتهت العلاقة من جهة صاحب العمل،
+              انتهت العلاقة من جهة صاحب العمل
             </small>
 
           </div>
@@ -3800,7 +4026,6 @@ function renderContractQuestions() {
 }
 
 
-
 function submitContract() {
 
   if (
@@ -3822,10 +4047,9 @@ function submitContract() {
 }
 
 
-
-/* --------------------------
+/* ==============================
    وظيفة جديدة
--------------------------- */
+============================== */
 
 function renderNewJobQuestions() {
 
@@ -3846,8 +4070,9 @@ function renderNewJobQuestions() {
         </h3>
 
         <p>
-          نستخدم حالة العقد الجديدة
-          مع وضع المستفيد الحالي،
+
+          نستخدم حالة العقد الجديدة مع وضع المستفيد الحالي.
+
         </p>
 
       </div>
@@ -3870,7 +4095,7 @@ function renderNewJobQuestions() {
             </strong>
 
             <small>
-              ما اتخذت قرار عليه حتى الآن،
+              ما اتخذت قرار عليه حتى الآن
             </small>
 
           </div>
@@ -3894,7 +4119,7 @@ function renderNewJobQuestions() {
             </strong>
 
             <small>
-              وافقت على العرض المرسل لي،
+              وافقت على العرض المرسل لي
             </small>
 
           </div>
@@ -3918,7 +4143,7 @@ function renderNewJobQuestions() {
             </strong>
 
             <small>
-              يوجد بند أحتاج تعديله،
+              يوجد بند أحتاج تعديله
             </small>
 
           </div>
@@ -3937,7 +4162,7 @@ function renderNewJobQuestions() {
         <div class="field">
 
           <label>
-            الراتب الجديد،
+            الراتب الجديد
             رقم افتراضي
           </label>
 
@@ -3982,7 +4207,6 @@ function renderNewJobQuestions() {
 }
 
 
-
 function submitNewJob() {
 
   if (
@@ -4014,10 +4238,9 @@ function submitNewJob() {
 }
 
 
-
-/* =====================================================
-   اختيار Option
-===================================================== */
+/* ==============================
+   اختيار خيار
+============================== */
 
 function setupChoice(
   containerId,
@@ -4070,10 +4293,9 @@ function setupChoice(
 }
 
 
-
-/* =====================================================
+/* ==============================
    التحليل
-===================================================== */
+============================== */
 
 function runAnalysis() {
 
@@ -4119,10 +4341,8 @@ function runAnalysis() {
               );
 
           },
-
           300 +
           index * 380
-
         );
 
       }
@@ -4147,18 +4367,15 @@ function runAnalysis() {
       );
 
     },
-
     2100
-
   );
 
 }
 
 
-
-/* =====================================================
+/* ==============================
    محرك القواعد
-===================================================== */
+============================== */
 
 function calculateResults() {
 
@@ -4178,16 +4395,14 @@ function calculateResults() {
     0;
 
 
-  /*
-    القاعدة 1،
-    تغير الدخل + مستفيد ضمان
-  */
+  /* الضمان + تغير الدخل */
 
   checked++;
 
 
   if (
-    state.eventId === "income"
+    state.eventId ===
+      "income"
     &&
     p.socialSecurity
   ) {
@@ -4206,7 +4421,7 @@ function calculateResults() {
       description:
         "لأن " +
         p.name +
-        " مستفيد حاليًا من الضمان الاجتماعي، فتغير الدخل من الأشياء المهمة لحالته،",
+        " مستفيد حاليًا من الضمان الاجتماعي فتغير الدخل من الأشياء المهمة لحالته",
 
       tag:
         "يحتاج مراجعة",
@@ -4215,10 +4430,10 @@ function calculateResults() {
         "warning",
 
       explanation:
-        "ما نقدر نحكم من رقم الدخل وحده على الاستحقاق، لأن التقييم يعتمد على الدخل المحتسب وبقية بيانات الحالة، لذلك أثر يحدد أن هذه الخدمة أصبحت بحاجة إلى إعادة فحص، بدل إعطاء قرار غير دقيق،",
+        "ما نقدر نحكم من رقم الدخل وحده على الاستحقاق لأن التقييم يعتمد على الدخل المحتسب وبقية بيانات الحالة. لذلك أثر يحدد أن هذه الخدمة تحتاج إعادة فحص بدل إعطاء قرار غير دقيق.",
 
       why:
-        "مستفيد من الضمان + تغير في الدخل = الضمان يصبح ضمن الأشياء المرتبطة بالتغيير،",
+        "مستفيد من الضمان + تغير في الدخل = الضمان يصبح ضمن الأشياء المرتبطة بالتغيير",
 
       source:
         SOURCES.socialSecurity
@@ -4232,16 +4447,14 @@ function calculateResults() {
   }
 
 
-  /*
-    القاعدة 2،
-    مستفيد ضمان + تغير مؤثر
-  */
+  /* الإبلاغ عن التغيير */
 
   checked++;
 
 
   if (
-    state.eventId === "income"
+    state.eventId ===
+      "income"
     &&
     p.socialSecurity
   ) {
@@ -4255,10 +4468,10 @@ function calculateResults() {
         "!",
 
       title:
-        "إذا كان التغيير مؤثرًا، يوجد إجراء مرتبط به",
+        "إذا كان التغيير مؤثرًا يوجد إجراء مرتبط به",
 
       description:
-        "هناك مدة نظامية لإبلاغ الوزارة بالتغيير المؤثر على الاستحقاق أو مقدار المعاش،",
+        "هناك مدة نظامية لإبلاغ الوزارة بالتغيير المؤثر على الاستحقاق أو مقدار المعاش",
 
       tag:
         "خلال 15 يومًا",
@@ -4267,10 +4480,10 @@ function calculateResults() {
         "warning",
 
       explanation:
-        "النظام ينص على إبلاغ الوزارة بأي تغيير يؤثر على استحقاق المعاش أو مقداره خلال خمسة عشر يومًا من تاريخ التغيير،",
+        "ينص النظام على إبلاغ الوزارة بأي تغيير يؤثر على استحقاق المعاش أو مقداره خلال خمسة عشر يومًا من تاريخ التغيير.",
 
       why:
-        "مستفيد من الضمان + تغيير مؤثر = يظهر تنبيه الإبلاغ،",
+        "مستفيد من الضمان + تغيير مؤثر = يظهر تنبيه الإبلاغ",
 
       source:
         SOURCES.socialSecurity
@@ -4284,11 +4497,7 @@ function calculateResults() {
   }
 
 
-  /*
-    القاعدة 3،
-    مستفيد ضمان + قادر على العمل،
-    مسار تمكين قد يفيده
-  */
+  /* التمكين */
 
   checked++;
 
@@ -4311,7 +4520,7 @@ function calculateResults() {
         "فرص التمكين قد تكون مرتبطة بحالتك",
 
       description:
-        "بما أن المستفيد ضمن سياق الضمان وقادر على العمل، يمكن أن يكون مسار التمكين من الأشياء المفيدة له،",
+        "بما أن المستفيد ضمن سياق الضمان وقادر على العمل فقد يكون مسار التمكين من الأشياء المفيدة له",
 
       tag:
         "قد يفيدك",
@@ -4320,10 +4529,10 @@ function calculateResults() {
         "",
 
       explanation:
-        "الهدف هنا ليس القول إن المستفيد مؤهل تلقائيًا، بل إظهار خدمة أو مسار رسمي أصبح ذا صلة بحالته وقد يستحق أن يعرف عنه،",
+        "الهدف هنا ليس القول إن المستفيد مؤهل تلقائيًا. الفكرة هي إظهار خدمة أو مسار رسمي أصبح ذا صلة بحالته وقد يستحق أن يعرف عنه.",
 
       why:
-        "مستفيد من الضمان + قادر على العمل = مسار التمكين قد يصبح مفيدًا،",
+        "مستفيد من الضمان + قادر على العمل = مسار التمكين قد يصبح مفيدًا",
 
       source:
         SOURCES.empowerment
@@ -4337,10 +4546,7 @@ function calculateResults() {
   }
 
 
-  /*
-    القاعدة 4،
-    انتهاء العلاقة + عقد فعال
-  */
+  /* انتهاء العلاقة + عقد فعال */
 
   checked++;
 
@@ -4366,7 +4572,7 @@ function calculateResults() {
       description:
         "لأن لدى " +
         p.name +
-        " عقدًا فعالًا في بيانات النموذج، فهذا الحدث مرتبط مباشرة بالعلاقة الحالية،",
+        " عقدًا فعالًا في بيانات النموذج فهذا الحدث مرتبط مباشرة بالعلاقة الحالية",
 
       tag:
         "مرتبط بحالتك",
@@ -4375,10 +4581,10 @@ function calculateResults() {
         "",
 
       explanation:
-        "أثر لا يرسل أي شخص لخدمة إنهاء العلاقة لمجرد أنه اختار الحدث، أول شيء يتحقق منه هو وجود عقد فعال أصلًا،",
+        "أثر لا يرسل أي شخص لخدمة إنهاء العلاقة لمجرد أنه اختار الحدث. أول شيء يتحقق منه هو وجود عقد فعال أصلًا.",
 
       why:
-        "عقد فعال + انتهاء علاقة وظيفية = خدمة إنهاء العلاقة تصبح مرتبطة بالحالة،",
+        "عقد فعال + انتهاء علاقة وظيفية = خدمة إنهاء العلاقة تصبح مرتبطة بالحالة",
 
       source:
         SOURCES.contractEnd
@@ -4392,10 +4598,7 @@ function calculateResults() {
   }
 
 
-  /*
-    القاعدة 5،
-    انتهاء العلاقة + حاسبة نهاية الخدمة
-  */
+  /* حاسبة نهاية الخدمة */
 
   checked++;
 
@@ -4419,7 +4622,7 @@ function calculateResults() {
         "قد تحتاج حاسبة مكافأة نهاية الخدمة",
 
       description:
-        "بعد انتهاء العلاقة، قد تكون الحاسبة الرسمية من الأدوات المفيدة لفهم قيمة المكافأة بشكل تقديري،",
+        "بعد انتهاء العلاقة قد تكون الحاسبة الرسمية من الأدوات المفيدة لفهم قيمة المكافأة بشكل تقديري",
 
       tag:
         "أداة قد تفيدك",
@@ -4428,10 +4631,10 @@ function calculateResults() {
         "",
 
       explanation:
-        "بدل أن يبحث المستفيد بنفسه عن الأدوات المرتبطة بحدث انتهاء العلاقة، أثر يستطيع إظهار الأدوات ذات العلاقة في نفس اللحظة،",
+        "بدل أن يبحث المستفيد بنفسه عن الأدوات المرتبطة بحدث انتهاء العلاقة يستطيع أثر إظهار الأدوات ذات العلاقة في نفس اللحظة.",
 
       why:
-        "انتهاء علاقة وظيفية + عقد قائم = أداة نهاية الخدمة قد تصبح مرتبطة بالحدث،",
+        "انتهاء علاقة وظيفية + عقد قائم = أداة نهاية الخدمة قد تصبح مرتبطة بالحدث",
 
       source:
         SOURCES.eosCalculator
@@ -4445,10 +4648,7 @@ function calculateResults() {
   }
 
 
-  /*
-    القاعدة 6،
-    عقد جديد
-  */
+  /* عقد جديد */
 
   checked++;
 
@@ -4479,10 +4679,10 @@ function calculateResults() {
         "",
 
       explanation:
-        "خدمة إدارة العقود تتيح للموظف مراجعة العقد والتعامل معه، بما يشمل الموافقة أو الرفض أو طلب التعديل،",
+        "خدمة إدارة العقود تتيح للموظف مراجعة العقد والتعامل معه بما يشمل الموافقة أو الرفض أو طلب التعديل.",
 
       why:
-        "عقد وظيفي جديد + حالة العقد = المسار المناسب داخل إدارة العقود،",
+        "عقد وظيفي جديد + حالة العقد = المسار المناسب داخل إدارة العقود",
 
       source:
         SOURCES.contracts
@@ -4496,10 +4696,7 @@ function calculateResults() {
   }
 
 
-  /*
-    القاعدة 7،
-    وظيفة جديدة لشخص كان باحث عن عمل
-  */
+  /* باحث عن عمل + وظيفة جديدة */
 
   checked++;
 
@@ -4524,9 +4721,9 @@ function calculateResults() {
         "وضعك الوظيفي قد يتغير بالكامل",
 
       description:
-        "إذا اكتملت العلاقة الجديدة، ينتقل وضع " +
+        "إذا اكتملت العلاقة الجديدة ينتقل وضع " +
         p.name +
-        " من باحث عن عمل إلى موظف،",
+        " من باحث عن عمل إلى موظف",
 
       tag:
         "تغير في الحالة",
@@ -4535,10 +4732,10 @@ function calculateResults() {
         "",
 
       explanation:
-        "وهذه نقطة أساسية في أثر، الحدث لا يعطي نتيجة فقط، بل يغير صورة المستفيد نفسها، وبالتالي قد تتغير الخدمات المرتبطة به بعد ذلك،",
+        "هذه نقطة أساسية في أثر. الحدث لا يعطي نتيجة فقط بل يغير صورة المستفيد نفسها. وبعد تغيرها قد تتغير الخدمات المرتبطة به أيضًا.",
 
       why:
-        "باحث عن عمل + علاقة وظيفية جديدة = حالة المستفيد نفسها تتغير،",
+        "باحث عن عمل + علاقة وظيفية جديدة = حالة المستفيد نفسها تتغير",
 
       source:
         SOURCES.contracts
@@ -4552,11 +4749,7 @@ function calculateResults() {
   }
 
 
-  /*
-    القاعدة 8،
-    وظيفة جديدة لمستفيد ضمان،
-    الدخل الجديد قد يؤثر على سياق الضمان
-  */
+  /* وظيفة جديدة + ضمان */
 
   checked++;
 
@@ -4584,7 +4777,7 @@ function calculateResults() {
         formatMoney(
           state.answers.newSalary
         ) +
-        "، لذلك قد تحتاج بيانات الدخل المرتبطة بالضمان إلى إعادة تقييم،",
+        " لذلك قد تحتاج بيانات الدخل المرتبطة بالضمان إلى إعادة تقييم",
 
       tag:
         "أثر آخر",
@@ -4593,10 +4786,10 @@ function calculateResults() {
         "warning",
 
       explanation:
-        "حدث الوظيفة الجديدة بدأ من قطاع العمل، لكنه قد يغير معلومة تستخدم في خدمة أخرى، وهنا تظهر قيمة ربط الخدمات بحالة المستفيد،",
+        "حدث الوظيفة الجديدة بدأ من سياق العمل لكنه قد يغير معلومة تستخدم في خدمة أخرى. هنا تظهر قيمة ربط الخدمات بحالة المستفيد.",
 
       why:
-        "مستفيد من الضمان + دخل وظيفي جديد = سياق الضمان قد يحتاج إعادة تقييم،",
+        "مستفيد من الضمان + دخل وظيفي جديد = سياق الضمان قد يحتاج إعادة تقييم",
 
       source:
         SOURCES.socialSecurity
@@ -4610,12 +4803,7 @@ function calculateResults() {
   }
 
 
-  /*
-    لو اختار انتهاء علاقة
-    ولا عنده عقد،
-    لا نظهر خدمة غير مناسبة،
-    بل نتيجة توضح أن هذا الحدث غير منطبق،
-  */
+  /* انتهاء علاقة بدون عقد */
 
   checked++;
 
@@ -4641,7 +4829,7 @@ function calculateResults() {
       description:
         "بحسب بيانات " +
         p.name +
-        " الحالية، ما توجد علاقة وظيفية فعالة مرتبطة بهذا الحدث،",
+        " الحالية ما توجد علاقة وظيفية فعالة مرتبطة بهذا الحدث",
 
       tag:
         "غير منطبق",
@@ -4650,10 +4838,10 @@ function calculateResults() {
         "neutral",
 
       explanation:
-        "وهذا مقصود، أثر ما يعرض خدمة لمجرد أن المستخدم اختار اسم حدث، أولًا يتأكد أن الحدث يناسب وضع الشخص الحالي،",
+        "هذا مقصود. أثر ما يعرض خدمة لمجرد أن المستخدم اختار اسم حدث. أولًا يتأكد أن الحدث يناسب وضع الشخص الحالي.",
 
       why:
-        "لا يوجد عقد فعال + حدث انتهاء علاقة = لا نعرض خدمة إنهاء عقد غير موجود،",
+        "لا يوجد عقد فعال + حدث انتهاء علاقة = لا نعرض خدمة إنهاء عقد غير موجود",
 
       source:
         null
@@ -4681,10 +4869,9 @@ function calculateResults() {
 }
 
 
-
-/* =====================================================
-   النتيجة
-===================================================== */
+/* ==============================
+   عرض النتيجة
+============================== */
 
 function renderResults() {
 
@@ -4692,7 +4879,7 @@ function renderResults() {
     persona();
 
 
-  const current =
+  const attention =
     state.visibleResults
       .filter(
         item =>
@@ -4742,14 +4929,14 @@ function renderResults() {
         </small>
 
         <h3>
-          هذا اللي يخص حالتك الآن،
+          هذا اللي يخص حالتك الآن
         </h3>
 
         <p>
 
-          ما عرضنا كل شيء،
-          عرضنا فقط الأشياء اللي لها علاقة
-          بوضعك والتغيير اللي اخترته،
+          ما عرضنا كل شيء.
+
+          عرضنا فقط الأشياء اللي لها علاقة بوضعك والتغيير اللي اخترته.
 
         </p>
 
@@ -4762,16 +4949,16 @@ function renderResults() {
 
           راجعنا
           ${state.checkedRules}
-          قواعد،
+          قواعد
 
           واستبعدنا
           ${state.excludedRules}
-          لأنها ما تخص حالتك،
+          لأنها ما تخص حالتك
 
         </strong>
 
         <span>
-          النتيجة تختلف من شخص لشخص،
+          النتيجة تختلف من شخص لشخص
         </span>
 
       </div>
@@ -4805,7 +4992,7 @@ function renderResults() {
 
 
       ${
-        current.length
+        attention.length
 
           ? `
 
@@ -4827,7 +5014,7 @@ function renderResults() {
               <div class="impact-list">
 
                 ${
-                  current
+                  attention
                     .map(
                       item =>
                         renderImpact(item)
@@ -4888,10 +5075,21 @@ function renderResults() {
 
       <div class="disclaimer">
 
-        هذا نموذج تصوري ببيانات افتراضية،
-        ولا يمثل قرار أهلية،
-        أو استحقاق،
-        أو تفسيرًا قانونيًا رسميًا،
+        <strong>
+          ملاحظة عن النموذج
+        </strong>
+
+        <p>
+          جميع بيانات الأشخاص في هذه التجربة افتراضية لأغراض العرض.
+        </p>
+
+        <p>
+          أما النتائج والقواعد المعروضة فتم بناؤها استنادًا إلى مصادر رسمية منشورة.
+        </p>
+
+        <p>
+          هذا النموذج لا يمثل قرار أهلية أو استحقاق أو تفسيرًا قانونيًا رسميًا.
+        </p>
 
       </div>
 
@@ -4918,16 +5116,12 @@ function renderResults() {
 
     `;
 
-
-  setupImpacts();
-
 }
 
 
-
-/* =====================================================
+/* ==============================
    قبل وبعد
-===================================================== */
+============================== */
 
 function renderBeforeAfter() {
 
@@ -5058,10 +5252,9 @@ function renderBeforeAfter() {
 }
 
 
-
-/* =====================================================
-   Impact card
-===================================================== */
+/* ==============================
+   بطاقة الأثر
+============================== */
 
 function renderImpact(item) {
 
@@ -5123,9 +5316,7 @@ function renderImpact(item) {
 
 
           <div class="why-box">
-
             ${item.why}
-
           </div>
 
 
@@ -5140,7 +5331,7 @@ function renderImpact(item) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  المصدر الرسمي،
+                  المصدر الرسمي
                   ${item.source.title}
                   ↗
                 </a>
@@ -5161,40 +5352,30 @@ function renderImpact(item) {
 }
 
 
-
-function setupImpacts() {
-
-  /* لا نحتاج شيء إضافي،
-     onclick موجود داخل البطاقة */
-
-}
-
-
-
-/* =====================================================
-   نفس التغيير مع شخص آخر
-===================================================== */
+/* ==============================
+   المقارنة
+============================== */
 
 function compareSameEvent() {
 
-  const savedEvent =
-    state.eventId;
+  state.comparison = {
 
+    eventId:
+      state.eventId,
 
-  const savedAnswers =
-    JSON.parse(
-      JSON.stringify(
-        state.answers
+    answers:
+      JSON.parse(
+        JSON.stringify(
+          state.answers
+        )
       )
-    );
+
+  };
 
 
   document
     .getElementById(
-      "personaView"
-    )
-    .querySelector(
-      ".view-heading"
+      "personaHeading"
     )
     .innerHTML = `
 
@@ -5209,28 +5390,15 @@ function compareSameEvent() {
       <p>
 
         بنطبق
-        "${getEventLabel(savedEvent)}"
+        "${getEventLabel()}"
 
-        على حالة مختلفة،
-        ونشوف وش الأشياء اللي تظهر
-        وش الأشياء اللي تختفي،
+        على حالة مختلفة.
+
+        وشوف كيف تتغير النتيجة حسب الشخص.
 
       </p>
 
     `;
-
-
-  /*
-    نخزن المقارنة بشكل مؤقت،
-  */
-
-  window.comparisonMode = {
-    eventId:
-      savedEvent,
-
-    answers:
-      savedAnswers
-  };
 
 
   showView(
@@ -5246,93 +5414,6 @@ function compareSameEvent() {
 
 }
 
-
-
-/*
-  نعدل choosePersona لو كنا في وضع مقارنة،
-*/
-
-const originalChoosePersona =
-  choosePersona;
-
-
-choosePersona = function(id) {
-
-  if (
-    window.comparisonMode
-  ) {
-
-    state.personaId =
-      id;
-
-
-    state.eventId =
-      window
-        .comparisonMode
-        .eventId;
-
-
-    state.answers =
-      adaptAnswersForPersona(
-        window
-          .comparisonMode
-          .answers
-      );
-
-
-    window.comparisonMode =
-      null;
-
-
-    renderProfile();
-
-
-    runAnalysis();
-
-
-    restorePersonaHeading();
-
-
-    return;
-
-  }
-
-
-  state.personaId =
-    id;
-
-
-  state.eventId =
-    null;
-
-
-  state.answers =
-    {};
-
-
-  renderProfile();
-
-
-  showView(
-    "eventView",
-    2
-  );
-
-
-  setTimeout(
-    focusExperience,
-    80
-  );
-
-};
-
-
-
-/*
-  في تغير الدخل،
-  نحافظ على مقدار التغير،
-  مو على نفس الراتب النهائي،
-*/
 
 function adaptAnswersForPersona(
   oldAnswers
@@ -5379,45 +5460,9 @@ function adaptAnswersForPersona(
 }
 
 
-
-function restorePersonaHeading() {
-
-  document
-    .getElementById(
-      "personaView"
-    )
-    .querySelector(
-      ".view-heading"
-    )
-    .innerHTML = `
-
-      <small>
-        الخطوة 1 من 4
-      </small>
-
-      <h3>
-        اختر مستفيدًا افتراضيًا
-      </h3>
-
-      <p>
-
-        كل شخص عنده وضع مختلف،
-        وخدمات يستخدمها الآن،
-
-        وبعد الاختيار بنعرض للجميع
-        نفس التغيّرات،
-
-      </p>
-
-    `;
-
-}
-
-
-
-/* =====================================================
-   تغيير آخر
-===================================================== */
+/* ==============================
+   تجربة حدث آخر
+============================== */
 
 function anotherEvent() {
 
@@ -5438,10 +5483,9 @@ function anotherEvent() {
 }
 
 
-
-/* =====================================================
-   Labels
-===================================================== */
+/* ==============================
+   العناوين
+============================== */
 
 function getEventLabel(
   eventId = state.eventId
@@ -5464,7 +5508,6 @@ function getEventLabel(
   return labels[eventId] || "";
 
 }
-
 
 
 function getNewJobTitle() {
@@ -5505,7 +5548,6 @@ function getNewJobTitle() {
 }
 
 
-
 function getNewJobDescription() {
 
   const value =
@@ -5516,7 +5558,7 @@ function getNewJobDescription() {
     value === "review"
   ) {
 
-    return "العقد ما زال بانتظار قرارك، ويمكنك مراجعته قبل اتخاذ الإجراء،";
+    return "العقد ما زال بانتظار قرارك ويمكنك مراجعته قبل اتخاذ الإجراء";
 
   }
 
@@ -5525,7 +5567,7 @@ function getNewJobDescription() {
     value === "accepted"
   ) {
 
-    return "موافقتك خطوة في مسار العقد، ويكتمل التوثيق عند استيفاء إجراءات الطرفين،";
+    return "موافقتك خطوة في مسار العقد ويكتمل التوثيق عند استيفاء إجراءات الطرفين";
 
   }
 
@@ -5534,7 +5576,7 @@ function getNewJobDescription() {
     value === "edit"
   ) {
 
-    return "طلب تعديل العقد أصبح الإجراء المرتبط بحالتك الحالية،";
+    return "طلب تعديل العقد أصبح الإجراء المرتبط بحالتك الحالية";
 
   }
 
@@ -5544,7 +5586,6 @@ function getNewJobDescription() {
 }
 
 </script>
-
 
 </body>
 </html>
