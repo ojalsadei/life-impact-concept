@@ -3,218 +3,2122 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>سياق | نموذج تفاعلي</title>
-  <meta name="description" content="سياق، نموذج تصوري لقابلية ذكية تربط حالة المستفيد بالتغيرات والخدمات والقواعد ذات العلاقة" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <title>صلة | من الحالة إلى الخدمة المناسبة</title>
+  <meta name="description" content="صلة نموذج تصوري يربط حالة المستفيد والتغير الذي يمر به بالخدمات والإجراءات التي تخصه." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#06120f;--bg2:#091915;--surface:rgba(255,255,255,.045);--surface2:rgba(255,255,255,.065);
-      --line:rgba(255,255,255,.10);--line2:rgba(255,255,255,.17);--text:#f4faf7;--muted:#a5b5ad;--muted2:#718179;
-      --green:#58dca4;--green2:#aff3d4;--greenSoft:rgba(88,220,164,.09);--amber:#e4b76c;--amberSoft:rgba(228,183,108,.10);
-      --blue:#8cbce8;--blueSoft:rgba(140,188,232,.09);--red:#e79a93;--redSoft:rgba(231,154,147,.08);
-      --radius:22px;--radiusLg:34px;--ease:cubic-bezier(.2,.8,.2,1);
+    :root {
+      --bg: #f6f7f3;
+      --bg-2: #eef2ed;
+      --surface: #ffffff;
+      --surface-2: #f8faf8;
+      --text: #183126;
+      --text-soft: #4f665b;
+      --muted: #73867d;
+      --line: #dbe4dd;
+      --line-strong: #bfd1c3;
+      --primary: #157347;
+      --primary-dark: #0d5a36;
+      --primary-soft: #edf7f1;
+      --primary-soft-2: #dff1e6;
+      --accent: #b8a66a;
+      --accent-soft: #f5f0e3;
+      --danger-soft: #faf0ee;
+      --danger-text: #8c5649;
+      --shadow: 0 20px 60px rgba(19, 49, 38, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --container: 1240px;
+      --ease: cubic-bezier(.2, .8, .2, 1);
     }
-    *{box-sizing:border-box} html{scroll-behavior:smooth;scroll-padding-top:86px}
-    body{margin:0;background:radial-gradient(circle at 88% 0,rgba(88,220,164,.085),transparent 28%),radial-gradient(circle at 5% 55%,rgba(48,128,94,.065),transparent 30%),var(--bg);color:var(--text);font-family:"Alexandria",sans-serif;overflow-x:hidden}
-    button,input{font:inherit} button{color:inherit} a{color:inherit;text-decoration:none}.container{width:min(1240px,calc(100% - 64px));margin:auto}
-    .grid-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.014) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.014) 1px,transparent 1px);background-size:84px 84px;mask-image:linear-gradient(to bottom,#000,transparent 92%)}
-    .topbar{position:sticky;top:0;z-index:50;background:rgba(6,18,15,.78);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.055)}
-    .nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:25px}.brand{display:flex;align-items:center;gap:11px;cursor:pointer}.brandmark{width:40px;height:40px;border-radius:13px;background:var(--green);color:#052018;display:grid;place-items:center;font-weight:700}.brandcopy strong{display:block;font-size:17px}.brandcopy small{display:block;color:var(--muted2);font-size:9px;margin-top:1px}.navlinks{display:flex;align-items:center;gap:4px}.navlinks button{border:0;background:transparent;padding:9px 11px;border-radius:10px;color:var(--muted);font-size:11px;cursor:pointer}.navlinks button:hover{background:var(--surface);color:var(--text)}.nav-cta{border:1px solid rgba(88,220,164,.25)!important;background:var(--greenSoft)!important;color:var(--green2)!important}
-    .btn{min-height:52px;padding:0 20px;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;transition:.28s var(--ease)}.primary{background:var(--green);color:#052018;border:1px solid var(--green);font-weight:600}.primary:hover{transform:translateY(-2px);box-shadow:0 14px 35px rgba(88,220,164,.12)}.secondary{background:rgba(255,255,255,.025);border:1px solid var(--line)}.secondary:hover{background:var(--surface2);border-color:var(--line2)}
-    .hero{min-height:calc(100vh - 78px);display:flex;align-items:center;padding:75px 0 105px}.hero-inner{max-width:980px;margin:auto;text-align:center}.badge{width:max-content;margin:0 auto 25px;padding:9px 13px;border-radius:999px;border:1px solid rgba(88,220,164,.18);background:var(--greenSoft);color:var(--green2);font-size:11px}.hero h1{margin:0;font-size:clamp(60px,8vw,108px);line-height:1.08;letter-spacing:-5px;font-weight:600}.hero h1 span{display:block;color:var(--green)}.hero p{max-width:800px;margin:28px auto 0;color:var(--muted);font-size:18px;line-height:2;font-weight:300}.hero-actions{margin-top:34px;display:flex;justify-content:center;gap:10px}.hero-note{margin-top:30px;color:var(--muted2);font-size:11px}.hero-note b{color:var(--muted);font-weight:500}
-    .hero-strip{margin:54px auto 0;display:grid;grid-template-columns:repeat(3,1fr);max-width:860px;border:1px solid var(--line);border-radius:19px;overflow:hidden;background:rgba(255,255,255,.018)}.hero-stat{padding:18px 20px;border-left:1px solid var(--line);text-align:right}.hero-stat:last-child{border-left:0}.hero-stat strong{display:block;color:var(--green);font-size:24px;font-weight:600}.hero-stat span{display:block;color:var(--muted);font-size:10px;margin-top:4px;line-height:1.6}
-    .section{padding:120px 0}.kicker{display:block;color:var(--green);font-size:12px;margin-bottom:12px}.section-head{max-width:850px}.section-head.center{text-align:center;margin:auto}.section-head h2{margin:0;font-size:clamp(40px,4.8vw,66px);line-height:1.32;letter-spacing:-2.4px;font-weight:600}.section-head p{margin:20px 0 0;color:var(--muted);font-size:17px;line-height:1.95;max-width:780px}.section-head.center p{margin-inline:auto}
-    .problem-grid{margin-top:52px;display:grid;grid-template-columns:1fr 1fr;gap:14px}.panel{border:1px solid var(--line);border-radius:var(--radiusLg);background:rgba(255,255,255,.023);padding:32px}.panel.green{border-color:rgba(88,220,164,.20);background:radial-gradient(circle at 100% 0,rgba(88,220,164,.08),transparent 45%),rgba(255,255,255,.025)}.panel small{color:var(--muted2);font-size:10px}.panel h3{font-size:27px;margin:17px 0 11px;font-weight:500}.panel.green h3{color:var(--green)}.panel p{color:var(--muted);font-size:14px;line-height:1.9;margin:0}
-    .fit-grid{margin-top:25px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.fit-card{padding:20px;border:1px solid var(--line);border-radius:17px;background:rgba(255,255,255,.02)}.fit-card strong{font-size:14px;font-weight:500;display:block;margin-bottom:7px}.fit-card p{font-size:11px;color:var(--muted);line-height:1.75;margin:0}.fit-card span{color:var(--green);font-size:10px;display:block;margin-bottom:9px}
-    .not-platform{margin-top:45px;padding:24px 27px;border:1px solid rgba(88,220,164,.18);border-radius:20px;background:var(--greenSoft);display:flex;align-items:flex-start;gap:17px}.not-platform-icon{flex:0 0 42px;width:42px;height:42px;border-radius:13px;background:rgba(88,220,164,.12);display:grid;place-items:center;color:var(--green);font-weight:600}.not-platform strong{display:block;font-size:16px;margin-bottom:5px}.not-platform p{margin:0;color:var(--muted);font-size:13px;line-height:1.85}
-    .experience-wrap{scroll-margin-top:clamp(84px,12vh,150px)}.experience-head{margin-bottom:32px;display:flex;justify-content:space-between;align-items:flex-end;gap:25px}.experience-head h2{margin:0;font-size:clamp(38px,4vw,56px);line-height:1.35;letter-spacing:-2px}.stepper{display:flex;align-items:center}.step{width:36px;height:36px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--muted2);font-size:10px;transition:.25s}.step.on{background:var(--green);border-color:var(--green);color:#052018}.step-line{width:38px;height:1px;background:var(--line)}
-    .app{border:1px solid var(--line);border-radius:var(--radiusLg);background:radial-gradient(circle at 100% 0,rgba(88,220,164,.045),transparent 34%),rgba(255,255,255,.018);min-height:620px;overflow:hidden}.view{display:none;padding:38px}.view.active{display:block;animation:in .45s var(--ease)}@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}.view-title{max-width:760px;margin-bottom:30px}.view-title small{display:block;color:var(--green);font-size:11px;margin-bottom:9px}.view-title h3{margin:0 0 8px;font-size:31px;font-weight:500}.view-title p{margin:0;color:var(--muted);font-size:14px;line-height:1.85}
-    .personas{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.persona{min-height:390px;padding:23px;border:1px solid var(--line);border-radius:21px;background:rgba(255,255,255,.022);text-align:right;cursor:pointer;display:flex;flex-direction:column;transition:.3s var(--ease)}.persona:hover{transform:translateY(-5px);border-color:rgba(88,220,164,.25);background:var(--surface)}.persona-top{display:flex;justify-content:space-between;align-items:flex-start}.avatar{width:55px;height:55px;border-radius:17px;display:grid;place-items:center;background:var(--greenSoft);color:var(--green);border:1px solid rgba(88,220,164,.14);font-weight:600}.avatar.blue{background:var(--blueSoft);color:var(--blue);border-color:rgba(140,188,232,.16)}.avatar.amber{background:var(--amberSoft);color:var(--amber);border-color:rgba(228,183,108,.16)}.fake{font-size:9px;color:var(--muted2)}.persona h4{font-size:23px;margin:22px 0 4px;font-weight:500}.persona>p{margin:0;color:var(--muted);font-size:12px;line-height:1.75}.facts{margin-top:17px;border-top:1px solid var(--line)}.fact{padding:10px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;font-size:10px}.fact span{color:var(--muted2)}.fact b{font-weight:500}.service-title{margin:17px 0 8px;color:var(--muted2);font-size:9px}.chips{display:flex;gap:6px;flex-wrap:wrap}.chip{padding:6px 8px;border-radius:999px;background:rgba(255,255,255,.045);color:var(--muted);font-size:9px}.persona-action{margin-top:auto;padding-top:20px;color:var(--green);font-size:11px}
-    .workspace{display:grid;grid-template-columns:270px 1fr;gap:38px;min-height:540px}.side{border-left:1px solid var(--line);padding-left:26px}.back{border:0;background:transparent;color:var(--muted);font-size:10px;cursor:pointer;padding:0;margin-bottom:27px}.mini-person{display:flex;gap:11px;align-items:center;padding-bottom:18px;border-bottom:1px solid var(--line)}.mini-person .avatar{width:44px;height:44px;border-radius:14px;font-size:14px}.mini-person h4{margin:0;font-size:15px}.mini-person p{margin:2px 0 0;color:var(--muted);font-size:9px;line-height:1.5}.side-block{margin-top:19px}.side-block>span{display:block;color:var(--muted2);font-size:9px;margin-bottom:9px}.mode-switch{display:grid;grid-template-columns:1fr 1fr;padding:4px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.018)}.mode-switch button{border:0;background:transparent;border-radius:9px;padding:8px 6px;color:var(--muted);font-size:9px;cursor:pointer}.mode-switch button.active{background:var(--green);color:#052018}.events{display:grid;gap:9px}.event{min-height:100px;padding:17px;display:grid;grid-template-columns:47px 1fr auto;gap:14px;align-items:center;border:1px solid var(--line);border-radius:17px;background:rgba(255,255,255,.022);text-align:right;cursor:pointer;transition:.25s}.event:hover{background:var(--greenSoft);border-color:rgba(88,220,164,.24);transform:translateX(-4px)}.event-icon{width:46px;height:46px;border-radius:14px;background:var(--greenSoft);display:grid;place-items:center;color:var(--green)}.event h4{margin:0 0 4px;font-size:14px;font-weight:500}.event p{margin:0;color:var(--muted);font-size:10px;line-height:1.7}.event-arrow{color:var(--muted2)}
-    .question h3{font-size:29px;margin:0 0 8px;font-weight:500}.question>p{font-size:13px;color:var(--muted);line-height:1.85;margin:0 0 25px}.options{display:grid;gap:8px}.option{min-height:70px;padding:15px 17px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.02);display:flex;align-items:center;justify-content:space-between;text-align:right;cursor:pointer}.option.selected,.option:hover{border-color:rgba(88,220,164,.28);background:var(--greenSoft)}.option strong{display:block;font-size:13px;font-weight:500}.option small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.radio{width:20px;height:20px;border-radius:50%;border:1px solid var(--line2);display:grid;place-items:center;color:transparent;font-size:9px}.option.selected .radio{background:var(--green);border-color:var(--green);color:#052018}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:18px}.field{border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.018);padding:15px}.field label{display:block;color:var(--muted);font-size:10px;margin-bottom:8px}.field input{width:100%;border:0;outline:0;background:transparent;color:var(--text);font-size:21px;font-weight:500}.field-note{margin-top:6px;color:var(--muted2);font-size:8px;line-height:1.6}.q-actions{margin-top:24px;display:flex;justify-content:flex-end;gap:8px}.guard{padding:25px;border:1px solid rgba(228,183,108,.18);background:var(--amberSoft);border-radius:20px}.guard strong{display:block;font-size:18px;margin-bottom:8px}.guard p{margin:0;color:var(--muted);font-size:13px;line-height:1.85}
-    .analysis{min-height:530px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.spinner{width:94px;height:94px;border-radius:50%;border:1px solid rgba(88,220,164,.16);position:relative;margin-bottom:22px}.spinner:before{content:"";position:absolute;inset:32px;border-radius:50%;background:var(--green);box-shadow:0 0 40px rgba(88,220,164,.27)}.spinner:after{content:"";position:absolute;inset:-1px;border:1px solid transparent;border-top-color:var(--green);border-radius:50%;animation:spin 1.2s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.analysis h3{margin:0;font-size:26px;font-weight:500}.analysis p{margin:7px 0 0;color:var(--muted);font-size:11px}.analysis-list{width:min(500px,100%);margin-top:24px}.analysis-step{min-height:42px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:9px;color:var(--muted2);font-size:10px;opacity:.25;transition:.3s}.analysis-step i{width:6px;height:6px;border-radius:50%;background:var(--muted2)}.analysis-step.done{opacity:1;color:var(--text)}.analysis-step.done i{background:var(--green)}
-    .result-head{margin-bottom:25px}.result-head small{color:var(--green);font-size:10px}.result-head h3{margin:7px 0 6px;font-size:32px;font-weight:500}.result-head p{max-width:780px;margin:0;color:var(--muted);font-size:12px;line-height:1.85}.rule-summary{margin:17px 0 22px;padding:14px 16px;border:1px solid rgba(88,220,164,.14);border-radius:14px;background:rgba(88,220,164,.035);display:flex;justify-content:space-between;gap:15px;font-size:10px}.rule-summary span{color:var(--muted)}.delta{display:grid;grid-template-columns:1fr 68px 1fr;align-items:stretch;margin-bottom:25px}.state-box{padding:18px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.018)}.state-box.after{background:var(--greenSoft);border-color:rgba(88,220,164,.20)}.state-box small{display:block;color:var(--muted2);font-size:9px;margin-bottom:8px}.state-box strong{font-size:16px;font-weight:500}.delta-mid{display:grid;place-items:center;color:var(--green);font-size:9px;text-align:center}.result-block{margin-top:27px}.block-title{margin-bottom:11px}.block-title small{display:block;color:var(--muted2);font-size:9px;margin-bottom:4px}.block-title h4{margin:0;font-size:19px;font-weight:500}.impact-list{display:grid;gap:8px}.impact{border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.02);overflow:hidden}.impact-top{min-height:82px;padding:14px;display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;cursor:pointer}.impact-icon{width:40px;height:40px;border-radius:12px;background:var(--greenSoft);color:var(--green);display:grid;place-items:center;font-size:14px}.impact-copy strong{display:block;font-size:12px;font-weight:500;margin-bottom:3px}.impact-copy p{margin:0;color:var(--muted);font-size:10px;line-height:1.65}.impact-tag{padding:5px 7px;border-radius:999px;background:var(--greenSoft);color:var(--green2);font-size:8px}.impact-tag.warn{background:var(--amberSoft);color:var(--amber)}.impact-tag.neutral{background:rgba(255,255,255,.045);color:var(--muted)}.impact-detail{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}.impact.open .impact-detail{max-height:620px}.impact-detail-inner{margin:0 66px 15px 15px;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-size:10px;line-height:1.85}.trace{margin-top:10px;padding:10px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.016);color:var(--muted2)}.source{display:inline-flex;margin-top:9px;color:var(--green);font-size:9px}.micro-btn{margin-top:11px;border:1px solid rgba(88,220,164,.2);background:var(--greenSoft);color:var(--green2);border-radius:10px;padding:10px 12px;cursor:pointer;font-size:9px}.disclaimer{margin-top:19px;padding:15px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.016);font-size:9px;color:var(--muted);line-height:1.8}.disclaimer strong{display:block;color:var(--text);font-size:10px;margin-bottom:5px}.result-actions{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px}
-    .precheck-card{padding:22px;border:1px solid rgba(88,220,164,.18);border-radius:18px;background:var(--greenSoft);margin-top:20px}.precheck-card small{color:var(--green2);font-size:9px}.precheck-card h4{margin:7px 0 6px;font-size:22px;font-weight:500}.precheck-card p{margin:0;color:var(--muted);font-size:11px;line-height:1.8}.precheck-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:15px}.precheck-metric{padding:12px;border:1px solid var(--line);border-radius:12px;background:rgba(0,0,0,.06)}.precheck-metric span{display:block;color:var(--muted2);font-size:8px;margin-bottom:5px}.precheck-metric b{font-size:13px;font-weight:500}
-    .numbers-grid{margin-top:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.number-card{padding:22px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.02)}.number-card strong{display:block;font-size:28px;color:var(--green);font-weight:600}.number-card span{display:block;color:var(--text);font-size:11px;margin-top:7px}.number-card small{display:block;color:var(--muted2);font-size:8px;margin-top:6px;line-height:1.6}.impact-lab{margin-top:25px;display:grid;grid-template-columns:350px 1fr;gap:13px}.lab-controls,.lab-output{border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.022);padding:24px}.lab-controls h3,.lab-output h3{margin:0 0 8px;font-size:18px;font-weight:500}.lab-controls>p,.lab-output>p{margin:0 0 22px;color:var(--muted);font-size:10px;line-height:1.8}.slider-group{padding:16px 0;border-top:1px solid var(--line)}.slider-head{display:flex;justify-content:space-between;gap:10px;margin-bottom:9px;font-size:10px}.slider-head span{color:var(--muted)}.slider-head b{font-weight:500;color:var(--green)}input[type="range"]{width:100%;accent-color:var(--green)}.lab-results{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.lab-result{padding:19px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.018)}.lab-result strong{display:block;color:var(--green);font-size:25px;font-weight:600}.lab-result span{display:block;margin-top:5px;color:var(--text);font-size:10px}.lab-result small{display:block;margin-top:5px;color:var(--muted2);font-size:8px;line-height:1.6}.model-note{margin-top:13px;padding:12px;border:1px solid rgba(228,183,108,.18);background:var(--amberSoft);border-radius:12px;color:var(--muted);font-size:9px;line-height:1.8}
-    .bench-grid{margin-top:45px;display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.bench{padding:23px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.022)}.bench-top{display:flex;justify-content:space-between;align-items:flex-start;gap:15px}.country{color:var(--green);font-size:10px}.bench-badge{padding:5px 7px;border-radius:999px;background:rgba(255,255,255,.045);color:var(--muted);font-size:8px}.bench h3{font-size:19px;margin:11px 0 7px;font-weight:500}.bench p{color:var(--muted);font-size:11px;line-height:1.85;margin:0}.bench-numbers{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.bench-numbers span{padding:7px 9px;border:1px solid var(--line);border-radius:10px;color:var(--muted);font-size:9px}.lesson{margin-top:15px;padding-top:13px;border-top:1px solid var(--line);font-size:10px;line-height:1.8}.lesson b{color:var(--green2);font-weight:500}.benchmark-caution{border-color:rgba(228,183,108,.18);background:rgba(228,183,108,.035)}
-    .edge-grid{margin-top:45px;display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.edge{padding:19px;border:1px solid var(--line);border-radius:17px;background:rgba(255,255,255,.018)}.edge span{color:var(--green);font-size:9px}.edge h4{margin:10px 0 6px;font-size:14px;font-weight:500}.edge p{margin:0;color:var(--muted);font-size:10px;line-height:1.75}
-    .roadmap{margin-top:45px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.phase{position:relative;padding:21px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.018)}.phase span{color:var(--green);font-size:9px}.phase h4{font-size:15px;font-weight:500;margin:10px 0 7px}.phase p{margin:0;color:var(--muted);font-size:9px;line-height:1.75}.phase small{display:block;margin-top:14px;color:var(--muted2);font-size:8px}.success-metrics{margin-top:13px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.success-metrics div{padding:14px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.016)}.success-metrics strong{display:block;font-size:11px;font-weight:500}.success-metrics span{display:block;margin-top:5px;color:var(--muted2);font-size:8px;line-height:1.6}
-    .sources-grid{margin-top:40px;display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.source-card{padding:15px 17px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.016);display:flex;justify-content:space-between;gap:15px;align-items:center}.source-card strong{display:block;font-size:10px;font-weight:500}.source-card span{display:block;color:var(--muted2);font-size:8px;margin-top:4px}.source-card b{color:var(--green);font-size:12px;font-weight:400}
-    .final{padding:120px 0}.final-card{padding:65px 45px;border:1px solid rgba(88,220,164,.17);border-radius:var(--radiusLg);background:radial-gradient(circle at 90% 10%,rgba(88,220,164,.09),transparent 40%),rgba(255,255,255,.02);text-align:center}.final-card h2{max-width:950px;margin:0 auto;font-size:clamp(38px,5vw,62px);line-height:1.4;letter-spacing:-2px;font-weight:500}.final-card h2 span{color:var(--green)}.final-card p{max-width:780px;margin:22px auto 0;color:var(--muted);font-size:15px;line-height:2}.final-question{margin:30px auto 0;max-width:780px;padding:18px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.025);color:var(--text);font-size:13px;line-height:1.8}
-    footer{border-top:1px solid var(--line)}.footer{min-height:95px;display:flex;align-items:center;justify-content:space-between;gap:20px;color:var(--muted2);font-size:9px}
-    @media(max-width:1050px){.navlinks button:not(.nav-cta){display:none}.problem-grid,.bench-grid{grid-template-columns:1fr}.fit-grid,.edge-grid{grid-template-columns:1fr 1fr}.personas{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.side{border-left:0;border-bottom:1px solid var(--line);padding-left:0;padding-bottom:22px}.numbers-grid{grid-template-columns:1fr 1fr}.impact-lab{grid-template-columns:1fr}.roadmap,.success-metrics{grid-template-columns:1fr 1fr}}
-    @media(max-width:700px){.container{width:calc(100% - 28px)}.nav{height:70px}.brandcopy small{display:none}.hero{min-height:auto;padding:80px 0 90px}.hero h1{font-size:50px;letter-spacing:-2px}.hero p{font-size:15px}.hero-actions{flex-direction:column}.hero-strip{grid-template-columns:1fr}.hero-stat{border-left:0;border-bottom:1px solid var(--line)}.hero-stat:last-child{border-bottom:0}.section{padding:90px 0}.section-head h2{font-size:38px}.fit-grid,.edge-grid,.numbers-grid,.roadmap,.success-metrics,.sources-grid{grid-template-columns:1fr}.not-platform{flex-direction:column}.experience-head{align-items:flex-start;flex-direction:column}.view{padding:20px}.form-grid,.lab-results,.precheck-metrics{grid-template-columns:1fr}.delta{grid-template-columns:1fr;gap:8px}.delta-mid{min-height:35px;transform:rotate(90deg)}.impact-top{grid-template-columns:40px 1fr}.impact-tag{grid-column:2;justify-self:start}.impact-detail-inner{margin-right:15px}.final-card{padding:40px 20px}.footer{padding:23px 0;flex-direction:column;align-items:flex-start}}
-    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Tajawal", sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(21,115,71,.08), transparent 26%),
+        radial-gradient(circle at 100% 20%, rgba(184,166,106,.12), transparent 24%),
+        linear-gradient(180deg, #f8faf8 0%, var(--bg) 50%, #f3f6f2 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font: inherit; }
+    button { color: inherit; }
+    .container { width: min(var(--container), calc(100% - 40px)); margin-inline: auto; }
+
+    .site-shell::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(21,115,71,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(21,115,71,.03) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,.55), transparent 92%);
+      z-index: -1;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(16px);
+      background: rgba(246,247,243,.8);
+      border-bottom: 1px solid rgba(191,209,195,.7);
+    }
+    .header-inner {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+      text-align: right;
+    }
+    .brand-title {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      letter-spacing: -.5px;
+    }
+    .brand-subtitle {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .header-link {
+      padding: 10px 16px;
+      border-radius: 999px;
+      color: var(--text-soft);
+      font-size: 14px;
+      transition: .25s var(--ease);
+    }
+    .header-link:hover { background: var(--surface); color: var(--text); }
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 14px;
+      border: 1px solid var(--primary);
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(21,115,71,.15);
+    }
+
+    .hero { padding: 56px 0 42px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+    .hero-main, .hero-side {
+      background: linear-gradient(180deg, rgba(255,255,255,.86), rgba(255,255,255,.72));
+      border: 1px solid rgba(191,209,195,.85);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+    }
+    .hero-main {
+      padding: 44px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      left: -80px;
+      bottom: -80px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(21,115,71,.09), transparent 68%);
+      pointer-events: none;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 0 5px rgba(21,115,71,.08);
+    }
+    .hero-main h1 {
+      margin: 0;
+      font-size: clamp(44px, 5vw, 74px);
+      line-height: 1.18;
+      letter-spacing: -1.8px;
+      font-weight: 800;
+      max-width: 820px;
+    }
+    .hero-main h1 span { color: var(--primary); display: block; }
+    .hero-main p {
+      max-width: 770px;
+      margin: 22px 0 0;
+      font-size: 20px;
+      line-height: 1.9;
+      color: var(--text-soft);
+    }
+    .hero-actions {
+      margin-top: 28px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      min-height: 52px;
+      padding: 0 20px;
+      border-radius: 15px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .25s var(--ease);
+    }
+    .btn-primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+    .btn-primary:hover { transform: translateY(-2px); background: var(--primary-dark); }
+    .btn-secondary {
+      background: var(--surface);
+      border-color: var(--line-strong);
+      color: var(--text);
+    }
+    .btn-secondary:hover { background: #fff; transform: translateY(-2px); }
+    .hero-mini-note {
+      margin-top: 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .hero-side {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      justify-content: space-between;
+    }
+    .side-card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255,255,255,.7);
+    }
+    .side-card small {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .side-card strong {
+      display: block;
+      font-size: 22px;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+    }
+    .side-card p { margin: 0; color: var(--text-soft); line-height: 1.8; font-size: 14px; }
+    .stats-ribbon {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .stat-chip {
+      padding: 18px 16px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff, #f9fcfa);
+      border: 1px solid var(--line);
+    }
+    .stat-chip strong {
+      display: block;
+      font-size: 26px;
+      color: var(--primary-dark);
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .stat-chip span {
+      display: block;
+      color: var(--text-soft);
+      line-height: 1.7;
+      font-size: 13px;
+    }
+
+    .tabs-wrap {
+      padding: 12px 0 0;
+    }
+    .tabs {
+      position: sticky;
+      top: 90px;
+      z-index: 20;
+      padding: 10px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255,255,255,.78);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(19,49,38,.05);
+    }
+    .tab {
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 0;
+      background: transparent;
+      color: var(--text-soft);
+      font-weight: 700;
+      cursor: pointer;
+      transition: .25s;
+    }
+    .tab:hover, .tab.active {
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+    }
+
+    .section { padding: 84px 0; scroll-margin-top: 160px; }
+    .section-heading { max-width: 820px; margin-bottom: 28px; }
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(34px, 4vw, 58px);
+      line-height: 1.28;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+    .section-heading p {
+      margin: 16px 0 0;
+      color: var(--text-soft);
+      font-size: 18px;
+      line-height: 1.95;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .story-panel, .principles-panel {
+      background: rgba(255,255,255,.78);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      padding: 30px;
+    }
+    .compare-journey {
+      display: grid;
+      grid-template-columns: 1fr 90px 1fr;
+      gap: 16px;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .journey-card {
+      min-height: 280px;
+      padding: 26px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+    .journey-card.highlight {
+      background: linear-gradient(180deg, #fff, #f6fbf8);
+      border-color: var(--line-strong);
+    }
+    .journey-card small, .principle small { display:block; margin-bottom:8px; color:var(--muted); font-size:12px; font-weight:700; }
+    .journey-card h3 { margin: 0 0 10px; font-size: 28px; line-height: 1.5; font-weight: 800; }
+    .journey-card p { margin: 0; color: var(--text-soft); line-height: 1.95; font-size: 15px; }
+    .journey-middle { text-align:center; color: var(--primary); font-weight: 800; }
+    .journey-middle .line { height: 1px; background: linear-gradient(90deg, transparent, var(--primary), transparent); margin-top: 14px; }
+    .principles-panel { display: grid; gap: 14px; }
+    .principle {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+    }
+    .principle strong { display:block; font-size: 20px; margin-bottom: 8px; }
+    .principle p { margin:0; font-size: 15px; line-height:1.85; color:var(--text-soft); }
+
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 30px;
+    }
+    .flow-card {
+      padding: 24px;
+      min-height: 190px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255,255,255,.78);
+      box-shadow: var(--shadow);
+    }
+    .flow-card b { display:inline-flex; align-items:center; justify-content:center; width: 34px; height:34px; border-radius: 12px; background: var(--primary-soft); color: var(--primary-dark); margin-bottom: 18px; }
+    .flow-card strong { display:block; font-size:22px; margin-bottom: 10px; }
+    .flow-card p { margin:0; line-height:1.85; color:var(--text-soft); font-size:15px; }
+    .flow-card.emphasis { background: linear-gradient(180deg, #fff, #f6fbf8); border-color: var(--line-strong); }
+
+    .experience-shell {
+      padding: 12px;
+      border: 1px solid var(--line-strong);
+      border-radius: 30px;
+      background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(248,250,248,.85));
+      box-shadow: 0 30px 70px rgba(19,49,38,.08);
+      scroll-margin-top: 145px;
+    }
+    .experience-top {
+      padding: 22px 22px 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .experience-top h3 { margin: 0; font-size: 30px; }
+    .experience-top p { margin: 8px 0 0; color: var(--text-soft); font-size: 16px; }
+    .steps { display:flex; align-items:center; gap: 10px; }
+    .step {
+      width: 38px; height: 38px; display:grid; place-items:center; border-radius: 50%;
+      border: 1px solid var(--line); color: var(--muted); font-size: 13px; font-weight: 800; background: #fff;
+    }
+    .step.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+    .step-line { width: 30px; height: 1px; background: var(--line-strong); }
+    .experience-app { min-height: 640px; }
+    .view { display:none; padding: 18px; }
+    .view.active { display:block; animation: fadeIn .35s var(--ease); }
+    @keyframes fadeIn { from{opacity:0; transform: translateY(8px);} to{opacity:1; transform: translateY(0);} }
+    .view-heading { max-width: 760px; margin-bottom: 24px; }
+    .view-heading small { display:block; margin-bottom:10px; color:var(--primary); font-weight:800; }
+    .view-heading h3 { margin:0 0 10px; font-size: 34px; }
+    .view-heading p { margin:0; color:var(--text-soft); line-height:1.9; font-size: 16px; }
+
+    .personas {
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .persona-card {
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: 24px;
+      padding:24px;
+      text-align:right;
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+      cursor:pointer;
+      transition: .25s var(--ease);
+      box-shadow: 0 18px 36px rgba(19,49,38,.05);
+    }
+    .persona-card:hover { transform: translateY(-4px); border-color: var(--line-strong); box-shadow: 0 28px 42px rgba(19,49,38,.08); }
+    .persona-top { display:flex; align-items:flex-start; justify-content:space-between; gap: 10px; }
+    .persona-badge { padding: 7px 10px; border-radius: 999px; background: var(--primary-soft); color: var(--primary-dark); font-size: 11px; font-weight: 700; }
+    .persona-avatar {
+      width: 58px; height:58px; border-radius: 18px; display:grid; place-items:center;
+      background: linear-gradient(180deg, var(--primary-soft), var(--primary-soft-2)); color: var(--primary-dark); font-size:22px; font-weight:800;
+    }
+    .persona-card h4 { margin:0; font-size: 30px; }
+    .persona-card .desc { margin:0; color: var(--text-soft); line-height: 1.8; font-size:15px; }
+    .facts { display:grid; gap: 9px; }
+    .fact { display:flex; justify-content:space-between; gap: 15px; padding-bottom: 8px; border-bottom:1px solid var(--line); font-size: 13px; }
+    .fact span { color: var(--muted); }
+    .fact strong { font-size: 14px; }
+    .service-list { display:flex; flex-wrap:wrap; gap:8px; }
+    .service-pill { padding:8px 11px; border-radius:999px; background: var(--surface-2); border:1px solid var(--line); color: var(--text-soft); font-size:12px; }
+    .persona-link { margin-top:auto; color: var(--primary-dark); font-weight: 700; }
+
+    .workspace { display:grid; grid-template-columns: 320px 1fr; gap: 22px; align-items:start; }
+    .profile-card, .content-card {
+      background:#fff; border:1px solid var(--line); border-radius: 24px; padding: 22px; box-shadow: 0 18px 36px rgba(19,49,38,.05);
+    }
+    .profile-card.sticky { position: sticky; top: 150px; }
+    .back-link { border:0; background:transparent; padding:0; margin-bottom:16px; color: var(--text-soft); cursor:pointer; font-weight:700; }
+    .profile-head { display:flex; align-items:center; gap:12px; padding-bottom:16px; border-bottom:1px solid var(--line); }
+    .profile-head h4 { margin: 0 0 4px; font-size: 20px; }
+    .profile-head p { margin:0; font-size:13px; color:var(--text-soft); line-height:1.7; }
+    .profile-block { margin-top: 18px; }
+    .profile-block small { display:block; margin-bottom: 8px; color: var(--muted); font-size:12px; font-weight:700; }
+
+    .events, .options { display:grid; gap:10px; }
+    .event-btn, .option-btn {
+      width: 100%;
+      text-align:right;
+      padding: 18px 20px;
+      display:grid;
+      grid-template-columns: 54px 1fr 24px;
+      gap: 14px;
+      align-items:center;
+      border:1px solid var(--line);
+      border-radius: 18px;
+      background:#fff;
+      cursor:pointer;
+      transition: .25s;
+    }
+    .event-btn:hover, .option-btn:hover, .option-btn.selected { background: var(--primary-soft); border-color: var(--line-strong); }
+    .event-icon, .opt-mark {
+      width: 54px; height:54px; border-radius: 18px; display:grid; place-items:center; background: var(--primary-soft); color: var(--primary-dark); font-size: 20px; font-weight: 700;
+    }
+    .event-btn h4, .option-btn strong { margin: 0 0 6px; font-size: 18px; }
+    .event-btn p, .option-btn small { margin:0; color:var(--text-soft); line-height:1.7; font-size:13px; }
+    .event-arrow { color: var(--muted); font-size: 18px; }
+
+    .field-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 18px; }
+    .field {
+      border:1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      background: var(--surface-2);
+    }
+    .field label { display:block; font-size: 12px; color: var(--muted); margin-bottom: 8px; font-weight: 700; }
+    .field input, .field select {
+      width:100%; border:0; background:transparent; outline:0; font-size: 22px; color: var(--text); font-weight:800;
+    }
+    .inline-note { margin-top: 14px; padding: 14px 16px; border-radius: 16px; background: var(--surface-2); border: 1px solid var(--line); color: var(--text-soft); line-height: 1.8; font-size: 14px; }
+    .question-actions { margin-top: 22px; display:flex; justify-content:flex-start; gap: 10px; flex-wrap: wrap; }
+
+    .analysis-card {
+      min-height: 520px; display:flex; align-items:center; justify-content:center; flex-direction:column; text-align:center;
+      background:#fff; border:1px solid var(--line); border-radius: 24px; box-shadow: 0 18px 36px rgba(19,49,38,.05); padding: 30px;
+    }
+    .analysis-ring {
+      position:relative; width: 112px; height:112px; border-radius:50%; border:1px solid var(--line-strong); margin-bottom: 24px;
+    }
+    .analysis-ring::before { content:""; position:absolute; inset:36px; border-radius:50%; background: var(--primary); box-shadow: 0 0 0 12px rgba(21,115,71,.08); }
+    .analysis-ring::after { content:""; position:absolute; inset:-2px; border-radius:50%; border:2px solid transparent; border-top-color: var(--primary); animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg);} }
+    .analysis-card h3 { margin: 0 0 8px; font-size: 32px; }
+    .analysis-card p { margin: 0; color: var(--text-soft); }
+    .analysis-steps { width:min(520px,100%); margin-top: 28px; display:grid; gap: 10px; }
+    .analysis-step {
+      min-height:48px; display:flex; align-items:center; gap: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--line);
+      color: var(--muted); opacity: .34; transition:.25s;
+    }
+    .analysis-step span { width: 9px; height: 9px; border-radius: 50%; background: var(--muted); }
+    .analysis-step.done { opacity:1; color: var(--text); }
+    .analysis-step.done span { background: var(--primary); }
+
+    .results-card {
+      background:#fff; border:1px solid var(--line); border-radius: 24px; box-shadow: 0 18px 36px rgba(19,49,38,.05); padding: 26px;
+    }
+    .results-card h3 { margin: 0 0 10px; font-size: 34px; }
+    .results-card .intro { color: var(--text-soft); line-height: 1.85; font-size: 16px; }
+    .summary-strip {
+      margin-top: 20px; padding: 16px 18px; border-radius: 18px; background: var(--primary-soft); border: 1px solid var(--line-strong);
+      display:flex; justify-content:space-between; gap: 12px; flex-wrap:wrap;
+    }
+    .summary-strip strong { font-size: 16px; }
+    .summary-strip span { color: var(--text-soft); font-size: 14px; }
+    .compare-boxes {
+      display:grid; grid-template-columns: 1fr 60px 1fr; gap: 10px; margin: 26px 0;
+    }
+    .compare-box {
+      padding: 18px; border-radius: 18px; border:1px solid var(--line); background: var(--surface-2);
+    }
+    .compare-box.after { background: var(--primary-soft); border-color: var(--line-strong); }
+    .compare-box small { display:block; margin-bottom:8px; color:var(--muted); font-size:12px; font-weight:700; }
+    .compare-box strong { font-size: 18px; }
+    .compare-arrow { display:grid; place-items:center; color: var(--primary); font-weight:700; }
+    .cluster-title { margin: 26px 0 12px; display:block; color:var(--muted); font-weight:700; }
+    .tag-row { display:flex; flex-wrap:wrap; gap:8px; }
+    .result-pill { padding: 9px 12px; border-radius: 999px; background: var(--surface-2); border:1px solid var(--line); font-size: 13px; color: var(--text-soft); }
+    .impact-list { display:grid; gap: 12px; }
+    .impact-card { border:1px solid var(--line); border-radius: 20px; overflow:hidden; background: #fff; }
+    .impact-main {
+      padding: 16px; display:grid; grid-template-columns: 48px 1fr auto; gap: 12px; align-items:center; cursor:pointer;
+    }
+    .impact-main:hover { background: #fcfffd; }
+    .impact-ico {
+      width:48px; height:48px; border-radius:16px; display:grid; place-items:center; background: var(--primary-soft); color: var(--primary-dark); font-weight:800;
+    }
+    .impact-copy strong { display:block; font-size: 17px; margin-bottom: 5px; }
+    .impact-copy p { margin:0; color: var(--text-soft); line-height: 1.8; font-size: 14px; }
+    .impact-type {
+      padding: 7px 10px; border-radius: 999px; background: var(--primary-soft); color: var(--primary-dark); font-size: 11px; font-weight: 800;
+    }
+    .impact-type.warn { background: var(--accent-soft); color: #7a6631; }
+    .impact-type.neutral { background: #f1f3f1; color: var(--text-soft); }
+    .impact-detail { max-height: 0; overflow:hidden; transition: max-height .35s var(--ease); }
+    .impact-card.open .impact-detail { max-height: 440px; }
+    .impact-detail-inner { padding: 0 16px 16px 76px; border-top:1px solid var(--line); color: var(--text-soft); font-size: 14px; line-height: 1.9; }
+    .logic-box { margin-top: 12px; padding: 12px; border-radius: 14px; background: var(--surface-2); border:1px solid var(--line); color: var(--muted); font-size: 13px; }
+    .impact-actions { margin-top: 14px; display:flex; flex-wrap:wrap; gap: 8px; }
+    .mini-link { color: var(--primary-dark); font-weight:700; font-size: 13px; }
+    .mini-btn {
+      min-height: 42px; padding: 0 14px; border-radius: 12px; border:1px solid var(--line-strong); background: var(--primary-soft); color: var(--primary-dark); font-weight: 700; cursor:pointer;
+    }
+
+    .disclaimer {
+      margin-top: 24px; padding: 16px 18px; border-radius: 18px; border: 1px solid var(--line); background: var(--surface-2); color: var(--text-soft); font-size: 14px; line-height: 1.9;
+    }
+    .disclaimer strong { display:block; margin-bottom: 6px; color: var(--text); }
+
+    .impact-grid {
+      display:grid; grid-template-columns: .95fr 1.05fr; gap: 18px; align-items:start;
+    }
+    .impact-panel, .estimate-panel, .benchmark-panel, .plan-panel, .sources-panel {
+      background: rgba(255,255,255,.82); border: 1px solid var(--line); border-radius: 26px; box-shadow: var(--shadow);
+    }
+    .impact-panel, .estimate-panel, .benchmark-panel, .plan-panel, .sources-panel { padding: 28px; }
+    .metric-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
+    .metric {
+      padding: 20px; border-radius: 20px; background:#fff; border:1px solid var(--line);
+    }
+    .metric small { display:block; margin-bottom: 10px; color: var(--muted); font-weight:700; font-size: 12px; }
+    .metric strong { display:block; font-size: 32px; color: var(--primary-dark); font-weight:800; }
+    .metric span { display:block; margin-top: 8px; color: var(--text-soft); line-height:1.7; font-size: 13px; }
+    .estimate-panel .slider-row { margin: 18px 0 14px; }
+    .estimate-panel input[type="range"] { width:100%; accent-color: var(--primary); }
+    .estimate-outcome {
+      margin-top: 18px; display:grid; grid-template-columns: repeat(3,1fr); gap: 12px;
+    }
+    .estimate-card { padding: 20px; border-radius: 20px; background:#fff; border:1px solid var(--line); }
+    .estimate-card small { display:block; color: var(--muted); margin-bottom:8px; font-size: 12px; font-weight:700; }
+    .estimate-card strong { display:block; font-size: 28px; color: var(--primary-dark); }
+    .impact-note { margin-top: 16px; color: var(--text-soft); line-height: 1.9; font-size: 14px; }
+
+    .benchmark-grid { display:grid; grid-template-columns: repeat(2,1fr); gap: 14px; margin-top: 22px; }
+    .benchmark-card {
+      padding: 22px; border-radius: 22px; background:#fff; border:1px solid var(--line);
+      display:grid; gap: 12px;
+    }
+    .benchmark-head { display:flex; align-items:flex-start; justify-content:space-between; gap: 14px; }
+    .benchmark-country { padding:7px 10px; border-radius:999px; background: var(--primary-soft); color: var(--primary-dark); font-size: 12px; font-weight:800; }
+    .benchmark-card h3 { margin:0; font-size: 24px; }
+    .benchmark-stat { font-size: 28px; font-weight: 800; color: var(--primary-dark); }
+    .benchmark-card p { margin:0; color: var(--text-soft); line-height: 1.9; font-size: 15px; }
+    .benchmark-learn { padding: 14px; border-radius: 16px; background: var(--surface-2); border:1px solid var(--line); }
+    .benchmark-learn strong { display:block; margin-bottom: 6px; font-size: 15px; }
+    .benchmark-actions { display:flex; align-items:center; justify-content:space-between; gap: 10px; flex-wrap:wrap; }
+    .benchmark-link { color: var(--primary-dark); font-weight: 800; font-size: 13px; }
+
+    .warning-card {
+      margin-top: 14px; padding: 20px; border-radius: 20px; background: var(--danger-soft); border:1px solid #ebd9d3;
+    }
+    .warning-card strong { display:block; margin-bottom: 8px; color: var(--danger-text); font-size: 18px; }
+    .warning-card p { margin:0; color: #6f5046; line-height: 1.9; }
+
+    .plan-grid { display:grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 22px; }
+    .plan-step {
+      padding: 20px; border-radius: 20px; background:#fff; border:1px solid var(--line);
+    }
+    .plan-step span {
+      display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius: 10px; background: var(--primary-soft); color: var(--primary-dark); font-weight: 800; margin-bottom: 14px;
+    }
+    .plan-step strong { display:block; margin-bottom: 8px; font-size: 18px; }
+    .plan-step p { margin:0; color: var(--text-soft); line-height:1.8; font-size: 14px; }
+
+    .sources-list { display:grid; gap: 10px; margin-top: 18px; }
+    .source-item {
+      display:flex; align-items:flex-start; justify-content:space-between; gap: 12px; padding: 16px 18px; border-radius: 18px; background:#fff; border:1px solid var(--line);
+    }
+    .source-item strong { display:block; margin-bottom: 4px; font-size: 16px; }
+    .source-item p { margin:0; color: var(--text-soft); font-size: 14px; line-height: 1.8; }
+    .source-item a { color: var(--primary-dark); font-weight: 800; font-size: 13px; white-space: nowrap; }
+
+    footer { padding: 34px 0 48px; }
+    .footer-box {
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+      display:flex; justify-content:space-between; gap: 16px; flex-wrap:wrap;
+      color: var(--muted); font-size: 13px;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid, .problem-grid, .impact-grid, .workspace { grid-template-columns: 1fr; }
+      .profile-card.sticky { position: static; }
+      .flow-grid, .plan-grid { grid-template-columns: repeat(2,1fr); }
+      .compare-journey { grid-template-columns: 1fr; }
+      .journey-middle .line { display:none; }
+      .personas, .benchmark-grid, .metric-grid, .estimate-outcome { grid-template-columns: 1fr 1fr; }
+      .stats-ribbon { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px) {
+      .container { width: calc(100% - 24px); }
+      .header-inner { min-height: 74px; align-items:flex-start; padding: 12px 0; }
+      .header-nav { display:none; }
+      .hero { padding-top: 26px; }
+      .hero-main, .hero-side, .story-panel, .principles-panel, .impact-panel, .estimate-panel, .benchmark-panel, .plan-panel, .sources-panel { padding: 20px; }
+      .hero-main h1 { font-size: 40px; }
+      .hero-main p, .section-heading p { font-size: 16px; }
+      .tabs { top: 80px; }
+      .flow-grid, .plan-grid, .metric-grid, .estimate-outcome, .personas, .benchmark-grid, .field-grid { grid-template-columns: 1fr; }
+      .experience-top { padding: 18px 18px 2px; }
+      .impact-main { grid-template-columns: 48px 1fr; }
+      .impact-type { grid-column: 2; justify-self:start; }
+      .impact-detail-inner { padding: 0 16px 16px; }
+      .compare-boxes { grid-template-columns: 1fr; }
+      .compare-arrow { min-height: 36px; transform: rotate(90deg); }
+      .source-item { flex-direction: column; }
+      .header-cta { min-height: 42px; padding: 0 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+    }
   </style>
 </head>
 <body>
-<div class="grid-bg"></div>
-<header class="topbar">
-  <div class="container nav">
-    <div class="brand" onclick="go('hero')"><div class="brandmark">س</div><div class="brandcopy"><strong>سياق</strong><small>نموذج تفاعلي تصوري</small></div></div>
-    <nav class="navlinks">
-      <button onclick="go('idea')">الفكرة</button><button onclick="go('demo')">التجربة</button><button onclick="go('impact')">الأثر المتوقع</button><button onclick="go('benchmarks')">المقارنات</button><button onclick="go('roadmap')">كيف نبدأ</button><button class="nav-cta" onclick="startDemo()">جرّب سياق</button>
+<div class="site-shell"></div>
+<header>
+  <div class="container header-inner">
+    <button class="brand" onclick="goTo('top')">
+      <span class="brand-title">صلة</span>
+      <span class="brand-subtitle">من الحالة إلى الخدمة المناسبة</span>
+    </button>
+    <nav class="header-nav">
+      <button class="header-link" onclick="goTo('idea')">الفكرة</button>
+      <button class="header-link" onclick="goTo('prototype')">التجربة</button>
+      <button class="header-link" onclick="goTo('impact')">الأثر المتوقع</button>
+      <button class="header-link" onclick="goTo('benchmarks')">البنشمارك</button>
+      <button class="header-link" onclick="goTo('plan')">كيف نبدأ</button>
     </nav>
+    <button class="header-cta" onclick="startDemo()">جرّب النموذج ←</button>
   </div>
 </header>
-<main>
-<section class="hero" id="hero"><div class="container"><div class="hero-inner">
-  <div class="badge">ليست منصة جديدة • قابلية ذكية يمكن دمجها في القنوات الحالية</div>
-  <h1>الخدمة المناسبة تبدأ من <span>فهم السياق</span></h1>
-  <p>سياق يفهم وضع المستفيد والتغيير الذي حدث أو قد يحدث في حياته، ثم يعرض فقط ما يخصه: ما الذي تأثر، ما الإجراء التالي، وما الخدمات التي أصبحت أقرب لحالته.</p>
-  <div class="hero-actions"><button class="btn primary" onclick="startDemo()">جرّب النموذج ←</button><button class="btn secondary" onclick="go('impact')">شاهد الأثر المتوقع</button></div>
-  <div class="hero-note">البيانات في النموذج افتراضية، أما القواعد والنتائج فمبنية على <b>مصادر رسمية منشورة</b></div>
-  <div class="hero-strip"><div class="hero-stat"><strong>855</strong><span>خدمة إلكترونية مدرجة لدى الوزارة</span></div><div class="hero-stat"><strong>757,960</strong><span>تفاعل عبر قنوات العناية في الربع الثاني 2026</span></div><div class="hero-stat"><strong>3</strong><span>تغيّرات نختبرها في النموذج الحالي</span></div></div>
-</div></div></section>
 
-<section class="section" id="idea"><div class="container">
-  <div class="section-head center"><span class="kicker">الفكرة في 30 ثانية</span><h2>المستفيد يعرف وش تغيّر عنده<br>مو بالضرورة يعرف وش الخدمة</h2><p>المشكلة ليست نقص الخدمات. التحدي هو معرفة أي خدمة أو إجراء أصبح مناسبًا في هذه اللحظة، خصوصًا عندما يؤثر حدث واحد على أكثر من مسار.</p></div>
-  <div class="problem-grid"><div class="panel"><small>اليوم</small><h3>«نقص دخلي... وش أسوي؟»</h3><p>يبدأ المستفيد بالبحث بين الخدمات والمنصات، وقد لا يعرف أن التغيير نفسه يمكن أن يؤثر على خدمة يستخدمها الآن أو يجعل خدمة جديدة تستحق التحقق.</p></div><div class="panel green"><small>مع سياق</small><h3>«فهمنا وش تغير عندك»</h3><p>نقرأ وضع المستفيد أولًا، ثم نطبق القواعد ذات العلاقة، ونخفي كل ما لا يخصه، ونشرح له لماذا ظهرت كل نتيجة وما الخطوة التالية.</p></div></div>
-  <div class="not-platform"><div class="not-platform-icon">✓</div><div><strong>المقترح ليس منصة إضافية</strong><p>سياق يمكن أن يعمل كقابلية مشتركة داخل تطبيق الوزارة أو المنصة القطاعية أو المساعد الذكي. الواجهة قد تتغير، لكن المنطق نفسه يبقى قابلًا لإعادة الاستخدام عبر القنوات.</p></div></div>
-  <div class="fit-grid"><div class="fit-card"><span>01</span><strong>يفهم الحالة</strong><p>العقد والدخل والأسرة والخدمات الحالية والبيانات ذات الصلة.</p></div><div class="fit-card"><span>02</span><strong>يفهم التغيير</strong><p>ما الذي حصل فعلًا أو ما الذي يريد المستفيد محاكاته قبل أن يحصل.</p></div><div class="fit-card"><span>03</span><strong>يظهر ما يخصه فقط</strong><p>تأثيرات وإجراءات وخدمات محتملة مع تفسير ومصدر رسمي.</p></div></div>
-</div></section>
+<main id="top">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-main">
+        <div class="eyebrow">فكرة قابلة للدمج داخل القنوات الحالية</div>
+        <h1>
+          المستفيد يعرف <span>وش صار له</span>
+          وليس بالضرورة <span>وش الخدمة التي يحتاجها</span>
+        </h1>
+        <p>
+          <strong>صلة</strong> نموذج يربط وضع المستفيد الحالي والتغيّر الذي مرّ به بالخدمات والإجراءات التي تخصه فعلًا.
+          بدل أن يبدأ من اسم الخدمة، يبدأ من حالته، ثم تظهر له فقط الأشياء المرتبطة به: ماذا تأثّر، ماذا يحتاج أن يفعل، وما الخدمات التي قد أصبحت مناسبة له الآن.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="startDemo()">ابدأ من النموذج ←</button>
+          <button class="btn btn-secondary" onclick="goTo('impact')">شاهد الأثر المتوقع</button>
+        </div>
+        <div class="hero-mini-note">الفكرة هنا ليست منصة جديدة، بل قدرة رقمية يمكن إضافتها داخل تطبيق الوزارة أو القنوات الحالية مثل الويب، التطبيق، أو صفحة المستفيد.</div>
+      </div>
+      <aside class="hero-side">
+        <div class="side-card">
+          <small>لماذا هذا مهم الآن؟</small>
+          <strong>رحلات كثيرة، والخدمة الصحيحة لا تظهر دائمًا من البداية</strong>
+          <p>حين يبدأ المستفيد من مشكلته بدل اسم الخدمة، تقل الحيرة، وتخف الرحلات غير المناسبة، ويتضح المسار بشكل أسرع.</p>
+        </div>
+        <div class="stats-ribbon">
+          <div class="stat-chip">
+            <strong>855</strong>
+            <span>خدمة معروضة في موقع الوزارة الرسمي</span>
+          </div>
+          <div class="stat-chip">
+            <strong>36.6M+</strong>
+            <span>معاملة منجزة بحسب الموقع الرسمي</span>
+          </div>
+          <div class="stat-chip">
+            <strong>757,960</strong>
+            <span>تفاعل في تقرير صوت المستفيد للربع الثاني 2026</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
 
-<section class="section" id="demo"><div class="container experience-wrap" id="experienceWrap">
-  <div class="experience-head"><div><span class="kicker">النموذج التفاعلي</span><h2>نفس التغيير<br>مو نفس النتيجة</h2></div><div class="stepper"><span class="step on" data-step="1">1</span><i class="step-line"></i><span class="step" data-step="2">2</span><i class="step-line"></i><span class="step" data-step="3">3</span><i class="step-line"></i><span class="step" data-step="4">4</span></div></div>
-  <div class="app" id="app">
-    <section class="view active" id="personaView"><div class="view-title" id="personaHeading"><small>الخطوة 1 من 4</small><h3>اختر حالة افتراضية</h3><p>كل شخص لديه وضع مختلف وخدمات مختلفة. بعد الاختيار تظهر له نفس قائمة التغيّرات، لكن المحرك لا يعرض إلا النتائج المرتبطة بحالته.</p></div><div class="personas">
-      <button class="persona" onclick="choosePersona('khalid')"><div class="persona-top"><div class="avatar">خ</div><span class="fake">بيانات افتراضية</span></div><h4>خالد، 41</h4><p>موظف ومتزوج، أسرة من 4 أفراد</p><div class="facts"><div class="fact"><span>الدخل</span><b>4,500 ريال</b></div><div class="fact"><span>العقد</span><b>فعال</b></div></div><div class="service-title">يستفيد حاليًا من</div><div class="chips"><span class="chip">الضمان الاجتماعي</span><span class="chip">العقود الوظيفية</span></div><span class="persona-action">اختر خالد ←</span></button>
-      <button class="persona" onclick="choosePersona('reem')"><div class="persona-top"><div class="avatar blue">ر</div><span class="fake">بيانات افتراضية</span></div><h4>ريم، 27</h4><p>موظفة ومتزوجة، أسرة من 3 أفراد</p><div class="facts"><div class="fact"><span>الدخل</span><b>8,500 ريال</b></div><div class="fact"><span>العقد</span><b>فعال</b></div></div><div class="service-title">تستفيد حاليًا من</div><div class="chips"><span class="chip">العقود الوظيفية</span></div><span class="persona-action">اختر ريم ←</span></button>
-      <button class="persona" onclick="choosePersona('salman')"><div class="persona-top"><div class="avatar amber">س</div><span class="fake">بيانات افتراضية</span></div><h4>سلمان، 24</h4><p>باحث عن عمل، لا يوجد عقد فعال</p><div class="facts"><div class="fact"><span>الدخل</span><b>0 ريال</b></div><div class="fact"><span>العقد</span><b>لا يوجد</b></div></div><div class="service-title">وضعه الحالي</div><div class="chips"><span class="chip">باحث عن عمل</span></div><span class="persona-action">اختر سلمان ←</span></button>
-    </div></section>
-    <section class="view" id="eventView"><div class="workspace"><aside class="side"><button class="back" onclick="showPersona()">→ تغيير الشخص</button><div id="eventProfile"></div><div class="side-block"><span>نوع التجربة</span><div class="mode-switch"><button id="modeWhatIf" class="active" onclick="setMode('whatif')">وش لو؟</button><button id="modeActual" onclick="setMode('actual')">صار فعلًا</button></div></div></aside><div><div class="view-title"><small>الخطوة 2 من 4</small><h3>وش التغيير اللي ودك تستكشفه؟</h3><p>نفس الأحداث متاحة للجميع. إذا كان الحدث لا ينسجم مع حالة الشخص، سياق يوضح ذلك بدل توجيهه لخدمة غير مناسبة.</p></div><div class="events"><button class="event" onclick="chooseEvent('income')"><span class="event-icon">↕</span><div><h4>تغيّر دخلي</h4><p>أدخل الدخل الجديد وسياق يحدد تلقائيًا هل ارتفع أو انخفض وما الذي قد يتأثر.</p></div><span class="event-arrow">←</span></button><button class="event" onclick="chooseEvent('contractEnd')"><span class="event-icon">◷</span><div><h4>انتهت علاقتي الوظيفية</h4><p>نفحص أولًا وجود عقد فعال ثم نستخدم سبب الانتهاء لتحديد المسارات ذات العلاقة.</p></div><span class="event-arrow">←</span></button><button class="event" onclick="chooseEvent('newJob')"><span class="event-icon">+</span><div><h4>بدأت وظيفة جديدة</h4><p>نتعامل بشكل مختلف مع الباحث عن عمل ومن لديه عقد قائم حتى لا نفترض نفس السيناريو للجميع.</p></div><span class="event-arrow">←</span></button></div></div></div></section>
-    <section class="view" id="questionView"><div class="workspace"><aside class="side"><button class="back" onclick="showEvent()">→ تغيير الحدث</button><div id="questionProfile"></div></aside><div id="questions"></div></div></section>
-    <section class="view" id="analysisView"><div class="analysis"><div class="spinner"></div><h3>نراجع ما يخص هذه الحالة</h3><p>القواعد التي لا تنطبق تختفي قبل أن تصل للمستفيد</p><div class="analysis-list"><div class="analysis-step"><i></i>نقرأ الحالة الحالية</div><div class="analysis-step"><i></i>نحدد ما تغيّر</div><div class="analysis-step"><i></i>نختبر القواعد ذات العلاقة</div><div class="analysis-step"><i></i>نرتب الأثر والخطوة التالية</div></div></div></section>
-    <section class="view" id="resultView"><div id="results"></div></section>
-    <section class="view" id="precheckView"><div id="precheck"></div></section>
+  <div class="container tabs-wrap">
+    <div class="tabs" id="floatingTabs">
+      <button class="tab active" data-target="idea" onclick="goTo('idea')">الفكرة</button>
+      <button class="tab" data-target="prototype" onclick="goTo('prototype')">التجربة</button>
+      <button class="tab" data-target="impact" onclick="goTo('impact')">الأثر المتوقع</button>
+      <button class="tab" data-target="benchmarks" onclick="goTo('benchmarks')">البنشمارك</button>
+      <button class="tab" data-target="plan" onclick="goTo('plan')">كيف نبدأ</button>
+      <button class="tab" data-target="sources" onclick="goTo('sources')">المصادر</button>
+    </div>
   </div>
-</div></section>
 
-<section class="section" id="impact"><div class="container"><div class="section-head"><span class="kicker">الأثر المتوقع</span><h2>بدل رقم كبير بلا أساس<br>نبني تقديرًا يمكن الدفاع عنه</h2><p>الأرقام التالية تبدأ من حجم التفاعل المنشور رسميًا للربع الثاني من 2026. نسبة الخفض ومدة المكالمة افتراضات قابلة للتعديل وليست وعدًا أو نتيجة محققة.</p></div>
-  <div class="numbers-grid"><div class="number-card"><strong>526,945</strong><span>مكالمة واردة</span><small>الربع الثاني 2026</small></div><div class="number-card"><strong>58,661</strong><span>شكوى واردة</span><small>لا نفترض سبب الشكوى بدون تصنيف داخلي</small></div><div class="number-card"><strong>172,354</strong><span>محادثة اجتماعية</span><small>ضمن قنوات العناية بالمستفيدين</small></div><div class="number-card"><strong>757,960</strong><span>إجمالي التفاعلات</span><small>المصدر: تقرير صوت المستفيد Q2 2026</small></div></div>
-  <div class="impact-lab"><div class="lab-controls"><h3>محاكاة أثر قابلة للتعديل</h3><p>غيّر الافتراضات وشاهد كيف تتغير النتيجة. هذا أفضل من تقديم Forecast غير مدعوم.</p><div class="slider-group"><div class="slider-head"><span>نسبة المكالمات التي يمكن تجنبها بالتوجيه الذاتي</span><b id="deflectionLabel">5%</b></div><input id="deflection" type="range" min="1" max="15" value="5" step="1" oninput="updateImpactModel()" /></div><div class="slider-group"><div class="slider-head"><span>متوسط وقت المكالمة المفترض</span><b id="ahtLabel">6 دقائق</b></div><input id="aht" type="range" min="3" max="12" value="6" step="1" oninput="updateImpactModel()" /></div><div class="slider-group"><div class="slider-head"><span>طلبات غير مناسبة يتم منع بدئها لكل 100 ألف رحلة</span><b id="wrongLabel">3%</b></div><input id="wrongStart" type="range" min="1" max="10" value="3" step="1" oninput="updateImpactModel()" /></div></div>
-    <div class="lab-output"><h3>سيناريو الأثر</h3><p>الأرقام تحسب مباشرة من المدخلات أعلاه.</p><div class="lab-results"><div class="lab-result"><strong id="callsSavedQ">26,347</strong><span>مكالمة أقل في الربع</span><small>من حجم Q2 المنشور</small></div><div class="lab-result"><strong id="hoursSavedQ">2,635</strong><span>ساعة عمل متاحة للحالات الأهم</span><small>ليس خفضًا في عدد الموظفين</small></div><div class="lab-result"><strong id="callsSavedY">105,389</strong><span>مكالمة أقل سنويًا إذا تكرر نفس الحجم</span><small>Annualized scenario وليس Forecast</small></div><div class="lab-result"><strong id="wrongStarts">3,000</strong><span>بداية طلب غير مناسبة يمكن منعها لكل 100 ألف رحلة</span><small>افتراض يحتاج خط أساس داخلي للتحقق</small></div></div><div class="model-note"><strong>مهم:</strong> لم أجد رقمًا عامًا منشورًا للطلبات المرفوضة على مستوى الوزارة بسبب اختيار خدمة غير مناسبة. لذلك الموقع لا يخترع هذا الرقم. أول قياس في الـPoC يجب أن يكون تصنيف أسباب الرفض والاستفسار وبناء خط أساس حقيقي.</div></div>
-  </div>
-</div></section>
+  <section class="section" id="idea">
+    <div class="container">
+      <div class="section-heading">
+        <div class="section-kicker">الفكرة باختصار</div>
+        <h2>صلة تربط بين <span style="color:var(--primary)">حالة المستفيد</span> و<span style="color:var(--primary)">الخدمة المناسبة</span></h2>
+        <p>الفكرة لا تستبدل الخدمات الحالية، ولا تتطلب من المستفيد أن يعرف اسم الخدمة مسبقًا. هي طبقة فوق الخدمات الحالية، مهمتها أن تفهم الحالة أولًا، ثم تبيّن ما الذي يخص هذا الشخص فقط.</p>
+      </div>
 
-<section class="section" id="benchmarks"><div class="container"><div class="section-head"><span class="kicker">مقارنات عالمية</span><h2>الفكرة ليست غريبة عالميًا<br>لكن تركيبها هنا هو الفرصة</h2><p>كل نموذج عالمي يحل جزءًا من المشكلة: تنظيم حول أحداث الحياة، فحص أهلية، خدمات استباقية، أو مشاركة التغيير مرة واحدة.</p></div>
-  <div class="bench-grid">
-    <article class="bench"><div class="bench-top"><span class="country">سنغافورة</span><span class="bench-badge">LifeSG</span></div><h3>الخدمات حول مراحل الحياة</h3><p>تجمع LifeSG أكثر من 100 خدمة حكومية، وتقدم توصيات مخصصة وفحوص أهلية، وتخدم أكثر من 1.5 مليون مستخدم.</p><div class="bench-numbers"><span>100+ خدمة</span><span>1.5M+ مستخدم</span><span>فحص أهلية</span></div><div class="lesson"><b>الدرس لسياق:</b> لا يحتاج المستفيد معرفة هيكل الحكومة حتى يصل لما يناسبه.</div></article>
-    <article class="bench"><div class="bench-top"><span class="country">إستونيا</span><span class="bench-badge">الخدمات الاستباقية</span></div><h3>حدث واحد يجمع خطوات من جهات مختلفة</h3><p>تجمع إستونيا الخدمات المرتبطة بحدث حياة واحد وتخفي تعقيد الجهات عن المستخدم. الخدمات الاستباقية سجلت أكثر من 478 ألف زيارة في 2025.</p><div class="bench-numbers"><span>478K+ زيارة</span><span>زواج</span><span>مولود</span><span>تقاعد</span></div><div class="lesson"><b>الدرس لسياق:</b> الحدث هو نقطة التنظيم، وليس اسم الجهة.</div></article>
-    <article class="bench"><div class="bench-top"><span class="country">فرنسا</span><span class="bench-badge">Mes Droits Sociaux</span></div><h3>محاكاة عدة حقوق دفعة واحدة</h3><p>المحاكي الرسمي يستطيع تقدير 58 مساعدة اجتماعية في تجربة واحدة، ويعرض النتائج كإشارة استرشادية مع إمكانية بدء الطلب عند ملاءمته.</p><div class="bench-numbers"><span>58 مساعدة</span><span>محاكاة موحدة</span><span>نتيجة استرشادية</span></div><div class="lesson"><b>الدرس لسياق:</b> اكتشاف خدمة جديدة يمكن أن يأتي من حالة الشخص، لا من بحثه باسمها.</div></article>
-    <article class="bench"><div class="bench-top"><span class="country">المملكة المتحدة</span><span class="bench-badge">Tell Us Once</span></div><h3>بلّغ مرة واحدة بدل التواصل المتكرر</h3><p>في مسح حكومي قديم للخدمة، 85% من المشاركين في مسار الوفاة لم يحتاجوا إلى التواصل لاحقًا مع الجهات التي توقعوا أن الخدمة ستبلغها. كما أن 37% قالوا إنهم لم يكونوا سيعرفون كيف يتواصلون مع أي جهة بدون الخدمة.</p><div class="bench-numbers"><span>85% بلا تواصل لاحق</span><span>37% لم يعرفوا الجهات</span></div><div class="lesson"><b>الدرس لسياق:</b> التنظيم حول الحدث يمكن أن يقلل الحاجة لمعرفة «مين أكلم؟». النتائج تعود لمسح 2013 وبعينة ذاتية الاختيار، لذلك نستخدمها كإشارة لا كتوقع للسعودية.</div></article>
-    <article class="bench benchmark-caution"><div class="bench-top"><span class="country">أستراليا</span><span class="bench-badge">درس تحذيري</span></div><h3>الفكرة الجيدة لا تكفي بدون تكامل بيانات قوي</h3><p>مراجعة myGov ذكرت أن نجاح تحديث البيانات عبر Tell Us Once كان 34% فقط في يناير 2022، وأن 38% احتاج تدخلًا يدويًا، بسبب اختلاف الحقول والتشريعات وطريقة التقاط البيانات.</p><div class="bench-numbers"><span>34% نجاح تلقائي</span><span>38% تدخل يدوي</span></div><div class="lesson"><b>الدرس لسياق:</b> نبدأ صغيرًا، نوحّد تعريفات البيانات والقواعد، ولا نحاول ربط كل شيء دفعة واحدة.</div></article>
-    <article class="bench"><div class="bench-top"><span class="country">كندا</span><span class="bench-badge">Benefits Finder</span></div><h3>أسئلة قليلة تقلص مساحة البحث</h3><p>أداة Benefits Finder تستخدم نوع الدعم والفئة والظرف لتصفية قائمة المزايا الحكومية وإظهار البرامج الأقرب للمستخدم بدل استعراض كل شيء.</p><div class="bench-numbers"><span>تصفية حسب الحالة</span><span>نتائج مخصصة</span></div><div class="lesson"><b>الدرس لسياق:</b> حتى بدون تكامل كامل، التوجيه المبني على الحالة يعطي قيمة فورية.</div></article>
-  </div>
-</div></section>
+      <div class="problem-grid">
+        <div class="story-panel">
+          <div class="compare-journey">
+            <div class="journey-card">
+              <small>الوضع المعتاد</small>
+              <h3>أبحث عن خدمة، ثم أكتشف لاحقًا أنها ليست ما أحتاجه</h3>
+              <p>المستفيد يبدأ من اسم خدمة أو منصة أو تصنيف، ويجرّب بنفسه. أحيانًا يفتح طلبًا غير مناسب، أو يتواصل للاستفسار، أو يضيع بين خطوات لا تخص حالته أصلًا.</p>
+            </div>
+            <div class="journey-middle">
+              صلة
+              <div class="line"></div>
+            </div>
+            <div class="journey-card highlight">
+              <small>الوضع المقترح</small>
+              <h3>أقول ماذا تغيّر عندي، والنظام يدلّني على ما يخصني</h3>
+              <p>يبدأ المستفيد من حدث واضح بالنسبة له: تغير دخل، انتهاء عقد، وظيفة جديدة، أو غيرها. بعدها تظهر له فقط الخدمات أو الإجراءات المرتبطة بهذه الحالة، ولماذا ظهرت، وما الخطوة التالية.</p>
+            </div>
+          </div>
+        </div>
 
-<section class="section" id="edges"><div class="container"><div class="section-head"><span class="kicker">الحالات الطرفية</span><h2>الذكاء الحقيقي يظهر<br>لما نقول «ما أدري» في الوقت الصح</h2><p>النموذج لا يحاول دائمًا إنتاج نتيجة. أحيانًا أفضل نتيجة هي إيقاف الرحلة وطلب معلومة إضافية أو توضيح أن الحدث غير منطبق.</p></div>
-  <div class="edge-grid"><div class="edge"><span>01</span><h4>ما فيه عقد فعال</h4><p>ما نعرض خدمة إنهاء علاقة لسلمان لأن بياناته لا تحتوي عقدًا قائمًا.</p></div><div class="edge"><span>02</span><h4>الدخل لم يتغير</h4><p>إذا أدخل المستخدم نفس الرقم، نوقف التحليل ونوضح أنه لا يوجد تغير يمكن محاكاته.</p></div><div class="edge"><span>03</span><h4>وظيفة جديدة مع عقد قائم</h4><p>نسأل هل الوظيفة بديلة أم إضافية بدل افتراض أن العقد الحالي انتهى.</p></div><div class="edge"><span>04</span><h4>الضمان ليس قرارًا من رقم واحد</h4><p>نظهر «يستحق التحقق» ونطلب بيانات الأسرة والدخل الآخر بدل إعلان أهلية نهائية.</p></div><div class="edge"><span>05</span><h4>ساند يعتمد على سبب الانتهاء</h4><p>لا يظهر عند الاستقالة، وقد يظهر كخدمة تستحق التحقق عند انتهاء العقد أو فقد العمل لسبب خارج الإرادة مع بقاء شروط أخرى.</p></div><div class="edge"><span>06</span><h4>القاعدة لها مصدر وتاريخ</h4><p>كل قاعدة إنتاجية تحتاج مصدرًا رسميًا وإصدارًا وتاريخ تحقق واختبارات تمنع بقاء قاعدة قديمة.</p></div></div>
-</div></section>
+        <div class="principles-panel">
+          <div class="principle">
+            <small>ما الذي تفعله صلة؟</small>
+            <strong>تبدأ من الحالة</strong>
+            <p>بدل منطق “اختر الخدمة”، تبدأ صلة بمنطق “وش صار لك؟”. هذا أقرب لطريقة تفكير المستفيد وأكثر وضوحًا في الحياة اليومية.</p>
+          </div>
+          <div class="principle">
+            <small>كيف تعمل؟</small>
+            <strong>تربط بين البيانات والقواعد والأسئلة المكمّلة</strong>
+            <p>إن كانت المعلومة واضحة، تظهر النتيجة مباشرة. وإن احتاجت الصورة تفاصيل أكثر، تسأل صلة فقط عن المعلومات الناقصة بدل إغراق المستفيد بأسئلة من البداية.</p>
+          </div>
+          <div class="principle">
+            <small>وش النتيجة؟</small>
+            <strong>إظهار ما يخصك فقط</strong>
+            <p>قد تظهر خدمة متأثرة الآن، أو إجراء يجب فعله، أو خدمة جديدة أصبحت مرتبطة بالحالة. أما ما لا يخص الشخص فلا يظهر لمجرد ملء الشاشة.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="section" id="roadmap"><div class="container"><div class="section-head"><span class="kicker">كيف نبدأ بدون مشروع ضخم</span><h2>PoC في 90 يوم<br>يقيس الفكرة قبل التوسع</h2><p>الهدف ليس ربط 855 خدمة. الهدف إثبات أن نفس المحرك يستطيع التعامل مع عدد محدود من الأحداث والقواعد بشكل صحيح وقابل للقياس.</p></div>
-  <div class="roadmap"><div class="phase"><span>الأسبوع 1–2</span><h4>تحديد النطاق</h4><p>اختيار 3 أحداث و15–20 قاعدة مع مالكي الخدمات وتحديد مصادر البيانات المطلوبة.</p><small>المخرج: سجل قواعد رسمي</small></div><div class="phase"><span>الأسبوع 3–5</span><h4>بناء المحرك</h4><p>تحويل القواعد إلى منطق قابل للاختبار مع مصدر وتاريخ إصدار وحالات اختبار.</p><small>المخرج: خدمة قواعد قابلة لإعادة الاستخدام</small></div><div class="phase"><span>الأسبوع 6–8</span><h4>اختبار الرحلات</h4><p>تشغيل عشرات الحالات الافتراضية والحالات الطرفية وقياس الأخطاء والنتائج غير المناسبة.</p><small>المخرج: دقة وتغطية معروفة</small></div><div class="phase"><span>الأسبوع 9–12</span><h4>تجربة داخلية</h4><p>اختبار النموذج مع موظفي الخدمة وتجربة مستفيدين محدودة ثم مقارنة المؤشرات قبل وبعد.</p><small>المخرج: قرار توسع مبني على قياس</small></div></div>
-  <div class="success-metrics"><div><strong>منع الرحلات غير المناسبة</strong><span>كم مرة منعنا بدء خدمة لا تنطبق على الحالة؟</span></div><div><strong>خفض الاستفسار المتكرر</strong><span>هل قلت الحاجة للسؤال بعد عرض السبب والخطوة التالية؟</span></div><div><strong>دقة التوجيه</strong><span>هل وافق مالك الخدمة على النتيجة في حالات الاختبار؟</span></div><div><strong>زمن الوصول للخطوة الصحيحة</strong><span>من «وش أسوي؟» إلى الإجراء المناسب.</span></div></div>
-</div></section>
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <div class="section-kicker">منطق التجربة</div>
+        <h2>أربع خطوات بسيطة، مفهومة، وقابلة للشرح خلال دقيقتين</h2>
+        <p>هذا ليس Chatbot عام، وليس بحثًا حرًا فقط. هو مسار توجيهي واضح يبني النتيجة تدريجيًا وبأسلوب مفهوم للمستفيد ولصاحب القرار داخل الوزارة.</p>
+      </div>
+      <div class="flow-grid">
+        <div class="flow-card">
+          <b>1</b>
+          <strong>اعرف وضع المستفيد</strong>
+          <p>من هو؟ هل لديه عقد؟ كم دخله؟ ما الخدمات التي يستخدمها الآن؟</p>
+        </div>
+        <div class="flow-card">
+          <b>2</b>
+          <strong>افهم ماذا تغيّر</strong>
+          <p>تغير دخل، انتهاء علاقة وظيفية، أو وظيفة جديدة، مع تفاصيل بسيطة مرتبطة بالحدث.</p>
+        </div>
+        <div class="flow-card">
+          <b>3</b>
+          <strong>استبعد ما لا يخصه</strong>
+          <p>لا نعرض خدمات غير مرتبطة بحالته، ولا نرسل الشخص إلى مسار لا ينطبق عليه.</p>
+        </div>
+        <div class="flow-card emphasis">
+          <b>4</b>
+          <strong>اعرض ما يخصه الآن</strong>
+          <p>ماذا تأثر؟ ماذا يفعل؟ وما الذي قد أصبح مناسبًا له بعد التغيير؟</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section class="section" id="sources"><div class="container"><div class="section-head"><span class="kicker">المصادر</span><h2>كل رقم وقاعدة<br>ترجع لمصدرها</h2><p>آخر تحقق للمصادر المستخدمة في هذا النموذج: 30 سبتمبر 2026. بيانات الأشخاص نفسها افتراضية.</p></div><div class="sources-grid" id="sourceCards"></div></div></section>
+  <section class="section" id="prototype">
+    <div class="container">
+      <div class="section-heading">
+        <div class="section-kicker">نموذج تفاعلي</div>
+        <h2>نفس التغيير، لكن <span style="color:var(--primary)">نتائج مختلفة</span> حسب الشخص</h2>
+        <p>الفكرة تبرز أكثر عندما نرى أن “تغير الدخل” نفسه قد يقود إلى نتائج مختلفة لشخصين مختلفين. هذا هو جوهر صلة.</p>
+      </div>
 
-<section class="final"><div class="container"><div class="final-card"><h2>سياق ما يضيف خدمة جديدة<br><span>يخلي الخدمات الموجودة تفهم متى يحتاجها الشخص</span></h2><p>القيمة ليست في واجهة جديدة بحد ذاتها. القيمة في قابلية مشتركة تحول حالة المستفيد والتغيير إلى توجيه قابل للتفسير ويمكن قياس أثره.</p><div class="final-question">السؤال المقترح بعد العرض: هل لدينا اليوم قابلية مركزية تربط تغيّر حالة المستفيد بقواعد عدة خدمات وتسمح بمحاكاة «وش لو؟» قبل وقوع الحدث؟ وإذا لا، هل يستحق أن نختبرها كـPoC محدود؟</div></div></div></section>
+      <div class="experience-shell" id="experienceShell">
+        <div class="experience-top">
+          <div>
+            <h3>جرّب صلة</h3>
+            <p>اختر شخصية، ثم غيّر شيئًا في حالتها، وشاهد ما الذي يظهر لها تحديدًا.</p>
+          </div>
+          <div class="steps">
+            <span class="step active" data-step="1">1</span>
+            <span class="step-line"></span>
+            <span class="step" data-step="2">2</span>
+            <span class="step-line"></span>
+            <span class="step" data-step="3">3</span>
+            <span class="step-line"></span>
+            <span class="step" data-step="4">4</span>
+          </div>
+        </div>
+
+        <div class="experience-app">
+          <section class="view active" id="personaView">
+            <div class="view-heading" id="personaHeading">
+              <small>الخطوة 1 من 4</small>
+              <h3>اختر مستفيدًا افتراضيًا</h3>
+              <p>هذه شخصيات افتراضية لأغراض العرض فقط. الهدف هو توضيح كيف تتغيّر النتيجة حسب وضع كل شخص، لا حسب اسم الحدث فقط.</p>
+            </div>
+            <div class="personas" id="personasGrid"></div>
+          </section>
+
+          <section class="view" id="eventView">
+            <div class="workspace">
+              <aside class="profile-card sticky">
+                <button class="back-link" onclick="showPersonaView()">← تغيير الشخص</button>
+                <div id="eventProfile"></div>
+              </aside>
+              <div class="content-card">
+                <div class="view-heading">
+                  <small>الخطوة 2 من 4</small>
+                  <h3>ما الذي تغيّر؟</h3>
+                  <p>اختر الحدث الذي تريد تطبيقه على هذا المستفيد. ستلاحظ أن النتيجة تتبدل حسب الشخص، حتى لو كان الحدث نفسه.</p>
+                </div>
+                <div class="events" id="eventsList"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="view" id="questionView">
+            <div class="workspace">
+              <aside class="profile-card sticky">
+                <button class="back-link" onclick="showEventView()">← تغيير الحدث</button>
+                <div id="questionProfile"></div>
+              </aside>
+              <div class="content-card" id="questionsContainer"></div>
+            </div>
+          </section>
+
+          <section class="view" id="analysisView">
+            <div class="analysis-card">
+              <div class="analysis-ring"></div>
+              <h3>نربط الحالة بما يخصها</h3>
+              <p>يتم الآن قراءة وضع المستفيد، وفهم التغير، ثم استبعاد ما لا ينطبق عليه.</p>
+              <div class="analysis-steps">
+                <div class="analysis-step"><span></span>قراءة وضع المستفيد الحالي</div>
+                <div class="analysis-step"><span></span>فهم التغيّر وتحديد ما إذا كان مؤثرًا</div>
+                <div class="analysis-step"><span></span>استبعاد الخدمات والإجراءات غير المناسبة</div>
+                <div class="analysis-step"><span></span>إظهار ما تأثّر أو ما أصبح مناسبًا</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="view" id="resultView">
+            <div class="results-card" id="resultContainer"></div>
+          </section>
+
+          <section class="view" id="eligibilityView">
+            <div class="results-card" id="eligibilityContainer"></div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="impact">
+    <div class="container">
+      <div class="section-heading">
+        <div class="section-kicker">الأثر المتوقع</div>
+        <h2>قيمة صلة ليست تجميل الواجهة فقط، بل <span style="color:var(--primary)">تقليل الحيرة والعمل غير الضروري</span></h2>
+        <p>الأرقام هنا مبنية على أرقام منشورة رسميًا، ثم تُستخدم في نموذج تقديري محافظ لتوضيح ماذا قد يحدث لو نجحت صلة في تخفيف جزء من الرحلات والاستفسارات التي كان يمكن منعها.</p>
+      </div>
+
+      <div class="impact-grid">
+        <div class="impact-panel">
+          <div class="section-kicker">خط الأساس المنشور</div>
+          <h3 style="margin:0; font-size:32px;">من واقع القنوات الحالية</h3>
+          <div class="metric-grid">
+            <div class="metric">
+              <small>المكالمات الواردة</small>
+              <strong>526,945</strong>
+              <span>في تقرير صوت المستفيد للربع الثاني 2026</span>
+            </div>
+            <div class="metric">
+              <small>الشكاوى</small>
+              <strong>58,661</strong>
+              <span>جزء منها يمكن تقليله إذا وُضّحت الخطوة والخدمة مبكرًا</span>
+            </div>
+            <div class="metric">
+              <small>التفاعل عبر التواصل</small>
+              <strong>172,354</strong>
+              <span>يدل على حجم الأسئلة والاحتياج إلى توجيه أوضح</span>
+            </div>
+          </div>
+          <div class="impact-note">صلة لا تلغي دور الموظف ولا قنوات الخدمة، لكنها تساعد على أن يصل المستفيد إلى المسار الصحيح أسرع، وتُبقي تدخل الموظف للحالات التي تحتاجه فعلًا.</div>
+        </div>
+
+        <div class="estimate-panel">
+          <div class="section-kicker">تقدير محافظ قابل للشرح</div>
+          <h3 style="margin:0; font-size:32px;">لو خفّضت صلة جزءًا من المكالمات التوجيهية</h3>
+          <p style="margin:12px 0 0; color:var(--text-soft); line-height:1.85;">حرّك المؤشر لتغيّر النسبة التقديرية. هذا ليس وعدًا تنفيذيًا، بل نموذج يساعد على تصور القيمة بشكل عملي.</p>
+          <div class="slider-row">
+            <label for="impactRange" style="display:block; margin-bottom:10px; font-weight:700; color:var(--text-soft);">نسبة التخفيف التقديرية من المكالمات الواردة: <span id="impactPercent" style="color:var(--primary-dark); font-weight:800;">5%</span></label>
+            <input id="impactRange" type="range" min="1" max="15" value="5" oninput="updateImpactEstimator()">
+          </div>
+          <div class="estimate-outcome">
+            <div class="estimate-card">
+              <small>مكالمات أقل في الربع</small>
+              <strong id="impactCalls">26,347</strong>
+            </div>
+            <div class="estimate-card">
+              <small>ساعات عمل يمكن توفيرها*</small>
+              <strong id="impactHours">2,635</strong>
+            </div>
+            <div class="estimate-card">
+              <small>مكالمات أقل في السنة**</small>
+              <strong id="impactYear">105,388</strong>
+            </div>
+          </div>
+          <div class="disclaimer">
+            <strong>كيف حسبناها؟</strong>
+            نستخدم عدد المكالمات الواردة المنشور في تقرير صوت المستفيد للربع الثاني 2026، ثم نطبّق نسبة تخفيف تقديرية، مع افتراض متوسط 6 دقائق للمكالمة الواحدة.<br>
+            *الساعات تقريبية لأغراض التصور فقط.<br>
+            **إذا افترضنا استمرار نفس حجم التفاعل في الأرباع الأخرى.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="benchmarks">
+    <div class="container">
+      <div class="section-heading">
+        <div class="section-kicker">Benchmark</div>
+        <h2>ما الذي يمكن أن نتعلمه من تجارب حكومية أخرى؟</h2>
+        <p>المهم هنا ليس نسخ خدمة من دولة أخرى، بل فهم المبدأ الناجح خلفها، ثم تطبيقه داخل سياق الوزارة في السعودية بطريقة مناسبة.</p>
+      </div>
+
+      <div class="benchmark-panel">
+        <div class="benchmark-grid">
+          <article class="benchmark-card">
+            <div class="benchmark-head">
+              <div>
+                <h3>LifeSG</h3>
+                <p>تجربة حكومية رقمية في سنغافورة تجمع خدمات الحياة اليومية حول المواطن بدل أن تتركه يبحث عنها واحدة واحدة.</p>
+              </div>
+              <span class="benchmark-country">سنغافورة</span>
+            </div>
+            <div class="benchmark-stat">+100 خدمة</div>
+            <div class="benchmark-learn">
+              <strong>ما نتعلمه</strong>
+              ابدأ من اللحظة التي يعيشها الشخص، لا من اسم الجهة أو اسم الخدمة. القيمة في التبسيط والتخصيص معًا.
+            </div>
+            <div class="benchmark-actions">
+              <span style="color:var(--text-soft); font-size:14px;">أكثر من 1.5 مليون مستخدم</span>
+              <a class="benchmark-link" href="https://www.tech.gov.sg/products-and-services/for-citizens/digital-services/lifesg/" target="_blank" rel="noopener">المصدر ↗</a>
+            </div>
+          </article>
+
+          <article class="benchmark-card">
+            <div class="benchmark-head">
+              <div>
+                <h3>Proactive Services</h3>
+                <p>إستونيا تطور خدمات استباقية تتمحور حول أحداث الحياة، بحيث تصل الخدمة أو التذكير أو الإجراء للمواطن في اللحظة المناسبة.</p>
+              </div>
+              <span class="benchmark-country">إستونيا</span>
+            </div>
+            <div class="benchmark-stat">478 ألف زيارة</div>
+            <div class="benchmark-learn">
+              <strong>ما نتعلمه</strong>
+              الخدمات لا يجب أن تنتظر المستخدم دائمًا. إذا ظهر تغيير واضح في الحالة، يمكن للنظام أن يقترح المسار المناسب أو يبدأ التوجيه قبل أن يضيع الشخص.
+            </div>
+            <div class="benchmark-actions">
+              <span style="color:var(--text-soft); font-size:14px;">خلال عام 2025</span>
+              <a class="benchmark-link" href="https://ria.ee/en/state-information-system/personal-services/proactive-government-services" target="_blank" rel="noopener">المصدر ↗</a>
+            </div>
+          </article>
+
+          <article class="benchmark-card">
+            <div class="benchmark-head">
+              <div>
+                <h3>Mes Droits Sociaux</h3>
+                <p>أداة فرنسية تحاكي الاستحقاق لعدد كبير من المنافع الاجتماعية في نقطة واحدة، مع إبقاء النتيجة بصيغة تقدير أولي واضح.</p>
+              </div>
+              <span class="benchmark-country">فرنسا</span>
+            </div>
+            <div class="benchmark-stat">58 مساعدة</div>
+            <div class="benchmark-learn">
+              <strong>ما نتعلمه</strong>
+              لا تعطِ وعدًا نهائيًا إذا لم تكتمل البيانات. أعطِ تقديرًا أوليًا، ووضّح أنه يحتاج تحققًا رسميًا. هذا يزيد الفهم ويقلل التوقعات الخاطئة.
+            </div>
+            <div class="benchmark-actions">
+              <span style="color:var(--text-soft); font-size:14px;">محاكاة في تجربة واحدة</span>
+              <a class="benchmark-link" href="https://www.mesdroitssociaux.gouv.fr/simulateurs" target="_blank" rel="noopener">المصدر ↗</a>
+            </div>
+          </article>
+
+          <article class="benchmark-card">
+            <div class="benchmark-head">
+              <div>
+                <h3>Tell Us Once</h3>
+                <p>خدمة بريطانية تُظهر كيف يمكن تقليل الحاجة لتكرار الإبلاغ والتواصل المتعدد مع الجهات المختلفة بعد حدث كبير في حياة المستفيد.</p>
+              </div>
+              <span class="benchmark-country">المملكة المتحدة</span>
+            </div>
+            <div class="benchmark-stat">85%</div>
+            <div class="benchmark-learn">
+              <strong>ما نتعلمه</strong>
+              إذا كانت المعلومة موثوقة وموجودة، لا نطلب من المستفيد تكرارها. وهذا يقود إلى فكرة "اسأل فقط عمّا ينقص" بدل "ابدأ من الصفر كل مرة".
+            </div>
+            <div class="benchmark-actions">
+              <span style="color:var(--text-soft); font-size:14px;">من المشاركين في المسح لم يحتاجوا لتواصل إضافي</span>
+              <a class="benchmark-link" href="https://assets.publishing.service.gov.uk/media/5a7ba66740f0b645ba3c5b03/ihr-18-tell-us-once.pdf" target="_blank" rel="noopener">المصدر ↗</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="warning-card">
+          <strong>درس تنفيذي مهم</strong>
+          <p>التجارب الناجحة لا تعني “اربط كل شيء من اليوم الأول”. تقرير مراجعة myGov الأسترالي أظهر أن نجاح التحديثات الآلية يتأثر بجودة البيانات وتكامل الجهات. لذلك الأنسب هو البدء بنطاق صغير وواضح، ثم التوسع تدريجيًا بعد قياس الأثر.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="plan">
+    <div class="container">
+      <div class="section-heading">
+        <div class="section-kicker">كيف نبدأ؟</div>
+        <h2>بداية صغيرة، واضحة، وقابلة للقياس خلال <span style="color:var(--primary)">90 يومًا</span></h2>
+        <p>بدل بناء شيء ضخم من البداية، يمكن اختبار الفكرة على عدد محدود من الحالات التي تظهر فيها الحيرة بوضوح، ثم قياس الفرق قبل التوسع.</p>
+      </div>
+      <div class="plan-panel">
+        <div class="plan-grid">
+          <div class="plan-step">
+            <span>1</span>
+            <strong>تحديد النطاق</strong>
+            <p>اختيار 3 إلى 5 حالات فقط، مثل: تغير الدخل، انتهاء العلاقة الوظيفية، وظيفة جديدة، مع تحديد الخدمات والقواعد ذات الصلة.</p>
+          </div>
+          <div class="plan-step">
+            <span>2</span>
+            <strong>بناء محرك القواعد</strong>
+            <p>ترجمة القواعد الواضحة إلى منطق مبسّط: متى تظهر الخدمة؟ متى تختفي؟ ومتى نحتاج سؤالًا إضافيًا؟</p>
+          </div>
+          <div class="plan-step">
+            <span>3</span>
+            <strong>ربط النموذج بقناة فعلية</strong>
+            <p>يمكن البدء كتجربة داخل صفحة أو تطبيق قائم، وليس كمنصة مستقلة. الهدف هو التعلم السريع بأقل تعقيد تكاملي.</p>
+          </div>
+          <div class="plan-step">
+            <span>4</span>
+            <strong>قياس الأثر</strong>
+            <p>ما نسبة الرحلات التي تم توجيهها بشكل صحيح؟ كم استفسار انخفض؟ وهل فهم المستفيد الخطوة التالية بشكل أسرع؟</p>
+          </div>
+        </div>
+        <div class="disclaimer">
+          <strong>اقتراح PoC مناسب للتدريب</strong>
+          يمكن أن يكون النموذج في مرحلته الأولى غير متصل بالأنظمة الداخلية، ويستخدم شخصيات وسيناريوهات افتراضية مع قواعد مستندة إلى مصادر رسمية، ثم يتحول لاحقًا إلى تجربة مرتبطة ببيانات حقيقية إذا نالت الفكرة قبولًا.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sources">
+    <div class="container">
+      <div class="section-heading">
+        <div class="section-kicker">المصادر</div>
+        <h2>المرجع المستخدم في بناء الفكرة والأرقام</h2>
+        <p>البيانات الشخصية داخل النموذج افتراضية، لكن منطق بعض القواعد والأرقام العامة وروابط الخدمات مبنية على مصادر رسمية أو تقارير منشورة.</p>
+      </div>
+      <div class="sources-panel">
+        <div class="sources-list">
+          <div class="source-item">
+            <div>
+              <strong>الموقع الرسمي لوزارة الموارد البشرية والتنمية الاجتماعية</strong>
+              <p>للاطلاع على الخدمات، والخدمات الرقمية، والأرقام المعروضة في الصفحة الرئيسية.</p>
+            </div>
+            <a href="https://www.hrsd.gov.sa/" target="_blank" rel="noopener">فتح الرابط ↗</a>
+          </div>
+          <div class="source-item">
+            <div>
+              <strong>تقرير صوت المستفيد — الربع الثاني 2026</strong>
+              <p>لاستخدام أرقام التفاعل، ومنها المكالمات الواردة والشكاوى والتفاعل عبر التواصل الاجتماعي.</p>
+            </div>
+            <a href="https://hrsd.gov.sa/sites/default/files/2026-09/tqryr-swt-almstfyd---alrb--althany-mn--am-2026.pdf" target="_blank" rel="noopener">فتح الرابط ↗</a>
+          </div>
+          <div class="source-item">
+            <div>
+              <strong>نظام الضمان الاجتماعي ولائحته التنفيذية</strong>
+              <p>للاسترشاد بمفهوم الدخل المحتسب والتنبيه إلى أن الحكم النهائي على الأهلية يحتاج تحققًا رسميًا كاملًا.</p>
+            </div>
+            <a href="https://www.hrsd.gov.sa/sites/default/files/2021-06/L192891-1663143960.pdf" target="_blank" rel="noopener">فتح الرابط ↗</a>
+          </div>
+          <div class="source-item">
+            <div>
+              <strong>الخدمات ذات العلاقة</strong>
+              <p>نظام الضمان الاجتماعي المطور، إدارة العقود، إنهاء العلاقة التعاقدية، حاسبة مكافأة نهاية الخدمة، وفرص التمكين.</p>
+            </div>
+            <a href="https://www.hrsd.gov.sa/ministry-services/services/%D9%86%D8%B8%D8%A7%D9%85-%D8%A7%D9%84%D8%B6%D9%85%D8%A7%D9%86-%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A-%D8%A7%D9%84%D9%85%D8%B7%D9%88%D8%B1" target="_blank" rel="noopener">فتح الرابط ↗</a>
+          </div>
+          <div class="source-item">
+            <div>
+              <strong>Benchmark الدولي</strong>
+              <p>LifeSG، الخدمات الاستباقية في إستونيا، Mes Droits Sociaux، Tell Us Once.</p>
+            </div>
+            <a href="https://www.tech.gov.sg/products-and-services/for-citizens/digital-services/lifesg/" target="_blank" rel="noopener">فتح أحد الروابط ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
-<footer><div class="container footer"><span>سياق — نموذج تفاعلي تصوري</span><span>بيانات الأشخاص افتراضية • القواعد مبنية على مصادر رسمية منشورة</span></div></footer>
+
+<footer>
+  <div class="container footer-box">
+    <span>صلة — نموذج تصوري لتجربة تتمحور حول حالة المستفيد</span>
+    <span>بيانات الأشخاص داخل التجربة افتراضية، والنتائج توضيحية، وبعض القواعد والأرقام مستندة إلى مصادر رسمية منشورة</span>
+  </div>
+</footer>
+
 <script>
-const SOURCES={
-  hrsdHome:{title:'إحصاءات وزارة الموارد البشرية والتنمية الاجتماعية',org:'وزارة الموارد البشرية والتنمية الاجتماعية',url:'https://www.hrsd.gov.sa/'},
-  voice:{title:'تقرير صوت المستفيد للربع الثاني 2026',org:'وزارة الموارد البشرية والتنمية الاجتماعية',url:'https://hrsd.gov.sa/sites/default/files/2026-09/tqryr-swt-almstfyd---alrb--althany-mn--am-2026.pdf'},
-  social:{title:'نظام الضمان الاجتماعي',org:'وزارة الموارد البشرية والتنمية الاجتماعية',url:'https://www.hrsd.gov.sa/knowledge-centre/decisions-and-regulations/regulation-and-procedures/841045'},
-  socialReg:{title:'اللائحة التنفيذية لنظام الضمان الاجتماعي',org:'وزارة الموارد البشرية والتنمية الاجتماعية',url:'https://www.hrsd.gov.sa/sites/default/files/2021-06/L192891-1663143960.pdf'},
-  social2026:{title:'توسع الضمان الاجتماعي ومعايير الدخل 2026',org:'وزارة الموارد البشرية والتنمية الاجتماعية',url:'https://www.hrsd.gov.sa/media-center/news/%D8%A7%D9%84%D8%B6%D9%85%D8%A7%D9%86-%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A-%D8%AA%D9%88%D8%B3%D8%B9-%D9%86%D9%88%D8%B9%D9%8A'},
-  contractEnd:{title:'إنهاء العلاقة التعاقدية',org:'وزارة الموارد البشرية والتنمية الاجتماعية',url:'https://www.hrsd.gov.sa/ministry-services/services/%D8%A7%D9%86%D9%87%D8%A7%D8%A1-%D8%A7%D9%84%D8%B9%D9%84%D8%A7%D9%82%D8%A9-%D8%A7%D9%84%D8%AA%D8%B9%D8%A7%D9%82%D8%AF%D9%8A%D8%A9'},
-  contracts:{title:'إدارة العقود',org:'وزارة الموارد البشرية والتنمية الاجتماعية',url:'https://www.hrsd.gov.sa/ministry-services/services/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%B9%D9%82%D9%88%D8%AF'},
-  empowerment:{title:'وكالة الضمان الاجتماعي والتمكين',org:'وزارة الموارد البشرية والتنمية الاجتماعية',url:'https://www.hrsd.gov.sa/ministry/about-ministry/about-us/ministry-sectors/%D9%88%D9%83%D8%A7%D9%84%D8%A9-%D8%A7%D9%84%D8%B6%D9%85%D8%A7%D9%86-%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A-%D9%88%D8%A7%D9%84%D8%AA%D9%85%D9%83%D9%8A%D9%86'},
-  sectoral:{title:'المنصة القطاعية الموحدة لخدمات التنمية الاجتماعية',org:'وزارة الموارد البشرية والتنمية الاجتماعية',url:'https://www.hrsd.gov.sa/media-center/news/%D8%A7%D9%84%D9%85%D9%86%D8%B5%D8%A9-%D8%A7%D9%84%D9%82%D8%B7%D8%A7%D8%B9%D9%8A%D8%A9-%D9%88%D8%A7%D9%84%D9%81%D8%B1%D8%B9-%D8%A7%D9%84%D8%A7%D9%81%D8%AA%D8%B1%D8%A7%D8%B6%D9%8A'},
-  saned:{title:'نظام التأمين ضد التعطل عن العمل (ساند)',org:'المؤسسة العامة للتأمينات الاجتماعية',url:'https://beta.gosi.gov.sa/ar/saned'},
-  lifeSG:{title:'LifeSG',org:'GovTech Singapore',url:'https://www.tech.gov.sg/products-and-services/for-citizens/digital-services/lifesg/'},
-  estonia:{title:'Proactive government services',org:'Estonian Information System Authority',url:'https://ria.ee/en/state-information-system/personal-services/proactive-government-services'},
-  france:{title:'Simuler vos aides',org:'Mes Droits Sociaux',url:'https://www.mesdroitssociaux.gouv.fr/simulateurs'},
-  uk:{title:'Tell Us Once customer service survey',org:'UK Department for Work and Pensions',url:'https://www.gov.uk/government/publications/tell-us-once-customer-service-survey-analysis'},
-  australia:{title:'myGov User Audit 2023',org:'Australian Government',url:'https://my.gov.au/content/dam/mygov/documents/audit/mygov-useraudit-jan2023-volume1.pdf'},
-  canada:{title:'Benefits Finder',org:'Government of Canada',url:'https://www.canada.ca/en/services/benefits/finder.html'}
-};
-const PEOPLE={
-  khalid:{id:'khalid',name:'خالد',age:41,letter:'خ',avatar:'',description:'موظف ومتزوج، أسرة من 4 أفراد',employment:'employed',employmentLabel:'موظف',activeContract:true,income:4500,familySize:4,otherIncome:0,social:true,saudi:true,ageUnder60:true,services:['الضمان الاجتماعي','العقود الوظيفية']},
-  reem:{id:'reem',name:'ريم',age:27,letter:'ر',avatar:'blue',description:'موظفة ومتزوجة، أسرة من 3 أفراد',employment:'employed',employmentLabel:'موظفة',activeContract:true,income:8500,familySize:3,otherIncome:0,social:false,saudi:true,ageUnder60:true,services:['العقود الوظيفية']},
-  salman:{id:'salman',name:'سلمان',age:24,letter:'س',avatar:'amber',description:'باحث عن عمل، لا يوجد عقد فعال',employment:'jobseeker',employmentLabel:'باحث عن عمل',activeContract:false,income:0,familySize:1,otherIncome:0,social:false,saudi:true,ageUnder60:true,services:[]}
-};
-const appState={person:null,event:null,mode:'whatif',answers:{},results:[],checked:0,excluded:0,comparison:null};
-function fmt(n){return Number(n).toLocaleString('en-US')+' ريال'}
-function go(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'})}
-function focusApp(){requestAnimationFrame(()=>document.getElementById('app')?.scrollIntoView({behavior:'smooth',block:'start'}))}
-function person(){return PEOPLE[appState.person]}
-function showView(id,step){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id)?.classList.add('active');document.querySelectorAll('.step').forEach(s=>s.classList.toggle('on',Number(s.dataset.step)<=step))}
-function startDemo(){appState.comparison=null;resetPersonaHeading();showView('personaView',1);setTimeout(focusApp,70)}
-function resetPersonaHeading(){document.getElementById('personaHeading').innerHTML='<small>الخطوة 1 من 4</small><h3>اختر حالة افتراضية</h3><p>كل شخص لديه وضع مختلف وخدمات مختلفة. بعد الاختيار بنعرض للجميع نفس التغيّرات ونشوف كيف تختلف النتيجة.</p>'}
-function choosePersona(id){appState.person=id;if(appState.comparison){appState.event=appState.comparison.event;appState.mode=appState.comparison.mode;appState.answers=adaptComparison(appState.comparison.answers);appState.comparison=null;resetPersonaHeading();renderProfiles();runAnalysis();return}appState.event=null;appState.answers={};renderProfiles();showView('eventView',2);syncMode();setTimeout(focusApp,70)}
-function profileHTML(){const p=person();const chips=p.services.length?p.services.map(x=>`<span class="chip">${x}</span>`).join(''):'<span class="chip">لا توجد خدمة حالية في هذا النموذج</span>';return `<div class="mini-person"><div class="avatar ${p.avatar}">${p.letter}</div><div><h4>${p.name}، ${p.age}</h4><p>${p.description}</p></div></div><div class="side-block"><span>مرتبط حاليًا بـ</span><div class="chips">${chips}</div></div>`}
-function renderProfiles(){const h=profileHTML();document.getElementById('eventProfile').innerHTML=h;document.getElementById('questionProfile').innerHTML=h}
-function showPersona(){appState.comparison=null;resetPersonaHeading();showView('personaView',1);setTimeout(focusApp,70)}
-function showEvent(){renderProfiles();showView('eventView',2);syncMode();setTimeout(focusApp,70)}
-function setMode(mode){appState.mode=mode;syncMode()}
-function syncMode(){document.getElementById('modeWhatIf')?.classList.toggle('active',appState.mode==='whatif');document.getElementById('modeActual')?.classList.toggle('active',appState.mode==='actual')}
-function chooseEvent(event){appState.event=event;appState.answers={};if(event==='contractEnd'&&!person().activeContract){renderContractGuard();showView('questionView',3);setTimeout(focusApp,70);return}renderQuestions();showView('questionView',3);setTimeout(focusApp,70)}
-function renderQuestions(){if(appState.event==='income')renderIncome();if(appState.event==='contractEnd')renderContract();if(appState.event==='newJob')renderNewJob()}
-function selectChoice(containerId,value,key){const box=document.getElementById(containerId);box?.querySelectorAll('.option').forEach(o=>o.classList.toggle('selected',o.dataset.value===value));appState.answers[key]=value}
-function renderIncome(){const p=person();const suggested=p.id==='reem'?4000:(p.income?Math.max(0,p.income-1000):3000);document.getElementById('questions').innerHTML=`<div class="question"><h3>كم أصبح دخلك؟</h3><p>ما نحتاج نسألك هل ارتفع أو انخفض. سياق يحدد ذلك من الرقم نفسه ويمنع التناقض بين الإجابة والقيمة.</p><div class="form-grid"><div class="field"><label>الدخل الحالي</label><input value="${p.income}" readonly></div><div class="field"><label>الدخل الجديد</label><input id="newIncome" type="number" min="0" value="${suggested}"><div class="field-note">رقم افتراضي ويمكن تغييره أثناء العرض</div></div></div><div class="q-actions"><button class="btn primary" onclick="submitIncome()">شوف وش يتغير ←</button></div></div>`}
-function submitIncome(){const p=person(),n=Number(document.getElementById('newIncome').value);if(!Number.isFinite(n)||n<0){alert('أدخل قيمة صحيحة للدخل');return}if(n===p.income){alert('الدخل الجديد يساوي الدخل الحالي. غيّر الرقم حتى نقدر نحاكي أثر التغيير.');return}appState.answers={oldIncome:p.income,newIncome:n,direction:n>p.income?'increase':'decrease'};runAnalysis()}
-function renderContractGuard(){document.getElementById('questions').innerHTML=`<div class="guard"><strong>هذا الحدث ما يطابق وضع ${person().name} الحالي</strong><p>بحسب البيانات الافتراضية ما فيه عقد وظيفي فعال، لذلك سياق ما راح يوجهه لخدمة إنهاء علاقة غير موجودة.</p><div class="q-actions"><button class="btn secondary" onclick="showEvent()">اختر تغييرًا ثانيًا</button></div></div>`}
-function renderContract(){document.getElementById('questions').innerHTML=`<div class="question"><h3>كيف تنتهي العلاقة الوظيفية؟</h3><p>سبب الانتهاء يغير بعض المسارات. لذلك ما نعامل «انتهى عقدي» كإجابة كافية.</p><div class="options" id="contractReasons"><button class="option" data-value="expiry" onclick="selectChoice('contractReasons','expiry','reason')"><div><strong>انتهاء مدة العقد</strong><small>وصل العقد إلى تاريخ نهايته</small></div><span class="radio">✓</span></button><button class="option" data-value="resignation" onclick="selectChoice('contractReasons','resignation','reason')"><div><strong>استقالة</strong><small>إنهاء العلاقة بمحض إرادتي</small></div><span class="radio">✓</span></button><button class="option" data-value="employer" onclick="selectChoice('contractReasons','employer','reason')"><div><strong>إنهاء من صاحب العمل</strong><small>انتهت العلاقة من جهة صاحب العمل</small></div><span class="radio">✓</span></button></div><div class="form-grid"><div class="field"><label>الدخل الشهري المتوقع بعد الانتهاء</label><input id="afterJobIncome" type="number" min="0" value="0"><div class="field-note">يساعدنا على اكتشاف خدمات قد تصبح مرتبطة بالحالة</div></div></div><div class="q-actions"><button class="btn primary" onclick="submitContract()">شوف وش يتغير ←</button></div></div>`}
-function submitContract(){if(!appState.answers.reason){alert('اختر سبب انتهاء العلاقة');return}const after=Number(document.getElementById('afterJobIncome').value);if(!Number.isFinite(after)||after<0){alert('أدخل دخلًا صحيحًا بعد انتهاء العلاقة');return}appState.answers.afterJobIncome=after;runAnalysis()}
-function renderNewJob(){const p=person();const extra=p.activeContract?`<div class="question" style="margin-bottom:18px"><p>عندك عقد فعال حاليًا، لذلك نحتاج نفهم علاقة الوظيفة الجديدة بوظيفتك الحالية.</p><div class="options" id="jobRelation"><button class="option" data-value="replace" onclick="selectChoice('jobRelation','replace','jobRelation')"><div><strong>بدل وظيفتي الحالية</strong><small>الوظيفة الجديدة ستحل محل الحالية</small></div><span class="radio">✓</span></button><button class="option" data-value="additional" onclick="selectChoice('jobRelation','additional','jobRelation')"><div><strong>وظيفة إضافية</strong><small>ما أفترض أن عقدي الحالي انتهى</small></div><span class="radio">✓</span></button></div></div>`:'';document.getElementById('questions').innerHTML=`${extra}<div class="question"><h3>وين وصل العقد الجديد؟</h3><p>نتيجة «وصلني عقد» تختلف عن «وافقت» أو «طلبت تعديل».</p><div class="options" id="jobState"><button class="option" data-value="review" onclick="selectChoice('jobState','review','jobState')"><div><strong>وصلني وأراجعه</strong><small>ما اتخذت قرار حتى الآن</small></div><span class="radio">✓</span></button><button class="option" data-value="accepted" onclick="selectChoice('jobState','accepted','jobState')"><div><strong>وافقت على العقد</strong><small>تمت موافقتي على العرض</small></div><span class="radio">✓</span></button><button class="option" data-value="edit" onclick="selectChoice('jobState','edit','jobState')"><div><strong>طلبت تعديل</strong><small>فيه بند أحتاج تعديله</small></div><span class="radio">✓</span></button></div><div class="form-grid"><div class="field"><label>الراتب الجديد</label><input id="newSalary" type="number" min="0" value="6500"></div></div><div class="q-actions"><button class="btn primary" onclick="submitNewJob()">شوف وش يتغير ←</button></div></div>`}
-function submitNewJob(){const p=person();if(p.activeContract&&!appState.answers.jobRelation){alert('حدد هل الوظيفة الجديدة بديلة أو إضافية');return}if(!appState.answers.jobState){alert('اختر حالة العقد الجديد');return}const salary=Number(document.getElementById('newSalary').value);if(!Number.isFinite(salary)||salary<0){alert('أدخل راتبًا صحيحًا');return}appState.answers.newSalary=salary;runAnalysis()}
-function runAnalysis(){showView('analysisView',3);setTimeout(focusApp,50);document.querySelectorAll('.analysis-step').forEach(x=>x.classList.remove('done'));document.querySelectorAll('.analysis-step').forEach((x,i)=>setTimeout(()=>x.classList.add('done'),260+i*330));setTimeout(()=>{calculateRules();renderResults();showView('resultView',4);setTimeout(focusApp,70)},1750)}
-function add(results,item){results.push(item)}
-function calculateRules(){const p=person(),a=appState.answers,r=[];let checked=0,excluded=0;const test=(condition,item)=>{checked++;if(condition)add(r,item);else excluded++};
-  test(appState.event==='income'&&p.social,{category:'attention',icon:'≈',title:'تغير الدخل يحتاج مراجعة في سياق الضمان',desc:`لأن ${p.name} مستفيد حاليًا من الضمان، تغير الدخل أصبح معلومة مرتبطة باستحقاقه ومقدار المعاش`,tag:'يحتاج مراجعة',tagClass:'warn',explain:'الاستحقاق لا يعتمد على الراتب وحده. لذلك سياق لا يصدر حكم أهلية، بل يحدد أن هناك قاعدة مرتبطة بالحالة تحتاج إعادة تقييم.',trace:'مستفيد من الضمان + دخل تغيّر ← مراجعة أثر التغيير',source:SOURCES.social});
-  test(appState.event==='income'&&p.social&&appState.mode==='actual',{category:'action',icon:'!',title:'إذا كان التغيير مؤثرًا فهناك مدة للإبلاغ',desc:'النظام ينص على إبلاغ الوزارة بالتغيير المؤثر على الاستحقاق أو مقدار المعاش خلال 15 يومًا من تاريخ التغيير',tag:'15 يومًا',tagClass:'warn',explain:'هذا التنبيه يظهر في وضع «صار فعلًا». في وضع «وش لو؟» نعرضه كتوقع قبل وقوع الحدث.',trace:'حدث فعلي + مستفيد ضمان + تغير دخل ← تنبيه الإبلاغ',source:SOURCES.social});
-  const incomeDrop=appState.event==='income'&&!p.social&&a.direction==='decrease';
-  test(incomeDrop,{category:'discover',icon:'؟',title:'الضمان الاجتماعي أصبح يستحق التحقق',desc:`انخفاض دخل ${p.name} قد يجعل الضمان خدمة أقرب لحالته، لكننا نحتاج بيانات إضافية قبل أي تقدير`,tag:'تحقق مبدئي',tagClass:'',explain:'بدل عرض الضمان لكل شخص، لا يظهر إلا عندما يغير الحدث حالة المستفيد باتجاه يجعل التحقق منطقيًا.',trace:'غير مستفيد + انخفاض دخل ← فحص مبدئي بدل إعلان أهلية',source:SOURCES.social2026,action:'socialCheck'});
-  test(appState.event==='contractEnd'&&p.activeContract,{category:'attention',icon:'◷',title:'إنهاء العلاقة أصبح مرتبطًا بعقدك الحالي',desc:`لدى ${p.name} عقد فعال، لذلك مسار إنهاء العلاقة التعاقدية أصبح ذا صلة مباشرة`,tag:'مرتبط بحالتك',tagClass:'',explain:'الخدمة الرسمية تشترط وجود عقد ساري على قوى وتطلب سبب وتاريخ الإنهاء.',trace:'عقد فعال + حدث انتهاء علاقة ← مسار إنهاء العلاقة',source:SOURCES.contractEnd});
-  test(appState.event==='contractEnd'&&p.activeContract,{category:'discover',icon:'ح',title:'حاسبة نهاية الخدمة قد تفيدك',desc:'بعد انتهاء العلاقة قد تكون الحاسبة أداة مفيدة لتقدير المكافأة وفق مدخلاتها',tag:'أداة مرتبطة',tagClass:'',explain:'هذه ليست نتيجة قانونية من سياق، بل توجيه لأداة رسمية مرتبطة بالحدث.',trace:'انتهاء علاقة + عقد قائم ← أداة نهاية الخدمة',source:{title:'حاسبة مكافأة نهاية الخدمة',org:'وزارة الموارد البشرية والتنمية الاجتماعية',url:'https://www.hrsd.gov.sa/ministry-services/services/%D8%AD%D8%A7%D8%B3%D8%A8%D8%A9-%D9%85%D9%83%D8%A7%D9%81%D8%A3%D8%A9-%D9%86%D9%87%D8%A7%D9%8A%D8%A9-%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A9'}});
-  const sanedSignal=appState.event==='contractEnd'&&p.activeContract&&p.saudi&&p.ageUnder60&&(a.reason==='expiry'||a.reason==='employer');
-  test(sanedSignal,{category:'discover',icon:'س',title:'ساند قد يستحق التحقق',desc:'سبب انتهاء العلاقة في هذه المحاكاة ليس استقالة، لذلك قد يكون من المفيد التحقق من ساند إذا تحققت بقية الشروط',tag:'جهة أخرى',tagClass:'',explain:'ساند له شروط إضافية مثل مدة الاشتراك وعدم وجود دخل من عمل أو نشاط والقدرة على العمل. لذلك لا نقول إن المستفيد مؤهل.',trace:'انتهاء غير اختياري/انتهاء مدة + سعودي + دون 60 ← فحص شروط ساند',source:SOURCES.saned});
-  test(appState.event==='contractEnd'&&p.social&&Number(a.afterJobIncome)<p.income,{category:'attention',icon:'↔',title:'انتهاء الوظيفة قد يغيّر بيانات الدخل المرتبطة بالضمان',desc:'حدث بدأ من العلاقة الوظيفية لكنه قد يغيّر معلومة تستخدم في سياق الضمان الاجتماعي',tag:'أثر مترابط',tagClass:'warn',explain:'هذه هي قيمة الربط بين الأحداث والخدمات. ما نفترض تغير الاستحقاق، لكن نكتشف أن معلومة مشتركة تغيّرت.',trace:'انتهاء علاقة + مستفيد ضمان + دخل أقل ← مراجعة سياق الضمان',source:SOURCES.social});
-  const nonSocialAfterEnd=appState.event==='contractEnd'&&!p.social&&Number(a.afterJobIncome)<p.income;
-  test(nonSocialAfterEnd,{category:'discover',icon:'؟',title:'انخفاض الدخل بعد انتهاء الوظيفة قد يجعل الضمان يستحق التحقق',desc:'الخدمة لم تكن مرتبطة بالحالة قبل الحدث، لكنها قد تصبح أقرب بعد انخفاض الدخل',tag:'خدمة محتملة',tagClass:'',explain:'لا تظهر هذه البطاقة إذا لم يتغير الدخل باتجاه يجعل التحقق منطقيًا.',trace:'غير مستفيد + انتهاء وظيفة + انخفاض دخل ← فحص مبدئي',source:SOURCES.social2026,action:'socialCheckAfterJob'});
-  test(appState.event==='contractEnd'&&!p.activeContract,{category:'attention',icon:'—',title:'ما فيه عقد فعال ننهيه',desc:`بحسب حالة ${p.name} الحالية ما توجد علاقة وظيفية فعالة مرتبطة بهذا الحدث`,tag:'غير منطبق',tagClass:'neutral',explain:'هذه نتيجة مقصودة. سياق لا يرسل المستخدم لخدمة فقط لأنه اختار اسم الحدث، بل يتحقق أن الحدث ينطبق على حالته أولًا.',trace:'لا يوجد عقد فعال + حدث انتهاء علاقة ← لا نعرض خدمة إنهاء عقد غير موجود',source:null});
-  test(appState.event==='newJob',{category:'attention',icon:'▤',title:jobTitle(a.jobState),desc:jobDescription(a.jobState),tag:'إدارة العقود',tagClass:'',explain:'الخدمة الرسمية تتيح للموظف الموافقة على العقد أو رفضه أو طلب تعديله، ويصبح العقد موثقًا عند موافقة الطرفين.',trace:'عقد جديد + حالة العقد ← المسار المناسب داخل إدارة العقود',source:SOURCES.contracts});
-  test(appState.event==='newJob'&&p.activeContract&&a.jobRelation==='replace',{category:'attention',icon:'↔',title:'الوظيفة الجديدة بديلة عن الحالية',desc:'سياق لا يفترض أن العقد الحالي انتهى تلقائيًا، بل يوضح أن إنهاء العلاقة الحالية مسار منفصل يحتاج حالته وإجراءه الخاص',tag:'لا نفترض الإنهاء',tagClass:'neutral',explain:'قبول عقد جديد لا يعني تقنيًا أن العقد السابق انتهى. لذلك نحافظ على الحالتين منفصلتين حتى يصلنا حدث إنهاء موثوق.',trace:'عقد قائم + وظيفة بديلة ← ننتظر حدث إنهاء مستقل للعقد الحالي',source:SOURCES.contractEnd});
-  test(appState.event==='newJob'&&p.employment==='jobseeker',{category:'discover',icon:'→',title:'وضعك الوظيفي قد ينتقل من باحث عن عمل إلى موظف',desc:'إذا اكتملت العلاقة الجديدة تتغير حالة المستفيد نفسها، وبالتالي تتغير الخدمات المرتبطة به لاحقًا',tag:'تغير في الحالة',tagClass:'',explain:'سياق يتعامل مع الحدث كتغيير في ملف الحالة، لا كبطاقة توصية مؤقتة فقط.',trace:'باحث عن عمل + علاقة جديدة ← تحديث الحالة الوظيفية',source:SOURCES.contracts});
-  test(appState.event==='newJob'&&p.activeContract&&a.jobRelation==='additional',{category:'attention',icon:'+',title:'الوظيفة الجديدة أُضيفت بدون افتراض انتهاء عقدك الحالي',desc:'سياق احتفظ بالعقد القائم لأنك حددت أن الوظيفة الجديدة إضافية',tag:'حالة مركبة',tagClass:'neutral',explain:'هذا يمنع خطأ شائع في النماذج البسيطة: افتراض أن حدثًا جديدًا ألغى حالة قائمة بدون سؤال.',trace:'عقد قائم + وظيفة إضافية ← لا نغلق العقد الحالي',source:null});
-  test(appState.event==='newJob'&&p.social,{category:'attention',icon:'≈',title:'الراتب الجديد قد يؤثر على سياق الضمان',desc:`الراتب الجديد في المحاكاة ${fmt(a.newSalary)}، لذلك بيانات الدخل المرتبطة بالضمان قد تحتاج إعادة تقييم`,tag:'أثر مترابط',tagClass:'warn',explain:'لا نصدر قرار أهلية. نحدد فقط أن معلومة تؤثر على سياق خدمة أخرى تغيرت.',trace:'مستفيد ضمان + دخل وظيفي جديد ← مراجعة أثر الدخل',source:SOURCES.social});
-  const empowermentSignal=p.social&&p.employment!=='employed'&&p.ageUnder60;
-  test(empowermentSignal,{category:'discover',icon:'+',title:'مسارات التمكين قد تكون مرتبطة بحالتك',desc:'التمكين يستهدف مستفيدي الضمان القادرين على العمل بالتدريب والتأهيل والربط بفرص العمل',tag:'قد يفيدك',tagClass:'',explain:'يظهر فقط عندما تكون حالة الشخص أقرب لسياق التمكين، وليس لمجرد كونه مستفيدًا من الضمان.',trace:'مستفيد ضمان + قادر على العمل + غير موظف ← مسارات التمكين',source:SOURCES.empowerment});
-  if(appState.event==='income'&&p.income===0&&a.direction==='same'){r.push({category:'attention',icon:'—',title:'ما فيه تغير دخل يمكن تحليله',desc:'دخل هذه الحالة صفر، وتطبيق نفس نسبة الانخفاض في المقارنة أبقاه صفرًا',tag:'لا يوجد تغير',tagClass:'neutral',explain:'بدل تصنيع نتيجة، سياق يوضح أن المقارنة نفسها لا تنتج حدثًا فعليًا لهذه الحالة.',trace:'دخل 0 + نتيجة 0 ← لا يوجد تغير',source:null})}
-  if(r.length===0){r.push({category:'attention',icon:'✓',title:'ما وجدنا أثرًا إضافيًا ضمن نطاق النموذج الحالي',desc:'التغيير موجود، لكن القواعد التي يغطيها هذا النموذج لا تنتج خدمة أو إجراء إضافيًا لهذه الحالة',tag:'لا أثر ضمن النطاق',tagClass:'neutral',explain:'هذه ليست مشكلة في النظام. أحيانًا أفضل نتيجة هي عدم عرض خدمات غير مرتبطة فقط لملء الشاشة.',trace:'تم اختبار القواعد ← لا توجد قاعدة منطبقة ضمن نطاق الـPoC',source:null})}
-  appState.results=r;appState.checked=checked;appState.excluded=excluded;
-}
-function jobTitle(x){return x==='review'?'العقد يحتاج مراجعتك':x==='accepted'?'تمت موافقتك على العقد':'طلب تعديل العقد أصبح الإجراء الحالي'}
-function jobDescription(x){return x==='review'?'العقد ما زال بانتظار قرارك':x==='accepted'?'موافقتك خطوة في المسار، ويصبح العقد موثقًا عند موافقة الطرفين':'طلبت تعديل بند قبل استكمال الموافقة'}
-function eventLabel(){return appState.event==='income'?'تغير الدخل':appState.event==='contractEnd'?'انتهاء العلاقة الوظيفية':'وظيفة جديدة'}
-function renderDelta(){const p=person(),a=appState.answers;if(appState.event==='income')return delta(fmt(a.oldIncome),eventLabel(),fmt(a.newIncome));if(appState.event==='contractEnd')return delta('عقد فعال',eventLabel(),appState.mode==='actual'?'علاقة منتهية':'سيناريو انتهاء علاقة');return delta(p.employmentLabel,eventLabel(),p.employment==='jobseeker'?'وظيفة جديدة قيد الإكمال':'عقد جديد')}
-function delta(before,change,after){return `<div class="delta"><div class="state-box"><small>قبل التغيير</small><strong>${before}</strong></div><div class="delta-mid"><div>${change}<br>←</div></div><div class="state-box after"><small>${appState.mode==='actual'?'بعد التغيير':'إذا حدث التغيير'}</small><strong>${after}</strong></div></div>`}
-function impactCard(x){return `<article class="impact"><div class="impact-top" onclick="this.parentElement.classList.toggle('open')"><div class="impact-icon">${x.icon}</div><div class="impact-copy"><strong>${x.title}</strong><p>${x.desc}</p></div><span class="impact-tag ${x.tagClass||''}">${x.tag}</span></div><div class="impact-detail"><div class="impact-detail-inner"><strong>ليش ظهر لك هذا؟</strong><p>${x.explain}</p><div class="trace">${x.trace}</div>${x.action?`<button class="micro-btn" onclick="event.stopPropagation();openSocialCheck('${x.action}')">ابدأ فحصًا مبدئيًا ←</button>`:''}${x.source?`<br><a class="source" href="${x.source.url}" target="_blank" rel="noopener noreferrer">المصدر الرسمي: ${x.source.title} ↗</a>`:''}</div></div></article>`}
-function renderResults(){const p=person(),cats={attention:[],action:[],discover:[]};appState.results.forEach(x=>cats[x.category]?.push(x));const services=p.services.length?p.services.map(x=>`<span class="chip">${x}</span>`).join(''):'<span class="chip">لا توجد خدمة حالية مرتبطة بهذا النموذج</span>';document.getElementById('results').innerHTML=`<div class="result-head"><small>نتيجة مخصصة لـ ${p.name}</small><h3>هذا اللي يخص حالتك الآن</h3><p>المحرك راجع ${appState.checked} قواعد وأخفى ${appState.excluded} منها لأنها لا تنطبق على هذه الحالة.</p></div><div class="rule-summary"><strong>عرضنا ${appState.results.length} نتائج فقط</strong><span>الهدف تقليل الضوضاء، مو زيادة عدد البطاقات</span></div>${renderDelta()}<div class="result-block"><div class="block-title"><small>وضعك الحالي</small><h4>خدمات مرتبطة بك الآن</h4></div><div class="chips">${services}</div></div>${renderCategory('attention','وش تأثر؟',cats.attention)}${renderCategory('action','وش تحتاج تسوي؟',cats.action)}${renderCategory('discover','وش صار يستحق التحقق؟',cats.discover)}<div class="disclaimer"><strong>ملاحظة عن النموذج</strong>جميع بيانات الأشخاص افتراضية لأغراض العرض. النتائج والقواعد المعروضة مبنية على مصادر رسمية منشورة، لكنها لا تمثل قرار أهلية أو استحقاق أو تفسيرًا قانونيًا رسميًا.</div><div class="result-actions"><button class="btn primary" onclick="compareSameEvent()">جرّب نفس التغيير مع شخص آخر ←</button><button class="btn secondary" onclick="showEvent()">جرّب تغييرًا آخر</button></div>`}
-function renderCategory(type,title,arr){if(!arr.length)return'';const small=type==='discover'?'قد يفيدك الآن':type==='action'?'إجراء مرتبط':'أثر مباشر';return `<div class="result-block"><div class="block-title"><small>${small}</small><h4>${title}</h4></div><div class="impact-list">${arr.map(impactCard).join('')}</div></div>`}
-function openSocialCheck(action){const p=person();let baseIncome=appState.event==='income'?Number(appState.answers.newIncome):Number(appState.answers.afterJobIncome||0);document.getElementById('precheck').innerHTML=`<div class="view-title"><small>فحص مبدئي</small><h3>نحتاج معلومتين زيادة قبل ما نقول إن الخدمة تستحق التحقق بشكل أقوى</h3><p>هذا الفحص لا يعطي قرار أهلية. فقط يستخدم جزءًا من القواعد المنشورة لتحديد هل الإشارة تستحق الانتقال للتحقق الرسمي.</p></div><div class="form-grid"><div class="field"><label>عدد أفراد الأسرة</label><input id="familySize" type="number" min="1" value="${p.familySize}"></div><div class="field"><label>دخل آخر للأسرة غير الراتب</label><input id="otherIncome" type="number" min="0" value="${p.otherIncome}"></div></div><div class="field" style="margin-top:9px"><label>الدخل المكتسب المستخدم في الفحص</label><input value="${baseIncome}" readonly><div class="field-note">نستخدم 50% من الدخل المكتسب في هذا التبسيط استنادًا إلى اللائحة التنفيذية، ثم نقارن بإشارة الحد المنشورة لعام 2026. بقية شروط الأهلية لا تزال خارج هذا الفحص.</div></div><div class="q-actions"><button class="btn primary" onclick="finishSocialCheck(${baseIncome})">اعرض الإشارة المبدئية ←</button><button class="btn secondary" onclick="returnResults()">رجوع</button></div>`;showView('precheckView',4);setTimeout(focusApp,60)}
-function finishSocialCheck(baseIncome){const family=Number(document.getElementById('familySize').value),other=Number(document.getElementById('otherIncome').value);if(!Number.isFinite(family)||family<1||!Number.isFinite(other)||other<0){alert('تأكد من البيانات');return}const counted=baseIncome*.5+other;const threshold=1320+Math.max(0,family-1)*660;const signal=counted<threshold;document.getElementById('precheck').innerHTML=`<div class="result-head"><small>إشارة مبدئية وليست أهلية</small><h3>${signal?'هذه الحالة تستحق التحقق رسميًا':'البيانات الحالية لا تعطي إشارة قوية كافية'}</h3><p>ما زالت هناك شروط وبيانات أخرى يجب التحقق منها رسميًا، مثل بقية مصادر الدخل والثروة والاشتراطات النظامية.</p></div><div class="precheck-card"><small>كيف وصلنا للإشارة؟</small><h4>${signal?'الدخل المحتسب التقديري أقل من الإشارة المستخدمة في هذا النموذج':'الدخل المحتسب التقديري ليس أقل من الإشارة المستخدمة في هذا النموذج'}</h4><p>الهدف هنا إثبات أن سياق يستطيع طلب معلومات إضافية عند الحاجة بدل عرض نتيجة سطحية.</p><div class="precheck-metrics"><div class="precheck-metric"><span>الدخل المكتسب</span><b>${fmt(baseIncome)}</b></div><div class="precheck-metric"><span>الدخل المحتسب التقديري</span><b>${fmt(counted)}</b></div><div class="precheck-metric"><span>إشارة الأسرة المستخدمة</span><b>${fmt(threshold)}</b></div></div></div><div class="disclaimer"><strong>حدود الفحص</strong>هذه محاكاة توضيحية ببيانات افتراضية. لا تشمل جميع شروط الضمان ولا تغني عن التحقق الرسمي.</div><div class="result-actions"><a class="btn primary" href="${SOURCES.social2026.url}" target="_blank" rel="noopener noreferrer">راجع المصدر الرسمي ↗</a><button class="btn secondary" onclick="returnResults()">العودة للنتيجة</button></div>`;setTimeout(focusApp,60)}
-function returnResults(){renderResults();showView('resultView',4);setTimeout(focusApp,60)}
-function compareSameEvent(){appState.comparison={event:appState.event,mode:appState.mode,answers:JSON.parse(JSON.stringify(appState.answers))};document.getElementById('personaHeading').innerHTML=`<small>مقارنة مباشرة</small><h3>اختر شخصًا ثانيًا</h3><p>سنطبق نفس التغيير على حالة مختلفة. هنا تظهر قوة الفكرة: نتائج تظهر لشخص وتختفي عند شخص آخر.</p>`;showView('personaView',1);setTimeout(focusApp,60)}
-function adaptComparison(old){const p=person(),a=JSON.parse(JSON.stringify(old));if(appState.event==='income'){const oldBase=Number(old.oldIncome),ratio=oldBase>0?Number(old.newIncome)/oldBase:1;a.oldIncome=p.income;a.newIncome=Math.round(p.income*ratio);a.direction=a.newIncome>p.income?'increase':a.newIncome<p.income?'decrease':'same'}return a}
-function updateImpactModel(){const pct=Number(document.getElementById('deflection').value)/100,mins=Number(document.getElementById('aht').value),wrong=Number(document.getElementById('wrongStart').value)/100,base=526945;const q=Math.round(base*pct),hours=Math.round(q*mins/60),year=q*4,wrongStarts=Math.round(100000*wrong);document.getElementById('deflectionLabel').textContent=Math.round(pct*100)+'%';document.getElementById('ahtLabel').textContent=mins+' دقائق';document.getElementById('wrongLabel').textContent=Math.round(wrong*100)+'%';document.getElementById('callsSavedQ').textContent=q.toLocaleString('en-US');document.getElementById('hoursSavedQ').textContent=hours.toLocaleString('en-US');document.getElementById('callsSavedY').textContent=year.toLocaleString('en-US');document.getElementById('wrongStarts').textContent=wrongStarts.toLocaleString('en-US')}
-function renderSources(){const list=[SOURCES.hrsdHome,SOURCES.voice,SOURCES.social,SOURCES.socialReg,SOURCES.social2026,SOURCES.contractEnd,SOURCES.contracts,SOURCES.empowerment,SOURCES.sectoral,SOURCES.saned,SOURCES.lifeSG,SOURCES.estonia,SOURCES.france,SOURCES.uk,SOURCES.australia,SOURCES.canada];document.getElementById('sourceCards').innerHTML=list.map(s=>`<a class="source-card" href="${s.url}" target="_blank" rel="noopener noreferrer"><div><strong>${s.title}</strong><span>${s.org}</span></div><b>↗</b></a>`).join('')}
-renderSources();updateImpactModel();
+  const SOURCES = {
+    socialSecurityService: {
+      title: "نظام الضمان الاجتماعي المطور",
+      url: "https://www.hrsd.gov.sa/ministry-services/services/%D9%86%D8%B8%D8%A7%D9%85-%D8%A7%D9%84%D8%B6%D9%85%D8%A7%D9%86-%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A-%D8%A7%D9%84%D9%85%D8%B7%D9%88%D8%B1"
+    },
+    socialSecurityRegulation: {
+      title: "اللائحة التنفيذية لنظام الضمان الاجتماعي",
+      url: "https://www.hrsd.gov.sa/sites/default/files/2021-06/L192891-1663143960.pdf"
+    },
+    contractEnd: {
+      title: "إنهاء العلاقة التعاقدية",
+      url: "https://www.hrsd.gov.sa/ministry-services/services/%D8%A7%D9%86%D9%87%D8%A7%D8%A1-%D8%A7%D9%84%D8%B9%D9%84%D8%A7%D9%82%D8%A9-%D8%A7%D9%84%D8%AA%D8%B9%D8%A7%D9%82%D8%AF%D9%8A%D8%A9"
+    },
+    contracts: {
+      title: "إدارة العقود",
+      url: "https://www.hrsd.gov.sa/ministry-services/services/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%B9%D9%82%D9%88%D8%AF"
+    },
+    empowerment: {
+      title: "فرص التمكين",
+      url: "https://www.hrsd.gov.sa/en/ministry-services/services/%D8%A7%D9%84%D8%AA%D9%82%D8%AF%D9%8A%D9%85-%D8%B9%D9%84%D9%89-%D9%81%D8%B1%D8%B5%D8%A9-%D8%A7%D9%84%D8%AA%D9%85%D9%83%D9%8A%D9%86"
+    },
+    eosCalculator: {
+      title: "حاسبة مكافأة نهاية الخدمة",
+      url: "https://www.hrsd.gov.sa/ministry-services/services/%D8%AD%D8%A7%D8%B3%D8%A8%D8%A9-%D9%85%D9%83%D8%A7%D9%81%D8%A3%D8%A9-%D9%86%D9%87%D8%A7%D9%8A%D8%A9-%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A9"
+    },
+    saned: {
+      title: "ساند",
+      url: "https://beta.gosi.gov.sa/ar/saned"
+    }
+  };
+
+  const PERSONAS = {
+    khalid: {
+      id: "khalid",
+      name: "خالد",
+      age: 41,
+      letter: "خ",
+      description: "موظف ومتزوج ولديه أسرة من 4 أفراد",
+      employmentStatus: "employed",
+      employmentLabel: "موظف",
+      hasActiveContract: true,
+      income: 4500,
+      familySize: 4,
+      socialSecurity: true,
+      employable: true,
+      currentServices: ["الضمان الاجتماعي", "العقود الوظيفية"],
+      nationality: "saudi"
+    },
+    reem: {
+      id: "reem",
+      name: "ريم",
+      age: 27,
+      letter: "ر",
+      description: "موظفة ومتزوجة ولديها أسرة من 3 أفراد",
+      employmentStatus: "employed",
+      employmentLabel: "موظفة",
+      hasActiveContract: true,
+      income: 8500,
+      familySize: 3,
+      socialSecurity: false,
+      employable: true,
+      currentServices: ["العقود الوظيفية"],
+      nationality: "saudi"
+    },
+    salman: {
+      id: "salman",
+      name: "سلمان",
+      age: 24,
+      letter: "س",
+      description: "باحث عن عمل ولا يوجد لديه عقد فعال",
+      employmentStatus: "jobSeeker",
+      employmentLabel: "باحث عن عمل",
+      hasActiveContract: false,
+      income: 0,
+      familySize: 1,
+      socialSecurity: false,
+      employable: true,
+      currentServices: [],
+      nationality: "saudi"
+    }
+  };
+
+  const EVENTS = [
+    { id: "income", icon: "↕", title: "تغير الدخل", desc: "أبغى أعرف ماذا قد يتأثر إذا تغير دخلي" },
+    { id: "contractEnd", icon: "◷", title: "انتهاء العلاقة الوظيفية", desc: "انتهى عقدي أو انتهت علاقتي الحالية" },
+    { id: "newJob", icon: "+", title: "وظيفة جديدة", desc: "وصلني عقد جديد أو بدأت فرصة عمل جديدة" }
+  ];
+
+  const state = {
+    personaId: null,
+    eventId: null,
+    answers: {},
+    results: [],
+    checkedRules: 0,
+    excludedRules: 0,
+    comparison: null
+  };
+
+  const formatter = new Intl.NumberFormat('en-US');
+  const currency = n => formatter.format(Number(n || 0)) + " ريال";
+
+  function goTo(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  function focusPrototype() {
+    const el = document.getElementById('experienceShell');
+    if (el) requestAnimationFrame(() => el.scrollIntoView({behavior:'smooth', block:'start'}));
+  }
+
+  function updateTabsOnScroll() {
+    const sections = [...document.querySelectorAll('main .section')];
+    const tabs = [...document.querySelectorAll('.tab')];
+    let current = 'idea';
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= 170 && rect.bottom > 170) current = section.id;
+    });
+    tabs.forEach(tab => tab.classList.toggle('active', tab.dataset.target === current));
+  }
+  window.addEventListener('scroll', updateTabsOnScroll);
+
+  function updateSteps(step) {
+    document.querySelectorAll('.step').forEach(item => {
+      item.classList.toggle('active', Number(item.dataset.step) <= step);
+    });
+  }
+
+  function showView(id, step) {
+    document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
+    const next = document.getElementById(id);
+    if (next) next.classList.add('active');
+    updateSteps(step);
+  }
+
+  function person() { return PERSONAS[state.personaId]; }
+
+  function renderPersonas() {
+    const grid = document.getElementById('personasGrid');
+    grid.innerHTML = Object.values(PERSONAS).map(p => `
+      <button class="persona-card" onclick="choosePersona('${p.id}')">
+        <div class="persona-top">
+          <div class="persona-avatar">${p.letter}</div>
+          <span class="persona-badge">بيانات افتراضية</span>
+        </div>
+        <h4>${p.name}، ${p.age}</h4>
+        <p class="desc">${p.description}</p>
+        <div class="facts">
+          <div class="fact"><span>الوضع الوظيفي</span><strong>${p.employmentLabel}</strong></div>
+          <div class="fact"><span>الدخل الحالي</span><strong>${currency(p.income)}</strong></div>
+          <div class="fact"><span>أفراد الأسرة</span><strong>${p.familySize}</strong></div>
+        </div>
+        <div>
+          <div style="margin-bottom:8px; color:var(--muted); font-size:12px; font-weight:700;">الخدمات الحالية</div>
+          <div class="service-list">${(p.currentServices.length ? p.currentServices : ['لا توجد خدمة حالية مرتبطة']).map(s => `<span class="service-pill">${s}</span>`).join('')}</div>
+        </div>
+        <span class="persona-link">اختر ${p.name} ←</span>
+      </button>
+    `).join('');
+  }
+
+  function renderEvents() {
+    document.getElementById('eventsList').innerHTML = EVENTS.map(event => `
+      <button class="event-btn" onclick="chooseEvent('${event.id}')">
+        <span class="event-icon">${event.icon}</span>
+        <div>
+          <h4>${event.title}</h4>
+          <p>${event.desc}</p>
+        </div>
+        <span class="event-arrow">←</span>
+      </button>
+    `).join('');
+  }
+
+  function startDemo() {
+    state.comparison = null;
+    state.personaId = null;
+    state.eventId = null;
+    state.answers = {};
+    showPersonaView();
+    focusPrototype();
+  }
+
+  function choosePersona(id) {
+    state.personaId = id;
+    if (state.comparison) {
+      state.eventId = state.comparison.eventId;
+      state.answers = adaptAnswersForPersona(state.comparison.answers);
+      state.comparison = null;
+      renderProfile();
+      runAnalysis();
+      return;
+    }
+    state.eventId = null;
+    state.answers = {};
+    renderProfile();
+    showView('eventView', 2);
+    focusPrototype();
+  }
+
+  function profileHTML(p) {
+    return `
+      <div class="profile-head">
+        <div class="persona-avatar" style="width:48px;height:48px;border-radius:15px;font-size:18px;">${p.letter}</div>
+        <div>
+          <h4>${p.name}، ${p.age}</h4>
+          <p>${p.description}</p>
+        </div>
+      </div>
+      <div class="profile-block">
+        <small>الخدمات الحالية</small>
+        <div class="service-list">${(p.currentServices.length ? p.currentServices : ['لا توجد خدمة حالية مرتبطة']).map(s => `<span class="service-pill">${s}</span>`).join('')}</div>
+      </div>
+      <div class="profile-block">
+        <small>الحالة الحالية</small>
+        <div class="service-list">
+          <span class="service-pill">${p.employmentLabel}</span>
+          <span class="service-pill">الدخل: ${currency(p.income)}</span>
+          <span class="service-pill">أفراد الأسرة: ${p.familySize}</span>
+        </div>
+      </div>`;
+  }
+
+  function renderProfile() {
+    const p = person();
+    document.getElementById('eventProfile').innerHTML = profileHTML(p);
+    document.getElementById('questionProfile').innerHTML = profileHTML(p);
+  }
+
+  function showPersonaView() {
+    document.getElementById('personaHeading').innerHTML = `
+      <small>الخطوة 1 من 4</small>
+      <h3>اختر مستفيدًا افتراضيًا</h3>
+      <p>هذه شخصيات افتراضية لأغراض العرض فقط. الهدف هو توضيح كيف تتغيّر النتيجة حسب وضع كل شخص، لا حسب اسم الحدث فقط.</p>`;
+    showView('personaView', 1);
+    focusPrototype();
+  }
+
+  function showEventView() {
+    showView('eventView', 2);
+    focusPrototype();
+  }
+
+  function chooseEvent(eventId) {
+    state.eventId = eventId;
+    state.answers = {};
+    renderQuestions();
+    showView('questionView', 3);
+    focusPrototype();
+  }
+
+  function renderQuestions() {
+    if (state.eventId === 'income') return renderIncomeQuestions();
+    if (state.eventId === 'contractEnd') return renderContractQuestions();
+    if (state.eventId === 'newJob') return renderNewJobQuestions();
+  }
+
+  function renderIncomeQuestions() {
+    const p = person();
+    const defaultValue = p.id === 'reem' ? 4000 : (p.income > 0 ? p.income - 500 : 2500);
+
+    document.getElementById('questionsContainer').innerHTML = `
+      <div class="view-heading">
+        <small>الخطوة 3 من 4</small>
+        <h3>كم أصبح الدخل الجديد؟</h3>
+        <p>الرقم نفسه يحدد هل الدخل ارتفع أو انخفض. بعدها نربط اتجاه التغيّر بوضع المستفيد الحالي بدل إعطاء نفس النتيجة للجميع.</p>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label>الدخل الحالي</label>
+          <input value="${p.income}" readonly>
+        </div>
+        <div class="field">
+          <label>الدخل الجديد</label>
+          <input id="newIncome" type="number" min="0" value="${Math.max(0, defaultValue)}">
+        </div>
+      </div>
+      <div class="inline-note">إذا لم يتغير الرقم فلن نظهر أثرًا مصطنعًا. وإذا كان الشخص باحثًا عن عمل وظهر له دخل جديد، سنوضح أن مصدر الدخل مهم قبل ربطه بخدمات العمل.</div>
+      <div class="question-actions">
+        <button class="btn btn-primary" onclick="submitIncome()">اعرض النتيجة ←</button>
+      </div>`;
+  }
+
+  function submitIncome() {
+    const p = person();
+    const newIncome = Number(document.getElementById('newIncome').value);
+
+    if (Number.isNaN(newIncome) || newIncome < 0) {
+      alert('أدخل قيمة صحيحة للدخل');
+      return;
+    }
+
+    state.answers.oldIncome = p.income;
+    state.answers.newIncome = newIncome;
+    state.answers.incomeDirection = newIncome === p.income ? 'same' : (newIncome > p.income ? 'increase' : 'decrease');
+    runAnalysis();
+  }
+
+  function renderContractQuestions() {
+    const p = person();
+    if (!p.hasActiveContract) {
+      document.getElementById('questionsContainer').innerHTML = `
+        <div class="view-heading">
+          <small>الخطوة 3 من 4</small>
+          <h3>لا يوجد عقد فعّال لهذا المستفيد</h3>
+          <p>بدل أن ندخل المستفيد في أسئلة لا تنطبق عليه، تتوقف صلة هنا وتوضح أن هذا الحدث غير مناسب لوضعه الحالي.</p>
+        </div>
+        <div class="inline-note">هذا مثال مهم على منطق "استبعد ما لا يخصه". سلمان مثلًا لا يملك عقدًا حاليًا، لذلك لا معنى لرحلة إنهاء علاقة وظيفية له داخل هذا السيناريو.</div>
+        <div class="question-actions">
+          <button class="btn btn-primary" onclick="submitNoContractCase()">اعرض التوضيح ←</button>
+          <button class="btn btn-secondary" onclick="showEventView()">اختر حدثًا آخر</button>
+        </div>`;
+      return;
+    }
+
+    document.getElementById('questionsContainer').innerHTML = `
+      <div class="view-heading">
+        <small>الخطوة 3 من 4</small>
+        <h3>كيف انتهت العلاقة الوظيفية؟</h3>
+        <p>نوع انتهاء العلاقة قد يغيّر النتيجة. لذلك نطلب هذه المعلومة قبل عرض ما قد يرتبط بالحالة.</p>
+      </div>
+      <div class="options" id="contractReason">
+        <button class="option-btn" data-value="expiry"><span class="opt-mark">1</span><div><strong>انتهت مدة العقد</strong><small>وصل العقد إلى نهايته</small></div><span class="event-arrow">←</span></button>
+        <button class="option-btn" data-value="employer"><span class="opt-mark">2</span><div><strong>إنهاء من صاحب العمل</strong><small>انتهت العلاقة من جهة صاحب العمل</small></div><span class="event-arrow">←</span></button>
+        <button class="option-btn" data-value="resignation"><span class="opt-mark">3</span><div><strong>استقالة</strong><small>أنهيت العلاقة من طرفي</small></div><span class="event-arrow">←</span></button>
+      </div>
+      <div class="question-actions">
+        <button class="btn btn-primary" onclick="submitContract()">اعرض النتيجة ←</button>
+      </div>`;
+    setupChoice('contractReason', value => state.answers.contractReason = value);
+  }
+
+  function submitNoContractCase() {
+    state.answers.noContractFlow = true;
+    runAnalysis();
+  }
+
+  function submitContract() {
+    if (!state.answers.contractReason) { alert('اختر سبب انتهاء العلاقة'); return; }
+    runAnalysis();
+  }
+
+  function renderNewJobQuestions() {
+    const p = person();
+
+    const currentContractField = p.hasActiveContract ? `
+      <div class="field">
+        <label>ما وضع عقدك الحالي قبل بدء الوظيفة الجديدة؟</label>
+        <select id="jobNature">
+          <option value="transition">سينتهي قبل بدء العقد الجديد</option>
+          <option value="activeRemains">سيبقى ساريًا</option>
+        </select>
+      </div>` : '';
+
+    document.getElementById('questionsContainer').innerHTML = `
+      <div class="view-heading">
+        <small>الخطوة 3 من 4</small>
+        <h3>أين وصل العقد الجديد؟</h3>
+        <p>لا نعتبر مجرد وصول العقد تغيرًا فعليًا في حالة المستفيد. نميّز بين المراجعة والموافقة وطلب التعديل، ونراعي وجود عقد حالي من عدمه.</p>
+      </div>
+      <div class="options" id="newJobState">
+        <button class="option-btn" data-value="review"><span class="opt-mark">1</span><div><strong>وصلني العقد وأراجعه</strong><small>لم أتخذ قراري بعد</small></div><span class="event-arrow">←</span></button>
+        <button class="option-btn" data-value="accepted"><span class="opt-mark">2</span><div><strong>وافقت على العقد من جهتي</strong><small>ما زال اكتمال التوثيق مرتبطًا بإجراءات الطرفين</small></div><span class="event-arrow">←</span></button>
+        <button class="option-btn" data-value="edit"><span class="opt-mark">3</span><div><strong>طلبت تعديل العقد</strong><small>العقد ما زال يحتاج تعديلًا قبل اكتماله</small></div><span class="event-arrow">←</span></button>
+      </div>
+      <div class="field-grid">
+        <div class="field">
+          <label>الراتب المذكور في العقد الجديد</label>
+          <input id="newSalary" type="number" min="0" value="6500">
+        </div>
+        ${currentContractField}
+      </div>
+      <div class="question-actions">
+        <button class="btn btn-primary" onclick="submitNewJob()">اعرض النتيجة ←</button>
+      </div>`;
+
+    setupChoice('newJobState', value => state.answers.newJobState = value);
+  }
+
+  function submitNewJob() {
+    if (!state.answers.newJobState) {
+      alert('اختر حالة العقد الجديد');
+      return;
+    }
+
+    const salary = Number(document.getElementById('newSalary').value);
+    if (Number.isNaN(salary) || salary < 0) {
+      alert('أدخل راتبًا صحيحًا');
+      return;
+    }
+
+    state.answers.newSalary = salary;
+    const jobNature = document.getElementById('jobNature');
+    state.answers.jobNature = jobNature ? jobNature.value : 'noCurrentContract';
+    runAnalysis();
+  }
+
+  function setupChoice(containerId, callback) {
+    const container = document.getElementById(containerId);
+    container.querySelectorAll('.option-btn').forEach(option => {
+      option.addEventListener('click', () => {
+        container.querySelectorAll('.option-btn').forEach(i => i.classList.remove('selected'));
+        option.classList.add('selected');
+        callback(option.dataset.value);
+      });
+    });
+  }
+
+  function runAnalysis() {
+    showView('analysisView', 3);
+    focusPrototype();
+    const items = document.querySelectorAll('.analysis-step');
+    items.forEach(item => item.classList.remove('done'));
+    items.forEach((item, index) => setTimeout(() => item.classList.add('done'), 260 + index * 340));
+    setTimeout(() => {
+      calculateResults();
+      renderResults();
+      showView('resultView', 4);
+      focusPrototype();
+    }, 1750);
+  }
+
+  function socialSecurityScreening(p, earnedIncome, otherIncome = 0) {
+    const threshold = 1320 + Math.max(0, p.familySize - 1) * 660;
+    const countedIncome = (Number(earnedIncome) * 0.5) + Number(otherIncome || 0);
+    return {
+      threshold,
+      countedIncome,
+      worthChecking: countedIncome < threshold
+    };
+  }
+
+  function calculateResults() {
+    const p = person();
+    const results = [];
+    let checked = 0;
+    let excluded = 0;
+
+    if (state.eventId === 'income') {
+      const direction = state.answers.incomeDirection;
+      const oldIncome = Number(state.answers.oldIncome);
+      const newIncome = Number(state.answers.newIncome);
+
+      checked++;
+      if (direction === 'same') {
+        results.push({
+          group: 'affected', icon: '=', type: 'neutral', tag: 'لا يوجد أثر',
+          title: 'الدخل لم يتغير في هذا السيناريو',
+          desc: 'بما أن الدخل الجديد يساوي الدخل الحالي، فلا يوجد تغير نربطه بخدمة أو إجراء جديد.',
+          explain: 'صلة لا تصنع نتيجة لمجرد أن المستخدم أكمل الخطوات. إذا لم يتغير شيء، فالنتيجة الصحيحة هي أن لا أثر جديد ظهر.',
+          why: 'الدخل الحالي = الدخل الجديد', source: null
+        });
+      } else { excluded++; }
+
+      checked++;
+      if (p.socialSecurity && direction === 'decrease') {
+        results.push({
+          group: 'affected', icon: '↓', type: '', tag: 'أثر محتمل على المبلغ',
+          title: 'انخفاض الدخل لا يعني فقدان الأهلية من ناحية الدخل وحده',
+          desc: `دخل ${p.name} انخفض من ${currency(oldIncome)} إلى ${currency(newIncome)}. من ناحية الدخل وحده، هذا لا يجعل شرط الدخل أسوأ، لكنه قد يؤثر على مقدار المعاش بعد إعادة التقييم.`,
+          explain: 'النظام يربط مقدار المعاش بالدخل المحتسب. لذلك انخفاض الدخل قد يرفع مبلغ المعاش أو يبقيه كما هو حسب بقية دخل الأسرة والشروط، لكنه لا يُعرض هنا كخطر على الأهلية من ناحية الدخل.',
+          why: 'مستفيد حالي + انخفاض الدخل = راقب مقدار المعاش، لا تفترض فقدان الأهلية',
+          source: SOURCES.socialSecurityRegulation
+        });
+      } else { excluded++; }
+
+      checked++;
+      if (p.socialSecurity && direction === 'increase') {
+        results.push({
+          group: 'affected', icon: '↑', type: 'warn', tag: 'يحتاج مراجعة',
+          title: 'ارتفاع الدخل قد يغيّر مقدار المعاش أو يؤثر على الاستحقاق',
+          desc: `دخل ${p.name} ارتفع من ${currency(oldIncome)} إلى ${currency(newIncome)}. هنا يصبح أثر الدخل أكثر أهمية لأنه قد يخفض المعاش أو يؤثر على شرط الدخل بعد التقييم الكامل.`,
+          explain: 'لا نصدر حكمًا نهائيًا من الراتب وحده لأن بقية دخل الأسرة والثروة والشروط الأخرى تدخل في الدراسة.',
+          why: 'مستفيد حالي + ارتفاع الدخل = احتمال تغير المبلغ أو الاستحقاق',
+          source: SOURCES.socialSecurityRegulation
+        });
+      } else { excluded++; }
+
+      checked++;
+      if (p.socialSecurity && direction !== 'same') {
+        results.push({
+          group: 'next', icon: '!', type: 'warn', tag: 'تحديث عند التأثير',
+          title: 'إذا كان التغير مؤثرًا على الاستحقاق أو مقدار المعاش فيلزم إبلاغ الوزارة',
+          desc: 'النظام ينص على إبلاغ الوزارة بالتغير الذي يؤثر على الاستحقاق أو مقدار المعاش خلال 15 يومًا من تاريخ التغير.',
+          explain: 'هذا الإجراء ينطبق على التغير المؤثر، سواء كان ارتفاعًا أو انخفاضًا، وليس على الانخفاض فقط.',
+          why: 'مستفيد حالي + تغير مؤثر = تحديث الحالة خلال المدة النظامية',
+          source: SOURCES.socialSecurityRegulation
+        });
+      } else { excluded++; }
+
+      checked++;
+      if (!p.socialSecurity && direction === 'decrease') {
+        const signal = socialSecurityScreening(p, newIncome);
+        if (signal.worthChecking) {
+          results.push({
+            group: 'may', icon: '؟', type: '', tag: 'يستحق التحقق',
+            title: 'الضمان الاجتماعي أصبح أقرب لأن يكون خدمة تستحق الفحص',
+            desc: `بحسب الدخل الوظيفي المعروف في النموذج وعدد أفراد الأسرة، أصبح هناك مؤشر أولي يستحق التحقق الرسمي. لا يعني ذلك أن ${p.name} مؤهل تلقائيًا.`,
+            explain: `في الفحص الأولي فقط، الدخل المحتسب التقديري من الراتب هو ${currency(signal.countedIncome)} مقابل حد إرشادي للأسرة قدره ${currency(signal.threshold)}. لا تزال بقية الدخول والثروة والشروط مطلوبة قبل أي قرار.`,
+            why: 'غير مستفيد حاليًا + انخفاض الدخل + اجتياز إشارة الدخل الأولية',
+            source: SOURCES.socialSecurityService,
+            action: 'eligibility'
+          });
+        } else {
+          results.push({
+            group: 'affected', icon: '↓', type: 'neutral', tag: 'لا تظهر خدمة جديدة',
+            title: 'الدخل انخفض، لكن لا توجد إشارة كافية لإظهار الضمان الآن',
+            desc: 'الانخفاض وحده ليس سببًا كافيًا لعرض الضمان. على بيانات النموذج الحالية لا يمر الدخل المعروف الفحص الأولي، لذلك لا نعرض الخدمة كاقتراح.',
+            explain: 'هذا يمنع أن تظهر خدمة الضمان لأي شخص لمجرد أن راتبه انخفض قليلًا.',
+            why: 'انخفاض الدخل ≠ أهلية تلقائية',
+            source: SOURCES.socialSecurityService
+          });
+        }
+      } else { excluded++; }
+
+      checked++;
+      if (!p.socialSecurity && direction === 'increase' && p.employmentStatus === 'jobSeeker' && oldIncome === 0 && newIncome > 0) {
+        results.push({
+          group: 'next', icon: '؟', type: 'neutral', tag: 'نحتاج معلومة',
+          title: 'مصدر الدخل مهم قبل تحديد الأثر',
+          desc: 'لأن المستفيد باحث عن عمل وكان دخله صفرًا، ظهور دخل جديد قد يكون من وظيفة جديدة أو من مصدر آخر. لا يصح أن نفترض أحدهما تلقائيًا.',
+          explain: 'إذا كان الدخل من وظيفة جديدة فالمسار الأنسب هو حدث "وظيفة جديدة". أما إذا كان من مصدر آخر فالأثر يختلف.',
+          why: 'باحث عن عمل + دخل جديد = لا نفترض أنه راتب وظيفي دون معلومة إضافية',
+          source: null
+        });
+      } else { excluded++; }
+
+      checked++;
+      if (!p.socialSecurity && direction === 'increase' && !(p.employmentStatus === 'jobSeeker' && oldIncome === 0 && newIncome > 0)) {
+        results.push({
+          group: 'affected', icon: '↑', type: 'neutral', tag: 'لا أثر مباشر ظاهر',
+          title: 'لم تظهر خدمة جديدة من هذا التغير وحده',
+          desc: 'بحسب البيانات المتوفرة، ارتفاع الدخل لا يفتح مسارًا جديدًا لهذا المستفيد داخل نطاق النموذج الحالي.',
+          explain: 'صلة لا تعرض خدمات لمجرد وجود تغير. يجب أن توجد علاقة واضحة بين الحالة والخدمة قبل إظهارها.',
+          why: 'لا توجد خدمة حالية متأثرة ولا شرط جديد تحقق من البيانات المتاحة',
+          source: null
+        });
+      } else { excluded++; }
+    }
+
+    if (state.eventId === 'contractEnd') {
+      checked++;
+      if (!p.hasActiveContract) {
+        results.push({
+          group: 'affected', icon: '—', type: 'neutral', tag: 'غير منطبق',
+          title: 'لا يوجد عقد فعّال لهذه الرحلة',
+          desc: `بحسب وضع ${p.name} الحالي لا يوجد عقد قائم حتى ندخله في رحلة إنهاء العلاقة الوظيفية.`,
+          explain: 'هذه نتيجة مقصودة. صلة توقف الرحلة عندما يكون أصل الحدث غير مناسب للحالة بدل إكمال أسئلة لا معنى لها.',
+          why: 'لا يوجد عقد فعّال', source: null
+        });
+      } else { excluded++; }
+
+      checked++;
+      if (p.hasActiveContract) {
+        results.push({
+          group: 'affected', icon: '◷', type: '', tag: 'المسار الرسمي',
+          title: 'إذا لم يكتمل الإنهاء بعد فخدمة إنهاء العلاقة هي المسار المرتبط',
+          desc: 'خدمة إنهاء العلاقة في قوى تشترط وجود عقد ساري، ثم اختيار سبب الإنهاء وتاريخه ومراجعة التفاصيل قبل الإرسال.',
+          explain: 'لا نفترض أن المستفيد ما زال يحتاج تنفيذ الإنهاء إذا كان انتهى بالفعل. البطاقة هنا توضح المسار عند الحاجة لإكمال الإجراء.',
+          why: 'عقد ساري + حدث انتهاء علاقة',
+          source: SOURCES.contractEnd
+        });
+      } else { excluded++; }
+
+      checked++;
+      if (p.hasActiveContract) {
+        results.push({
+          group: 'next', icon: 'ح', type: '', tag: 'أداة قد تفيدك',
+          title: 'حاسبة مكافأة نهاية الخدمة قد تساعدك',
+          desc: 'بعد انتهاء العلاقة قد تكون الحاسبة الرسمية أداة مفيدة لفهم المكافأة بشكل تقديري، مع اختلاف التفاصيل حسب الحالة ومدة الخدمة.',
+          explain: 'لا نحسب الاستحقاق داخل النموذج لأن السبب ومدة الخدمة وتفاصيل العقد تؤثر على النتيجة.',
+          why: 'انتهاء علاقة وظيفية + عقد قائم',
+          source: SOURCES.eosCalculator
+        });
+      } else { excluded++; }
+
+      checked++;
+      if (p.hasActiveContract && ['expiry','employer'].includes(state.answers.contractReason) && p.nationality === 'saudi') {
+        results.push({
+          group: 'may', icon: 'س', type: '', tag: 'قد يستحق التحقق',
+          title: 'ساند قد يستحق التحقق',
+          desc: 'لأن سبب انتهاء العلاقة في هذا السيناريو ليس استقالة، يمكن إظهار ساند كمسار يستحق التحقق، مع بقاء شروط أخرى مطلوبة للاستحقاق.',
+          explain: 'التأمينات توضح أن ترك العمل بإرادة العامل مثل الاستقالة لا يحقق شرط فقد العمل لسبب خارج عن الإرادة. لذلك لا نظهر ساند في سيناريو الاستقالة.',
+          why: 'انتهاء مدة العقد أو إنهاء من صاحب العمل + ليس استقالة',
+          source: SOURCES.saned
+        });
+      } else { excluded++; }
+
+      checked++;
+      if (p.hasActiveContract && p.socialSecurity) {
+        results.push({
+          group: 'affected', icon: '↓', type: '', tag: 'أثر بين خدمتين',
+          title: 'بعد توقف الراتب قد يتغير مقدار الضمان',
+          desc: 'انتهاء العلاقة قد يؤدي إلى انخفاض الدخل الفعلي. عند حدوث ذلك، قد يتغير مقدار المعاش ويحتاج المستفيد إلى تحديث بياناته إذا كان التغير مؤثرًا.',
+          explain: 'هذه هي قيمة الربط بين الخدمات: الحدث بدأ في سياق العمل، لكن أثره قد يصل إلى خدمة اجتماعية يستخدمها المستفيد أصلًا.',
+          why: 'مستفيد من الضمان + انتهاء دخل وظيفي محتمل',
+          source: SOURCES.socialSecurityRegulation
+        });
+      } else { excluded++; }
+
+      checked++;
+      if (p.hasActiveContract && !p.socialSecurity) {
+        results.push({
+          group: 'may', icon: '؟', type: 'neutral', tag: 'قد يصبح مهمًا لاحقًا',
+          title: 'إذا انخفض دخل الأسرة بعد انتهاء الوظيفة فقد يصبح الضمان مستحقًا للفحص',
+          desc: 'لا نعرض أهلية الآن لأننا لا نعرف الدخل الفعلي بعد انتهاء الوظيفة. لكن صلة تستطيع إعادة التحقق عندما تتغير بيانات الدخل بالفعل.',
+          explain: 'هذه نتيجة أفضل من افتراض أن فقد الوظيفة يعني أهلية مباشرة للضمان.',
+          why: 'انتهاء وظيفة لا يعني تلقائيًا استحقاق الضمان؛ ننتظر الدخل الفعلي الجديد',
+          source: SOURCES.socialSecurityService
+        });
+      } else { excluded++; }
+    }
+
+    if (state.eventId === 'newJob') {
+      const status = state.answers.newJobState;
+      const salary = Number(state.answers.newSalary || 0);
+      const currentContractRemains = p.hasActiveContract && state.answers.jobNature === 'activeRemains';
+
+      checked++;
+      results.push({
+        group: 'affected', icon: '▤', type: '', tag: 'إدارة العقود',
+        title: getNewJobTitle(),
+        desc: getNewJobDesc(),
+        explain: 'إدارة العقود تتيح للموظف مراجعة العقد والموافقة أو الرفض أو طلب التعديل. ويعتبر العقد موثقًا عند موافقة الطرفين.',
+        why: 'عقد جديد + حالة العقد الحالية',
+        source: SOURCES.contracts
+      });
+
+      checked++;
+      if (currentContractRemains) {
+        results.push({
+          group: 'next', icon: '!', type: 'warn', tag: 'يحتاج تحقق قبل المتابعة',
+          title: 'وجود عقد ساري يغيّر المسار',
+          desc: 'الخدمة المنشورة لإدارة العقود تذكر ضمن شروطها ألا يكون لدى الموظف عقد ساري المفعول على منصة قوى. لذلك لا نفترض أن العقد الجديد يمكن توثيقه بينما الحالي باقٍ كما هو.',
+          explain: 'هذه حالة طرفية مهمة: بدل اعتبار الوظيفة الجديدة مجرد إضافة، تتوقف صلة وتوضح أن وضع العقد الحالي يحتاج معالجة أو تحقق أولًا.',
+          why: 'عقد حالي ساري + محاولة عقد جديد',
+          source: SOURCES.contracts
+        });
+      } else { excluded++; }
+
+      checked++;
+      if (p.hasActiveContract && state.answers.jobNature === 'transition') {
+        results.push({
+          group: 'next', icon: '↺', type: '', tag: 'انتقال بين حالتين',
+          title: 'العقد الجديد هنا جزء من انتقال وليس إضافة مستقلة',
+          desc: 'بما أن العقد الحالي سينتهي قبل بدء الجديد، فصلة تتعامل مع الرحلة كتحول بين علاقتين وظيفيتين.',
+          explain: 'هذا يمنع تضارب الحالة بين عقد قديم وعقد جديد، ويجعل الرحلة أوضح للمستفيد.',
+          why: 'عقد حالي + وظيفة بديلة',
+          source: SOURCES.contracts
+        });
+      } else { excluded++; }
+
+      checked++;
+      if (p.employmentStatus === 'jobSeeker' && status !== 'accepted') {
+        results.push({
+          group: 'next', icon: '…', type: 'neutral', tag: 'لا تغير فعلي بعد',
+          title: 'وضعك الوظيفي لا يتغير لمجرد وصول العقد',
+          desc: status === 'review' ? 'العقد ما زال تحت المراجعة، لذلك يبقى وضع المستفيد كما هو حتى تكتمل الخطوات.' : 'طلب التعديل يعني أن العقد لم يكتمل بعد، لذلك لا نغيّر حالة المستفيد إلى موظف.',
+          explain: 'صلة تفرق بين نية التوظيف وبين تغير الحالة فعليًا.',
+          why: 'العقد غير مكتمل بعد',
+          source: SOURCES.contracts
+        });
+      } else { excluded++; }
+
+      checked++;
+      if (p.employmentStatus === 'jobSeeker' && status === 'accepted') {
+        results.push({
+          group: 'may', icon: '→', type: '', tag: 'تغير متوقع في الحالة',
+          title: 'وافقت من جهتك، لكن التحول إلى موظف يحتاج اكتمال التوثيق والبدء',
+          desc: 'موافقة الموظف وحدها خطوة مهمة، لكنها لا تعني تلقائيًا أن كل إجراءات التوثيق والبدء اكتملت.',
+          explain: 'المصدر الرسمي يوضح أن العقد يعتبر موثقًا عند موافقة الطرفين.',
+          why: 'موافقة الموظف ≠ اكتمال التوثيق من الطرفين',
+          source: SOURCES.contracts
+        });
+      } else { excluded++; }
+
+      checked++;
+      if (p.socialSecurity && status === 'accepted' && !currentContractRemains) {
+        results.push({
+          group: 'affected', icon: '↑', type: 'warn', tag: 'بعد بدء الدخل فعليًا',
+          title: 'الراتب الجديد قد يؤثر على مقدار الضمان أو الاستحقاق بعد بدء العمل',
+          desc: `الراتب المذكور في العقد ${currency(salary)}. لا نغيّر حالة الضمان الآن لمجرد الموافقة، لكن عند بدء الدخل فعليًا يصبح التغير مهمًا للتقييم.`,
+          explain: 'في النسخة السابقة كنا نعرض أثر الضمان حتى والعقد تحت المراجعة أو التعديل، وهذا غير منطقي. الآن لا يظهر الأثر إلا بعد وصول العقد لمرحلة أقرب للتنفيذ، ومع ذلك نبقيه أثرًا متوقعًا لا قرارًا نهائيًا.',
+          why: 'مستفيد من الضمان + عقد تمت الموافقة عليه + دخل جديد متوقع',
+          source: SOURCES.socialSecurityRegulation
+        });
+      } else { excluded++; }
+
+      checked++;
+      if (!p.socialSecurity && status === 'accepted' && !currentContractRemains) {
+        const signal = socialSecurityScreening(p, salary);
+        if (signal.worthChecking && salary < p.income) {
+          results.push({
+            group: 'may', icon: '؟', type: '', tag: 'بعد بدء العمل',
+            title: 'الراتب الجديد الأقل قد يجعل الضمان مستحقًا للفحص لاحقًا',
+            desc: 'هذه الإشارة لا تعمل لمجرد وجود عقد جديد، بل فقط عندما يكون الراتب الجديد أقل وتظهر إشارة دخل أولية تستحق التحقق.',
+            explain: 'ننتظر بدء الدخل الجديد فعليًا، ثم يمكن تشغيل فحص الضمان بناءً على بيانات الأسرة الكاملة.',
+            why: 'وظيفة بديلة + راتب أقل + إشارة دخل أولية',
+            source: SOURCES.socialSecurityService
+          });
+        } else { excluded++; }
+      } else { excluded++; }
+    }
+
+    if (!results.length) {
+      results.push({
+        group: 'affected', icon: '✓', type: 'neutral', tag: 'لا نتيجة جديدة',
+        title: 'لم نجد أثرًا مباشرًا ضمن نطاق النموذج الحالي',
+        desc: 'هذا أفضل من عرض خدمة غير مرتبطة بالحالة. يمكن توسيع المحرك لاحقًا بقواعد وخدمات إضافية.',
+        explain: 'الهدف أن تكون النتيجة دقيقة حتى لو كانت النتيجة أحيانًا هي: لا يوجد شيء جديد الآن.',
+        why: 'لا توجد قاعدة من قواعد النموذج الحالي انطبقت على الحالة',
+        source: null
+      });
+    }
+
+    state.results = results;
+    state.checkedRules = checked;
+    state.excludedRules = excluded;
+  }
+
+  function renderResults() {
+    const p = person();
+    const current = p.currentServices.length ? p.currentServices : ['لا توجد خدمة حالية مرتبطة'];
+    const affected = state.results.filter(item => item.group === 'affected');
+    const next = state.results.filter(item => item.group === 'next');
+    const may = state.results.filter(item => item.group === 'may');
+
+    document.getElementById('resultContainer').innerHTML = `
+      <small style="display:block; color:var(--primary); font-weight:800; margin-bottom:8px;">نتيجة مخصصة لـ ${p.name}</small>
+      <h3>هذا ما يخص الحالة الآن</h3>
+      <p class="intro">صلة لا تعرض كل شيء. هي تعرض فقط ما له علاقة بوضع ${p.name} والتغير الذي اخترته. وإذا أصبح هناك مسار جديد قريب من حالته فستظهره على أنه "قد يفيدك" بدل أن تعتبره قرارًا نهائيًا.</p>
+      <div class="summary-strip">
+        <strong>راجعنا ${state.checkedRules} قواعد، واستبعدنا ${state.excludedRules} لأنها لا تخص هذه الحالة</strong>
+        <span>النتيجة هنا تتغير حسب الشخص، لا حسب اسم الحدث فقط</span>
+      </div>
+      ${renderBeforeAfter()}
+      <span class="cluster-title">الخدمات المرتبطة بالحالة الحالية</span>
+      <div class="tag-row">${current.map(item => `<span class="result-pill">${item}</span>`).join('')}</div>
+      ${affected.length ? `<span class="cluster-title">ما الذي تأثر الآن؟</span><div class="impact-list">${affected.map(renderImpact).join('')}</div>` : ''}
+      ${next.length ? `<span class="cluster-title">ما الخطوة أو الأداة التالية؟</span><div class="impact-list">${next.map(renderImpact).join('')}</div>` : ''}
+      ${may.length ? `<span class="cluster-title">ما الذي قد أصبح مناسبًا الآن؟</span><div class="impact-list">${may.map(renderImpact).join('')}</div>` : ''}
+      <div class="disclaimer"><strong>ملاحظة مهمة</strong>الشخصيات والبيانات داخل هذا النموذج افتراضية لأغراض العرض. النتائج توضيحية، وبعض القواعد والخدمات المرتبطة بها بنيت استنادًا إلى مصادر رسمية منشورة، لكن هذا النموذج لا يصدر قرارات أهلية أو استحقاق نهائية.</div>
+      <div class="question-actions">
+        <button class="btn btn-primary" onclick="compareSameEvent()">طبّق نفس التغيير على شخص آخر ←</button>
+        <button class="btn btn-secondary" onclick="showEventView()">جرّب حدثًا آخر</button>
+      </div>`;
+  }
+
+  function renderBeforeAfter() {
+    const p = person();
+    let before = p.employmentLabel;
+    let after = before;
+    let label = getEventLabel();
+    if (state.eventId === 'income') {
+      before = currency(state.answers.oldIncome);
+      after = currency(state.answers.newIncome);
+    }
+    if (state.eventId === 'contractEnd') {
+      before = p.hasActiveContract ? 'عقد فعّال' : 'لا يوجد عقد فعّال';
+      after = p.hasActiveContract ? 'علاقة منتهية' : 'لا يوجد عقد لهذه الرحلة';
+    }
+    if (state.eventId === 'newJob') {
+      before = p.employmentLabel;
+      after = p.employmentStatus === 'jobSeeker' ? 'وظيفة جديدة قيد الإكمال' : (state.answers.jobNature === 'additional' ? 'وظيفة إضافية قيد التوثيق' : 'انتقال إلى وظيفة جديدة');
+    }
+    return `
+      <div class="compare-boxes">
+        <div class="compare-box"><small>قبل التغيّر</small><strong>${before}</strong></div>
+        <div class="compare-arrow">${label} ←</div>
+        <div class="compare-box after"><small>بعد التغيّر</small><strong>${after}</strong></div>
+      </div>`;
+  }
+
+  function renderImpact(item) {
+    return `
+      <article class="impact-card">
+        <div class="impact-main" onclick="this.parentElement.classList.toggle('open')">
+          <div class="impact-ico">${item.icon}</div>
+          <div class="impact-copy">
+            <strong>${item.title}</strong>
+            <p>${item.desc}</p>
+          </div>
+          <span class="impact-type ${item.type || ''}">${item.tag}</span>
+        </div>
+        <div class="impact-detail">
+          <div class="impact-detail-inner">
+            <strong style="display:block; margin:12px 0 4px; color:var(--text);">ليش ظهر هذا؟</strong>
+            <p style="margin:0;">${item.explain}</p>
+            <div class="logic-box">${item.why}</div>
+            <div class="impact-actions">
+              ${item.action === 'eligibility' ? `<button class="mini-btn" onclick="event.stopPropagation(); openEligibilityCheck()">افتح فحصًا مبدئيًا</button>` : ''}
+              ${item.source ? `<a class="mini-link" href="${item.source.url}" target="_blank" rel="noopener">المصدر الرسمي: ${item.source.title} ↗</a>` : ''}
+            </div>
+          </div>
+        </div>
+      </article>`;
+  }
+
+  function getEventLabel() {
+    return ({ income:'تغير الدخل', contractEnd:'انتهاء العلاقة الوظيفية', newJob:'وظيفة جديدة' })[state.eventId] || '';
+  }
+
+  function getNewJobTitle() {
+    const value = state.answers.newJobState;
+    if (value === 'review') return 'العقد الجديد ما زال تحت المراجعة';
+    if (value === 'accepted') return 'وافقت على العقد من جهتك';
+    if (value === 'edit') return 'طلبت تعديل العقد قبل اكتماله';
+    return 'العقد الجديد';
+  }
+
+  function getNewJobDesc() {
+    const value = state.answers.newJobState;
+    if (value === 'review') return 'يمكنك مراجعة العقد وقبوله أو رفضه أو طلب تعديله. وتوضح صفحة الخدمة أن الطلب يُلغى إذا لم يتلقَّ إجابة خلال 10 أيام من إنشائه.';
+    if (value === 'accepted') return 'موافقتك خطوة أساسية، ويعتبر العقد موثقًا عند موافقة الطرفين بحسب وصف الخدمة الرسمي.';
+    if (value === 'edit') return 'العقد لم يكتمل بعد. طلب التعديل يعني أن هناك بندًا يحتاج معالجة قبل الانتقال للمرحلة التالية.';
+    return '';
+  }
+
+  function openEligibilityCheck() {
+    const p = person();
+    document.getElementById('eligibilityContainer').innerHTML = `
+      <small style="display:block; color:var(--primary); font-weight:800; margin-bottom:8px;">فحص مبدئي</small>
+      <h3 style="margin:0 0 10px; font-size:32px;">نحتاج معلومات بسيطة إضافية</h3>
+      <p class="intro">الهدف هنا ليس إصدار قرار أهلية، بل معرفة هل أصبح الضمان الاجتماعي أقرب إلى حالة ${p.name} بعد انخفاض الدخل أم لا.</p>
+      <div class="field-grid">
+        <div class="field">
+          <label>عدد أفراد الأسرة</label>
+          <input id="eligibilityFamilySize" type="number" min="1" value="${p.familySize}">
+        </div>
+        <div class="field">
+          <label>دخل آخر للأسرة</label>
+          <input id="otherIncome" type="number" min="0" value="0">
+        </div>
+      </div>
+      <div class="inline-note">هذا الفحص يبقى مبسطًا ومخصصًا للنموذج. إذا احتاجت الحالة معلومات أكثر، فالقناة الرسمية هي المرجع النهائي.</div>
+      <div class="question-actions">
+        <button class="btn btn-primary" onclick="finishEligibilityCheck()">اعرض التقدير الأولي ←</button>
+        <button class="btn btn-secondary" onclick="returnToResults()">العودة للنتيجة</button>
+      </div>`;
+    showView('eligibilityView', 4);
+    focusPrototype();
+  }
+
+  function finishEligibilityCheck() {
+    const familySize = Number(document.getElementById('eligibilityFamilySize').value);
+    const otherIncome = Number(document.getElementById('otherIncome').value);
+    const salary = Number(state.answers.newIncome);
+    if (!familySize || familySize < 1 || Number.isNaN(otherIncome) || otherIncome < 0) { alert('تأكد من صحة البيانات'); return; }
+    const estimatedCountedIncome = salary * 0.5 + otherIncome;
+    const indicativeThreshold = 1320 + Math.max(0, familySize - 1) * 660;
+    const worthChecking = estimatedCountedIncome < indicativeThreshold;
+    document.getElementById('eligibilityContainer').innerHTML = `
+      <small style="display:block; color:var(--primary); font-weight:800; margin-bottom:8px;">نتيجة توضيحية</small>
+      <h3 style="margin:0 0 10px; font-size:32px;">${worthChecking ? 'هذه الحالة تستحق التحقق رسميًا' : 'هذه البيانات وحدها لا تكفي لإظهار قرب الاستحقاق'}</h3>
+      <p class="intro">ما قمنا به هنا هو تقدير أولي فقط. استخدمنا معلومات محدودة لمعرفة هل من المفيد إحالة المستفيد إلى رحلة التحقق الرسمية أم لا.</p>
+      <div class="metric-grid" style="margin-top:22px;">
+        <div class="metric"><small>الدخل الجديد</small><strong>${currency(salary)}</strong><span>الرقم المدخل في السيناريو</span></div>
+        <div class="metric"><small>الدخل المحتسب التقديري</small><strong>${currency(estimatedCountedIncome)}</strong><span>على أساس تبسيط للمنطق المنشور</span></div>
+        <div class="metric"><small>الحد الإرشادي التوضيحي</small><strong>${currency(indicativeThreshold)}</strong><span>مبني على عدد أفراد الأسرة في هذا الفحص</span></div>
+      </div>
+      <div class="disclaimer"><strong>تنبيه</strong>هذه ليست نتيجة أهلية رسمية، بل توضيح لكيف يمكن لصلة أن تطلب معلومات إضافية فقط عندما تحتاجها، ثم تعطي توجيهًا أوليًا مسؤولًا بدل إعطاء حكم قاطع من بيانات ناقصة.</div>
+      <div class="question-actions">
+        <a class="btn btn-primary" href="${SOURCES.socialSecurityService.url}" target="_blank" rel="noopener">الانتقال إلى الخدمة الرسمية ↗</a>
+        <button class="btn btn-secondary" onclick="returnToResults()">العودة للنتيجة</button>
+      </div>`;
+    focusPrototype();
+  }
+
+  function returnToResults() {
+    renderResults();
+    showView('resultView', 4);
+    focusPrototype();
+  }
+
+  function compareSameEvent() {
+    state.comparison = {
+      eventId: state.eventId,
+      answers: JSON.parse(JSON.stringify(state.answers))
+    };
+    document.getElementById('personaHeading').innerHTML = `
+      <small>مقارنة سريعة</small>
+      <h3>اختر شخصًا ثانيًا</h3>
+      <p>سنطبق عليه نفس الحدث نفسه، ثم نقارن كيف تختلف النتيجة. هذه من أقوى اللقطات في العرض لأنها توضح قيمة الفكرة مباشرة.</p>`;
+    showView('personaView', 1);
+    focusPrototype();
+  }
+
+  function adaptAnswersForPersona(oldAnswers) {
+    const p = person();
+    const answers = JSON.parse(JSON.stringify(oldAnswers));
+    if (state.comparison.eventId === 'income') {
+      const base = Number(oldAnswers.oldIncome);
+      const newer = Number(oldAnswers.newIncome);
+      const ratio = base > 0 ? newer / base : 1;
+      answers.oldIncome = p.income;
+      answers.newIncome = Math.max(0, Math.round(p.income * ratio));
+      answers.incomeDirection = answers.newIncome === answers.oldIncome ? 'same' : (answers.newIncome > answers.oldIncome ? 'increase' : 'decrease');
+    }
+    return answers;
+  }
+
+  function updateImpactEstimator() {
+    const value = Number(document.getElementById('impactRange').value);
+    const calls = Math.round(526945 * (value / 100));
+    const hours = Math.round((calls * 6) / 60);
+    const year = calls * 4;
+    document.getElementById('impactPercent').textContent = value + '%';
+    document.getElementById('impactCalls').textContent = formatter.format(calls);
+    document.getElementById('impactHours').textContent = formatter.format(hours);
+    document.getElementById('impactYear').textContent = formatter.format(year);
+  }
+
+  renderPersonas();
+  renderEvents();
+  updateImpactEstimator();
+  updateTabsOnScroll();
 </script>
 </body>
 </html>
