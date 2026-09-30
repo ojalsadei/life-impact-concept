@@ -716,7 +716,7 @@
 
     .hero-grid {
       grid-template-columns: 1.25fr .75fr;
-      align-items: stretch;
+      align-items: start;
     }
 
     .hero-side {
@@ -725,10 +725,10 @@
     }
 
     .hero-side .side-card {
-      height: 100%;
+      height: auto;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
     }
 
     .hero-journey {
@@ -884,7 +884,7 @@
       <button class="header-link active" data-target="idea" onclick="goTo('idea')">الفكرة</button>
       <button class="header-link" data-target="prototype" onclick="goTo('prototype')">التجربة</button>
       <button class="header-link" data-target="impact" onclick="goTo('impact')">الأثر المتوقع</button>
-      <button class="header-link" data-target="benchmarks" onclick="goTo('benchmarks')">البنشمارك</button>
+      <button class="header-link" data-target="benchmarks" onclick="goTo('benchmarks')">Benchmark</button>
     </nav>
     <button class="header-cta" onclick="startDemo()">جرّب النموذج ←</button>
   </div>
@@ -898,7 +898,7 @@
           <div class="eyebrow">فكرة قابلة للدمج داخل القنوات الحالية</div>
           <h1>
             المستفيد يعرف <span>وش صار له</span>
-            وليس بالضرورة <span>وش الخدمة التي يحتاجها</span>
+            لكن مو بالضرورة يعرف <span>وش الخدمة اللي يحتاجها</span>
           </h1>
           <p>
             <strong>صلة</strong> تربط وضع المستفيد الحالي بالتغيّر الذي مرّ به، ثم توضّح له فقط ما يرتبط بحالته: ما الذي تأثر، ما الخطوة التالية، وما الخدمة التي قد أصبحت مناسبة له الآن.
