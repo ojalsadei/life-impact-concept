@@ -702,6 +702,174 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
     }
+
+
+    /* ===== تحسينات النسخة V8 ===== */
+    .header-link.active {
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+    }
+
+    .hero {
+      padding: 42px 0 30px;
+    }
+
+    .hero-grid {
+      grid-template-columns: 1.25fr .75fr;
+      align-items: stretch;
+    }
+
+    .hero-side {
+      justify-content: flex-start;
+      gap: 16px;
+    }
+
+    .hero-side .side-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-journey {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .hero-step {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 14px;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .hero-step-number {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .hero-step strong {
+      display: block;
+      margin: 0 0 4px;
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .hero-step span {
+      display: block;
+      color: var(--text-soft);
+      line-height: 1.7;
+      font-size: 13px;
+    }
+
+    .hero-stats {
+      margin-top: 14px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .hero-stats .stat-chip {
+      min-height: 118px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .tabs-wrap,
+    .tabs {
+      display: none !important;
+    }
+
+    .persona-top {
+      justify-content: flex-start;
+    }
+
+    .persona-card h4 {
+      margin-top: 2px;
+    }
+
+    .profile-head {
+      display: block;
+    }
+
+    .profile-head h4 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .event-btn > div,
+    .option-btn > div {
+      min-width: 0;
+    }
+
+    .event-btn h4,
+    .option-btn strong {
+      display: block;
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.6;
+      font-weight: 800;
+    }
+
+    .event-btn p,
+    .option-btn small {
+      display: block;
+      margin: 4px 0 0;
+      color: var(--text-soft);
+      line-height: 1.75;
+      font-size: 14px;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+
+    .option-btn {
+      min-height: 96px;
+    }
+
+    .benchmark-card p {
+      font-size: 16px;
+      line-height: 1.95;
+    }
+
+    .benchmark-learn {
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .benchmark-stat {
+      font-size: 31px;
+    }
+
+    .comparison-note {
+      margin-top: 12px;
+      color: var(--text-soft);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-stats { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 760px) {
+      .hero-stats { grid-template-columns: 1fr; }
+      .hero-step { grid-template-columns: 30px 1fr; }
+      .hero-step-number { width: 30px; height: 30px; }
+      .option-btn { min-height: 90px; }
+    }
+
   </style>
 </head>
 <body>
@@ -713,11 +881,10 @@
       <span class="brand-subtitle">من الحالة إلى الخدمة المناسبة</span>
     </button>
     <nav class="header-nav">
-      <button class="header-link" onclick="goTo('idea')">الفكرة</button>
-      <button class="header-link" onclick="goTo('prototype')">التجربة</button>
-      <button class="header-link" onclick="goTo('impact')">الأثر المتوقع</button>
-      <button class="header-link" onclick="goTo('benchmarks')">البنشمارك</button>
-      <button class="header-link" onclick="goTo('plan')">كيف نبدأ</button>
+      <button class="header-link active" data-target="idea" onclick="goTo('idea')">الفكرة</button>
+      <button class="header-link" data-target="prototype" onclick="goTo('prototype')">التجربة</button>
+      <button class="header-link" data-target="impact" onclick="goTo('impact')">الأثر المتوقع</button>
+      <button class="header-link" data-target="benchmarks" onclick="goTo('benchmarks')">البنشمارك</button>
     </nav>
     <button class="header-cta" onclick="startDemo()">جرّب النموذج ←</button>
   </div>
@@ -725,57 +892,64 @@
 
 <main id="top">
   <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-main">
-        <div class="eyebrow">فكرة قابلة للدمج داخل القنوات الحالية</div>
-        <h1>
-          المستفيد يعرف <span>وش صار له</span>
-          وليس بالضرورة <span>وش الخدمة التي يحتاجها</span>
-        </h1>
-        <p>
-          <strong>صلة</strong> نموذج يربط وضع المستفيد الحالي والتغيّر الذي مرّ به بالخدمات والإجراءات التي تخصه فعلًا.
-          بدل أن يبدأ من اسم الخدمة، يبدأ من حالته، ثم تظهر له فقط الأشياء المرتبطة به: ماذا تأثّر، ماذا يحتاج أن يفعل، وما الخدمات التي قد أصبحت مناسبة له الآن.
-        </p>
-        <div class="hero-actions">
-          <button class="btn btn-primary" onclick="startDemo()">ابدأ من النموذج ←</button>
-          <button class="btn btn-secondary" onclick="goTo('impact')">شاهد الأثر المتوقع</button>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-main">
+          <div class="eyebrow">فكرة قابلة للدمج داخل القنوات الحالية</div>
+          <h1>
+            المستفيد يعرف <span>وش صار له</span>
+            وليس بالضرورة <span>وش الخدمة التي يحتاجها</span>
+          </h1>
+          <p>
+            <strong>صلة</strong> تربط وضع المستفيد الحالي بالتغيّر الذي مرّ به، ثم توضّح له فقط ما يرتبط بحالته: ما الذي تأثر، ما الخطوة التالية، وما الخدمة التي قد أصبحت مناسبة له الآن.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="startDemo()">ابدأ من النموذج ←</button>
+            <button class="btn btn-secondary" onclick="goTo('impact')">شاهد الأثر المتوقع</button>
+          </div>
+          <div class="hero-mini-note">ليست منصة جديدة؛ هي قدرة رقمية يمكن إضافتها داخل القنوات الحالية لتوجيه المستفيد من حالته إلى المسار الأنسب.</div>
         </div>
-        <div class="hero-mini-note">الفكرة هنا ليست منصة جديدة، بل قدرة رقمية يمكن إضافتها داخل تطبيق الوزارة أو القنوات الحالية مثل الويب، التطبيق، أو صفحة المستفيد.</div>
+
+        <aside class="hero-side">
+          <div class="side-card">
+            <small>الفكرة في ثلاث خطوات</small>
+            <strong>من التغيّر إلى المسار المناسب</strong>
+            <p>بدل أن نطلب من المستفيد معرفة اسم الخدمة من البداية، نبدأ بشيء يعرفه فعلًا: ما الذي تغيّر في حياته.</p>
+            <div class="hero-journey">
+              <div class="hero-step">
+                <span class="hero-step-number">1</span>
+                <div><strong>المستفيد يذكر التغيّر</strong><span>تغير دخل، انتهاء علاقة، وظيفة جديدة</span></div>
+              </div>
+              <div class="hero-step">
+                <span class="hero-step-number">2</span>
+                <div><strong>صلة تقرأ السياق</strong><span>العقد والدخل والأسرة والخدمات الحالية</span></div>
+              </div>
+              <div class="hero-step">
+                <span class="hero-step-number">3</span>
+                <div><strong>يظهر ما يخصه فقط</strong><span>أثر واضح، إجراء تالٍ، أو خدمة تستحق التحقق</span></div>
+              </div>
+            </div>
+          </div>
+        </aside>
       </div>
-      <aside class="hero-side">
-        <div class="side-card">
-          <small>لماذا هذا مهم الآن؟</small>
-          <strong>رحلات كثيرة، والخدمة الصحيحة لا تظهر دائمًا من البداية</strong>
-          <p>حين يبدأ المستفيد من مشكلته بدل اسم الخدمة، تقل الحيرة، وتخف الرحلات غير المناسبة، ويتضح المسار بشكل أسرع.</p>
+
+      <div class="stats-ribbon hero-stats">
+        <div class="stat-chip">
+          <strong>855</strong>
+          <span>خدمة إلكترونية معروضة في إحصاءات الوزارة</span>
         </div>
-        <div class="stats-ribbon">
-          <div class="stat-chip">
-            <strong>855</strong>
-            <span>خدمة معروضة في موقع الوزارة الرسمي</span>
-          </div>
-          <div class="stat-chip">
-            <strong>36.6M+</strong>
-            <span>معاملة منجزة بحسب الموقع الرسمي</span>
-          </div>
-          <div class="stat-chip">
-            <strong>757,960</strong>
-            <span>تفاعل في تقرير صوت المستفيد للربع الثاني 2026</span>
-          </div>
+        <div class="stat-chip">
+          <strong>36.6M+</strong>
+          <span>معاملة منجزة بحسب الموقع الرسمي للوزارة</span>
         </div>
-      </aside>
+        <div class="stat-chip">
+          <strong>757,960</strong>
+          <span>تفاعل في تقرير صوت المستفيد للربع الثاني 2026</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <div class="container tabs-wrap">
-    <div class="tabs" id="floatingTabs">
-      <button class="tab active" data-target="idea" onclick="goTo('idea')">الفكرة</button>
-      <button class="tab" data-target="prototype" onclick="goTo('prototype')">التجربة</button>
-      <button class="tab" data-target="impact" onclick="goTo('impact')">الأثر المتوقع</button>
-      <button class="tab" data-target="benchmarks" onclick="goTo('benchmarks')">البنشمارك</button>
-      <button class="tab" data-target="plan" onclick="goTo('plan')">كيف نبدأ</button>
-      <button class="tab" data-target="sources" onclick="goTo('sources')">المصادر</button>
-    </div>
-  </div>
 
   <section class="section" id="idea">
     <div class="container">
@@ -831,7 +1005,7 @@
       <div class="section-heading">
         <div class="section-kicker">منطق التجربة</div>
         <h2>أربع خطوات بسيطة، مفهومة، وقابلة للشرح خلال دقيقتين</h2>
-        <p>هذا ليس Chatbot عام، وليس بحثًا حرًا فقط. هو مسار توجيهي واضح يبني النتيجة تدريجيًا وبأسلوب مفهوم للمستفيد ولصاحب القرار داخل الوزارة.</p>
+        <p>هذه ليست محادثة عامة ولا بحثًا حرًا فقط. هي رحلة توجيهية واضحة تبني النتيجة تدريجيًا وبأسلوب مفهوم للمستفيد ولصاحب القرار داخل الوزارة.</p>
       </div>
       <div class="flow-grid">
         <div class="flow-card">
@@ -1106,43 +1280,6 @@
     </div>
   </section>
 
-  <section class="section" id="plan">
-    <div class="container">
-      <div class="section-heading">
-        <div class="section-kicker">كيف نبدأ؟</div>
-        <h2>بداية صغيرة، واضحة، وقابلة للقياس خلال <span style="color:var(--primary)">90 يومًا</span></h2>
-        <p>بدل بناء شيء ضخم من البداية، يمكن اختبار الفكرة على عدد محدود من الحالات التي تظهر فيها الحيرة بوضوح، ثم قياس الفرق قبل التوسع.</p>
-      </div>
-      <div class="plan-panel">
-        <div class="plan-grid">
-          <div class="plan-step">
-            <span>1</span>
-            <strong>تحديد النطاق</strong>
-            <p>اختيار 3 إلى 5 حالات فقط، مثل: تغير الدخل، انتهاء العلاقة الوظيفية، وظيفة جديدة، مع تحديد الخدمات والقواعد ذات الصلة.</p>
-          </div>
-          <div class="plan-step">
-            <span>2</span>
-            <strong>بناء محرك القواعد</strong>
-            <p>ترجمة القواعد الواضحة إلى منطق مبسّط: متى تظهر الخدمة؟ متى تختفي؟ ومتى نحتاج سؤالًا إضافيًا؟</p>
-          </div>
-          <div class="plan-step">
-            <span>3</span>
-            <strong>ربط النموذج بقناة فعلية</strong>
-            <p>يمكن البدء كتجربة داخل صفحة أو تطبيق قائم، وليس كمنصة مستقلة. الهدف هو التعلم السريع بأقل تعقيد تكاملي.</p>
-          </div>
-          <div class="plan-step">
-            <span>4</span>
-            <strong>قياس الأثر</strong>
-            <p>ما نسبة الرحلات التي تم توجيهها بشكل صحيح؟ كم استفسار انخفض؟ وهل فهم المستفيد الخطوة التالية بشكل أسرع؟</p>
-          </div>
-        </div>
-        <div class="disclaimer">
-          <strong>اقتراح PoC مناسب للتدريب</strong>
-          يمكن أن يكون النموذج في مرحلته الأولى غير متصل بالأنظمة الداخلية، ويستخدم شخصيات وسيناريوهات افتراضية مع قواعد مستندة إلى مصادر رسمية، ثم يتحول لاحقًا إلى تجربة مرتبطة ببيانات حقيقية إذا نالت الفكرة قبولًا.
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section class="section" id="sources">
     <div class="container">
@@ -1208,8 +1345,12 @@
       url: "https://www.hrsd.gov.sa/ministry-services/services/%D9%86%D8%B8%D8%A7%D9%85-%D8%A7%D9%84%D8%B6%D9%85%D8%A7%D9%86-%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A-%D8%A7%D9%84%D9%85%D8%B7%D9%88%D8%B1"
     },
     socialSecurityRegulation: {
-      title: "اللائحة التنفيذية لنظام الضمان الاجتماعي",
-      url: "https://www.hrsd.gov.sa/sites/default/files/2021-06/L192891-1663143960.pdf"
+      title: "نظام الضمان الاجتماعي ولائحته التنفيذية",
+      url: "https://www.hrsd.gov.sa/knowledge-centre/decisions-and-regulations/regulation-and-procedures/841045"
+    },
+    socialSecurityThreshold: {
+      title: "توضيح الوزارة لمعيار الدخل في الضمان",
+      url: "https://www.hrsd.gov.sa/media-center/news/%D8%A7%D9%84%D8%B6%D9%85%D8%A7%D9%86-%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A-%D8%AA%D9%88%D8%B3%D8%B9-%D9%86%D9%88%D8%B9%D9%8A"
     },
     contractEnd: {
       title: "إنهاء العلاقة التعاقدية",
@@ -1219,75 +1360,44 @@
       title: "إدارة العقود",
       url: "https://www.hrsd.gov.sa/ministry-services/services/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%B9%D9%82%D9%88%D8%AF"
     },
-    empowerment: {
-      title: "فرص التمكين",
-      url: "https://www.hrsd.gov.sa/en/ministry-services/services/%D8%A7%D9%84%D8%AA%D9%82%D8%AF%D9%8A%D9%85-%D8%B9%D9%84%D9%89-%D9%81%D8%B1%D8%B5%D8%A9-%D8%A7%D9%84%D8%AA%D9%85%D9%83%D9%8A%D9%86"
-    },
     eosCalculator: {
       title: "حاسبة مكافأة نهاية الخدمة",
       url: "https://www.hrsd.gov.sa/ministry-services/services/%D8%AD%D8%A7%D8%B3%D8%A8%D8%A9-%D9%85%D9%83%D8%A7%D9%81%D8%A3%D8%A9-%D9%86%D9%87%D8%A7%D9%8A%D8%A9-%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A9"
     },
     saned: {
       title: "ساند",
-      url: "https://beta.gosi.gov.sa/ar/saned"
+      url: "https://www.gosi.gov.sa/GOSIOnline/FAQ_Contributor?locale=ar_SA"
     }
   };
 
   const PERSONAS = {
     khalid: {
-      id: "khalid",
-      name: "خالد",
-      age: 41,
-      letter: "خ",
+      id: "khalid", name: "خالد", age: 41,
       description: "موظف ومتزوج ولديه أسرة من 4 أفراد",
-      employmentStatus: "employed",
-      employmentLabel: "موظف",
-      hasActiveContract: true,
-      income: 4500,
-      familySize: 4,
-      socialSecurity: true,
-      employable: true,
-      currentServices: ["الضمان الاجتماعي", "العقود الوظيفية"],
-      nationality: "saudi"
+      employmentStatus: "employed", employmentLabel: "موظف",
+      hasActiveContract: true, income: 4500, familySize: 4,
+      socialSecurity: true, currentServices: ["الضمان الاجتماعي", "العقود الوظيفية"], nationality: "saudi"
     },
     reem: {
-      id: "reem",
-      name: "ريم",
-      age: 27,
-      letter: "ر",
+      id: "reem", name: "ريم", age: 27,
       description: "موظفة ومتزوجة ولديها أسرة من 3 أفراد",
-      employmentStatus: "employed",
-      employmentLabel: "موظفة",
-      hasActiveContract: true,
-      income: 8500,
-      familySize: 3,
-      socialSecurity: false,
-      employable: true,
-      currentServices: ["العقود الوظيفية"],
-      nationality: "saudi"
+      employmentStatus: "employed", employmentLabel: "موظفة",
+      hasActiveContract: true, income: 8500, familySize: 3,
+      socialSecurity: false, currentServices: ["العقود الوظيفية"], nationality: "saudi"
     },
     salman: {
-      id: "salman",
-      name: "سلمان",
-      age: 24,
-      letter: "س",
-      description: "باحث عن عمل ولا يوجد لديه عقد فعال",
-      employmentStatus: "jobSeeker",
-      employmentLabel: "باحث عن عمل",
-      hasActiveContract: false,
-      income: 0,
-      familySize: 1,
-      socialSecurity: false,
-      employable: true,
-      currentServices: [],
-      nationality: "saudi"
+      id: "salman", name: "سلمان", age: 24,
+      description: "باحث عن عمل ولا يوجد لديه عقد فعّال",
+      employmentStatus: "jobSeeker", employmentLabel: "باحث عن عمل",
+      hasActiveContract: false, income: 0, familySize: 1,
+      socialSecurity: false, currentServices: [], nationality: "saudi"
     }
   };
 
   const EVENTS = [
-    { id: "income", icon: "↕", title: "تغير الدخل", desc: "أبغى أعرف ماذا قد يتأثر إذا تغير دخلي" },
-    { id: "contractEnd", icon: "◷", title: "انتهاء العلاقة الوظيفية", desc: "انتهى عقدي أو انتهت علاقتي الحالية" },
-    { id: "newJob", icon: "+", title: "وظيفة جديدة", desc: "وصلني عقد جديد أو بدأت فرصة عمل جديدة" }
+    { id: "income", icon: "↕", title: "تغير الدخل", desc: "تغير دخلي وأبي أعرف وش ممكن يتأثر" },
+    { id: "contractEnd", icon: "◷", title: "انتهاء العلاقة الوظيفية", desc: "علاقتي الوظيفية انتهت أو بتنتهي" },
+    { id: "newJob", icon: "+", title: "وظيفة جديدة", desc: "وصلني عرض أو بدأت وظيفة جديدة" }
   ];
 
   const state = {
@@ -1297,33 +1407,38 @@
     results: [],
     checkedRules: 0,
     excludedRules: 0,
-    comparison: null
+    comparison: null,
+    eligibilityIncome: null
   };
 
   const formatter = new Intl.NumberFormat('en-US');
   const currency = n => formatter.format(Number(n || 0)) + " ريال";
 
+  function person() { return PERSONAS[state.personaId]; }
+
   function goTo(id) {
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function focusPrototype() {
     const el = document.getElementById('experienceShell');
-    if (el) requestAnimationFrame(() => el.scrollIntoView({behavior:'smooth', block:'start'}));
+    if (el) requestAnimationFrame(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }));
   }
 
-  function updateTabsOnScroll() {
-    const sections = [...document.querySelectorAll('main .section')];
-    const tabs = [...document.querySelectorAll('.tab')];
+  function updateNavOnScroll() {
+    const links = [...document.querySelectorAll('.header-link[data-target]')];
+    const ids = links.map(link => link.dataset.target);
     let current = 'idea';
-    sections.forEach(section => {
+    ids.forEach(id => {
+      const section = document.getElementById(id);
+      if (!section) return;
       const rect = section.getBoundingClientRect();
-      if (rect.top <= 170 && rect.bottom > 170) current = section.id;
+      if (rect.top <= 150 && rect.bottom > 150) current = id;
     });
-    tabs.forEach(tab => tab.classList.toggle('active', tab.dataset.target === current));
+    links.forEach(link => link.classList.toggle('active', link.dataset.target === current));
   }
-  window.addEventListener('scroll', updateTabsOnScroll);
+  window.addEventListener('scroll', updateNavOnScroll, { passive: true });
 
   function updateSteps(step) {
     document.querySelectorAll('.step').forEach(item => {
@@ -1338,14 +1453,12 @@
     updateSteps(step);
   }
 
-  function person() { return PERSONAS[state.personaId]; }
-
-  function renderPersonas() {
+  function renderPersonas(allowedIds = null) {
     const grid = document.getElementById('personasGrid');
-    grid.innerHTML = Object.values(PERSONAS).map(p => `
+    const list = Object.values(PERSONAS).filter(p => !allowedIds || allowedIds.includes(p.id));
+    grid.innerHTML = list.map(p => `
       <button class="persona-card" onclick="choosePersona('${p.id}')">
         <div class="persona-top">
-          <div class="persona-avatar">${p.letter}</div>
           <span class="persona-badge">بيانات افتراضية</span>
         </div>
         <h4>${p.name}، ${p.age}</h4>
@@ -1356,7 +1469,7 @@
           <div class="fact"><span>أفراد الأسرة</span><strong>${p.familySize}</strong></div>
         </div>
         <div>
-          <div style="margin-bottom:8px; color:var(--muted); font-size:12px; font-weight:700;">الخدمات الحالية</div>
+          <div style="margin-bottom:8px;color:var(--muted);font-size:12px;font-weight:700;">الخدمات الحالية</div>
           <div class="service-list">${(p.currentServices.length ? p.currentServices : ['لا توجد خدمة حالية مرتبطة']).map(s => `<span class="service-pill">${s}</span>`).join('')}</div>
         </div>
         <span class="persona-link">اختر ${p.name} ←</span>
@@ -1368,49 +1481,17 @@
     document.getElementById('eventsList').innerHTML = EVENTS.map(event => `
       <button class="event-btn" onclick="chooseEvent('${event.id}')">
         <span class="event-icon">${event.icon}</span>
-        <div>
-          <h4>${event.title}</h4>
-          <p>${event.desc}</p>
-        </div>
+        <div><h4>${event.title}</h4><p>${event.desc}</p></div>
         <span class="event-arrow">←</span>
       </button>
     `).join('');
   }
 
-  function startDemo() {
-    state.comparison = null;
-    state.personaId = null;
-    state.eventId = null;
-    state.answers = {};
-    showPersonaView();
-    focusPrototype();
-  }
-
-  function choosePersona(id) {
-    state.personaId = id;
-    if (state.comparison) {
-      state.eventId = state.comparison.eventId;
-      state.answers = adaptAnswersForPersona(state.comparison.answers);
-      state.comparison = null;
-      renderProfile();
-      runAnalysis();
-      return;
-    }
-    state.eventId = null;
-    state.answers = {};
-    renderProfile();
-    showView('eventView', 2);
-    focusPrototype();
-  }
-
   function profileHTML(p) {
     return `
       <div class="profile-head">
-        <div class="persona-avatar" style="width:48px;height:48px;border-radius:15px;font-size:18px;">${p.letter}</div>
-        <div>
-          <h4>${p.name}، ${p.age}</h4>
-          <p>${p.description}</p>
-        </div>
+        <h4>${p.name}، ${p.age}</h4>
+        <p>${p.description}</p>
       </div>
       <div class="profile-block">
         <small>الخدمات الحالية</small>
@@ -1432,16 +1513,51 @@
     document.getElementById('questionProfile').innerHTML = profileHTML(p);
   }
 
+  function startDemo() {
+    state.comparison = null;
+    state.personaId = null;
+    state.eventId = null;
+    state.answers = {};
+    renderPersonas();
+    showPersonaView();
+    focusPrototype();
+  }
+
+  function choosePersona(id) {
+    const comparison = state.comparison;
+    state.personaId = id;
+
+    if (comparison) {
+      state.eventId = comparison.eventId;
+      state.answers = adaptAnswersForPersona(comparison.answers, PERSONAS[comparison.sourcePersonaId], person());
+      state.comparison = null;
+      renderPersonas();
+      renderProfile();
+      runAnalysis();
+      return;
+    }
+
+    state.eventId = null;
+    state.answers = {};
+    renderProfile();
+    showView('eventView', 2);
+    focusPrototype();
+  }
+
   function showPersonaView() {
+    state.comparison = null;
+    renderPersonas();
     document.getElementById('personaHeading').innerHTML = `
       <small>الخطوة 1 من 4</small>
       <h3>اختر مستفيدًا افتراضيًا</h3>
-      <p>هذه شخصيات افتراضية لأغراض العرض فقط. الهدف هو توضيح كيف تتغيّر النتيجة حسب وضع كل شخص، لا حسب اسم الحدث فقط.</p>`;
+      <p>الشخصيات والبيانات افتراضية. الهدف هو اختبار كيف تختلف النتيجة حسب وضع كل شخص، لا حسب اسم الحدث فقط.</p>`;
     showView('personaView', 1);
     focusPrototype();
   }
 
   function showEventView() {
+    state.comparison = null;
+    renderPersonas();
     showView('eventView', 2);
     focusPrototype();
   }
@@ -1462,39 +1578,25 @@
 
   function renderIncomeQuestions() {
     const p = person();
-    const defaultValue = p.id === 'reem' ? 4000 : (p.income > 0 ? p.income - 500 : 2500);
-
+    const defaultValue = p.id === 'reem' ? 4000 : (p.income > 0 ? Math.max(0, p.income - 500) : 2500);
     document.getElementById('questionsContainer').innerHTML = `
       <div class="view-heading">
         <small>الخطوة 3 من 4</small>
         <h3>كم أصبح الدخل الجديد؟</h3>
-        <p>الرقم نفسه يحدد هل الدخل ارتفع أو انخفض. بعدها نربط اتجاه التغيّر بوضع المستفيد الحالي بدل إعطاء نفس النتيجة للجميع.</p>
+        <p>الرقم نفسه يحدد اتجاه التغيّر. بعدها نربطه بوضع المستفيد بدل إعطاء نفس الرسالة للجميع.</p>
       </div>
       <div class="field-grid">
-        <div class="field">
-          <label>الدخل الحالي</label>
-          <input value="${p.income}" readonly>
-        </div>
-        <div class="field">
-          <label>الدخل الجديد</label>
-          <input id="newIncome" type="number" min="0" value="${Math.max(0, defaultValue)}">
-        </div>
+        <div class="field"><label>الدخل الحالي</label><input value="${p.income}" readonly></div>
+        <div class="field"><label>الدخل الجديد</label><input id="newIncome" type="number" min="0" value="${defaultValue}"></div>
       </div>
-      <div class="inline-note">إذا لم يتغير الرقم فلن نظهر أثرًا مصطنعًا. وإذا كان الشخص باحثًا عن عمل وظهر له دخل جديد، سنوضح أن مصدر الدخل مهم قبل ربطه بخدمات العمل.</div>
-      <div class="question-actions">
-        <button class="btn btn-primary" onclick="submitIncome()">اعرض النتيجة ←</button>
-      </div>`;
+      <div class="inline-note">إذا لم يتغير الدخل فلن نعرض أثرًا مصطنعًا. وإذا ظهر دخل جديد لشخص باحث عن عمل فلن نفترض تلقائيًا أنه راتب وظيفة.</div>
+      <div class="question-actions"><button class="btn btn-primary" onclick="submitIncome()">اعرض النتيجة ←</button></div>`;
   }
 
   function submitIncome() {
     const p = person();
     const newIncome = Number(document.getElementById('newIncome').value);
-
-    if (Number.isNaN(newIncome) || newIncome < 0) {
-      alert('أدخل قيمة صحيحة للدخل');
-      return;
-    }
-
+    if (Number.isNaN(newIncome) || newIncome < 0) { alert('أدخل قيمة صحيحة للدخل'); return; }
     state.answers.oldIncome = p.income;
     state.answers.newIncome = newIncome;
     state.answers.incomeDirection = newIncome === p.income ? 'same' : (newIncome > p.income ? 'increase' : 'decrease');
@@ -1507,10 +1609,10 @@
       document.getElementById('questionsContainer').innerHTML = `
         <div class="view-heading">
           <small>الخطوة 3 من 4</small>
-          <h3>لا يوجد عقد فعّال لهذا المستفيد</h3>
-          <p>بدل أن ندخل المستفيد في أسئلة لا تنطبق عليه، تتوقف صلة هنا وتوضح أن هذا الحدث غير مناسب لوضعه الحالي.</p>
+          <h3>لا يوجد عقد فعّال لهذه الرحلة</h3>
+          <p>صلة توقف الرحلة هنا بدل إدخال المستفيد في أسئلة وخدمات لا تنطبق على وضعه.</p>
         </div>
-        <div class="inline-note">هذا مثال مهم على منطق "استبعد ما لا يخصه". سلمان مثلًا لا يملك عقدًا حاليًا، لذلك لا معنى لرحلة إنهاء علاقة وظيفية له داخل هذا السيناريو.</div>
+        <div class="inline-note">هذا مقصود: سلمان لا يملك عقدًا فعّالًا، لذلك لا معنى لرحلة إنهاء علاقة وظيفية له داخل هذا السيناريو.</div>
         <div class="question-actions">
           <button class="btn btn-primary" onclick="submitNoContractCase()">اعرض التوضيح ←</button>
           <button class="btn btn-secondary" onclick="showEventView()">اختر حدثًا آخر</button>
@@ -1521,17 +1623,23 @@
     document.getElementById('questionsContainer').innerHTML = `
       <div class="view-heading">
         <small>الخطوة 3 من 4</small>
-        <h3>كيف انتهت العلاقة الوظيفية؟</h3>
-        <p>نوع انتهاء العلاقة قد يغيّر النتيجة. لذلك نطلب هذه المعلومة قبل عرض ما قد يرتبط بالحالة.</p>
+        <h3>وين وصلت العلاقة الوظيفية؟</h3>
+        <p>نفرّق بين علاقة انتهت فعلًا وعلاقة ما زالت تحتاج إجراء إنهاء. بعدها نسأل عن السبب لأن بعض المسارات تختلف حسبه.</p>
       </div>
+      <div class="options" id="contractStage">
+        <button class="option-btn" data-value="pending"><span class="opt-mark">1</span><div><strong>الإنهاء ما اكتمل بعد</strong><small>العقد ما زال فعّالًا وإجراء الإنهاء لم يكتمل</small></div><span class="event-arrow">←</span></button>
+        <button class="option-btn" data-value="ended"><span class="opt-mark">2</span><div><strong>انتهت العلاقة فعلًا</strong><small>توقف العمل وأبي أعرف وش يترتب بعدها</small></div><span class="event-arrow">←</span></button>
+      </div>
+      <div style="height:16px"></div>
+      <div class="view-heading" style="margin-bottom:14px;"><h3 style="font-size:24px;">وش سبب الانتهاء؟</h3></div>
       <div class="options" id="contractReason">
         <button class="option-btn" data-value="expiry"><span class="opt-mark">1</span><div><strong>انتهت مدة العقد</strong><small>وصل العقد إلى نهايته</small></div><span class="event-arrow">←</span></button>
         <button class="option-btn" data-value="employer"><span class="opt-mark">2</span><div><strong>إنهاء من صاحب العمل</strong><small>انتهت العلاقة من جهة صاحب العمل</small></div><span class="event-arrow">←</span></button>
         <button class="option-btn" data-value="resignation"><span class="opt-mark">3</span><div><strong>استقالة</strong><small>أنهيت العلاقة من طرفي</small></div><span class="event-arrow">←</span></button>
       </div>
-      <div class="question-actions">
-        <button class="btn btn-primary" onclick="submitContract()">اعرض النتيجة ←</button>
-      </div>`;
+      <div class="question-actions"><button class="btn btn-primary" onclick="submitContract()">اعرض النتيجة ←</button></div>`;
+
+    setupChoice('contractStage', value => state.answers.contractStage = value);
     setupChoice('contractReason', value => state.answers.contractReason = value);
   }
 
@@ -1541,67 +1649,56 @@
   }
 
   function submitContract() {
+    if (!state.answers.contractStage) { alert('حدد هل العلاقة انتهت فعلًا أو ما زالت تحتاج إنهاء'); return; }
     if (!state.answers.contractReason) { alert('اختر سبب انتهاء العلاقة'); return; }
     runAnalysis();
   }
 
   function renderNewJobQuestions() {
     const p = person();
-
     const currentContractField = p.hasActiveContract ? `
       <div class="field">
-        <label>ما وضع عقدك الحالي قبل بدء الوظيفة الجديدة؟</label>
-        <select id="jobNature">
-          <option value="transition">سينتهي قبل بدء العقد الجديد</option>
-          <option value="activeRemains">سيبقى ساريًا</option>
+        <label>وش وضع وظيفتك الحالية بالنسبة للجديدة؟</label>
+        <select id="currentJobStatus">
+          <option value="transition">ستنتهي أو انتهت قبل بدء الوظيفة الجديدة</option>
+          <option value="activeRemains">ما زالت قائمة</option>
         </select>
       </div>` : '';
 
     document.getElementById('questionsContainer').innerHTML = `
       <div class="view-heading">
         <small>الخطوة 3 من 4</small>
-        <h3>أين وصل العقد الجديد؟</h3>
-        <p>لا نعتبر مجرد وصول العقد تغيرًا فعليًا في حالة المستفيد. نميّز بين المراجعة والموافقة وطلب التعديل، ونراعي وجود عقد حالي من عدمه.</p>
+        <h3>وين وصلت الوظيفة الجديدة؟</h3>
+        <p>نميّز بين عرض ما زال تحت المراجعة، وموافقة من طرفك، وتغيير بدأ فعليًا. الأثر على الدخل والخدمات لا يبدأ بنفس اللحظة في كل حالة.</p>
       </div>
       <div class="options" id="newJobState">
-        <button class="option-btn" data-value="review"><span class="opt-mark">1</span><div><strong>وصلني العقد وأراجعه</strong><small>لم أتخذ قراري بعد</small></div><span class="event-arrow">←</span></button>
-        <button class="option-btn" data-value="accepted"><span class="opt-mark">2</span><div><strong>وافقت على العقد من جهتي</strong><small>ما زال اكتمال التوثيق مرتبطًا بإجراءات الطرفين</small></div><span class="event-arrow">←</span></button>
+        <button class="option-btn" data-value="review"><span class="opt-mark">1</span><div><strong>وصلني العرض وأراجعه</strong><small>ما اتخذت قراري بعد</small></div><span class="event-arrow">←</span></button>
+        <button class="option-btn" data-value="accepted"><span class="opt-mark">2</span><div><strong>وافقت على العرض من جهتي</strong><small>وافقت لكن العمل الجديد ما بدأ فعليًا</small></div><span class="event-arrow">←</span></button>
         <button class="option-btn" data-value="edit"><span class="opt-mark">3</span><div><strong>طلبت تعديل العقد</strong><small>العقد ما زال يحتاج تعديلًا قبل اكتماله</small></div><span class="event-arrow">←</span></button>
+        <button class="option-btn" data-value="started"><span class="opt-mark">4</span><div><strong>بدأت العمل فعليًا</strong><small>بدأت العلاقة الجديدة وأصبح الدخل الجديد فعليًا</small></div><span class="event-arrow">←</span></button>
       </div>
       <div class="field-grid">
-        <div class="field">
-          <label>الراتب المذكور في العقد الجديد</label>
-          <input id="newSalary" type="number" min="0" value="6500">
-        </div>
+        <div class="field"><label>الراتب في الوظيفة الجديدة</label><input id="newSalary" type="number" min="1" value="6500"></div>
         ${currentContractField}
       </div>
-      <div class="question-actions">
-        <button class="btn btn-primary" onclick="submitNewJob()">اعرض النتيجة ←</button>
-      </div>`;
+      <div class="question-actions"><button class="btn btn-primary" onclick="submitNewJob()">اعرض النتيجة ←</button></div>`;
 
     setupChoice('newJobState', value => state.answers.newJobState = value);
   }
 
   function submitNewJob() {
-    if (!state.answers.newJobState) {
-      alert('اختر حالة العقد الجديد');
-      return;
-    }
-
+    if (!state.answers.newJobState) { alert('اختر المرحلة الحالية للوظيفة الجديدة'); return; }
     const salary = Number(document.getElementById('newSalary').value);
-    if (Number.isNaN(salary) || salary < 0) {
-      alert('أدخل راتبًا صحيحًا');
-      return;
-    }
-
+    if (Number.isNaN(salary) || salary <= 0) { alert('أدخل راتبًا صحيحًا أكبر من صفر'); return; }
     state.answers.newSalary = salary;
-    const jobNature = document.getElementById('jobNature');
-    state.answers.jobNature = jobNature ? jobNature.value : 'noCurrentContract';
+    const current = document.getElementById('currentJobStatus');
+    state.answers.currentJobStatus = current ? current.value : 'noCurrentJob';
     runAnalysis();
   }
 
   function setupChoice(containerId, callback) {
     const container = document.getElementById(containerId);
+    if (!container) return;
     container.querySelectorAll('.option-btn').forEach(option => {
       option.addEventListener('click', () => {
         container.querySelectorAll('.option-btn').forEach(i => i.classList.remove('selected'));
@@ -1616,22 +1713,48 @@
     focusPrototype();
     const items = document.querySelectorAll('.analysis-step');
     items.forEach(item => item.classList.remove('done'));
-    items.forEach((item, index) => setTimeout(() => item.classList.add('done'), 260 + index * 340));
+    items.forEach((item, index) => setTimeout(() => item.classList.add('done'), 240 + index * 320));
     setTimeout(() => {
       calculateResults();
       renderResults();
       showView('resultView', 4);
       focusPrototype();
-    }, 1750);
+    }, 1650);
   }
 
   function socialSecurityScreening(p, earnedIncome, otherIncome = 0) {
     const threshold = 1320 + Math.max(0, p.familySize - 1) * 660;
     const countedIncome = (Number(earnedIncome) * 0.5) + Number(otherIncome || 0);
+    return { threshold, countedIncome, worthChecking: countedIncome < threshold };
+  }
+
+  function addResult(results, item) { if (item) results.push(item); }
+
+  function socialSecurityChangeCard(p, oldIncome, newIncome, timing = 'current') {
+    const direction = newIncome === oldIncome ? 'same' : (newIncome > oldIncome ? 'increase' : 'decrease');
+    if (direction === 'same') return null;
+    const future = timing === 'future';
+    if (direction === 'decrease') {
+      return {
+        group: future ? 'may' : 'affected', icon: '↓', type: '', tag: future ? 'أثر متوقع' : 'قد يتغير المبلغ',
+        title: future ? 'إذا بدأ الدخل الأقل فقد يتغير مبلغ المعاش' : 'قد يتغير مبلغ المعاش بعد انخفاض الدخل',
+        desc: future
+          ? `إذا بدأ الدخل الجديد فعلًا وأصبح ${currency(newIncome)} بدل ${currency(oldIncome)}، فقد يتغير مقدار المعاش بعد إعادة التقييم.`
+          : `انخفض الدخل من ${currency(oldIncome)} إلى ${currency(newIncome)}. مع ثبات بقية البيانات، الانخفاض لا يجعل شرط الدخل أسوأ من ناحية الدخل وحده، وقد يتغير مقدار المعاش بعد إعادة التقييم.`,
+        explain: 'الضمان يعتمد على الدخل المحتسب وبقية بيانات الأسرة. لذلك لا نحوّل انخفاض الدخل إلى رسالة تخوّف من فقدان الأهلية؛ الأثر الأقرب هنا هو تغير مقدار المعاش مع بقاء التقييم الكامل للجهة المختصة.',
+        why: 'مستفيد حالي + انخفاض الدخل = أثر محتمل على مقدار المعاش، لا افتراض فقدان الأهلية',
+        source: SOURCES.socialSecurityRegulation
+      };
+    }
     return {
-      threshold,
-      countedIncome,
-      worthChecking: countedIncome < threshold
+      group: future ? 'may' : 'affected', icon: '↑', type: 'warn', tag: future ? 'أثر متوقع' : 'يحتاج مراجعة',
+      title: future ? 'إذا بدأ الدخل الأعلى فقد يتأثر مبلغ المعاش أو الاستحقاق' : 'ارتفاع الدخل قد يغيّر مبلغ المعاش أو يؤثر على الاستحقاق',
+      desc: future
+        ? `إذا بدأ الدخل الجديد فعلًا وأصبح ${currency(newIncome)} بدل ${currency(oldIncome)}، فقد ينخفض المعاش أو يتأثر شرط الدخل بعد التقييم الكامل.`
+        : `ارتفع الدخل من ${currency(oldIncome)} إلى ${currency(newIncome)}، وهنا قد ينخفض مقدار المعاش أو يتأثر شرط الدخل بعد التقييم الكامل.`,
+      explain: 'لا نصدر حكمًا نهائيًا من الراتب وحده لأن الدخل المحتسب وبقية دخل الأسرة والثروة والشروط الأخرى تدخل في الدراسة.',
+      why: 'مستفيد حالي + ارتفاع الدخل = احتمال تغير المبلغ أو الاستحقاق',
+      source: SOURCES.socialSecurityRegulation
     };
   }
 
@@ -1648,48 +1771,29 @@
 
       checked++;
       if (direction === 'same') {
-        results.push({
-          group: 'affected', icon: '=', type: 'neutral', tag: 'لا يوجد أثر',
-          title: 'الدخل لم يتغير في هذا السيناريو',
-          desc: 'بما أن الدخل الجديد يساوي الدخل الحالي، فلا يوجد تغير نربطه بخدمة أو إجراء جديد.',
-          explain: 'صلة لا تصنع نتيجة لمجرد أن المستخدم أكمل الخطوات. إذا لم يتغير شيء، فالنتيجة الصحيحة هي أن لا أثر جديد ظهر.',
-          why: 'الدخل الحالي = الدخل الجديد', source: null
-        });
-      } else { excluded++; }
-
-      checked++;
-      if (p.socialSecurity && direction === 'decrease') {
-        results.push({
-          group: 'affected', icon: '↓', type: '', tag: 'أثر محتمل على المبلغ',
-          title: 'انخفاض الدخل لا يعني فقدان الأهلية من ناحية الدخل وحده',
-          desc: `دخل ${p.name} انخفض من ${currency(oldIncome)} إلى ${currency(newIncome)}. من ناحية الدخل وحده، هذا لا يجعل شرط الدخل أسوأ، لكنه قد يؤثر على مقدار المعاش بعد إعادة التقييم.`,
-          explain: 'النظام يربط مقدار المعاش بالدخل المحتسب. لذلك انخفاض الدخل قد يرفع مبلغ المعاش أو يبقيه كما هو حسب بقية دخل الأسرة والشروط، لكنه لا يُعرض هنا كخطر على الأهلية من ناحية الدخل.',
-          why: 'مستفيد حالي + انخفاض الدخل = راقب مقدار المعاش، لا تفترض فقدان الأهلية',
-          source: SOURCES.socialSecurityRegulation
-        });
-      } else { excluded++; }
-
-      checked++;
-      if (p.socialSecurity && direction === 'increase') {
-        results.push({
-          group: 'affected', icon: '↑', type: 'warn', tag: 'يحتاج مراجعة',
-          title: 'ارتفاع الدخل قد يغيّر مقدار المعاش أو يؤثر على الاستحقاق',
-          desc: `دخل ${p.name} ارتفع من ${currency(oldIncome)} إلى ${currency(newIncome)}. هنا يصبح أثر الدخل أكثر أهمية لأنه قد يخفض المعاش أو يؤثر على شرط الدخل بعد التقييم الكامل.`,
-          explain: 'لا نصدر حكمًا نهائيًا من الراتب وحده لأن بقية دخل الأسرة والثروة والشروط الأخرى تدخل في الدراسة.',
-          why: 'مستفيد حالي + ارتفاع الدخل = احتمال تغير المبلغ أو الاستحقاق',
-          source: SOURCES.socialSecurityRegulation
+        addResult(results, {
+          group:'affected', icon:'=', type:'neutral', tag:'لا يوجد أثر جديد',
+          title:'الدخل لم يتغير في هذا السيناريو',
+          desc:'بما أن الدخل الجديد يساوي الحالي، فلا يوجد تغير جديد نربطه بخدمة أو إجراء.',
+          explain:'أحيانًا تكون النتيجة الصحيحة هي عدم وجود أثر جديد. صلة لا تعرض خدمة فقط لأن المستخدم أكمل الخطوات.',
+          why:'الدخل الحالي = الدخل الجديد', source:null
         });
       } else { excluded++; }
 
       checked++;
       if (p.socialSecurity && direction !== 'same') {
-        results.push({
-          group: 'next', icon: '!', type: 'warn', tag: 'تحديث عند التأثير',
-          title: 'إذا كان التغير مؤثرًا على الاستحقاق أو مقدار المعاش فيلزم إبلاغ الوزارة',
-          desc: 'النظام ينص على إبلاغ الوزارة بالتغير الذي يؤثر على الاستحقاق أو مقدار المعاش خلال 15 يومًا من تاريخ التغير.',
-          explain: 'هذا الإجراء ينطبق على التغير المؤثر، سواء كان ارتفاعًا أو انخفاضًا، وليس على الانخفاض فقط.',
-          why: 'مستفيد حالي + تغير مؤثر = تحديث الحالة خلال المدة النظامية',
-          source: SOURCES.socialSecurityRegulation
+        addResult(results, socialSecurityChangeCard(p, oldIncome, newIncome, 'current'));
+      } else { excluded++; }
+
+      checked++;
+      if (p.socialSecurity && direction !== 'same') {
+        addResult(results, {
+          group:'next', icon:'!', type:'warn', tag:'إذا كان التغير مؤثرًا',
+          title:'التغير المؤثر يحتاج إبلاغ الوزارة',
+          desc:'النظام ينص على إبلاغ الوزارة بالتغير الذي يؤثر على استحقاق المعاش أو مقداره خلال 15 يومًا من تاريخ التغير.',
+          explain:'التنبيه مرتبط بكون التغير مؤثرًا، وليس بمجرد ارتفاع أو انخفاض أي رقم بشكل آلي.',
+          why:'مستفيد حالي + تغير مؤثر = إبلاغ الوزارة خلال المدة النظامية',
+          source:SOURCES.socialSecurityRegulation
         });
       } else { excluded++; }
 
@@ -1697,224 +1801,256 @@
       if (!p.socialSecurity && direction === 'decrease') {
         const signal = socialSecurityScreening(p, newIncome);
         if (signal.worthChecking) {
-          results.push({
-            group: 'may', icon: '؟', type: '', tag: 'يستحق التحقق',
-            title: 'الضمان الاجتماعي أصبح أقرب لأن يكون خدمة تستحق الفحص',
-            desc: `بحسب الدخل الوظيفي المعروف في النموذج وعدد أفراد الأسرة، أصبح هناك مؤشر أولي يستحق التحقق الرسمي. لا يعني ذلك أن ${p.name} مؤهل تلقائيًا.`,
-            explain: `في الفحص الأولي فقط، الدخل المحتسب التقديري من الراتب هو ${currency(signal.countedIncome)} مقابل حد إرشادي للأسرة قدره ${currency(signal.threshold)}. لا تزال بقية الدخول والثروة والشروط مطلوبة قبل أي قرار.`,
-            why: 'غير مستفيد حاليًا + انخفاض الدخل + اجتياز إشارة الدخل الأولية',
-            source: SOURCES.socialSecurityService,
-            action: 'eligibility'
+          addResult(results, {
+            group:'may', icon:'؟', type:'', tag:'يستحق التحقق',
+            title:'الضمان الاجتماعي أصبح خدمة تستحق الفحص',
+            desc:`بحسب الراتب المعروف وعدد أفراد الأسرة في النموذج ظهرت إشارة أولية تستحق التحقق الرسمي. هذا لا يعني أن ${p.name} مؤهل تلقائيًا.`,
+            explain:`الدخل المحتسب التقديري من الراتب وحده هو ${currency(signal.countedIncome)} مقابل حد إرشادي للأسرة قدره ${currency(signal.threshold)}. بقية الدخل والثروة والشروط ما زالت مطلوبة.`,
+            why:'غير مستفيد + انخفاض دخل + إشارة دخل أولية',
+            source:SOURCES.socialSecurityThreshold, action:'eligibility', eligibilityIncome:newIncome
           });
         } else {
-          results.push({
-            group: 'affected', icon: '↓', type: 'neutral', tag: 'لا تظهر خدمة جديدة',
-            title: 'الدخل انخفض، لكن لا توجد إشارة كافية لإظهار الضمان الآن',
-            desc: 'الانخفاض وحده ليس سببًا كافيًا لعرض الضمان. على بيانات النموذج الحالية لا يمر الدخل المعروف الفحص الأولي، لذلك لا نعرض الخدمة كاقتراح.',
-            explain: 'هذا يمنع أن تظهر خدمة الضمان لأي شخص لمجرد أن راتبه انخفض قليلًا.',
-            why: 'انخفاض الدخل ≠ أهلية تلقائية',
-            source: SOURCES.socialSecurityService
+          addResult(results, {
+            group:'affected', icon:'↓', type:'neutral', tag:'لا تظهر خدمة جديدة',
+            title:'الدخل انخفض، لكن الضمان لا يظهر من هذا التغير وحده',
+            desc:'انخفاض الراتب وحده ليس سببًا كافيًا لعرض الضمان. على البيانات المتوفرة لا توجد إشارة دخل أولية كافية.',
+            explain:'هذا يمنع ظهور الضمان لأي شخص لمجرد أن راتبه انخفض قليلًا.',
+            why:'انخفاض الدخل لا يساوي أهلية تلقائية', source:SOURCES.socialSecurityThreshold
           });
         }
       } else { excluded++; }
 
       checked++;
-      if (!p.socialSecurity && direction === 'increase' && p.employmentStatus === 'jobSeeker' && oldIncome === 0 && newIncome > 0) {
-        results.push({
-          group: 'next', icon: '؟', type: 'neutral', tag: 'نحتاج معلومة',
-          title: 'مصدر الدخل مهم قبل تحديد الأثر',
-          desc: 'لأن المستفيد باحث عن عمل وكان دخله صفرًا، ظهور دخل جديد قد يكون من وظيفة جديدة أو من مصدر آخر. لا يصح أن نفترض أحدهما تلقائيًا.',
-          explain: 'إذا كان الدخل من وظيفة جديدة فالمسار الأنسب هو حدث "وظيفة جديدة". أما إذا كان من مصدر آخر فالأثر يختلف.',
-          why: 'باحث عن عمل + دخل جديد = لا نفترض أنه راتب وظيفي دون معلومة إضافية',
-          source: null
+      if (!p.socialSecurity && p.employmentStatus === 'jobSeeker' && oldIncome === 0 && newIncome > 0) {
+        addResult(results, {
+          group:'next', icon:'؟', type:'neutral', tag:'نحتاج معلومة',
+          title:'مصدر الدخل مهم قبل تحديد الأثر',
+          desc:'ظهور دخل جديد لباحث عن عمل قد يعني وظيفة جديدة أو مصدر دخل آخر. لا يصح أن نفترض تلقائيًا أنه راتب وظيفي.',
+          explain:'إذا كان من وظيفة جديدة فمسار "وظيفة جديدة" أدق لأنه يأخذ حالة العرض والعقد وبداية العمل في الحسبان.',
+          why:'باحث عن عمل + دخل جديد = لا نفترض مصدر الدخل', source:null
         });
       } else { excluded++; }
 
       checked++;
       if (!p.socialSecurity && direction === 'increase' && !(p.employmentStatus === 'jobSeeker' && oldIncome === 0 && newIncome > 0)) {
-        results.push({
-          group: 'affected', icon: '↑', type: 'neutral', tag: 'لا أثر مباشر ظاهر',
-          title: 'لم تظهر خدمة جديدة من هذا التغير وحده',
-          desc: 'بحسب البيانات المتوفرة، ارتفاع الدخل لا يفتح مسارًا جديدًا لهذا المستفيد داخل نطاق النموذج الحالي.',
-          explain: 'صلة لا تعرض خدمات لمجرد وجود تغير. يجب أن توجد علاقة واضحة بين الحالة والخدمة قبل إظهارها.',
-          why: 'لا توجد خدمة حالية متأثرة ولا شرط جديد تحقق من البيانات المتاحة',
-          source: null
+        addResult(results, {
+          group:'affected', icon:'↑', type:'neutral', tag:'لا أثر مباشر ظاهر',
+          title:'لم تظهر خدمة جديدة من هذا التغير وحده',
+          desc:'بحسب البيانات المتوفرة، ارتفاع الدخل لا يفتح مسارًا جديدًا لهذا المستفيد داخل نطاق النموذج الحالي.',
+          explain:'صلة لا تعرض خدمات لمجرد وجود تغير؛ يجب أن توجد علاقة واضحة بين الحالة والخدمة.',
+          why:'لا توجد خدمة حالية متأثرة أو مسار جديد واضح', source:null
         });
       } else { excluded++; }
     }
 
     if (state.eventId === 'contractEnd') {
+      const stage = state.answers.contractStage;
+      const reason = state.answers.contractReason;
+      const ended = stage === 'ended';
+
       checked++;
       if (!p.hasActiveContract) {
-        results.push({
-          group: 'affected', icon: '—', type: 'neutral', tag: 'غير منطبق',
-          title: 'لا يوجد عقد فعّال لهذه الرحلة',
-          desc: `بحسب وضع ${p.name} الحالي لا يوجد عقد قائم حتى ندخله في رحلة إنهاء العلاقة الوظيفية.`,
-          explain: 'هذه نتيجة مقصودة. صلة توقف الرحلة عندما يكون أصل الحدث غير مناسب للحالة بدل إكمال أسئلة لا معنى لها.',
-          why: 'لا يوجد عقد فعّال', source: null
+        addResult(results, {
+          group:'affected', icon:'—', type:'neutral', tag:'غير منطبق',
+          title:'لا يوجد عقد فعّال لهذه الرحلة',
+          desc:`بحسب وضع ${p.name} الحالي لا يوجد عقد قائم حتى ندخله في رحلة إنهاء علاقة وظيفية.`,
+          explain:'صلة توقف الرحلة عندما يكون أصل الحدث غير مناسب للحالة بدل الاستمرار بأسئلة وخدمات لا معنى لها.',
+          why:'لا يوجد عقد فعّال', source:null
+        });
+      } else { excluded++; }
+
+      checked++;
+      if (p.hasActiveContract && stage === 'pending') {
+        addResult(results, {
+          group:'next', icon:'◷', type:'', tag:'المسار الرسمي',
+          title:'خدمة إنهاء العلاقة هي المسار المرتبط الآن',
+          desc:'الخدمة الرسمية تشترط وجود عقد ساري، ثم اختيار سبب الإنهاء وتاريخه ومراجعة التفاصيل قبل إرسال الطلب.',
+          explain:'نظهر هذه الخدمة فقط عندما تكون العلاقة ما زالت فعّالة وتحتاج تنفيذ الإنهاء؛ إذا انتهت فعلًا فلا نعرضها كخطوة حالية.',
+          why:'عقد ساري + الإنهاء لم يكتمل بعد', source:SOURCES.contractEnd
         });
       } else { excluded++; }
 
       checked++;
       if (p.hasActiveContract) {
-        results.push({
-          group: 'affected', icon: '◷', type: '', tag: 'المسار الرسمي',
-          title: 'إذا لم يكتمل الإنهاء بعد فخدمة إنهاء العلاقة هي المسار المرتبط',
-          desc: 'خدمة إنهاء العلاقة في قوى تشترط وجود عقد ساري، ثم اختيار سبب الإنهاء وتاريخه ومراجعة التفاصيل قبل الإرسال.',
-          explain: 'لا نفترض أن المستفيد ما زال يحتاج تنفيذ الإنهاء إذا كان انتهى بالفعل. البطاقة هنا توضح المسار عند الحاجة لإكمال الإجراء.',
-          why: 'عقد ساري + حدث انتهاء علاقة',
-          source: SOURCES.contractEnd
+        addResult(results, {
+          group:'next', icon:'ح', type:'', tag: ended ? 'بعد الانتهاء' : 'عند الانتهاء',
+          title:'حاسبة مكافأة نهاية الخدمة قد تساعدك',
+          desc:'قد تكون الحاسبة الرسمية مفيدة لفهم المكافأة بشكل تقديري، مع اختلاف النتيجة حسب سبب الانتهاء ومدة الخدمة والتفاصيل النظامية.',
+          explain:'النموذج لا يحسب الاستحقاق بنفسه لأن التفاصيل القانونية ومدة الخدمة تؤثر على النتيجة.',
+          why:'انتهاء علاقة وظيفية + وجود عقد قائم في الحالة الأصلية', source:SOURCES.eosCalculator
         });
       } else { excluded++; }
 
       checked++;
-      if (p.hasActiveContract) {
-        results.push({
-          group: 'next', icon: 'ح', type: '', tag: 'أداة قد تفيدك',
-          title: 'حاسبة مكافأة نهاية الخدمة قد تساعدك',
-          desc: 'بعد انتهاء العلاقة قد تكون الحاسبة الرسمية أداة مفيدة لفهم المكافأة بشكل تقديري، مع اختلاف التفاصيل حسب الحالة ومدة الخدمة.',
-          explain: 'لا نحسب الاستحقاق داخل النموذج لأن السبب ومدة الخدمة وتفاصيل العقد تؤثر على النتيجة.',
-          why: 'انتهاء علاقة وظيفية + عقد قائم',
-          source: SOURCES.eosCalculator
-        });
-      } else { excluded++; }
-
-      checked++;
-      if (p.hasActiveContract && ['expiry','employer'].includes(state.answers.contractReason) && p.nationality === 'saudi') {
-        results.push({
-          group: 'may', icon: 'س', type: '', tag: 'قد يستحق التحقق',
-          title: 'ساند قد يستحق التحقق',
-          desc: 'لأن سبب انتهاء العلاقة في هذا السيناريو ليس استقالة، يمكن إظهار ساند كمسار يستحق التحقق، مع بقاء شروط أخرى مطلوبة للاستحقاق.',
-          explain: 'التأمينات توضح أن ترك العمل بإرادة العامل مثل الاستقالة لا يحقق شرط فقد العمل لسبب خارج عن الإرادة. لذلك لا نظهر ساند في سيناريو الاستقالة.',
-          why: 'انتهاء مدة العقد أو إنهاء من صاحب العمل + ليس استقالة',
-          source: SOURCES.saned
+      if (p.hasActiveContract && ended && ['expiry','employer'].includes(reason) && p.nationality === 'saudi') {
+        addResult(results, {
+          group:'may', icon:'س', type:'', tag:'يستحق التحقق',
+          title:'ساند قد يستحق التحقق',
+          desc:'بما أن العلاقة انتهت وسببها في هذا السيناريو ليس استقالة، يمكن إظهار ساند كمسار يستحق التحقق مع بقاء بقية الشروط.',
+          explain:'التأمينات توضح أن الاستقالة لا تحقق شرط ترك العمل لسبب خارج عن إرادة العامل، لذلك لا يظهر ساند في سيناريو الاستقالة.',
+          why:'علاقة انتهت + السبب ليس استقالة', source:SOURCES.saned
         });
       } else { excluded++; }
 
       checked++;
       if (p.hasActiveContract && p.socialSecurity) {
-        results.push({
-          group: 'affected', icon: '↓', type: '', tag: 'أثر بين خدمتين',
-          title: 'بعد توقف الراتب قد يتغير مقدار الضمان',
-          desc: 'انتهاء العلاقة قد يؤدي إلى انخفاض الدخل الفعلي. عند حدوث ذلك، قد يتغير مقدار المعاش ويحتاج المستفيد إلى تحديث بياناته إذا كان التغير مؤثرًا.',
-          explain: 'هذه هي قيمة الربط بين الخدمات: الحدث بدأ في سياق العمل، لكن أثره قد يصل إلى خدمة اجتماعية يستخدمها المستفيد أصلًا.',
-          why: 'مستفيد من الضمان + انتهاء دخل وظيفي محتمل',
-          source: SOURCES.socialSecurityRegulation
+        addResult(results, {
+          group: ended ? 'affected' : 'may', icon:'↓', type:'', tag: ended ? 'قد يتغير المبلغ' : 'أثر متوقع',
+          title: ended ? 'بعد توقف الراتب قد يتغير مبلغ المعاش' : 'عند توقف الراتب قد يتغير مبلغ المعاش',
+          desc: ended
+            ? 'توقف الدخل الوظيفي قد يغير مقدار المعاش بعد إعادة التقييم. انخفاض الدخل لا يُعرض هنا كخطر على الأهلية من ناحية الدخل وحده.'
+            : 'إذا انتهت العلاقة وتوقف هذا الراتب فعلًا، فقد يتغير مقدار المعاش بعد إعادة التقييم.',
+          explain:'هذا يربط حدثًا في سوق العمل بخدمة اجتماعية يستخدمها المستفيد أصلًا، لكن بدون افتراض قرار أهلية جديد.',
+          why:'مستفيد من الضمان + توقف دخل وظيفي', source:SOURCES.socialSecurityRegulation
+        });
+      } else { excluded++; }
+
+      checked++;
+      if (p.hasActiveContract && p.socialSecurity && ended) {
+        addResult(results, {
+          group:'next', icon:'!', type:'warn', tag:'إذا كان التغير مؤثرًا',
+          title:'توقف الدخل المؤثر يحتاج إبلاغ الوزارة',
+          desc:'إذا أدى انتهاء العلاقة إلى تغير يؤثر على استحقاق المعاش أو مقداره، ينص النظام على إبلاغ الوزارة خلال 15 يومًا من تاريخ التغير.',
+          explain:'نظهر هذا التنبيه بعد حدوث التغير فعليًا، لا أثناء مجرد التخطيط لإنهاء العلاقة.',
+          why:'مستفيد حالي + علاقة انتهت + تغير مؤثر محتمل', source:SOURCES.socialSecurityRegulation
         });
       } else { excluded++; }
 
       checked++;
       if (p.hasActiveContract && !p.socialSecurity) {
-        results.push({
-          group: 'may', icon: '؟', type: 'neutral', tag: 'قد يصبح مهمًا لاحقًا',
-          title: 'إذا انخفض دخل الأسرة بعد انتهاء الوظيفة فقد يصبح الضمان مستحقًا للفحص',
-          desc: 'لا نعرض أهلية الآن لأننا لا نعرف الدخل الفعلي بعد انتهاء الوظيفة. لكن صلة تستطيع إعادة التحقق عندما تتغير بيانات الدخل بالفعل.',
-          explain: 'هذه نتيجة أفضل من افتراض أن فقد الوظيفة يعني أهلية مباشرة للضمان.',
-          why: 'انتهاء وظيفة لا يعني تلقائيًا استحقاق الضمان؛ ننتظر الدخل الفعلي الجديد',
-          source: SOURCES.socialSecurityService
-        });
+        if (ended) {
+          const signal = socialSecurityScreening(p, 0);
+          addResult(results, {
+            group:'may', icon:'؟', type:'', tag:'يستحق فحصًا مبدئيًا',
+            title:'بعد توقف هذا الراتب أصبح الضمان يستحق التحقق',
+            desc:'توقف الراتب الوظيفي يجعل من المفيد تشغيل فحص أولي، مع ضرورة معرفة بقية دخل الأسرة والثروة والشروط قبل أي نتيجة رسمية.',
+            explain:'لا نقول إن فقد الوظيفة يعني أهلية مباشرة؛ نعرض فقط أن تغير الدخل أصبح كبيرًا بما يكفي ليبرر التحقق.',
+            why:'توقف دخل وظيفي + غير مستفيد حاليًا', source:SOURCES.socialSecurityThreshold,
+            action:'eligibility', eligibilityIncome:0
+          });
+        } else {
+          addResult(results, {
+            group:'may', icon:'؟', type:'neutral', tag:'بعد الانتهاء',
+            title:'إذا توقف الراتب فعلًا فقد يصبح الضمان مستحقًا للفحص',
+            desc:'ما زالت العلاقة فعّالة في هذه المرحلة، لذلك لا نعامل الدخل كأنه توقف الآن. يظهر هذا كأثر محتمل فقط.',
+            explain:'صلة تفرق بين خطوة تنوي تنفيذها وتغير أصبح نافذًا بالفعل.',
+            why:'إنهاء مخطط له ≠ توقف دخل فعلي', source:SOURCES.socialSecurityService
+          });
+        }
       } else { excluded++; }
     }
 
     if (state.eventId === 'newJob') {
-      const status = state.answers.newJobState;
+      const stage = state.answers.newJobState;
       const salary = Number(state.answers.newSalary || 0);
-      const currentContractRemains = p.hasActiveContract && state.answers.jobNature === 'activeRemains';
+      const currentRemains = p.hasActiveContract && state.answers.currentJobStatus === 'activeRemains';
+      const transition = p.hasActiveContract && state.answers.currentJobStatus === 'transition';
+      const actualStarted = stage === 'started';
 
       checked++;
-      results.push({
-        group: 'affected', icon: '▤', type: '', tag: 'إدارة العقود',
-        title: getNewJobTitle(),
-        desc: getNewJobDesc(),
-        explain: 'إدارة العقود تتيح للموظف مراجعة العقد والموافقة أو الرفض أو طلب التعديل. ويعتبر العقد موثقًا عند موافقة الطرفين.',
-        why: 'عقد جديد + حالة العقد الحالية',
-        source: SOURCES.contracts
+      addResult(results, {
+        group:'affected', icon:'▤', type:'', tag:'حالة الوظيفة الجديدة',
+        title:getNewJobTitle(), desc:getNewJobDesc(),
+        explain:'نفرّق بين المراجعة والموافقة وطلب التعديل وبدء العمل فعليًا. الأثر على الدخل والخدمات لا يبدأ بنفس اللحظة في كل مرحلة.',
+        why:'النتيجة تعتمد على مرحلة الوظيفة الجديدة، لا على وجود عرض فقط', source:SOURCES.contracts
       });
 
       checked++;
-      if (currentContractRemains) {
-        results.push({
-          group: 'next', icon: '!', type: 'warn', tag: 'يحتاج تحقق قبل المتابعة',
-          title: 'وجود عقد ساري يغيّر المسار',
-          desc: 'الخدمة المنشورة لإدارة العقود تذكر ضمن شروطها ألا يكون لدى الموظف عقد ساري المفعول على منصة قوى. لذلك لا نفترض أن العقد الجديد يمكن توثيقه بينما الحالي باقٍ كما هو.',
-          explain: 'هذه حالة طرفية مهمة: بدل اعتبار الوظيفة الجديدة مجرد إضافة، تتوقف صلة وتوضح أن وضع العقد الحالي يحتاج معالجة أو تحقق أولًا.',
-          why: 'عقد حالي ساري + محاولة عقد جديد',
-          source: SOURCES.contracts
+      if (currentRemains) {
+        addResult(results, {
+          group:'next', icon:'!', type:'warn', tag:'حالة مركبة',
+          title:'العقد الحالي ما زال قائمًا، لذلك لا نفترض انتقالًا بسيطًا',
+          desc:'إذا كان المقصود عقدًا جديدًا عبر خدمة إدارة العقود في قوى، فالصفحة الرسمية تذكر ضمن شروطها ألا يكون لدى الموظف عقد ساري المفعول على المنصة.',
+          explain:'بدل اعتبار الراتب الجديد بديلًا تلقائيًا عن القديم، نوقف هذا الافتراض ونوضح أن حالة العقد والدخل الفعلي تحتاج تحققًا.',
+          why:'عقد حالي ساري + وظيفة جديدة', source:SOURCES.contracts
         });
       } else { excluded++; }
 
       checked++;
-      if (p.hasActiveContract && state.answers.jobNature === 'transition') {
-        results.push({
-          group: 'next', icon: '↺', type: '', tag: 'انتقال بين حالتين',
-          title: 'العقد الجديد هنا جزء من انتقال وليس إضافة مستقلة',
-          desc: 'بما أن العقد الحالي سينتهي قبل بدء الجديد، فصلة تتعامل مع الرحلة كتحول بين علاقتين وظيفيتين.',
-          explain: 'هذا يمنع تضارب الحالة بين عقد قديم وعقد جديد، ويجعل الرحلة أوضح للمستفيد.',
-          why: 'عقد حالي + وظيفة بديلة',
-          source: SOURCES.contracts
+      if (p.employmentStatus === 'jobSeeker' && !actualStarted) {
+        addResult(results, {
+          group:'next', icon:'…', type:'neutral', tag:'لا تغير فعلي بعد',
+          title: stage === 'accepted' ? 'وافقت على العرض، لكنك لم تبدأ العمل بعد' : 'وضعك الوظيفي لم يتغير بعد',
+          desc: stage === 'accepted'
+            ? 'الموافقة خطوة مهمة، لكنها لا تعني أن الدخل الجديد بدأ فعليًا أو أن وضع المستفيد تحول إلى موظف في هذه اللحظة.'
+            : 'العرض ما زال في مرحلة لا تغيّر حالة المستفيد أو دخله الفعلي.',
+          explain:'صلة تفرق بين قرار اتخذته وبين تغير أصبح نافذًا فعلًا.',
+          why:'عرض أو موافقة قبل المباشرة ≠ دخل وظيفي فعلي', source:SOURCES.contracts
         });
       } else { excluded++; }
 
       checked++;
-      if (p.employmentStatus === 'jobSeeker' && status !== 'accepted') {
-        results.push({
-          group: 'next', icon: '…', type: 'neutral', tag: 'لا تغير فعلي بعد',
-          title: 'وضعك الوظيفي لا يتغير لمجرد وصول العقد',
-          desc: status === 'review' ? 'العقد ما زال تحت المراجعة، لذلك يبقى وضع المستفيد كما هو حتى تكتمل الخطوات.' : 'طلب التعديل يعني أن العقد لم يكتمل بعد، لذلك لا نغيّر حالة المستفيد إلى موظف.',
-          explain: 'صلة تفرق بين نية التوظيف وبين تغير الحالة فعليًا.',
-          why: 'العقد غير مكتمل بعد',
-          source: SOURCES.contracts
+      if (p.employmentStatus === 'jobSeeker' && actualStarted) {
+        addResult(results, {
+          group:'affected', icon:'→', type:'', tag:'تغير فعلي في الحالة',
+          title:'الوضع الوظيفي تغير من باحث عن عمل إلى موظف',
+          desc:`بدأ العمل فعليًا براتب ${currency(salary)}، لذلك أصبحت حالة المستفيد الوظيفية مختلفة عن وضعه السابق.`,
+          explain:'هنا فقط نعامل التغير كحالة وظيفية فعلية، لأن العمل والدخل الجديدين بدآ بالفعل.',
+          why:'باحث عن عمل + مباشرة فعلية', source:SOURCES.contracts
         });
       } else { excluded++; }
 
       checked++;
-      if (p.employmentStatus === 'jobSeeker' && status === 'accepted') {
-        results.push({
-          group: 'may', icon: '→', type: '', tag: 'تغير متوقع في الحالة',
-          title: 'وافقت من جهتك، لكن التحول إلى موظف يحتاج اكتمال التوثيق والبدء',
-          desc: 'موافقة الموظف وحدها خطوة مهمة، لكنها لا تعني تلقائيًا أن كل إجراءات التوثيق والبدء اكتملت.',
-          explain: 'المصدر الرسمي يوضح أن العقد يعتبر موثقًا عند موافقة الطرفين.',
-          why: 'موافقة الموظف ≠ اكتمال التوثيق من الطرفين',
-          source: SOURCES.contracts
+      if (p.socialSecurity && ['accepted','started'].includes(stage)) {
+        if (currentRemains) {
+          addResult(results, {
+            group: actualStarted ? 'affected' : 'may', icon:'↑', type:'warn', tag: actualStarted ? 'يحتاج مراجعة' : 'أثر متوقع',
+            title: actualStarted ? 'الدخل الجديد مع استمرار الوظيفة الحالية قد يؤثر على الضمان' : 'إذا بدأ الدخل الجديد مع استمرار الوظيفة الحالية فقد يؤثر على الضمان',
+            desc:'لا نحسب الراتب الجديد كبديل عن القديم لأن العلاقة الحالية ما زالت قائمة. نحتاج الدخل الفعلي الإجمالي وحالة العقدين قبل أي تقدير أدق.',
+            explain:'هذه واحدة من الحالات التي لا يجب على النظام أن يتظاهر بأنه يعرف نتيجتها من معلومة ناقصة.',
+            why:'مستفيد من الضمان + دخل جديد + دخل حالي ما زال قائمًا', source:SOURCES.socialSecurityRegulation
+          });
+        } else {
+          const timing = actualStarted ? 'current' : 'future';
+          addResult(results, socialSecurityChangeCard(p, p.income, salary, timing));
+        }
+      } else { excluded++; }
+
+      checked++;
+      if (p.socialSecurity && actualStarted && (currentRemains || salary !== p.income)) {
+        addResult(results, {
+          group:'next', icon:'!', type:'warn', tag:'إذا كان التغير مؤثرًا',
+          title:'بدء الدخل الجديد قد يتطلب تحديث بيانات الضمان',
+          desc:'إذا أصبح التغير مؤثرًا على الاستحقاق أو مقدار المعاش، فيلزم إبلاغ الوزارة خلال 15 يومًا من تاريخ التغير المؤثر.',
+          explain:'هذا التنبيه لا يظهر عند مجرد مراجعة العرض؛ يظهر عندما يبدأ التغير الفعلي في الدخل.',
+          why:'مستفيد حالي + دخل جديد بدأ فعليًا', source:SOURCES.socialSecurityRegulation
         });
       } else { excluded++; }
 
       checked++;
-      if (p.socialSecurity && status === 'accepted' && !currentContractRemains) {
-        results.push({
-          group: 'affected', icon: '↑', type: 'warn', tag: 'بعد بدء الدخل فعليًا',
-          title: 'الراتب الجديد قد يؤثر على مقدار الضمان أو الاستحقاق بعد بدء العمل',
-          desc: `الراتب المذكور في العقد ${currency(salary)}. لا نغيّر حالة الضمان الآن لمجرد الموافقة، لكن عند بدء الدخل فعليًا يصبح التغير مهمًا للتقييم.`,
-          explain: 'في النسخة السابقة كنا نعرض أثر الضمان حتى والعقد تحت المراجعة أو التعديل، وهذا غير منطقي. الآن لا يظهر الأثر إلا بعد وصول العقد لمرحلة أقرب للتنفيذ، ومع ذلك نبقيه أثرًا متوقعًا لا قرارًا نهائيًا.',
-          why: 'مستفيد من الضمان + عقد تمت الموافقة عليه + دخل جديد متوقع',
-          source: SOURCES.socialSecurityRegulation
-        });
-      } else { excluded++; }
-
-      checked++;
-      if (!p.socialSecurity && status === 'accepted' && !currentContractRemains) {
+      if (!p.socialSecurity && !currentRemains) {
+        const isActualOrNear = ['accepted','started'].includes(stage);
+        const oldKnown = p.income;
         const signal = socialSecurityScreening(p, salary);
-        if (signal.worthChecking && salary < p.income) {
-          results.push({
-            group: 'may', icon: '؟', type: '', tag: 'بعد بدء العمل',
-            title: 'الراتب الجديد الأقل قد يجعل الضمان مستحقًا للفحص لاحقًا',
-            desc: 'هذه الإشارة لا تعمل لمجرد وجود عقد جديد، بل فقط عندما يكون الراتب الجديد أقل وتظهر إشارة دخل أولية تستحق التحقق.',
-            explain: 'ننتظر بدء الدخل الجديد فعليًا، ثم يمكن تشغيل فحص الضمان بناءً على بيانات الأسرة الكاملة.',
-            why: 'وظيفة بديلة + راتب أقل + إشارة دخل أولية',
-            source: SOURCES.socialSecurityService
+        if (isActualOrNear && salary < oldKnown && signal.worthChecking) {
+          addResult(results, {
+            group:'may', icon:'؟', type:'', tag: actualStarted ? 'يستحق التحقق' : 'بعد بدء العمل',
+            title: actualStarted ? 'الراتب الجديد يجعل الضمان مستحقًا للفحص' : 'إذا بدأ هذا الراتب فقد يصبح الضمان مستحقًا للفحص',
+            desc:'ظهرت إشارة أولية من الراتب وعدد أفراد الأسرة، لكن الأهلية الفعلية تحتاج بقية الدخل والثروة والشروط الرسمية.',
+            explain:'نربط الضمان بالراتب الجديد فقط إذا ظهرت إشارة أولية فعلًا، وليس لمجرد أن الراتب أقل من السابق.',
+            why:'راتب أقل + إشارة دخل أولية', source:SOURCES.socialSecurityThreshold,
+            action:'eligibility', eligibilityIncome:salary
+          });
+        } else if (p.employmentStatus === 'jobSeeker' && actualStarted && signal.worthChecking) {
+          addResult(results, {
+            group:'may', icon:'؟', type:'', tag:'يستحق التحقق',
+            title:'رغم بدء الوظيفة، مستوى الدخل ما زال يستحق فحص الضمان',
+            desc:'العمل لا يلغي احتمال الاستحقاق تلقائيًا؛ المعيار يرتبط بالدخل المحتسب وبقية الشروط.',
+            explain:'هذا يمنع افتراض أن مجرد الحصول على وظيفة يعني عدم إمكانية الاستفادة من الضمان.',
+            why:'وظيفة بدأت + دخل منخفض نسبيًا + إشارة أولية', source:SOURCES.socialSecurityThreshold,
+            action:'eligibility', eligibilityIncome:salary
           });
         } else { excluded++; }
       } else { excluded++; }
     }
 
     if (!results.length) {
-      results.push({
-        group: 'affected', icon: '✓', type: 'neutral', tag: 'لا نتيجة جديدة',
-        title: 'لم نجد أثرًا مباشرًا ضمن نطاق النموذج الحالي',
-        desc: 'هذا أفضل من عرض خدمة غير مرتبطة بالحالة. يمكن توسيع المحرك لاحقًا بقواعد وخدمات إضافية.',
-        explain: 'الهدف أن تكون النتيجة دقيقة حتى لو كانت النتيجة أحيانًا هي: لا يوجد شيء جديد الآن.',
-        why: 'لا توجد قاعدة من قواعد النموذج الحالي انطبقت على الحالة',
-        source: null
+      addResult(results, {
+        group:'affected', icon:'✓', type:'neutral', tag:'لا نتيجة جديدة',
+        title:'لم يظهر أثر مباشر ضمن نطاق النموذج الحالي',
+        desc:'هذه نتيجة مقصودة؛ الأفضل ألا تظهر خدمة بدل عرض مسار غير مرتبط بالحالة.',
+        explain:'صلة تعرف متى تعرض نتيجة، ومتى تقول ببساطة إن لا شيء جديد ظهر من البيانات المتاحة.',
+        why:'لا توجد قاعدة من قواعد النموذج الحالي انطبقت على الحالة', source:null
       });
     }
 
@@ -1923,51 +2059,76 @@
     state.excludedRules = excluded;
   }
 
+  function getServicesAfterChange(p) {
+    let services = [...p.currentServices];
+    if (state.eventId === 'contractEnd' && state.answers.contractStage === 'ended') {
+      services = services.filter(service => service !== 'العقود الوظيفية');
+    }
+    if (state.eventId === 'newJob' && state.answers.newJobState === 'started' && p.employmentStatus === 'jobSeeker') {
+      if (!services.includes('العقود الوظيفية')) services.push('العقود الوظيفية');
+    }
+    return services.length ? services : ['لا توجد خدمة حالية مرتبطة ضمن النموذج'];
+  }
+
   function renderResults() {
     const p = person();
-    const current = p.currentServices.length ? p.currentServices : ['لا توجد خدمة حالية مرتبطة'];
+    const current = getServicesAfterChange(p);
     const affected = state.results.filter(item => item.group === 'affected');
     const next = state.results.filter(item => item.group === 'next');
     const may = state.results.filter(item => item.group === 'may');
+    const comparable = getComparablePersonaIds();
 
     document.getElementById('resultContainer').innerHTML = `
-      <small style="display:block; color:var(--primary); font-weight:800; margin-bottom:8px;">نتيجة مخصصة لـ ${p.name}</small>
+      <small style="display:block;color:var(--primary);font-weight:800;margin-bottom:8px;">النتيجة المخصصة لـ ${p.name}</small>
       <h3>هذا ما يخص الحالة الآن</h3>
-      <p class="intro">صلة لا تعرض كل شيء. هي تعرض فقط ما له علاقة بوضع ${p.name} والتغير الذي اخترته. وإذا أصبح هناك مسار جديد قريب من حالته فستظهره على أنه "قد يفيدك" بدل أن تعتبره قرارًا نهائيًا.</p>
+      <p class="intro">النتيجة تفصل بين أثر حدث فعلي، وأثر متوقع لم يبدأ بعد، وخدمة تحتاج تحققًا إضافيًا. ما لا يرتبط بالحالة لا يظهر.</p>
       <div class="summary-strip">
-        <strong>راجعنا ${state.checkedRules} قواعد، واستبعدنا ${state.excludedRules} لأنها لا تخص هذه الحالة</strong>
-        <span>النتيجة هنا تتغير حسب الشخص، لا حسب اسم الحدث فقط</span>
+        <strong>تم استبعاد المسارات غير المرتبطة بالحالة</strong>
+        <span>يمكن فتح كل نتيجة لمعرفة سبب ظهورها ومصدرها</span>
       </div>
       ${renderBeforeAfter()}
-      <span class="cluster-title">الخدمات المرتبطة بالحالة الحالية</span>
+      <span class="cluster-title">الخدمات المرتبطة بالحالة الآن</span>
       <div class="tag-row">${current.map(item => `<span class="result-pill">${item}</span>`).join('')}</div>
       ${affected.length ? `<span class="cluster-title">ما الذي تأثر الآن؟</span><div class="impact-list">${affected.map(renderImpact).join('')}</div>` : ''}
-      ${next.length ? `<span class="cluster-title">ما الخطوة أو الأداة التالية؟</span><div class="impact-list">${next.map(renderImpact).join('')}</div>` : ''}
-      ${may.length ? `<span class="cluster-title">ما الذي قد أصبح مناسبًا الآن؟</span><div class="impact-list">${may.map(renderImpact).join('')}</div>` : ''}
-      <div class="disclaimer"><strong>ملاحظة مهمة</strong>الشخصيات والبيانات داخل هذا النموذج افتراضية لأغراض العرض. النتائج توضيحية، وبعض القواعد والخدمات المرتبطة بها بنيت استنادًا إلى مصادر رسمية منشورة، لكن هذا النموذج لا يصدر قرارات أهلية أو استحقاق نهائية.</div>
+      ${next.length ? `<span class="cluster-title">ما الخطوة أو المعلومة التالية؟</span><div class="impact-list">${next.map(renderImpact).join('')}</div>` : ''}
+      ${may.length ? `<span class="cluster-title">ما الذي قد يصبح مرتبطًا بالحالة؟</span><div class="impact-list">${may.map(renderImpact).join('')}</div>` : ''}
+      <div class="disclaimer"><strong>ملاحظة مهمة</strong>الشخصيات والبيانات في هذا النموذج افتراضية لأغراض العرض. النتائج توضيحية، وبعض القواعد والخدمات مبنية على مصادر رسمية منشورة، لكن النموذج لا يصدر قرار أهلية أو استحقاق نهائي.</div>
       <div class="question-actions">
-        <button class="btn btn-primary" onclick="compareSameEvent()">طبّق نفس التغيير على شخص آخر ←</button>
+        ${comparable.length ? `<button class="btn btn-primary" onclick="compareSameEvent()">قارن نفس الحالة بشخص آخر ←</button>` : ''}
         <button class="btn btn-secondary" onclick="showEventView()">جرّب حدثًا آخر</button>
-      </div>`;
+      </div>
+      ${!comparable.length ? `<div class="comparison-note">لا توجد شخصية أخرى في النموذج تصلح لمقارنة هذا السيناريو بشكل مباشر، لذلك لم نعرض مقارنة مصطنعة.</div>` : ''}`;
   }
 
   function renderBeforeAfter() {
     const p = person();
     let before = p.employmentLabel;
     let after = before;
-    let label = getEventLabel();
+    const label = getEventLabel();
+
     if (state.eventId === 'income') {
       before = currency(state.answers.oldIncome);
       after = currency(state.answers.newIncome);
     }
+
     if (state.eventId === 'contractEnd') {
       before = p.hasActiveContract ? 'عقد فعّال' : 'لا يوجد عقد فعّال';
-      after = p.hasActiveContract ? 'علاقة منتهية' : 'لا يوجد عقد لهذه الرحلة';
+      if (!p.hasActiveContract) after = 'الحدث غير منطبق';
+      else after = state.answers.contractStage === 'ended' ? 'علاقة وظيفية منتهية' : 'إنهاء العلاقة قيد الإجراء';
     }
+
     if (state.eventId === 'newJob') {
+      const stage = state.answers.newJobState;
       before = p.employmentLabel;
-      after = p.employmentStatus === 'jobSeeker' ? 'وظيفة جديدة قيد الإكمال' : (state.answers.jobNature === 'additional' ? 'وظيفة إضافية قيد التوثيق' : 'انتقال إلى وظيفة جديدة');
+      if (stage === 'review' || stage === 'edit') after = 'لا تغير فعلي بعد';
+      if (stage === 'accepted') after = 'عرض مقبول — لم يبدأ الدخل بعد';
+      if (stage === 'started') {
+        if (p.employmentStatus === 'jobSeeker') after = `موظف — ${currency(state.answers.newSalary)}`;
+        else if (state.answers.currentJobStatus === 'activeRemains') after = 'حالة مركبة — الوظيفة الحالية ما زالت قائمة';
+        else after = `وظيفة جديدة — ${currency(state.answers.newSalary)}`;
+      }
     }
+
     return `
       <div class="compare-boxes">
         <div class="compare-box"><small>قبل التغيّر</small><strong>${before}</strong></div>
@@ -1981,19 +2142,16 @@
       <article class="impact-card">
         <div class="impact-main" onclick="this.parentElement.classList.toggle('open')">
           <div class="impact-ico">${item.icon}</div>
-          <div class="impact-copy">
-            <strong>${item.title}</strong>
-            <p>${item.desc}</p>
-          </div>
+          <div class="impact-copy"><strong>${item.title}</strong><p>${item.desc}</p></div>
           <span class="impact-type ${item.type || ''}">${item.tag}</span>
         </div>
         <div class="impact-detail">
           <div class="impact-detail-inner">
-            <strong style="display:block; margin:12px 0 4px; color:var(--text);">ليش ظهر هذا؟</strong>
+            <strong style="display:block;margin:12px 0 4px;color:var(--text);">ليش ظهر هذا؟</strong>
             <p style="margin:0;">${item.explain}</p>
             <div class="logic-box">${item.why}</div>
             <div class="impact-actions">
-              ${item.action === 'eligibility' ? `<button class="mini-btn" onclick="event.stopPropagation(); openEligibilityCheck()">افتح فحصًا مبدئيًا</button>` : ''}
+              ${item.action === 'eligibility' ? `<button class="mini-btn" onclick="event.stopPropagation();openEligibilityCheck(${Number(item.eligibilityIncome || 0)})">افتح فحصًا مبدئيًا</button>` : ''}
               ${item.source ? `<a class="mini-link" href="${item.source.url}" target="_blank" rel="noopener">المصدر الرسمي: ${item.source.title} ↗</a>` : ''}
             </div>
           </div>
@@ -2007,37 +2165,34 @@
 
   function getNewJobTitle() {
     const value = state.answers.newJobState;
-    if (value === 'review') return 'العقد الجديد ما زال تحت المراجعة';
-    if (value === 'accepted') return 'وافقت على العقد من جهتك';
+    if (value === 'review') return 'العرض أو العقد الجديد ما زال تحت المراجعة';
+    if (value === 'accepted') return 'وافقت على العرض من جهتك';
     if (value === 'edit') return 'طلبت تعديل العقد قبل اكتماله';
-    return 'العقد الجديد';
+    if (value === 'started') return 'بدأت الوظيفة الجديدة فعليًا';
+    return 'الوظيفة الجديدة';
   }
 
   function getNewJobDesc() {
     const value = state.answers.newJobState;
-    if (value === 'review') return 'يمكنك مراجعة العقد وقبوله أو رفضه أو طلب تعديله. وتوضح صفحة الخدمة أن الطلب يُلغى إذا لم يتلقَّ إجابة خلال 10 أيام من إنشائه.';
-    if (value === 'accepted') return 'موافقتك خطوة أساسية، ويعتبر العقد موثقًا عند موافقة الطرفين بحسب وصف الخدمة الرسمي.';
-    if (value === 'edit') return 'العقد لم يكتمل بعد. طلب التعديل يعني أن هناك بندًا يحتاج معالجة قبل الانتقال للمرحلة التالية.';
+    if (value === 'review') return 'لا يوجد تغير فعلي في الدخل أو الحالة حتى الآن. وإذا كان الطلب عبر إدارة العقود في قوى، يمكن للموظف الموافقة أو الرفض أو طلب التعديل.';
+    if (value === 'accepted') return 'الموافقة من جهتك لا تعني أن الدخل الجديد بدأ فعليًا. العقد في قوى يعتبر موثقًا عند موافقة الطرفين.';
+    if (value === 'edit') return 'طلب التعديل يعني أن العقد لم يكتمل بعد، لذلك لا نعامل الراتب الجديد كدخل فعلي.';
+    if (value === 'started') return 'هنا أصبح التغير فعليًا، ولذلك يمكن ربط الراتب الجديد بالخدمات التي تعتمد على الدخل أو الحالة الوظيفية.';
     return '';
   }
 
-  function openEligibilityCheck() {
+  function openEligibilityCheck(incomeValue) {
     const p = person();
+    state.eligibilityIncome = Number(incomeValue || 0);
     document.getElementById('eligibilityContainer').innerHTML = `
-      <small style="display:block; color:var(--primary); font-weight:800; margin-bottom:8px;">فحص مبدئي</small>
-      <h3 style="margin:0 0 10px; font-size:32px;">نحتاج معلومات بسيطة إضافية</h3>
-      <p class="intro">الهدف هنا ليس إصدار قرار أهلية، بل معرفة هل أصبح الضمان الاجتماعي أقرب إلى حالة ${p.name} بعد انخفاض الدخل أم لا.</p>
+      <small style="display:block;color:var(--primary);font-weight:800;margin-bottom:8px;">فحص مبدئي</small>
+      <h3 style="margin:0 0 10px;font-size:32px;">نحتاج معلومتين إضافيتين</h3>
+      <p class="intro">الهدف ليس إصدار قرار أهلية، بل معرفة هل توجد إشارة أولية تجعل الضمان يستحق التحقق الرسمي.</p>
       <div class="field-grid">
-        <div class="field">
-          <label>عدد أفراد الأسرة</label>
-          <input id="eligibilityFamilySize" type="number" min="1" value="${p.familySize}">
-        </div>
-        <div class="field">
-          <label>دخل آخر للأسرة</label>
-          <input id="otherIncome" type="number" min="0" value="0">
-        </div>
+        <div class="field"><label>عدد أفراد الأسرة</label><input id="eligibilityFamilySize" type="number" min="1" value="${p.familySize}"></div>
+        <div class="field"><label>دخل آخر للأسرة</label><input id="otherIncome" type="number" min="0" value="0"></div>
       </div>
-      <div class="inline-note">هذا الفحص يبقى مبسطًا ومخصصًا للنموذج. إذا احتاجت الحالة معلومات أكثر، فالقناة الرسمية هي المرجع النهائي.</div>
+      <div class="inline-note">نفترض في هذا الفحص أن الرقم المعروف هو دخل مكتسب، ثم نضيف أي دخل آخر تدخله. بقية الثروة والشروط لا تزال خارج هذا النموذج.</div>
       <div class="question-actions">
         <button class="btn btn-primary" onclick="finishEligibilityCheck()">اعرض التقدير الأولي ←</button>
         <button class="btn btn-secondary" onclick="returnToResults()">العودة للنتيجة</button>
@@ -2047,23 +2202,26 @@
   }
 
   function finishEligibilityCheck() {
+    const p = person();
     const familySize = Number(document.getElementById('eligibilityFamilySize').value);
     const otherIncome = Number(document.getElementById('otherIncome').value);
-    const salary = Number(state.answers.newIncome);
+    const salary = Number(state.eligibilityIncome || 0);
     if (!familySize || familySize < 1 || Number.isNaN(otherIncome) || otherIncome < 0) { alert('تأكد من صحة البيانات'); return; }
-    const estimatedCountedIncome = salary * 0.5 + otherIncome;
-    const indicativeThreshold = 1320 + Math.max(0, familySize - 1) * 660;
-    const worthChecking = estimatedCountedIncome < indicativeThreshold;
+
+    const countedIncome = salary * 0.5 + otherIncome;
+    const threshold = 1320 + Math.max(0, familySize - 1) * 660;
+    const worthChecking = countedIncome < threshold;
+
     document.getElementById('eligibilityContainer').innerHTML = `
-      <small style="display:block; color:var(--primary); font-weight:800; margin-bottom:8px;">نتيجة توضيحية</small>
-      <h3 style="margin:0 0 10px; font-size:32px;">${worthChecking ? 'هذه الحالة تستحق التحقق رسميًا' : 'هذه البيانات وحدها لا تكفي لإظهار قرب الاستحقاق'}</h3>
-      <p class="intro">ما قمنا به هنا هو تقدير أولي فقط. استخدمنا معلومات محدودة لمعرفة هل من المفيد إحالة المستفيد إلى رحلة التحقق الرسمية أم لا.</p>
+      <small style="display:block;color:var(--primary);font-weight:800;margin-bottom:8px;">نتيجة توضيحية</small>
+      <h3 style="margin:0 0 10px;font-size:32px;">${worthChecking ? 'هذه الحالة تستحق التحقق رسميًا' : 'لم تظهر إشارة دخل أولية كافية من البيانات المدخلة'}</h3>
+      <p class="intro">هذه إشارة مبدئية وليست قرار أهلية. الهدف هو توضيح كيف يمكن للنظام أن يطلب فقط البيانات الناقصة قبل توجيه المستفيد.</p>
       <div class="metric-grid" style="margin-top:22px;">
-        <div class="metric"><small>الدخل الجديد</small><strong>${currency(salary)}</strong><span>الرقم المدخل في السيناريو</span></div>
-        <div class="metric"><small>الدخل المحتسب التقديري</small><strong>${currency(estimatedCountedIncome)}</strong><span>على أساس تبسيط للمنطق المنشور</span></div>
-        <div class="metric"><small>الحد الإرشادي التوضيحي</small><strong>${currency(indicativeThreshold)}</strong><span>مبني على عدد أفراد الأسرة في هذا الفحص</span></div>
+        <div class="metric"><small>الدخل المكتسب المعروف</small><strong>${currency(salary)}</strong><span>الرقم المستخدم في هذا السيناريو</span></div>
+        <div class="metric"><small>الدخل المحتسب التقديري</small><strong>${currency(countedIncome)}</strong><span>بعد تطبيق التبسيط المنشور على الدخل المكتسب وإضافة الدخل الآخر</span></div>
+        <div class="metric"><small>الحد الإرشادي للأسرة</small><strong>${currency(threshold)}</strong><span>بحسب عدد أفراد الأسرة في هذا الفحص</span></div>
       </div>
-      <div class="disclaimer"><strong>تنبيه</strong>هذه ليست نتيجة أهلية رسمية، بل توضيح لكيف يمكن لصلة أن تطلب معلومات إضافية فقط عندما تحتاجها، ثم تعطي توجيهًا أوليًا مسؤولًا بدل إعطاء حكم قاطع من بيانات ناقصة.</div>
+      <div class="disclaimer"><strong>تنبيه</strong>الأهلية الفعلية تعتمد على البيانات والشروط الرسمية الكاملة، بما فيها بقية الدخل والثروة والتحقق الرسمي. هذا الفحص مخصص لتوضيح الفكرة فقط.</div>
       <div class="question-actions">
         <a class="btn btn-primary" href="${SOURCES.socialSecurityService.url}" target="_blank" rel="noopener">الانتقال إلى الخدمة الرسمية ↗</a>
         <button class="btn btn-secondary" onclick="returnToResults()">العودة للنتيجة</button>
@@ -2077,35 +2235,52 @@
     focusPrototype();
   }
 
+  function getComparablePersonaIds() {
+    if (!state.personaId || !state.eventId) return [];
+    const source = person();
+    return Object.values(PERSONAS).filter(candidate => {
+      if (candidate.id === source.id) return false;
+      if (state.eventId === 'income') return source.income > 0 && candidate.income > 0;
+      if (state.eventId === 'contractEnd') return source.hasActiveContract && candidate.hasActiveContract;
+      if (state.eventId === 'newJob') return source.employmentStatus === candidate.employmentStatus && source.hasActiveContract === candidate.hasActiveContract;
+      return false;
+    }).map(candidate => candidate.id);
+  }
+
   function compareSameEvent() {
+    const allowed = getComparablePersonaIds();
+    if (!allowed.length) return;
     state.comparison = {
+      sourcePersonaId: state.personaId,
       eventId: state.eventId,
       answers: JSON.parse(JSON.stringify(state.answers))
     };
+    renderPersonas(allowed);
     document.getElementById('personaHeading').innerHTML = `
-      <small>مقارنة سريعة</small>
+      <small>مقارنة منطقية</small>
       <h3>اختر شخصًا ثانيًا</h3>
-      <p>سنطبق عليه نفس الحدث نفسه، ثم نقارن كيف تختلف النتيجة. هذه من أقوى اللقطات في العرض لأنها توضح قيمة الفكرة مباشرة.</p>`;
+      <p>أخفينا الشخص الحالي وأي شخصية لا يصلح تطبيق السيناريو عليها مباشرة. المقارنة هنا بين حالات قابلة للمقارنة فقط.</p>`;
     showView('personaView', 1);
     focusPrototype();
   }
 
-  function adaptAnswersForPersona(oldAnswers) {
-    const p = person();
+  function adaptAnswersForPersona(oldAnswers, source, target) {
     const answers = JSON.parse(JSON.stringify(oldAnswers));
-    if (state.comparison.eventId === 'income') {
+    if (state.eventId === 'income') {
       const base = Number(oldAnswers.oldIncome);
       const newer = Number(oldAnswers.newIncome);
       const ratio = base > 0 ? newer / base : 1;
-      answers.oldIncome = p.income;
-      answers.newIncome = Math.max(0, Math.round(p.income * ratio));
+      answers.oldIncome = target.income;
+      answers.newIncome = Math.max(0, Math.round(target.income * ratio));
       answers.incomeDirection = answers.newIncome === answers.oldIncome ? 'same' : (answers.newIncome > answers.oldIncome ? 'increase' : 'decrease');
     }
     return answers;
   }
 
   function updateImpactEstimator() {
-    const value = Number(document.getElementById('impactRange').value);
+    const slider = document.getElementById('impactRange');
+    if (!slider) return;
+    const value = Number(slider.value);
     const calls = Math.round(526945 * (value / 100));
     const hours = Math.round((calls * 6) / 60);
     const year = calls * 4;
@@ -2118,7 +2293,7 @@
   renderPersonas();
   renderEvents();
   updateImpactEstimator();
-  updateTabsOnScroll();
+  updateNavOnScroll();
 </script>
 </body>
 </html>
