@@ -3,348 +3,5548 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#06130f">
-  <meta name="description" content="أثر، نموذج تصوري لتجربة تربط التغيّرات في حياة المستفيد بالخدمات والإجراءات ذات العلاقة">
-  <title>أثر | الخدمة تبدأ من حالتك</title>
 
-  <link rel="stylesheet" href="style.css">
+  <title>أثر | نموذج تفاعلي</title>
+
+  <meta
+    name="description"
+    content="أثر، نموذج تفاعلي لتجربة تربط تغيّرات حياة المستفيد بالخدمات والإجراءات المرتبطة بحالته"
+  >
+
+  <!-- Alexandria -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    /* =====================================================
+       الأساس
+    ===================================================== */
+
+    :root {
+      --bg: #06130f;
+      --bg-soft: #091b16;
+
+      --surface: rgba(255,255,255,.04);
+      --surface-hover: rgba(255,255,255,.065);
+
+      --border: rgba(255,255,255,.09);
+      --border-strong: rgba(255,255,255,.16);
+
+      --text: #f5faf7;
+      --muted: #a6b4ae;
+      --muted-2: #71817a;
+
+      --green: #54d79f;
+      --green-light: #a9f1d0;
+      --green-soft: rgba(84,215,159,.09);
+
+      --amber: #e5b970;
+      --amber-soft: rgba(229,185,112,.09);
+
+      --blue: #8ebde7;
+      --blue-soft: rgba(142,189,231,.09);
+
+      --danger: #e79b94;
+      --danger-soft: rgba(231,155,148,.08);
+
+      --radius: 22px;
+      --radius-lg: 32px;
+
+      --ease: cubic-bezier(.2,.8,.2,1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+
+      font-family: "Alexandria", sans-serif;
+
+      background:
+        radial-gradient(circle at 90% 0%, rgba(84,215,159,.07), transparent 28%),
+        radial-gradient(circle at 5% 60%, rgba(39,115,84,.07), transparent 28%),
+        var(--bg);
+
+      color: var(--text);
+
+      overflow-x: hidden;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1240px, calc(100% - 64px));
+      margin-inline: auto;
+    }
+
+
+    /* =====================================================
+       الخلفية
+    ===================================================== */
+
+    .background-grid {
+      position: fixed;
+      inset: 0;
+
+      pointer-events: none;
+      z-index: -1;
+
+      background-image:
+        linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px);
+
+      background-size: 80px 80px;
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,.8),
+          transparent 90%
+        );
+    }
+
+
+    /* =====================================================
+       الهيدر
+    ===================================================== */
+
+    header {
+      position: relative;
+      z-index: 20;
+    }
+
+    .header-inner {
+      height: 88px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      border: 0;
+      background: transparent;
+
+      cursor: pointer;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 14px;
+
+      background: var(--green);
+      color: #062118;
+
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .brand-name {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .header-actions button {
+      border: 0;
+      background: transparent;
+
+      color: var(--muted);
+
+      cursor: pointer;
+
+      font-size: 13px;
+    }
+
+    .header-actions button:hover {
+      color: var(--text);
+    }
+
+    .prototype-badge {
+      padding: 8px 13px;
+
+      border: 1px solid var(--border);
+      border-radius: 999px;
+
+      color: var(--muted);
+
+      font-size: 11px;
+    }
+
+
+    /* =====================================================
+       الأزرار
+    ===================================================== */
+
+    .btn {
+      min-height: 54px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      padding: 0 23px;
+
+      border-radius: 15px;
+
+      cursor: pointer;
+
+      transition:
+        transform .3s var(--ease),
+        background .3s var(--ease),
+        border-color .3s var(--ease);
+    }
+
+    .btn-primary {
+      border: 1px solid var(--green);
+
+      background: var(--green);
+      color: #052117;
+
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+
+      background: rgba(255,255,255,.025);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,.055);
+      border-color: var(--border-strong);
+    }
+
+
+    /* =====================================================
+       البداية
+    ===================================================== */
+
+    .hero {
+      min-height: calc(100vh - 88px);
+
+      display: flex;
+      align-items: center;
+
+      padding: 70px 0 120px;
+    }
+
+    .hero-content {
+      max-width: 980px;
+      margin-inline: auto;
+
+      text-align: center;
+    }
+
+    .eyebrow {
+      width: max-content;
+
+      margin: 0 auto 28px;
+
+      display: flex;
+      align-items: center;
+      gap: 9px;
+
+      padding: 9px 14px;
+
+      border-radius: 999px;
+
+      border: 1px solid rgba(84,215,159,.17);
+
+      background: var(--green-soft);
+
+      color: var(--green-light);
+
+      font-size: 13px;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: var(--green);
+
+      box-shadow:
+        0 0 0 5px rgba(84,215,159,.06);
+    }
+
+    .hero h1 {
+      margin: 0;
+
+      font-size: clamp(58px, 7vw, 96px);
+      line-height: 1.18;
+
+      letter-spacing: -4px;
+
+      font-weight: 600;
+    }
+
+    .hero h1 span {
+      display: block;
+
+      color: var(--green);
+    }
+
+    .hero-description {
+      max-width: 820px;
+
+      margin: 30px auto 0;
+
+      color: var(--muted);
+
+      font-size: 19px;
+      line-height: 2;
+
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      margin-top: 38px;
+
+      display: flex;
+      justify-content: center;
+
+      gap: 10px;
+    }
+
+    .scroll-hint {
+      margin-top: 60px;
+
+      color: var(--muted-2);
+
+      font-size: 12px;
+    }
+
+    .scroll-hint span {
+      display: block;
+
+      margin-top: 8px;
+
+      color: var(--green);
+
+      animation: hint 1.8s infinite;
+    }
+
+    @keyframes hint {
+      50% {
+        transform: translateY(5px);
+      }
+    }
+
+
+    /* =====================================================
+       الأقسام العامة
+    ===================================================== */
+
+    .section {
+      padding: 130px 0;
+    }
+
+    .section-heading {
+      max-width: 820px;
+    }
+
+    .section-heading.centered {
+      margin-inline: auto;
+
+      text-align: center;
+    }
+
+    .kicker {
+      display: block;
+
+      margin-bottom: 14px;
+
+      color: var(--green);
+
+      font-size: 13px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+
+      font-size: clamp(40px, 5vw, 66px);
+      line-height: 1.35;
+
+      letter-spacing: -2.4px;
+
+      font-weight: 600;
+    }
+
+    .section-heading p {
+      margin: 22px 0 0;
+
+      color: var(--muted);
+
+      font-size: 18px;
+      line-height: 1.95;
+    }
+
+
+    /* =====================================================
+       شرح الفكرة
+    ===================================================== */
+
+    .story {
+      max-width: 1080px;
+
+      margin: 65px auto 0;
+
+      display: grid;
+      grid-template-columns: 1fr 120px 1fr;
+
+      align-items: center;
+    }
+
+    .story-card {
+      min-height: 310px;
+
+      padding: 34px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+
+      background: rgba(255,255,255,.025);
+    }
+
+    .story-card.highlight {
+      border-color: rgba(84,215,159,.22);
+
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(84,215,159,.08),
+          transparent 55%
+        ),
+        rgba(255,255,255,.025);
+    }
+
+    .story-card small {
+      color: var(--muted-2);
+
+      font-size: 13px;
+    }
+
+    .story-card h3 {
+      margin: 24px 0 12px;
+
+      font-size: 32px;
+
+      font-weight: 500;
+    }
+
+    .story-card.highlight h3 {
+      color: var(--green);
+    }
+
+    .story-card p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .story-middle {
+      text-align: center;
+
+      color: var(--green);
+    }
+
+    .story-middle strong {
+      display: block;
+
+      margin-bottom: 12px;
+
+      font-size: 13px;
+    }
+
+    .story-line {
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          var(--green),
+          transparent
+        );
+    }
+
+
+    /* =====================================================
+       كيف تعمل
+    ===================================================== */
+
+    .simple-flow {
+      margin-top: 55px;
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 50px
+        1fr 50px
+        1fr 50px
+        1fr;
+
+      align-items: stretch;
+    }
+
+    .flow-card {
+      min-height: 180px;
+
+      padding: 26px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      border: 1px solid var(--border);
+      border-radius: 20px;
+
+      background: rgba(255,255,255,.025);
+    }
+
+    .flow-card.active {
+      border-color: rgba(84,215,159,.22);
+
+      background: var(--green-soft);
+    }
+
+    .flow-card span {
+      color: var(--green);
+
+      font-size: 12px;
+    }
+
+    .flow-card strong {
+      font-size: 21px;
+
+      font-weight: 500;
+    }
+
+    .flow-card small {
+      color: var(--muted);
+
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .flow-arrow {
+      display: grid;
+      place-items: center;
+
+      color: var(--muted-2);
+    }
+
+
+    /* =====================================================
+       التجربة
+    ===================================================== */
+
+    .experience-section {
+      padding: 130px 0;
+
+      min-height: 100vh;
+    }
+
+    .experience-heading {
+      margin-bottom: 42px;
+
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      gap: 30px;
+    }
+
+    .experience-heading h2 {
+      margin: 0;
+
+      font-size: clamp(40px, 4vw, 58px);
+      line-height: 1.35;
+
+      font-weight: 600;
+
+      letter-spacing: -2px;
+    }
+
+    .steps {
+      display: flex;
+      align-items: center;
+    }
+
+    .step {
+      width: 40px;
+      height: 40px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--border);
+      border-radius: 50%;
+
+      color: var(--muted-2);
+
+      font-size: 12px;
+
+      transition: .3s;
+    }
+
+    .step.active {
+      border-color: var(--green);
+
+      background: var(--green);
+
+      color: #052117;
+    }
+
+    .step-line {
+      width: 45px;
+      height: 1px;
+
+      background: var(--border);
+    }
+
+
+    /* التطبيق */
+
+    .app {
+      min-height: 640px;
+
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+
+      background:
+        radial-gradient(
+          circle at 100% 0%,
+          rgba(84,215,159,.045),
+          transparent 32%
+        ),
+        rgba(255,255,255,.02);
+
+      overflow: hidden;
+    }
+
+    .view {
+      display: none;
+
+      padding: 44px;
+    }
+
+    .view.active {
+      display: block;
+
+      animation: viewIn .5s var(--ease);
+    }
+
+    @keyframes viewIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .view-heading {
+      max-width: 760px;
+
+      margin-bottom: 36px;
+    }
+
+    .view-heading small {
+      display: block;
+
+      margin-bottom: 12px;
+
+      color: var(--green);
+
+      font-size: 13px;
+    }
+
+    .view-heading h3 {
+      margin: 0 0 10px;
+
+      font-size: 34px;
+      line-height: 1.5;
+
+      font-weight: 500;
+    }
+
+    .view-heading p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+
+    /* =====================================================
+       Personas
+    ===================================================== */
+
+    .personas {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 14px;
+    }
+
+    .persona {
+      min-height: 400px;
+
+      padding: 26px;
+
+      display: flex;
+      flex-direction: column;
+
+      text-align: right;
+
+      border: 1px solid var(--border);
+      border-radius: 23px;
+
+      background: rgba(255,255,255,.025);
+
+      cursor: pointer;
+
+      transition:
+        transform .35s var(--ease),
+        background .35s,
+        border-color .35s;
+    }
+
+    .persona:hover {
+      transform: translateY(-6px);
+
+      background: rgba(255,255,255,.045);
+
+      border-color: rgba(84,215,159,.27);
+    }
+
+    .persona-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .avatar {
+      width: 60px;
+      height: 60px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 19px;
+
+      border: 1px solid rgba(84,215,159,.15);
+
+      background: var(--green-soft);
+
+      color: var(--green);
+
+      font-size: 21px;
+      font-weight: 600;
+    }
+
+    .avatar.blue {
+      border-color: rgba(142,189,231,.15);
+
+      background: var(--blue-soft);
+
+      color: var(--blue);
+    }
+
+    .avatar.amber {
+      border-color: rgba(229,185,112,.15);
+
+      background: var(--amber-soft);
+
+      color: var(--amber);
+    }
+
+    .synthetic {
+      color: var(--muted-2);
+
+      font-size: 11px;
+    }
+
+    .persona h4 {
+      margin: 27px 0 5px;
+
+      font-size: 26px;
+
+      font-weight: 500;
+    }
+
+    .persona > p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+    .current-services {
+      margin-top: 24px;
+
+      padding-top: 20px;
+
+      border-top: 1px solid var(--border);
+    }
+
+    .current-services > span {
+      display: block;
+
+      margin-bottom: 10px;
+
+      color: var(--muted-2);
+
+      font-size: 11px;
+    }
+
+    .service-chips {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 7px;
+    }
+
+    .service-chip {
+      padding: 7px 10px;
+
+      border-radius: 999px;
+
+      background: rgba(255,255,255,.045);
+
+      color: var(--muted);
+
+      font-size: 11px;
+    }
+
+    .persona-action {
+      margin-top: auto;
+
+      padding-top: 28px;
+
+      color: var(--green);
+
+      font-size: 13px;
+    }
+
+
+    /* =====================================================
+       مساحة السؤال
+    ===================================================== */
+
+    .workspace {
+      display: grid;
+      grid-template-columns: 290px 1fr;
+
+      gap: 45px;
+
+      min-height: 550px;
+    }
+
+    .profile-panel {
+      padding-left: 30px;
+
+      border-left: 1px solid var(--border);
+    }
+
+    .back-button {
+      margin-bottom: 30px;
+
+      padding: 0;
+
+      border: 0;
+      background: transparent;
+
+      color: var(--muted);
+
+      cursor: pointer;
+
+      font-size: 12px;
+    }
+
+    .back-button:hover {
+      color: var(--text);
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+
+      gap: 12px;
+
+      padding-bottom: 22px;
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .profile-header .avatar {
+      width: 48px;
+      height: 48px;
+
+      border-radius: 15px;
+
+      font-size: 17px;
+    }
+
+    .profile-header h4 {
+      margin: 0 0 4px;
+
+      font-size: 18px;
+    }
+
+    .profile-header p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 12px;
+    }
+
+    .profile-services {
+      margin-top: 24px;
+    }
+
+    .profile-services > span {
+      display: block;
+
+      margin-bottom: 10px;
+
+      color: var(--muted-2);
+
+      font-size: 11px;
+    }
+
+
+    /* =====================================================
+       الأحداث
+    ===================================================== */
+
+    .events {
+      display: grid;
+
+      gap: 10px;
+    }
+
+    .event-card {
+      min-height: 110px;
+
+      padding: 20px;
+
+      display: grid;
+      grid-template-columns: 50px 1fr 30px;
+
+      gap: 16px;
+
+      align-items: center;
+
+      text-align: right;
+
+      border: 1px solid var(--border);
+      border-radius: 18px;
+
+      background: rgba(255,255,255,.025);
+
+      cursor: pointer;
+
+      transition:
+        transform .3s var(--ease),
+        border-color .3s,
+        background .3s;
+    }
+
+    .event-card:hover {
+      transform: translateX(-5px);
+
+      border-color: rgba(84,215,159,.27);
+
+      background: var(--green-soft);
+    }
+
+    .event-icon {
+      width: 50px;
+      height: 50px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 15px;
+
+      background: var(--green-soft);
+
+      color: var(--green);
+
+      font-size: 18px;
+    }
+
+    .event-card h4 {
+      margin: 0 0 5px;
+
+      font-size: 17px;
+
+      font-weight: 500;
+    }
+
+    .event-card p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .event-arrow {
+      color: var(--muted-2);
+    }
+
+
+    /* =====================================================
+       الأسئلة
+    ===================================================== */
+
+    .question-title {
+      margin-bottom: 28px;
+    }
+
+    .question-title small {
+      display: block;
+
+      margin-bottom: 10px;
+
+      color: var(--green);
+
+      font-size: 12px;
+    }
+
+    .question-title h3 {
+      margin: 0 0 8px;
+
+      font-size: 31px;
+
+      font-weight: 500;
+    }
+
+    .question-title p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .options {
+      display: grid;
+
+      gap: 9px;
+    }
+
+    .option {
+      min-height: 76px;
+
+      padding: 17px 19px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      text-align: right;
+
+      border: 1px solid var(--border);
+      border-radius: 16px;
+
+      background: rgba(255,255,255,.025);
+
+      cursor: pointer;
+
+      transition: .25s;
+    }
+
+    .option:hover,
+    .option.selected {
+      border-color: rgba(84,215,159,.30);
+
+      background: var(--green-soft);
+    }
+
+    .option strong {
+      display: block;
+
+      margin-bottom: 4px;
+
+      font-size: 15px;
+
+      font-weight: 500;
+    }
+
+    .option small {
+      color: var(--muted);
+
+      font-size: 12px;
+    }
+
+    .check {
+      width: 21px;
+      height: 21px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 50%;
+
+      border: 1px solid var(--border-strong);
+
+      color: transparent;
+    }
+
+    .option.selected .check {
+      border-color: var(--green);
+
+      background: var(--green);
+
+      color: #052117;
+    }
+
+    .form-grid {
+      margin-top: 22px;
+
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 10px;
+    }
+
+    .field {
+      padding: 17px;
+
+      border: 1px solid var(--border);
+      border-radius: 16px;
+
+      background: rgba(255,255,255,.02);
+    }
+
+    .field label {
+      display: block;
+
+      margin-bottom: 10px;
+
+      color: var(--muted);
+
+      font-size: 12px;
+    }
+
+    .field input {
+      width: 100%;
+
+      border: 0;
+      outline: 0;
+
+      background: transparent;
+
+      color: var(--text);
+
+      font-size: 23px;
+
+      font-weight: 500;
+    }
+
+    .question-actions {
+      margin-top: 28px;
+
+      display: flex;
+      justify-content: flex-end;
+    }
+
+
+    /* =====================================================
+       التحليل
+    ===================================================== */
+
+    .analysis {
+      min-height: 540px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      text-align: center;
+    }
+
+    .analysis-circle {
+      position: relative;
+
+      width: 100px;
+      height: 100px;
+
+      margin-bottom: 28px;
+
+      border-radius: 50%;
+
+      border: 1px solid rgba(84,215,159,.16);
+    }
+
+    .analysis-circle::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 34px;
+
+      border-radius: 50%;
+
+      background: var(--green);
+
+      box-shadow:
+        0 0 45px rgba(84,215,159,.28);
+    }
+
+    .analysis-circle::after {
+      content: "";
+
+      position: absolute;
+
+      inset: -1px;
+
+      border-radius: 50%;
+
+      border: 1px solid transparent;
+      border-top-color: var(--green);
+
+      animation: spin 1.2s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .analysis h3 {
+      margin: 0 0 7px;
+
+      font-size: 29px;
+
+      font-weight: 500;
+    }
+
+    .analysis > p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+    .analysis-list {
+      width: min(500px, 100%);
+
+      margin-top: 26px;
+    }
+
+    .analysis-step {
+      min-height: 45px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 10px;
+
+      border-bottom: 1px solid var(--border);
+
+      color: var(--muted-2);
+
+      font-size: 13px;
+
+      opacity: .28;
+
+      transition: .35s;
+    }
+
+    .analysis-step span {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: var(--muted-2);
+    }
+
+    .analysis-step.done {
+      opacity: 1;
+
+      color: var(--text);
+    }
+
+    .analysis-step.done span {
+      background: var(--green);
+    }
+
+
+    /* =====================================================
+       النتيجة
+    ===================================================== */
+
+    .result-header {
+      margin-bottom: 30px;
+    }
+
+    .result-header small {
+      display: block;
+
+      margin-bottom: 10px;
+
+      color: var(--green);
+
+      font-size: 13px;
+    }
+
+    .result-header h3 {
+      margin: 0 0 10px;
+
+      font-size: 36px;
+
+      font-weight: 500;
+    }
+
+    .result-header p {
+      max-width: 740px;
+
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .rule-summary {
+      margin-bottom: 24px;
+
+      padding: 18px 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      border: 1px solid rgba(84,215,159,.15);
+      border-radius: 16px;
+
+      background: rgba(84,215,159,.04);
+    }
+
+    .rule-summary strong {
+      font-size: 15px;
+
+      font-weight: 500;
+    }
+
+    .rule-summary span {
+      color: var(--muted);
+
+      font-size: 12px;
+    }
+
+    .before-after {
+      margin-bottom: 30px;
+
+      display: grid;
+      grid-template-columns: 1fr 70px 1fr;
+
+      align-items: stretch;
+    }
+
+    .state-box {
+      padding: 22px;
+
+      border: 1px solid var(--border);
+      border-radius: 18px;
+
+      background: rgba(255,255,255,.025);
+    }
+
+    .state-box.after {
+      border-color: rgba(84,215,159,.22);
+
+      background: var(--green-soft);
+    }
+
+    .state-box small {
+      display: block;
+
+      margin-bottom: 13px;
+
+      color: var(--muted-2);
+
+      font-size: 11px;
+    }
+
+    .state-box strong {
+      font-size: 18px;
+
+      font-weight: 500;
+    }
+
+    .change-arrow {
+      display: grid;
+      place-items: center;
+
+      color: var(--green);
+
+      text-align: center;
+    }
+
+    .change-arrow span {
+      font-size: 12px;
+    }
+
+    .result-section {
+      margin-top: 34px;
+    }
+
+    .result-section-title {
+      margin-bottom: 14px;
+    }
+
+    .result-section-title small {
+      display: block;
+
+      margin-bottom: 5px;
+
+      color: var(--muted-2);
+
+      font-size: 11px;
+    }
+
+    .result-section-title h4 {
+      margin: 0;
+
+      font-size: 22px;
+
+      font-weight: 500;
+    }
+
+    .services-row {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 8px;
+    }
+
+    .result-service {
+      padding: 10px 13px;
+
+      border: 1px solid var(--border);
+      border-radius: 13px;
+
+      background: rgba(255,255,255,.025);
+
+      color: var(--muted);
+
+      font-size: 13px;
+    }
+
+    .impact-list {
+      display: grid;
+
+      gap: 9px;
+    }
+
+    .impact {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+
+      background: rgba(255,255,255,.023);
+
+      overflow: hidden;
+    }
+
+    .impact-main {
+      min-height: 92px;
+
+      padding: 17px;
+
+      display: grid;
+      grid-template-columns: 45px 1fr auto;
+
+      gap: 14px;
+
+      align-items: center;
+
+      cursor: pointer;
+    }
+
+    .impact-icon {
+      width: 44px;
+      height: 44px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 14px;
+
+      background: var(--green-soft);
+
+      color: var(--green);
+
+      font-size: 17px;
+    }
+
+    .impact-copy strong {
+      display: block;
+
+      margin-bottom: 4px;
+
+      font-size: 15px;
+
+      font-weight: 500;
+    }
+
+    .impact-copy p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .impact-tag {
+      padding: 6px 9px;
+
+      border-radius: 999px;
+
+      background: var(--green-soft);
+
+      color: var(--green-light);
+
+      font-size: 10px;
+    }
+
+    .impact-tag.warning {
+      background: var(--amber-soft);
+
+      color: var(--amber);
+    }
+
+    .impact-tag.neutral {
+      background: rgba(255,255,255,.045);
+
+      color: var(--muted);
+    }
+
+    .impact-details {
+      max-height: 0;
+
+      overflow: hidden;
+
+      transition: max-height .4s var(--ease);
+    }
+
+    .impact.open .impact-details {
+      max-height: 420px;
+    }
+
+    .impact-details-inner {
+      margin: 0 75px 18px 17px;
+
+      padding-top: 16px;
+
+      border-top: 1px solid var(--border);
+
+      color: var(--muted);
+
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .why-box {
+      margin-top: 12px;
+
+      padding: 12px;
+
+      border: 1px solid var(--border);
+      border-radius: 12px;
+
+      background: rgba(255,255,255,.018);
+
+      color: var(--muted-2);
+
+      font-size: 12px;
+    }
+
+    .source-link {
+      display: inline-flex;
+
+      margin-top: 12px;
+
+      color: var(--green);
+
+      font-size: 12px;
+    }
+
+    .result-actions {
+      margin-top: 28px;
+
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 9px;
+    }
+
+    .disclaimer {
+      margin-top: 18px;
+
+      padding: 14px;
+
+      border: 1px solid var(--border);
+      border-radius: 13px;
+
+      color: var(--muted-2);
+
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+
+    /* =====================================================
+       النهاية
+    ===================================================== */
+
+    .closing {
+      padding: 130px 0;
+    }
+
+    .closing-card {
+      padding: 70px 55px;
+
+      border: 1px solid rgba(84,215,159,.15);
+      border-radius: var(--radius-lg);
+
+      background:
+        radial-gradient(
+          circle at 90% 0%,
+          rgba(84,215,159,.09),
+          transparent 40%
+        ),
+        rgba(255,255,255,.02);
+
+      text-align: center;
+    }
+
+    .closing-card h2 {
+      max-width: 900px;
+
+      margin: 0 auto;
+
+      font-size: clamp(40px, 5vw, 64px);
+      line-height: 1.4;
+
+      font-weight: 500;
+
+      letter-spacing: -2px;
+    }
+
+    .closing-card h2 span {
+      color: var(--green);
+    }
+
+    .closing-card p {
+      max-width: 780px;
+
+      margin: 24px auto 0;
+
+      color: var(--muted);
+
+      font-size: 17px;
+      line-height: 2;
+    }
+
+
+    /* =====================================================
+       footer
+    ===================================================== */
+
+    footer {
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      min-height: 110px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 25px;
+    }
+
+    .footer-inner span {
+      color: var(--muted-2);
+
+      font-size: 11px;
+    }
+
+
+    /* =====================================================
+       Responsive
+    ===================================================== */
+
+    @media (max-width: 1000px) {
+
+      .story {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .story-middle {
+        padding: 12px 0;
+      }
+
+      .simple-flow {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .flow-arrow {
+        transform: rotate(90deg);
+        min-height: 30px;
+      }
+
+      .personas {
+        grid-template-columns: 1fr;
+      }
+
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-panel {
+        padding-left: 0;
+        padding-bottom: 25px;
+
+        border-left: 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+    }
+
+    @media (max-width: 700px) {
+
+      .container {
+        width: calc(100% - 28px);
+      }
+
+      .header-inner {
+        height: 74px;
+      }
+
+      .header-actions button {
+        display: none;
+      }
+
+      .prototype-badge {
+        font-size: 9px;
+      }
+
+      .hero {
+        min-height: auto;
+
+        padding: 80px 0 100px;
+      }
+
+      .hero h1 {
+        font-size: 50px;
+
+        letter-spacing: -2px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .section {
+        padding: 95px 0;
+      }
+
+      .section-heading h2 {
+        font-size: 39px;
+      }
+
+      .section-heading p {
+        font-size: 16px;
+      }
+
+      .experience-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .view {
+        padding: 22px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .before-after {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .change-arrow {
+        transform: rotate(90deg);
+      }
+
+      .impact-main {
+        grid-template-columns: 44px 1fr;
+      }
+
+      .impact-tag {
+        grid-column: 2;
+
+        justify-self: start;
+      }
+
+      .impact-details-inner {
+        margin-right: 17px;
+      }
+
+      .rule-summary {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .closing-card {
+        padding: 45px 22px;
+      }
+
+      .footer-inner {
+        padding: 25px 0;
+
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+
+    }
+
+  </style>
 </head>
+
+
 <body>
 
-  <div class="page-bg" aria-hidden="true">
-    <div class="page-grid"></div>
-    <div class="page-glow glow-a"></div>
-    <div class="page-glow glow-b"></div>
-  </div>
+<div class="background-grid"></div>
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <button class="brand" data-scroll-to="hero" aria-label="العودة إلى البداية">
-        <span class="brand-mark">أ</span>
-        <span class="brand-name">أثر</span>
+
+<!-- =====================================================
+     الهيدر
+===================================================== -->
+
+<header>
+
+  <div class="container header-inner">
+
+    <button class="brand" onclick="goTo('hero')">
+
+      <span class="brand-mark">
+        أ
+      </span>
+
+      <span class="brand-name">
+        أثر
+      </span>
+
+    </button>
+
+
+    <div class="header-actions">
+
+      <button onclick="goTo('idea')">
+        الفكرة
       </button>
 
-      <nav class="header-nav" aria-label="التنقل الرئيسي">
-        <button data-scroll-to="idea">الفكرة</button>
-        <button data-scroll-to="how">كيف تعمل؟</button>
-        <button class="nav-demo" data-scroll-to="experience">جرّب أثر</button>
-        <span class="concept-badge">نموذج تصوري غير رسمي</span>
-      </nav>
+      <button onclick="goTo('how')">
+        كيف تعمل؟
+      </button>
+
+      <button onclick="startDemo()">
+        جرّب أثر
+      </button>
+
+      <span class="prototype-badge">
+        نموذج تفاعلي تصوري
+      </span>
+
     </div>
-  </header>
 
-  <main>
+  </div>
 
-    <!-- البداية -->
-    <section class="hero" id="hero">
-      <div class="container hero-inner">
-        <div class="hero-eyebrow reveal">
-          <span class="status-pulse"></span>
-          تجربة تبدأ من المستفيد، مو من قائمة الخدمات
-        </div>
+</header>
 
-        <h1 class="reveal reveal-delay-1">
-          قل لنا وش تغيّر،
-          <span>وأثر يوضح وش يهمك الآن</span>
-        </h1>
 
-        <p class="hero-lead reveal reveal-delay-2">
-          المستفيد غالبًا ما يعرف اسم الخدمة اللي يحتاجها، لكنه يعرف وش صار في حياته،
-          أثر يبدأ من هذا التغيير، يفهم وضعه الحالي، ويعرض له فقط الأشياء المرتبطة بحالته
+<main>
+
+
+<!-- =====================================================
+     Hero
+===================================================== -->
+
+<section class="hero" id="hero">
+
+  <div class="container">
+
+    <div class="hero-content">
+
+      <div class="eyebrow">
+
+        <span class="eyebrow-dot"></span>
+
+        تجربة مقترحة تتمحور حول المستفيد
+
+      </div>
+
+
+      <h1>
+
+        حياتك تتغير،
+
+        <span>
+          وخدماتك تعرف وش تحتاج،
+        </span>
+
+      </h1>
+
+
+      <p class="hero-description">
+
+        أثر هو نموذج تفاعلي لتجربة تبدأ من حالة المستفيد
+        والتغيير اللي صار في حياته،
+
+        ثم توضّح له الأشياء اللي قد تتأثر،
+        والخدمات اللي أصبحت مرتبطة بحالته،
+        والخطوة التالية،
+
+      </p>
+
+
+      <div class="hero-actions">
+
+        <button
+          class="btn btn-primary"
+          onclick="startDemo()"
+        >
+          جرّب أثر
+          <span>←</span>
+        </button>
+
+
+        <button
+          class="btn btn-secondary"
+          onclick="goTo('idea')"
+        >
+          اعرف الفكرة
+        </button>
+
+      </div>
+
+
+      <div class="scroll-hint">
+
+        اكتشف الفكرة
+
+        <span>↓</span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     المشكلة
+===================================================== -->
+
+<section class="section" id="idea">
+
+  <div class="container">
+
+    <div class="section-heading centered">
+
+      <span class="kicker">
+        ليش أثر؟
+      </span>
+
+      <h2>
+
+        المستفيد يعرف وش صار له،
+
+        <br>
+
+        مو بالضرورة يعرف وش الخدمة،
+
+      </h2>
+
+
+      <p>
+
+        إذا تغير دخل شخص،
+        أو انتهى عقده،
+        أو بدأ وظيفة جديدة،
+
+        غالبًا يفكر في التغيير نفسه،
+
+        وليس في اسم الخدمة أو المنصة اللي يحتاجها،
+
+      </p>
+
+    </div>
+
+
+    <div class="story">
+
+      <div class="story-card">
+
+        <small>
+          التجربة المعتادة
+        </small>
+
+        <h3>
+          "تغير دخلي، وش أسوي؟"
+        </h3>
+
+        <p>
+
+          يبدأ المستفيد بالبحث،
+          ويحاول يعرف أي خدمة تخصه،
+          وهل يحتاج يحدث بياناته،
+          وهل فيه شيء ثاني ممكن يتأثر،
+
         </p>
 
-        <div class="hero-actions reveal reveal-delay-3">
-          <button class="btn btn-primary" id="heroStartBtn">
-            جرّب أثر
-            <span aria-hidden="true">←</span>
-          </button>
-          <button class="btn btn-quiet" data-scroll-to="idea">اعرف الفكرة</button>
-        </div>
-
-        <button class="scroll-cue reveal reveal-delay-3" data-scroll-to="idea">
-          <span>اكتشف الفكرة</span>
-          <i aria-hidden="true">↓</i>
-        </button>
       </div>
-    </section>
 
-    <!-- شرح الفكرة -->
-    <section class="idea-section" id="idea">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="kicker">ليش أثر؟</span>
-          <h2>المستفيد يعرف وش صار له، مو بالضرورة يعرف وين يروح</h2>
-          <p>
-            اليوم قد يبدأ المستفيد من سؤال بسيط مثل «تغيّر دخلي» أو «انتهى عقدي»،
-            وبعدها يحتاج يحدد الخدمة والمنصة والإجراء المناسب، أثر يقلب نقطة البداية، ويبدأ من حياته هو
-          </p>
-        </div>
 
-        <div class="story-stack">
-          <article class="story-panel reveal">
-            <span class="story-number">01</span>
-            <div>
-              <small>الوضع المعتاد</small>
-              <h3>أنا أعرف المشكلة، لكن وش الخدمة؟</h3>
-              <p>المستفيد يبحث، يقارن، ويحاول يفهم أي خدمة أو إجراء له علاقة بالتغيير اللي صار</p>
-            </div>
-          </article>
+      <div class="story-middle">
 
-          <article class="story-panel story-panel-focus reveal">
-            <span class="story-number">02</span>
-            <div>
-              <small>مع أثر</small>
-              <h3>قل وش تغيّر، والباقي يبدأ من حالتك</h3>
-              <p>أثر يقرأ وضع المستفيد، يستبعد اللي ما يخصه، ويربط التغيير بالخدمات والقواعد ذات العلاقة</p>
-            </div>
-          </article>
+        <strong>
+          أثر
+        </strong>
 
-          <article class="story-panel reveal">
-            <span class="story-number">03</span>
-            <div>
-              <small>النتيجة</small>
-              <h3>وش تأثر، ليش ظهر، وش الخطوة التالية؟</h3>
-              <p>بدل قائمة عامة، يحصل المستفيد على نتيجة شخصية، واضحة، ومفسّرة بالمصدر الرسمي</p>
-            </div>
-          </article>
-        </div>
+        <div class="story-line"></div>
 
-        <div class="stat-strip reveal">
-          <div class="stat-number" data-count="855">0</div>
-          <div class="stat-copy">
-            <strong>خدمة رقمية تظهر في إحصاءات موقع الوزارة</strong>
-            <p>الفكرة مو إننا نضيف خدمة رقم 856، الفكرة إننا نساعد المستفيد يعرف أي الخدمات تهمه في اللحظة المناسبة</p>
-          </div>
-          <button class="source-mini" data-source-open="home">المصدر الرسمي ↗</button>
-        </div>
       </div>
-    </section>
 
-    <!-- كيف تعمل -->
-    <section class="how-section" id="how">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="kicker">كيف تعمل؟</span>
-          <h2>أربع خطوات بسيطة للمستفيد، ومنطق أذكى خلفها</h2>
-          <p>كل شيء ظاهر للمستخدم بلغة بسيطة، أما المطابقة والتحقق فتعمل في الخلفية</p>
-        </div>
 
-        <div class="how-flow">
-          <article class="how-card reveal">
-            <span>01</span>
-            <h3>نعرف وضعك الآن</h3>
-            <p>عملك، عقدك، دخلك، أسرتك، والخدمات اللي تستخدمها حاليًا</p>
-          </article>
+      <div class="story-card highlight">
 
-          <div class="how-arrow reveal" aria-hidden="true">←</div>
+        <small>
+          التجربة المقترحة
+        </small>
 
-          <article class="how-card reveal">
-            <span>02</span>
-            <h3>تقول لنا وش تغيّر</h3>
-            <p>تغيّر دخل، انتهاء علاقة وظيفية، أو بداية وظيفة جديدة</p>
-          </article>
+        <h3>
+          "فهمنا وش تغير عندك"
+        </h3>
 
-          <div class="how-arrow reveal" aria-hidden="true">←</div>
+        <p>
 
-          <article class="how-card reveal">
-            <span>03</span>
-            <h3>نستبعد اللي ما يخصك</h3>
-            <p>الخدمة ما تظهر لمجرد أنها موجودة، تظهر فقط إذا كانت مرتبطة بحالتك</p>
-          </article>
+          هذه الأشياء مرتبطة بحالتك،
+          وهذا سبب ظهورها لك،
+          وهذه الخطوة اللي قد تحتاج تسويها،
 
-          <div class="how-arrow reveal" aria-hidden="true">←</div>
+        </p>
 
-          <article class="how-card how-card-active reveal">
-            <span>04</span>
-            <h3>نعطيك الأثر والخطوة التالية</h3>
-            <p>وش تغيّر، وش يحتاج انتباهك، وش الخدمة اللي قد تفيدك الآن، وليش</p>
-          </article>
-        </div>
-
-        <div class="principle-card reveal">
-          <div class="principle-icon">✓</div>
-          <div>
-            <small>قاعدة التجربة</small>
-            <strong>إذا الشيء ما يخص المستفيد، ما يظهر له أصلًا</strong>
-            <p>ريم مثلًا غير مستفيدة من الضمان، لذلك أي تجربة لها ما تعرض بطاقة عن الضمان لمجرد أن الحدث هو تغيّر الدخل</p>
-          </div>
-        </div>
       </div>
-    </section>
 
-    <!-- التجربة -->
-    <section class="experience-section" id="experience">
-      <div class="container">
-        <div class="experience-top" id="experienceTop">
-          <div class="section-heading compact reveal">
-            <span class="kicker">جرّب النموذج</span>
-            <h2>نفس التغيير، مو نفس الأثر</h2>
-            <p>اختر شخصًا، جرّب حدثًا، وشوف كيف تتغير النتائج حسب حالته وخدماته الحالية</p>
-          </div>
-
-          <div class="stepper reveal" id="stepper" aria-label="تقدم التجربة">
-            <div class="step active" data-step="1"><span>1</span><small>الشخص</small></div>
-            <i></i>
-            <div class="step" data-step="2"><span>2</span><small>التغيير</small></div>
-            <i></i>
-            <div class="step" data-step="3"><span>3</span><small>التفاصيل</small></div>
-            <i></i>
-            <div class="step" data-step="4"><span>4</span><small>الأثر</small></div>
-          </div>
-        </div>
-
-        <div class="experience-shell reveal" id="experienceShell">
-
-          <!-- اختيار الشخص -->
-          <section class="experience-view active" id="personaView">
-            <div class="view-head">
-              <span class="view-step">الخطوة 1 من 4</span>
-              <h3 id="personaViewTitle">اختر مستفيدًا افتراضيًا</h3>
-              <p id="personaViewText">كل شخص عنده وضع مختلف وخدمات مختلفة، وبعدها بنعرض للجميع نفس قائمة التغيّرات</p>
-            </div>
-            <div class="persona-grid" id="personaGrid"></div>
-          </section>
-
-          <!-- اختيار الحدث -->
-          <section class="experience-view" id="eventView">
-            <div id="eventPersonaStrip"></div>
-            <div class="view-head with-top-gap">
-              <span class="view-step">الخطوة 2 من 4</span>
-              <h3>وش التغيير اللي ودك تعرف أثره؟</h3>
-              <p>نفس الخيارات موجودة للجميع، لكن اللي بيظهر بعدين يعتمد على وضع الشخص</p>
-            </div>
-            <div class="event-grid" id="eventGrid"></div>
-            <div class="view-foot">
-              <button class="text-btn" data-go-back="persona">→ تغيير الشخص</button>
-            </div>
-          </section>
-
-          <!-- الأسئلة -->
-          <section class="experience-view" id="questionView">
-            <div id="questionPersonaStrip"></div>
-            <div class="question-stage" id="questionStage"></div>
-            <div class="view-foot">
-              <button class="text-btn" data-go-back="event">→ تغيير التغيير</button>
-            </div>
-          </section>
-
-          <!-- التحليل -->
-          <section class="experience-view" id="analysisView">
-            <div class="analysis-wrap">
-              <div class="analysis-symbol" aria-hidden="true">
-                <span></span>
-                <i></i>
-                <b></b>
-              </div>
-              <span class="view-step">لحظة، نربط الحالة بالتغيير</span>
-              <h3>نستبعد اللي ما يخصك، ونرتّب اللي يهمك</h3>
-              <p>النتيجة مو صفحة ثابتة، تتكوّن حسب بيانات الشخص وإجاباته</p>
-              <div class="analysis-list">
-                <div class="analysis-item" data-analysis-step="1"><span></span>نقرأ وضع المستفيد وخدماته الحالية</div>
-                <div class="analysis-item" data-analysis-step="2"><span></span>نفهم التغيير والتفاصيل اللي اختارها</div>
-                <div class="analysis-item" data-analysis-step="3"><span></span>نراجع القواعد ونستبعد غير المرتبط</div>
-                <div class="analysis-item" data-analysis-step="4"><span></span>نرتّب الأثر والخدمات والخطوة التالية</div>
-              </div>
-            </div>
-          </section>
-
-          <!-- النتيجة -->
-          <section class="experience-view" id="resultView">
-            <div id="resultContent"></div>
-          </section>
-
-          <!-- المقارنة -->
-          <section class="experience-view" id="compareView">
-            <div id="compareContent"></div>
-          </section>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- الفكرة الأكبر -->
-    <section class="vision-section">
-      <div class="container">
-        <article class="vision-card reveal">
-          <span class="kicker">الفكرة الأكبر</span>
-          <h2>مو خدمة جديدة، طريقة جديدة لفهم المستفيد</h2>
-          <p>
-            إذا عرفنا وضع المستفيد، وفهمنا التغيير اللي صار له، وربطنا الاثنين بالقواعد الرسمية،
-            نقدر نوجّه كل شخص لما يخصه بدل ما نخليه يبدأ من الصفر كل مرة
-          </p>
-
-          <div class="vision-row">
-            <span>وضع المستفيد</span>
-            <b>+</b>
-            <span>التغيير</span>
-            <b>+</b>
-            <span>القواعد الرسمية</span>
-            <b>=</b>
-            <span class="vision-result">وش يهمك الآن</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- المصادر -->
-    <section class="sources-section">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="kicker">المصادر الرسمية</span>
-          <h2>أي نتيجة مهمة لازم نقدر نشرح سببها</h2>
-          <p>بيانات الأشخاص في النموذج افتراضية، أما القواعد المستخدمة في التجربة فمرتبطة بمصادر رسمية من الوزارة</p>
-        </div>
-
-        <div class="sources-grid reveal">
-          <button class="source-card" data-source-open="socialSecurity">
-            <span>01</span>
-            <div><strong>نظام الضمان الاجتماعي</strong><p>التغيّر المؤثر على الاستحقاق أو مقدار المعاش، ومدة الإبلاغ</p></div>
-            <b>↗</b>
-          </button>
-
-          <button class="source-card" data-source-open="contracts">
-            <span>02</span>
-            <div><strong>إدارة العقود</strong><p>مراجعة العقد، الموافقة، الرفض، وطلب التعديل</p></div>
-            <b>↗</b>
-          </button>
-
-          <button class="source-card" data-source-open="contractEnd">
-            <span>03</span>
-            <div><strong>إنهاء العلاقة التعاقدية</strong><p>العقد الساري، سبب الإنهاء، وتاريخ الإنهاء</p></div>
-            <b>↗</b>
-          </button>
-
-          <button class="source-card" data-source-open="endServiceCalculator">
-            <span>04</span>
-            <div><strong>حاسبة نهاية الخدمة</strong><p>أداة رسمية لتقدير مكافأة نهاية الخدمة حسب البيانات المدخلة</p></div>
-            <b>↗</b>
-          </button>
-
-          <button class="source-card" data-source-open="empowerment">
-            <span>05</span>
-            <div><strong>الضمان والتمكين</strong><p>التدريب والتأهيل وفرص الاندماج في سوق العمل للمستفيدين القادرين على العمل</p></div>
-            <b>↗</b>
-          </button>
-        </div>
-
-        <p class="checked-note reveal">تم التحقق من المصادر المستخدمة في هذا النموذج بتاريخ 30 سبتمبر 2026</p>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <span class="brand-mark small">أ</span>
-        <div><strong>أثر</strong><small>نموذج تصوري</small></div>
-      </div>
-      <p>بيانات افتراضية، لا يمثل خدمة رسمية، ولا يصدر قرار أهلية أو تفسيرًا قانونيًا</p>
     </div>
-  </footer>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
 
-  <script src="app.js"></script>
+</section>
+
+
+<!-- =====================================================
+     كيف تعمل
+===================================================== -->
+
+<section class="section" id="how">
+
+  <div class="container">
+
+    <div class="section-heading">
+
+      <span class="kicker">
+        كيف تعمل الفكرة؟
+      </span>
+
+      <h2>
+
+        ما نبدأ من الخدمة،
+
+        <br>
+
+        نبدأ من الشخص،
+
+      </h2>
+
+
+      <p>
+
+        نفس التغيير ممكن يصير لشخصين،
+
+        لكن أثره عليهم مو بالضرورة يكون واحد،
+
+        لأن كل شخص عنده حالة مختلفة،
+        وخدمات مختلفة يستخدمها الآن،
+
+      </p>
+
+    </div>
+
+
+    <div class="simple-flow">
+
+      <div class="flow-card">
+
+        <span>01</span>
+
+        <strong>
+          وضعك الآن
+        </strong>
+
+        <small>
+          العمل،
+          العقد،
+          الدخل،
+          الأسرة،
+          والخدمات الحالية،
+        </small>
+
+      </div>
+
+
+      <div class="flow-arrow">
+        ←
+      </div>
+
+
+      <div class="flow-card">
+
+        <span>02</span>
+
+        <strong>
+          وش تغير؟
+        </strong>
+
+        <small>
+          تغير دخل،
+          انتهاء علاقة وظيفية،
+          أو وظيفة جديدة،
+        </small>
+
+      </div>
+
+
+      <div class="flow-arrow">
+        ←
+      </div>
+
+
+      <div class="flow-card">
+
+        <span>03</span>
+
+        <strong>
+          وش يخصك؟
+        </strong>
+
+        <small>
+          يتم تجاهل الأشياء
+          اللي ما لها علاقة بحالتك،
+        </small>
+
+      </div>
+
+
+      <div class="flow-arrow">
+        ←
+      </div>
+
+
+      <div class="flow-card active">
+
+        <span>04</span>
+
+        <strong>
+          وش تسوي الآن؟
+        </strong>
+
+        <small>
+          أثر التغيير،
+          الخدمات المرتبطة،
+          والخطوة التالية،
+        </small>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     التجربة
+===================================================== -->
+
+<section
+  class="experience-section"
+  id="experience"
+>
+
+  <div class="container">
+
+
+    <div class="experience-heading">
+
+      <div>
+
+        <span class="kicker">
+          جرّب النموذج
+        </span>
+
+        <h2>
+          اختر شخصًا،
+          ثم غيّر شيء في حياته،
+        </h2>
+
+      </div>
+
+
+      <div class="steps">
+
+        <span class="step active" data-step="1">
+          1
+        </span>
+
+        <span class="step-line"></span>
+
+        <span class="step" data-step="2">
+          2
+        </span>
+
+        <span class="step-line"></span>
+
+        <span class="step" data-step="3">
+          3
+        </span>
+
+        <span class="step-line"></span>
+
+        <span class="step" data-step="4">
+          4
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="app">
+
+
+      <!-- ==========================================
+           اختيار Persona
+      =========================================== -->
+
+      <section
+        class="view active"
+        id="personaView"
+      >
+
+        <div class="view-heading">
+
+          <small>
+            الخطوة 1 من 4
+          </small>
+
+          <h3>
+            اختر مستفيدًا افتراضيًا
+          </h3>
+
+          <p>
+
+            كل شخص عنده وضع مختلف،
+            وخدمات يستخدمها الآن،
+
+            وبعد الاختيار بنعرض للجميع
+            نفس التغيّرات،
+
+          </p>
+
+        </div>
+
+
+        <div class="personas">
+
+
+          <!-- خالد -->
+
+          <button
+            class="persona"
+            onclick="choosePersona('khalid')"
+          >
+
+            <div class="persona-top">
+
+              <div class="avatar">
+                خ
+              </div>
+
+              <span class="synthetic">
+                بيانات افتراضية
+              </span>
+
+            </div>
+
+
+            <h4>
+              خالد، 41
+            </h4>
+
+            <p>
+              موظف،
+              متزوج،
+              أسرة من 4 أفراد
+            </p>
+
+
+            <div class="current-services">
+
+              <span>
+                يستفيد حاليًا من
+              </span>
+
+              <div class="service-chips">
+
+                <span class="service-chip">
+                  الضمان الاجتماعي
+                </span>
+
+                <span class="service-chip">
+                  العقود الوظيفية
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <span class="persona-action">
+              اختر خالد ←
+            </span>
+
+          </button>
+
+
+          <!-- ريم -->
+
+          <button
+            class="persona"
+            onclick="choosePersona('reem')"
+          >
+
+            <div class="persona-top">
+
+              <div class="avatar blue">
+                ر
+              </div>
+
+              <span class="synthetic">
+                بيانات افتراضية
+              </span>
+
+            </div>
+
+
+            <h4>
+              ريم، 27
+            </h4>
+
+            <p>
+              موظفة في القطاع الخاص
+            </p>
+
+
+            <div class="current-services">
+
+              <span>
+                تستفيد حاليًا من
+              </span>
+
+              <div class="service-chips">
+
+                <span class="service-chip">
+                  العقود الوظيفية
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <span class="persona-action">
+              اختر ريم ←
+            </span>
+
+          </button>
+
+
+          <!-- سلمان -->
+
+          <button
+            class="persona"
+            onclick="choosePersona('salman')"
+          >
+
+            <div class="persona-top">
+
+              <div class="avatar amber">
+                س
+              </div>
+
+              <span class="synthetic">
+                بيانات افتراضية
+              </span>
+
+            </div>
+
+
+            <h4>
+              سلمان، 24
+            </h4>
+
+            <p>
+              باحث عن عمل،
+              لا يوجد عقد فعال
+            </p>
+
+
+            <div class="current-services">
+
+              <span>
+                وضعه الحالي
+              </span>
+
+              <div class="service-chips">
+
+                <span class="service-chip">
+                  لا توجد علاقة وظيفية فعالة
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <span class="persona-action">
+              اختر سلمان ←
+            </span>
+
+          </button>
+
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ==========================================
+           اختيار الحدث
+      =========================================== -->
+
+      <section
+        class="view"
+        id="eventView"
+      >
+
+        <div class="workspace">
+
+
+          <aside class="profile-panel">
+
+            <button
+              class="back-button"
+              onclick="showPersonaView()"
+            >
+              → تغيير الشخص
+            </button>
+
+            <div id="eventProfile"></div>
+
+          </aside>
+
+
+          <div>
+
+            <div class="view-heading">
+
+              <small>
+                الخطوة 2 من 4
+              </small>
+
+              <h3>
+                وش تغير في حياتك؟
+              </h3>
+
+              <p>
+
+                هذه الخيارات نفسها
+                تظهر لأي شخص،
+
+                لكن النتيجة تختلف حسب
+                وضع المستفيد الحالي،
+
+              </p>
+
+            </div>
+
+
+            <div class="events">
+
+
+              <button
+                class="event-card"
+                onclick="chooseEvent('income')"
+              >
+
+                <span class="event-icon">
+                  ↕
+                </span>
+
+                <div>
+
+                  <h4>
+                    تغير دخلي
+                  </h4>
+
+                  <p>
+                    ارتفع أو انخفض دخلي،
+                    وأبي أعرف وش ممكن يتأثر،
+                  </p>
+
+                </div>
+
+                <span class="event-arrow">
+                  ←
+                </span>
+
+              </button>
+
+
+              <button
+                class="event-card"
+                onclick="chooseEvent('contractEnd')"
+              >
+
+                <span class="event-icon">
+                  ◷
+                </span>
+
+                <div>
+
+                  <h4>
+                    انتهت علاقتي الوظيفية
+                  </h4>
+
+                  <p>
+                    انتهى عقدي،
+                    أو أفكر في إنهاء العلاقة،
+                  </p>
+
+                </div>
+
+                <span class="event-arrow">
+                  ←
+                </span>
+
+              </button>
+
+
+              <button
+                class="event-card"
+                onclick="chooseEvent('newJob')"
+              >
+
+                <span class="event-icon">
+                  +
+                </span>
+
+                <div>
+
+                  <h4>
+                    بدأت وظيفة جديدة
+                  </h4>
+
+                  <p>
+                    وصلني عقد جديد،
+                    وأبي أعرف وش يصير بعده،
+                  </p>
+
+                </div>
+
+                <span class="event-arrow">
+                  ←
+                </span>
+
+              </button>
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ==========================================
+           الأسئلة
+      =========================================== -->
+
+      <section
+        class="view"
+        id="questionView"
+      >
+
+        <div class="workspace">
+
+
+          <aside class="profile-panel">
+
+            <button
+              class="back-button"
+              onclick="showEventView()"
+            >
+              → تغيير التغيير
+            </button>
+
+            <div id="questionProfile"></div>
+
+          </aside>
+
+
+          <div id="questionsContainer"></div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ==========================================
+           التحليل
+      =========================================== -->
+
+      <section
+        class="view"
+        id="analysisView"
+      >
+
+        <div class="analysis">
+
+          <div class="analysis-circle"></div>
+
+          <h3>
+            نفهم وش يخص حالتك،
+          </h3>
+
+          <p>
+            نراجع حالة المستفيد،
+            والتغيير،
+            والقواعد المرتبطة،
+          </p>
+
+
+          <div class="analysis-list">
+
+            <div
+              class="analysis-step"
+              data-analysis-step="1"
+            >
+              <span></span>
+              نقرأ وضع المستفيد الحالي،
+            </div>
+
+            <div
+              class="analysis-step"
+              data-analysis-step="2"
+            >
+              <span></span>
+              نفهم وش تغير،
+            </div>
+
+            <div
+              class="analysis-step"
+              data-analysis-step="3"
+            >
+              <span></span>
+              نستبعد الأشياء اللي ما تخصه،
+            </div>
+
+            <div
+              class="analysis-step"
+              data-analysis-step="4"
+            >
+              <span></span>
+              نرتب الأشياء اللي قد يحتاجها الآن،
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ==========================================
+           النتيجة
+      =========================================== -->
+
+      <section
+        class="view"
+        id="resultView"
+      >
+
+        <div id="resultContainer"></div>
+
+      </section>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     الخاتمة
+===================================================== -->
+
+<section class="closing">
+
+  <div class="container">
+
+    <div class="closing-card">
+
+      <h2>
+
+        بدل ما المستفيد يبحث عن الخدمة،
+
+        <span>
+          الخدمة تعرف متى تصبح مرتبطة بحالته،
+        </span>
+
+      </h2>
+
+
+      <p>
+
+        أثر لا يحاول استبدال الخدمات الموجودة،
+
+        الفكرة هي إضافة طبقة تفهم
+        وضع المستفيد،
+        والتغيّر اللي صار له،
+
+        ثم توصله للأشياء المناسبة في الوقت المناسب،
+
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+  <div class="container footer-inner">
+
+    <span>
+      أثر،
+      نموذج تفاعلي تصوري
+    </span>
+
+    <span>
+      بيانات افتراضية،
+      لا يمثل خدمة أو قرارًا رسميًا
+    </span>
+
+  </div>
+
+</footer>
+
+
+
+<script>
+
+/* =====================================================
+   المصادر الرسمية
+===================================================== */
+
+const SOURCES = {
+
+  socialSecurity: {
+    title: "نظام الضمان الاجتماعي",
+    url:
+      "https://www.hrsd.gov.sa/knowledge-centre/decisions-and-regulations/regulation-and-procedures/841045"
+  },
+
+  contractEnd: {
+    title: "إنهاء العلاقة التعاقدية",
+    url:
+      "https://www.hrsd.gov.sa/ministry-services/services/%D8%A7%D9%86%D9%87%D8%A7%D8%A1-%D8%A7%D9%84%D8%B9%D9%84%D8%A7%D9%82%D8%A9-%D8%A7%D9%84%D8%AA%D8%B9%D8%A7%D9%82%D8%AF%D9%8A%D8%A9"
+  },
+
+  contracts: {
+    title: "إدارة العقود",
+    url:
+      "https://www.hrsd.gov.sa/ministry-services/services/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%B9%D9%82%D9%88%D8%AF"
+  },
+
+  empowerment: {
+    title: "التقديم على فرصة التمكين",
+    url:
+      "https://www.hrsd.gov.sa/ministry-services/services/%D8%A7%D9%84%D8%AA%D9%82%D8%AF%D9%8A%D9%85-%D8%B9%D9%84%D9%89-%D9%81%D8%B1%D8%B5%D8%A9-%D8%A7%D9%84%D8%AA%D9%85%D9%83%D9%8A%D9%86"
+  },
+
+  eosCalculator: {
+    title: "حاسبة مكافأة نهاية الخدمة",
+    url:
+      "https://www.hrsd.gov.sa/ministry-services/services/%D8%AD%D8%A7%D8%B3%D8%A8%D8%A9-%D9%85%D9%83%D8%A7%D9%81%D8%A3%D8%A9-%D9%86%D9%87%D8%A7%D9%8A%D8%A9-%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A9"
+  }
+
+};
+
+
+
+/* =====================================================
+   بيانات الأشخاص
+===================================================== */
+
+const PERSONAS = {
+
+  khalid: {
+
+    id: "khalid",
+
+    name: "خالد",
+
+    age: 41,
+
+    letter: "خ",
+
+    avatarClass: "",
+
+    description:
+      "موظف، متزوج، أسرة من 4 أفراد",
+
+    employmentStatus:
+      "employed",
+
+    employmentLabel:
+      "موظف",
+
+    hasActiveContract:
+      true,
+
+    income:
+      4500,
+
+    familySize:
+      4,
+
+    socialSecurity:
+      true,
+
+    employable:
+      true,
+
+    currentServices: [
+      "الضمان الاجتماعي",
+      "العقود الوظيفية"
+    ]
+
+  },
+
+
+  reem: {
+
+    id: "reem",
+
+    name: "ريم",
+
+    age: 27,
+
+    letter: "ر",
+
+    avatarClass:
+      "blue",
+
+    description:
+      "موظفة في القطاع الخاص",
+
+    employmentStatus:
+      "employed",
+
+    employmentLabel:
+      "موظفة",
+
+    hasActiveContract:
+      true,
+
+    income:
+      8500,
+
+    familySize:
+      1,
+
+    socialSecurity:
+      false,
+
+    employable:
+      true,
+
+    currentServices: [
+      "العقود الوظيفية"
+    ]
+
+  },
+
+
+  salman: {
+
+    id: "salman",
+
+    name: "سلمان",
+
+    age: 24,
+
+    letter: "س",
+
+    avatarClass:
+      "amber",
+
+    description:
+      "باحث عن عمل، لا يوجد عقد فعال",
+
+    employmentStatus:
+      "jobSeeker",
+
+    employmentLabel:
+      "باحث عن عمل",
+
+    hasActiveContract:
+      false,
+
+    income:
+      0,
+
+    familySize:
+      1,
+
+    socialSecurity:
+      false,
+
+    employable:
+      true,
+
+    currentServices: []
+
+  }
+
+};
+
+
+
+/* =====================================================
+   حالة التطبيق
+===================================================== */
+
+const state = {
+
+  personaId:
+    null,
+
+  eventId:
+    null,
+
+  answers:
+    {},
+
+  visibleResults:
+    [],
+
+  checkedRules:
+    0,
+
+  excludedRules:
+    0
+
+};
+
+
+
+/* =====================================================
+   أدوات عامة
+===================================================== */
+
+function persona() {
+
+  return PERSONAS[
+    state.personaId
+  ];
+
+}
+
+
+function formatMoney(value) {
+
+  return Number(value)
+    .toLocaleString("en-US")
+    + " ريال";
+
+}
+
+
+function goTo(id) {
+
+  const element =
+    document.getElementById(id);
+
+  if (!element) return;
+
+  element.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
+}
+
+
+/*
+  هذه الدالة تحقق طلبك،
+  بعد كل انتقال داخل التجربة
+  ترجع الشاشة إلى بداية مساحة العرض،
+  بدل ما تضطر تنزل أكثر،
+*/
+
+function focusExperience() {
+
+  const experience =
+    document.getElementById(
+      "experience"
+    );
+
+  const top =
+    experience
+      .getBoundingClientRect()
+      .top
+    +
+    window.scrollY
+    -
+    20;
+
+  window.scrollTo({
+    top,
+    behavior: "smooth"
+  });
+
+}
+
+
+
+function startDemo() {
+
+  showView(
+    "personaView",
+    1
+  );
+
+  setTimeout(
+    focusExperience,
+    60
+  );
+
+}
+
+
+
+/* =====================================================
+   نظام الشاشات
+===================================================== */
+
+function showView(
+  viewId,
+  step
+) {
+
+  document
+    .querySelectorAll(".view")
+    .forEach(view => {
+
+      view.classList
+        .remove("active");
+
+    });
+
+
+  document
+    .getElementById(viewId)
+    .classList
+    .add("active");
+
+
+  updateSteps(step);
+
+}
+
+
+function updateSteps(step) {
+
+  document
+    .querySelectorAll(".step")
+    .forEach(item => {
+
+      const number =
+        Number(
+          item.dataset.step
+        );
+
+      item.classList.toggle(
+        "active",
+        number <= step
+      );
+
+    });
+
+}
+
+
+
+/* =====================================================
+   Persona
+===================================================== */
+
+function choosePersona(id) {
+
+  state.personaId =
+    id;
+
+  state.eventId =
+    null;
+
+  state.answers =
+    {};
+
+  renderProfile();
+
+  showView(
+    "eventView",
+    2
+  );
+
+  setTimeout(
+    focusExperience,
+    80
+  );
+
+}
+
+
+
+function renderProfile() {
+
+  const p =
+    persona();
+
+
+  const services =
+
+    p.currentServices.length
+
+      ? p.currentServices
+          .map(service => `
+            <span class="service-chip">
+              ${service}
+            </span>
+          `)
+          .join("")
+
+      : `
+        <span class="service-chip">
+          لا توجد خدمة حالية مرتبطة بالتجربة
+        </span>
+      `;
+
+
+  const html = `
+
+    <div>
+
+      <div class="profile-header">
+
+        <div
+          class="avatar ${p.avatarClass}"
+        >
+          ${p.letter}
+        </div>
+
+        <div>
+
+          <h4>
+            ${p.name}، ${p.age}
+          </h4>
+
+          <p>
+            ${p.description}
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="profile-services">
+
+        <span>
+          يستخدم حاليًا
+        </span>
+
+        <div class="service-chips">
+
+          ${services}
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  document
+    .getElementById(
+      "eventProfile"
+    )
+    .innerHTML = html;
+
+
+  document
+    .getElementById(
+      "questionProfile"
+    )
+    .innerHTML = html;
+
+}
+
+
+
+function showPersonaView() {
+
+  showView(
+    "personaView",
+    1
+  );
+
+  setTimeout(
+    focusExperience,
+    80
+  );
+
+}
+
+
+
+/* =====================================================
+   الأحداث
+===================================================== */
+
+function chooseEvent(eventId) {
+
+  state.eventId =
+    eventId;
+
+  state.answers =
+    {};
+
+  renderQuestions();
+
+  showView(
+    "questionView",
+    3
+  );
+
+  setTimeout(
+    focusExperience,
+    80
+  );
+
+}
+
+
+
+function showEventView() {
+
+  showView(
+    "eventView",
+    2
+  );
+
+  setTimeout(
+    focusExperience,
+    80
+  );
+
+}
+
+
+
+/* =====================================================
+   الأسئلة
+===================================================== */
+
+function renderQuestions() {
+
+  if (
+    state.eventId ===
+    "income"
+  ) {
+
+    renderIncomeQuestions();
+
+  }
+
+
+  if (
+    state.eventId ===
+    "contractEnd"
+  ) {
+
+    renderContractQuestions();
+
+  }
+
+
+  if (
+    state.eventId ===
+    "newJob"
+  ) {
+
+    renderNewJobQuestions();
+
+  }
+
+}
+
+
+
+/* --------------------------
+   تغير الدخل
+-------------------------- */
+
+function renderIncomeQuestions() {
+
+  const p =
+    persona();
+
+
+  document
+    .getElementById(
+      "questionsContainer"
+    )
+    .innerHTML = `
+
+      <div class="question-title">
+
+        <small>
+          تغير الدخل
+        </small>
+
+        <h3>
+          وش صار في دخلك؟
+        </h3>
+
+        <p>
+          بنستخدم الإجابة مع وضع
+          ${p.name}
+          الحالي،
+          ونطلع فقط الأشياء اللي تخصه،
+        </p>
+
+      </div>
+
+
+      <div
+        class="options"
+        id="incomeDirection"
+      >
+
+        <button
+          class="option"
+          data-value="increase"
+        >
+
+          <div>
+
+            <strong>
+              الدخل ارتفع
+            </strong>
+
+            <small>
+              صار الدخل أعلى من السابق،
+            </small>
+
+          </div>
+
+          <span class="check">
+            ✓
+          </span>
+
+        </button>
+
+
+        <button
+          class="option"
+          data-value="decrease"
+        >
+
+          <div>
+
+            <strong>
+              الدخل انخفض
+            </strong>
+
+            <small>
+              صار الدخل أقل من السابق،
+            </small>
+
+          </div>
+
+          <span class="check">
+            ✓
+          </span>
+
+        </button>
+
+      </div>
+
+
+      <div class="form-grid">
+
+        <div class="field">
+
+          <label>
+            الدخل الحالي
+          </label>
+
+          <input
+            value="${p.income}"
+            readonly
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            الدخل الجديد
+          </label>
+
+          <input
+            id="newIncome"
+            type="number"
+            min="0"
+            value="${
+              p.income > 0
+                ? p.income + 2000
+                : 5000
+            }"
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="question-actions">
+
+        <button
+          class="btn btn-primary"
+          onclick="submitIncome()"
+        >
+          شوف وش يتغير
+          <span>←</span>
+        </button>
+
+      </div>
+
+    `;
+
+
+  setupChoice(
+    "incomeDirection",
+    value => {
+
+      state.answers
+        .incomeDirection =
+          value;
+
+    }
+  );
+
+}
+
+
+
+function submitIncome() {
+
+  const p =
+    persona();
+
+
+  if (
+    !state.answers
+      .incomeDirection
+  ) {
+
+    alert(
+      "اختر هل الدخل ارتفع أو انخفض"
+    );
+
+    return;
+
+  }
+
+
+  const newIncome =
+    Number(
+      document
+        .getElementById(
+          "newIncome"
+        )
+        .value
+    );
+
+
+  if (
+    Number.isNaN(newIncome)
+    ||
+    newIncome < 0
+  ) {
+
+    alert(
+      "أدخل قيمة صحيحة للدخل"
+    );
+
+    return;
+
+  }
+
+
+  state.answers.oldIncome =
+    p.income;
+
+
+  state.answers.newIncome =
+    newIncome;
+
+
+  runAnalysis();
+
+}
+
+
+
+/* --------------------------
+   انتهاء العلاقة
+-------------------------- */
+
+function renderContractQuestions() {
+
+  document
+    .getElementById(
+      "questionsContainer"
+    )
+    .innerHTML = `
+
+      <div class="question-title">
+
+        <small>
+          انتهاء العلاقة الوظيفية
+        </small>
+
+        <h3>
+          كيف انتهت العلاقة؟
+        </h3>
+
+        <p>
+          السبب جزء من الحالة،
+          لذلك ما نفترض أن كل حالات
+          انتهاء العلاقة متشابهة،
+        </p>
+
+      </div>
+
+
+      <div
+        class="options"
+        id="contractReason"
+      >
+
+        <button
+          class="option"
+          data-value="expiry"
+        >
+
+          <div>
+
+            <strong>
+              انتهت مدة العقد
+            </strong>
+
+            <small>
+              وصل العقد إلى تاريخ نهايته،
+            </small>
+
+          </div>
+
+          <span class="check">
+            ✓
+          </span>
+
+        </button>
+
+
+        <button
+          class="option"
+          data-value="resignation"
+        >
+
+          <div>
+
+            <strong>
+              استقالة
+            </strong>
+
+            <small>
+              أنهيت العلاقة من جانبي،
+            </small>
+
+          </div>
+
+          <span class="check">
+            ✓
+          </span>
+
+        </button>
+
+
+        <button
+          class="option"
+          data-value="employer"
+        >
+
+          <div>
+
+            <strong>
+              إنهاء من صاحب العمل
+            </strong>
+
+            <small>
+              انتهت العلاقة من جهة صاحب العمل،
+            </small>
+
+          </div>
+
+          <span class="check">
+            ✓
+          </span>
+
+        </button>
+
+      </div>
+
+
+      <div class="question-actions">
+
+        <button
+          class="btn btn-primary"
+          onclick="submitContract()"
+        >
+          شوف وش يتغير
+          <span>←</span>
+        </button>
+
+      </div>
+
+    `;
+
+
+  setupChoice(
+    "contractReason",
+    value => {
+
+      state.answers
+        .contractReason =
+          value;
+
+    }
+  );
+
+}
+
+
+
+function submitContract() {
+
+  if (
+    !state.answers
+      .contractReason
+  ) {
+
+    alert(
+      "اختر كيف انتهت العلاقة"
+    );
+
+    return;
+
+  }
+
+
+  runAnalysis();
+
+}
+
+
+
+/* --------------------------
+   وظيفة جديدة
+-------------------------- */
+
+function renderNewJobQuestions() {
+
+  document
+    .getElementById(
+      "questionsContainer"
+    )
+    .innerHTML = `
+
+      <div class="question-title">
+
+        <small>
+          وظيفة جديدة
+        </small>
+
+        <h3>
+          وين وصل العقد الجديد؟
+        </h3>
+
+        <p>
+          نستخدم حالة العقد الجديدة
+          مع وضع المستفيد الحالي،
+        </p>
+
+      </div>
+
+
+      <div
+        class="options"
+        id="newJobState"
+      >
+
+        <button
+          class="option"
+          data-value="review"
+        >
+
+          <div>
+
+            <strong>
+              وصلني العقد وأراجعه
+            </strong>
+
+            <small>
+              ما اتخذت قرار عليه حتى الآن،
+            </small>
+
+          </div>
+
+          <span class="check">
+            ✓
+          </span>
+
+        </button>
+
+
+        <button
+          class="option"
+          data-value="accepted"
+        >
+
+          <div>
+
+            <strong>
+              وافقت على العقد
+            </strong>
+
+            <small>
+              وافقت على العرض المرسل لي،
+            </small>
+
+          </div>
+
+          <span class="check">
+            ✓
+          </span>
+
+        </button>
+
+
+        <button
+          class="option"
+          data-value="edit"
+        >
+
+          <div>
+
+            <strong>
+              طلبت تعديل العقد
+            </strong>
+
+            <small>
+              يوجد بند أحتاج تعديله،
+            </small>
+
+          </div>
+
+          <span class="check">
+            ✓
+          </span>
+
+        </button>
+
+      </div>
+
+
+      <div class="form-grid">
+
+        <div class="field">
+
+          <label>
+            الراتب الجديد،
+            رقم افتراضي
+          </label>
+
+          <input
+            id="newSalary"
+            type="number"
+            min="0"
+            value="6500"
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="question-actions">
+
+        <button
+          class="btn btn-primary"
+          onclick="submitNewJob()"
+        >
+          شوف وش يتغير
+          <span>←</span>
+        </button>
+
+      </div>
+
+    `;
+
+
+  setupChoice(
+    "newJobState",
+    value => {
+
+      state.answers
+        .newJobState =
+          value;
+
+    }
+  );
+
+}
+
+
+
+function submitNewJob() {
+
+  if (
+    !state.answers
+      .newJobState
+  ) {
+
+    alert(
+      "اختر حالة العقد الجديد"
+    );
+
+    return;
+
+  }
+
+
+  state.answers.newSalary =
+    Number(
+      document
+        .getElementById(
+          "newSalary"
+        )
+        .value
+    );
+
+
+  runAnalysis();
+
+}
+
+
+
+/* =====================================================
+   اختيار Option
+===================================================== */
+
+function setupChoice(
+  containerId,
+  callback
+) {
+
+  const container =
+    document.getElementById(
+      containerId
+    );
+
+
+  container
+    .querySelectorAll(".option")
+    .forEach(option => {
+
+      option.addEventListener(
+        "click",
+        () => {
+
+          container
+            .querySelectorAll(
+              ".option"
+            )
+            .forEach(item => {
+
+              item.classList
+                .remove(
+                  "selected"
+                );
+
+            });
+
+
+          option.classList
+            .add(
+              "selected"
+            );
+
+
+          callback(
+            option.dataset.value
+          );
+
+        }
+      );
+
+    });
+
+}
+
+
+
+/* =====================================================
+   التحليل
+===================================================== */
+
+function runAnalysis() {
+
+  showView(
+    "analysisView",
+    3
+  );
+
+
+  setTimeout(
+    focusExperience,
+    50
+  );
+
+
+  document
+    .querySelectorAll(
+      ".analysis-step"
+    )
+    .forEach(step => {
+
+      step.classList
+        .remove(
+          "done"
+        );
+
+    });
+
+
+  document
+    .querySelectorAll(
+      ".analysis-step"
+    )
+    .forEach(
+      (step, index) => {
+
+        setTimeout(
+          () => {
+
+            step.classList
+              .add(
+                "done"
+              );
+
+          },
+
+          300 +
+          index * 380
+
+        );
+
+      }
+    );
+
+
+  setTimeout(
+    () => {
+
+      calculateResults();
+
+      renderResults();
+
+      showView(
+        "resultView",
+        4
+      );
+
+      setTimeout(
+        focusExperience,
+        60
+      );
+
+    },
+
+    2100
+
+  );
+
+}
+
+
+
+/* =====================================================
+   محرك القواعد
+===================================================== */
+
+function calculateResults() {
+
+  const p =
+    persona();
+
+
+  const results =
+    [];
+
+
+  let checked =
+    0;
+
+
+  let excluded =
+    0;
+
+
+  /*
+    القاعدة 1،
+    تغير الدخل + مستفيد ضمان
+  */
+
+  checked++;
+
+
+  if (
+    state.eventId === "income"
+    &&
+    p.socialSecurity
+  ) {
+
+    results.push({
+
+      category:
+        "attention",
+
+      icon:
+        "≈",
+
+      title:
+        "تغير الدخل أصبح مرتبطًا بسياق الضمان",
+
+      description:
+        "لأن " +
+        p.name +
+        " مستفيد حاليًا من الضمان الاجتماعي، فتغير الدخل من الأشياء المهمة لحالته،",
+
+      tag:
+        "يحتاج مراجعة",
+
+      tagType:
+        "warning",
+
+      explanation:
+        "ما نقدر نحكم من رقم الدخل وحده على الاستحقاق، لأن التقييم يعتمد على الدخل المحتسب وبقية بيانات الحالة، لذلك أثر يحدد أن هذه الخدمة أصبحت بحاجة إلى إعادة فحص، بدل إعطاء قرار غير دقيق،",
+
+      why:
+        "مستفيد من الضمان + تغير في الدخل = الضمان يصبح ضمن الأشياء المرتبطة بالتغيير،",
+
+      source:
+        SOURCES.socialSecurity
+
+    });
+
+  } else {
+
+    excluded++;
+
+  }
+
+
+  /*
+    القاعدة 2،
+    مستفيد ضمان + تغير مؤثر
+  */
+
+  checked++;
+
+
+  if (
+    state.eventId === "income"
+    &&
+    p.socialSecurity
+  ) {
+
+    results.push({
+
+      category:
+        "attention",
+
+      icon:
+        "!",
+
+      title:
+        "إذا كان التغيير مؤثرًا، يوجد إجراء مرتبط به",
+
+      description:
+        "هناك مدة نظامية لإبلاغ الوزارة بالتغيير المؤثر على الاستحقاق أو مقدار المعاش،",
+
+      tag:
+        "خلال 15 يومًا",
+
+      tagType:
+        "warning",
+
+      explanation:
+        "النظام ينص على إبلاغ الوزارة بأي تغيير يؤثر على استحقاق المعاش أو مقداره خلال خمسة عشر يومًا من تاريخ التغيير،",
+
+      why:
+        "مستفيد من الضمان + تغيير مؤثر = يظهر تنبيه الإبلاغ،",
+
+      source:
+        SOURCES.socialSecurity
+
+    });
+
+  } else {
+
+    excluded++;
+
+  }
+
+
+  /*
+    القاعدة 3،
+    مستفيد ضمان + قادر على العمل،
+    مسار تمكين قد يفيده
+  */
+
+  checked++;
+
+
+  if (
+    p.socialSecurity
+    &&
+    p.employable
+  ) {
+
+    results.push({
+
+      category:
+        "new",
+
+      icon:
+        "+",
+
+      title:
+        "فرص التمكين قد تكون مرتبطة بحالتك",
+
+      description:
+        "بما أن المستفيد ضمن سياق الضمان وقادر على العمل، يمكن أن يكون مسار التمكين من الأشياء المفيدة له،",
+
+      tag:
+        "قد يفيدك",
+
+      tagType:
+        "",
+
+      explanation:
+        "الهدف هنا ليس القول إن المستفيد مؤهل تلقائيًا، بل إظهار خدمة أو مسار رسمي أصبح ذا صلة بحالته وقد يستحق أن يعرف عنه،",
+
+      why:
+        "مستفيد من الضمان + قادر على العمل = مسار التمكين قد يصبح مفيدًا،",
+
+      source:
+        SOURCES.empowerment
+
+    });
+
+  } else {
+
+    excluded++;
+
+  }
+
+
+  /*
+    القاعدة 4،
+    انتهاء العلاقة + عقد فعال
+  */
+
+  checked++;
+
+
+  if (
+    state.eventId ===
+      "contractEnd"
+    &&
+    p.hasActiveContract
+  ) {
+
+    results.push({
+
+      category:
+        "attention",
+
+      icon:
+        "◷",
+
+      title:
+        "إنهاء العلاقة أصبح مرتبطًا بعقدك الحالي",
+
+      description:
+        "لأن لدى " +
+        p.name +
+        " عقدًا فعالًا في بيانات النموذج، فهذا الحدث مرتبط مباشرة بالعلاقة الحالية،",
+
+      tag:
+        "مرتبط بحالتك",
+
+      tagType:
+        "",
+
+      explanation:
+        "أثر لا يرسل أي شخص لخدمة إنهاء العلاقة لمجرد أنه اختار الحدث، أول شيء يتحقق منه هو وجود عقد فعال أصلًا،",
+
+      why:
+        "عقد فعال + انتهاء علاقة وظيفية = خدمة إنهاء العلاقة تصبح مرتبطة بالحالة،",
+
+      source:
+        SOURCES.contractEnd
+
+    });
+
+  } else {
+
+    excluded++;
+
+  }
+
+
+  /*
+    القاعدة 5،
+    انتهاء العلاقة + حاسبة نهاية الخدمة
+  */
+
+  checked++;
+
+
+  if (
+    state.eventId ===
+      "contractEnd"
+    &&
+    p.hasActiveContract
+  ) {
+
+    results.push({
+
+      category:
+        "new",
+
+      icon:
+        "ح",
+
+      title:
+        "قد تحتاج حاسبة مكافأة نهاية الخدمة",
+
+      description:
+        "بعد انتهاء العلاقة، قد تكون الحاسبة الرسمية من الأدوات المفيدة لفهم قيمة المكافأة بشكل تقديري،",
+
+      tag:
+        "أداة قد تفيدك",
+
+      tagType:
+        "",
+
+      explanation:
+        "بدل أن يبحث المستفيد بنفسه عن الأدوات المرتبطة بحدث انتهاء العلاقة، أثر يستطيع إظهار الأدوات ذات العلاقة في نفس اللحظة،",
+
+      why:
+        "انتهاء علاقة وظيفية + عقد قائم = أداة نهاية الخدمة قد تصبح مرتبطة بالحدث،",
+
+      source:
+        SOURCES.eosCalculator
+
+    });
+
+  } else {
+
+    excluded++;
+
+  }
+
+
+  /*
+    القاعدة 6،
+    عقد جديد
+  */
+
+  checked++;
+
+
+  if (
+    state.eventId ===
+      "newJob"
+  ) {
+
+    results.push({
+
+      category:
+        "attention",
+
+      icon:
+        "▤",
+
+      title:
+        getNewJobTitle(),
+
+      description:
+        getNewJobDescription(),
+
+      tag:
+        "إدارة العقود",
+
+      tagType:
+        "",
+
+      explanation:
+        "خدمة إدارة العقود تتيح للموظف مراجعة العقد والتعامل معه، بما يشمل الموافقة أو الرفض أو طلب التعديل،",
+
+      why:
+        "عقد وظيفي جديد + حالة العقد = المسار المناسب داخل إدارة العقود،",
+
+      source:
+        SOURCES.contracts
+
+    });
+
+  } else {
+
+    excluded++;
+
+  }
+
+
+  /*
+    القاعدة 7،
+    وظيفة جديدة لشخص كان باحث عن عمل
+  */
+
+  checked++;
+
+
+  if (
+    state.eventId ===
+      "newJob"
+    &&
+    p.employmentStatus ===
+      "jobSeeker"
+  ) {
+
+    results.push({
+
+      category:
+        "new",
+
+      icon:
+        "→",
+
+      title:
+        "وضعك الوظيفي قد يتغير بالكامل",
+
+      description:
+        "إذا اكتملت العلاقة الجديدة، ينتقل وضع " +
+        p.name +
+        " من باحث عن عمل إلى موظف،",
+
+      tag:
+        "تغير في الحالة",
+
+      tagType:
+        "",
+
+      explanation:
+        "وهذه نقطة أساسية في أثر، الحدث لا يعطي نتيجة فقط، بل يغير صورة المستفيد نفسها، وبالتالي قد تتغير الخدمات المرتبطة به بعد ذلك،",
+
+      why:
+        "باحث عن عمل + علاقة وظيفية جديدة = حالة المستفيد نفسها تتغير،",
+
+      source:
+        SOURCES.contracts
+
+    });
+
+  } else {
+
+    excluded++;
+
+  }
+
+
+  /*
+    القاعدة 8،
+    وظيفة جديدة لمستفيد ضمان،
+    الدخل الجديد قد يؤثر على سياق الضمان
+  */
+
+  checked++;
+
+
+  if (
+    state.eventId ===
+      "newJob"
+    &&
+    p.socialSecurity
+  ) {
+
+    results.push({
+
+      category:
+        "attention",
+
+      icon:
+        "≈",
+
+      title:
+        "الدخل الجديد قد يؤثر على سياق الضمان",
+
+      description:
+        "الراتب الجديد في المحاكاة هو " +
+        formatMoney(
+          state.answers.newSalary
+        ) +
+        "، لذلك قد تحتاج بيانات الدخل المرتبطة بالضمان إلى إعادة تقييم،",
+
+      tag:
+        "أثر آخر",
+
+      tagType:
+        "warning",
+
+      explanation:
+        "حدث الوظيفة الجديدة بدأ من قطاع العمل، لكنه قد يغير معلومة تستخدم في خدمة أخرى، وهنا تظهر قيمة ربط الخدمات بحالة المستفيد،",
+
+      why:
+        "مستفيد من الضمان + دخل وظيفي جديد = سياق الضمان قد يحتاج إعادة تقييم،",
+
+      source:
+        SOURCES.socialSecurity
+
+    });
+
+  } else {
+
+    excluded++;
+
+  }
+
+
+  /*
+    لو اختار انتهاء علاقة
+    ولا عنده عقد،
+    لا نظهر خدمة غير مناسبة،
+    بل نتيجة توضح أن هذا الحدث غير منطبق،
+  */
+
+  checked++;
+
+
+  if (
+    state.eventId ===
+      "contractEnd"
+    &&
+    !p.hasActiveContract
+  ) {
+
+    results.push({
+
+      category:
+        "attention",
+
+      icon:
+        "—",
+
+      title:
+        "ما عندك عقد فعال ننهيه",
+
+      description:
+        "بحسب بيانات " +
+        p.name +
+        " الحالية، ما توجد علاقة وظيفية فعالة مرتبطة بهذا الحدث،",
+
+      tag:
+        "غير منطبق",
+
+      tagType:
+        "neutral",
+
+      explanation:
+        "وهذا مقصود، أثر ما يعرض خدمة لمجرد أن المستخدم اختار اسم حدث، أولًا يتأكد أن الحدث يناسب وضع الشخص الحالي،",
+
+      why:
+        "لا يوجد عقد فعال + حدث انتهاء علاقة = لا نعرض خدمة إنهاء عقد غير موجود،",
+
+      source:
+        null
+
+    });
+
+  } else {
+
+    excluded++;
+
+  }
+
+
+  state.visibleResults =
+    results;
+
+
+  state.checkedRules =
+    checked;
+
+
+  state.excludedRules =
+    excluded;
+
+}
+
+
+
+/* =====================================================
+   النتيجة
+===================================================== */
+
+function renderResults() {
+
+  const p =
+    persona();
+
+
+  const current =
+    state.visibleResults
+      .filter(
+        item =>
+          item.category ===
+          "attention"
+      );
+
+
+  const newItems =
+    state.visibleResults
+      .filter(
+        item =>
+          item.category ===
+          "new"
+      );
+
+
+  const currentServices =
+    p.currentServices.length
+
+      ? p.currentServices
+          .map(service => `
+            <span class="result-service">
+              ${service}
+            </span>
+          `)
+          .join("")
+
+      : `
+        <span class="result-service">
+          لا توجد خدمة حالية مرتبطة بالتجربة
+        </span>
+      `;
+
+
+  document
+    .getElementById(
+      "resultContainer"
+    )
+    .innerHTML = `
+
+      <div class="result-header">
+
+        <small>
+          النتيجة المخصصة لـ
+          ${p.name}
+        </small>
+
+        <h3>
+          هذا اللي يخص حالتك الآن،
+        </h3>
+
+        <p>
+
+          ما عرضنا كل شيء،
+          عرضنا فقط الأشياء اللي لها علاقة
+          بوضعك والتغيير اللي اخترته،
+
+        </p>
+
+      </div>
+
+
+      <div class="rule-summary">
+
+        <strong>
+
+          راجعنا
+          ${state.checkedRules}
+          قواعد،
+
+          واستبعدنا
+          ${state.excludedRules}
+          لأنها ما تخص حالتك،
+
+        </strong>
+
+        <span>
+          النتيجة تختلف من شخص لشخص،
+        </span>
+
+      </div>
+
+
+      ${renderBeforeAfter()}
+
+
+      <div class="result-section">
+
+        <div class="result-section-title">
+
+          <small>
+            تستخدمها الآن
+          </small>
+
+          <h4>
+            خدمات مرتبطة بوضعك الحالي
+          </h4>
+
+        </div>
+
+
+        <div class="services-row">
+
+          ${currentServices}
+
+        </div>
+
+      </div>
+
+
+      ${
+        current.length
+
+          ? `
+
+            <div class="result-section">
+
+              <div class="result-section-title">
+
+                <small>
+                  تحتاج انتباهك
+                </small>
+
+                <h4>
+                  وش تغير عليك؟
+                </h4>
+
+              </div>
+
+
+              <div class="impact-list">
+
+                ${
+                  current
+                    .map(
+                      item =>
+                        renderImpact(item)
+                    )
+                    .join("")
+                }
+
+              </div>
+
+            </div>
+
+          `
+
+          : ""
+      }
+
+
+      ${
+        newItems.length
+
+          ? `
+
+            <div class="result-section">
+
+              <div class="result-section-title">
+
+                <small>
+                  قد يفيدك الآن
+                </small>
+
+                <h4>
+                  أشياء أصبحت مرتبطة بحالتك
+                </h4>
+
+              </div>
+
+
+              <div class="impact-list">
+
+                ${
+                  newItems
+                    .map(
+                      item =>
+                        renderImpact(item)
+                    )
+                    .join("")
+                }
+
+              </div>
+
+            </div>
+
+          `
+
+          : ""
+      }
+
+
+      <div class="disclaimer">
+
+        هذا نموذج تصوري ببيانات افتراضية،
+        ولا يمثل قرار أهلية،
+        أو استحقاق،
+        أو تفسيرًا قانونيًا رسميًا،
+
+      </div>
+
+
+      <div class="result-actions">
+
+        <button
+          class="btn btn-primary"
+          onclick="compareSameEvent()"
+        >
+          جرّب نفس التغيير مع شخص آخر
+          <span>←</span>
+        </button>
+
+
+        <button
+          class="btn btn-secondary"
+          onclick="anotherEvent()"
+        >
+          جرّب تغييرًا آخر
+        </button>
+
+      </div>
+
+    `;
+
+
+  setupImpacts();
+
+}
+
+
+
+/* =====================================================
+   قبل وبعد
+===================================================== */
+
+function renderBeforeAfter() {
+
+  const p =
+    persona();
+
+
+  let before =
+    p.employmentLabel;
+
+
+  let after =
+    before;
+
+
+  let change =
+    getEventLabel();
+
+
+  if (
+    state.eventId ===
+    "income"
+  ) {
+
+    before =
+      formatMoney(
+        state.answers.oldIncome
+      );
+
+
+    after =
+      formatMoney(
+        state.answers.newIncome
+      );
+
+  }
+
+
+  if (
+    state.eventId ===
+    "contractEnd"
+  ) {
+
+    before =
+      p.hasActiveContract
+        ? "عقد فعال"
+        : "لا يوجد عقد فعال";
+
+
+    after =
+      p.hasActiveContract
+        ? "علاقة وظيفية منتهية"
+        : "لا يوجد عقد يمكن إنهاؤه";
+
+  }
+
+
+  if (
+    state.eventId ===
+    "newJob"
+  ) {
+
+    before =
+      p.employmentLabel;
+
+
+    after =
+      p.employmentStatus ===
+        "jobSeeker"
+
+        ? "وظيفة جديدة قيد الإكمال"
+
+        : "عقد وظيفي جديد";
+
+  }
+
+
+  return `
+
+    <div class="before-after">
+
+      <div class="state-box">
+
+        <small>
+          قبل التغيير
+        </small>
+
+        <strong>
+          ${before}
+        </strong>
+
+      </div>
+
+
+      <div class="change-arrow">
+
+        <div>
+
+          <span>
+            ${change}
+          </span>
+
+          <div>
+            ←
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="state-box after">
+
+        <small>
+          بعد التغيير
+        </small>
+
+        <strong>
+          ${after}
+        </strong>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+
+/* =====================================================
+   Impact card
+===================================================== */
+
+function renderImpact(item) {
+
+  return `
+
+    <article class="impact">
+
+      <div
+        class="impact-main"
+        onclick="
+          this
+            .parentElement
+            .classList
+            .toggle('open')
+        "
+      >
+
+        <div class="impact-icon">
+          ${item.icon}
+        </div>
+
+
+        <div class="impact-copy">
+
+          <strong>
+            ${item.title}
+          </strong>
+
+          <p>
+            ${item.description}
+          </p>
+
+        </div>
+
+
+        <span
+          class="
+            impact-tag
+            ${item.tagType || ""}
+          "
+        >
+          ${item.tag}
+        </span>
+
+      </div>
+
+
+      <div class="impact-details">
+
+        <div class="impact-details-inner">
+
+          <strong>
+            ليش ظهر لك هذا؟
+          </strong>
+
+          <p>
+            ${item.explanation}
+          </p>
+
+
+          <div class="why-box">
+
+            ${item.why}
+
+          </div>
+
+
+          ${
+            item.source
+
+              ? `
+
+                <a
+                  class="source-link"
+                  href="${item.source.url}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  المصدر الرسمي،
+                  ${item.source.title}
+                  ↗
+                </a>
+
+              `
+
+              : ""
+          }
+
+        </div>
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+
+function setupImpacts() {
+
+  /* لا نحتاج شيء إضافي،
+     onclick موجود داخل البطاقة */
+
+}
+
+
+
+/* =====================================================
+   نفس التغيير مع شخص آخر
+===================================================== */
+
+function compareSameEvent() {
+
+  const savedEvent =
+    state.eventId;
+
+
+  const savedAnswers =
+    JSON.parse(
+      JSON.stringify(
+        state.answers
+      )
+    );
+
+
+  document
+    .getElementById(
+      "personaView"
+    )
+    .querySelector(
+      ".view-heading"
+    )
+    .innerHTML = `
+
+      <small>
+        قارن نفس التغيير
+      </small>
+
+      <h3>
+        اختر شخصًا ثانيًا
+      </h3>
+
+      <p>
+
+        بنطبق
+        "${getEventLabel(savedEvent)}"
+
+        على حالة مختلفة،
+        ونشوف وش الأشياء اللي تظهر
+        وش الأشياء اللي تختفي،
+
+      </p>
+
+    `;
+
+
+  /*
+    نخزن المقارنة بشكل مؤقت،
+  */
+
+  window.comparisonMode = {
+    eventId:
+      savedEvent,
+
+    answers:
+      savedAnswers
+  };
+
+
+  showView(
+    "personaView",
+    1
+  );
+
+
+  setTimeout(
+    focusExperience,
+    60
+  );
+
+}
+
+
+
+/*
+  نعدل choosePersona لو كنا في وضع مقارنة،
+*/
+
+const originalChoosePersona =
+  choosePersona;
+
+
+choosePersona = function(id) {
+
+  if (
+    window.comparisonMode
+  ) {
+
+    state.personaId =
+      id;
+
+
+    state.eventId =
+      window
+        .comparisonMode
+        .eventId;
+
+
+    state.answers =
+      adaptAnswersForPersona(
+        window
+          .comparisonMode
+          .answers
+      );
+
+
+    window.comparisonMode =
+      null;
+
+
+    renderProfile();
+
+
+    runAnalysis();
+
+
+    restorePersonaHeading();
+
+
+    return;
+
+  }
+
+
+  state.personaId =
+    id;
+
+
+  state.eventId =
+    null;
+
+
+  state.answers =
+    {};
+
+
+  renderProfile();
+
+
+  showView(
+    "eventView",
+    2
+  );
+
+
+  setTimeout(
+    focusExperience,
+    80
+  );
+
+};
+
+
+
+/*
+  في تغير الدخل،
+  نحافظ على مقدار التغير،
+  مو على نفس الراتب النهائي،
+*/
+
+function adaptAnswersForPersona(
+  oldAnswers
+) {
+
+  const p =
+    persona();
+
+
+  const answers =
+    JSON.parse(
+      JSON.stringify(
+        oldAnswers
+      )
+    );
+
+
+  if (
+    state.eventId ===
+    "income"
+  ) {
+
+    const difference =
+      oldAnswers.newIncome
+      -
+      oldAnswers.oldIncome;
+
+
+    answers.oldIncome =
+      p.income;
+
+
+    answers.newIncome =
+      Math.max(
+        0,
+        p.income + difference
+      );
+
+  }
+
+
+  return answers;
+
+}
+
+
+
+function restorePersonaHeading() {
+
+  document
+    .getElementById(
+      "personaView"
+    )
+    .querySelector(
+      ".view-heading"
+    )
+    .innerHTML = `
+
+      <small>
+        الخطوة 1 من 4
+      </small>
+
+      <h3>
+        اختر مستفيدًا افتراضيًا
+      </h3>
+
+      <p>
+
+        كل شخص عنده وضع مختلف،
+        وخدمات يستخدمها الآن،
+
+        وبعد الاختيار بنعرض للجميع
+        نفس التغيّرات،
+
+      </p>
+
+    `;
+
+}
+
+
+
+/* =====================================================
+   تغيير آخر
+===================================================== */
+
+function anotherEvent() {
+
+  renderProfile();
+
+
+  showView(
+    "eventView",
+    2
+  );
+
+
+  setTimeout(
+    focusExperience,
+    60
+  );
+
+}
+
+
+
+/* =====================================================
+   Labels
+===================================================== */
+
+function getEventLabel(
+  eventId = state.eventId
+) {
+
+  const labels = {
+
+    income:
+      "تغير الدخل",
+
+    contractEnd:
+      "انتهاء العلاقة الوظيفية",
+
+    newJob:
+      "وظيفة جديدة"
+
+  };
+
+
+  return labels[eventId] || "";
+
+}
+
+
+
+function getNewJobTitle() {
+
+  const value =
+    state.answers.newJobState;
+
+
+  if (
+    value === "review"
+  ) {
+
+    return "العقد يحتاج مراجعتك";
+
+  }
+
+
+  if (
+    value === "accepted"
+  ) {
+
+    return "وافقت على العقد الجديد";
+
+  }
+
+
+  if (
+    value === "edit"
+  ) {
+
+    return "طلبت تعديل العقد";
+
+  }
+
+
+  return "العقد الجديد";
+
+}
+
+
+
+function getNewJobDescription() {
+
+  const value =
+    state.answers.newJobState;
+
+
+  if (
+    value === "review"
+  ) {
+
+    return "العقد ما زال بانتظار قرارك، ويمكنك مراجعته قبل اتخاذ الإجراء،";
+
+  }
+
+
+  if (
+    value === "accepted"
+  ) {
+
+    return "موافقتك خطوة في مسار العقد، ويكتمل التوثيق عند استيفاء إجراءات الطرفين،";
+
+  }
+
+
+  if (
+    value === "edit"
+  ) {
+
+    return "طلب تعديل العقد أصبح الإجراء المرتبط بحالتك الحالية،";
+
+  }
+
+
+  return "";
+
+}
+
+</script>
+
+
 </body>
 </html>
